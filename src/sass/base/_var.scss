@@ -1,10 +1,12 @@
 // ======== 顏色 ========
 
-$primary-color1:#16B1AA;
-$primary-color2:#FF8671;
-$primary-color3:#FACD01;
+$color_G:#16B1AA;
+$color_R:#FF8671;
+$color_Y:#FACD01;
+$color_W:#ffffff;
+$color_B:#454545;
 
-// ======== 文字大小 ========
+// ======== 文字大小 ========   
 
 $h2: 64px;
 $h3: 48px;
@@ -14,5 +16,13 @@ $p : 15px;
 
 // ======== 行高 ========
 
-$h5-line-height: 38px;
-$p-line-height: 24px;
+$h5_LH: 38px;
+$p_LH: 24px;
+
+// ======== 字體 ========
+
+$fontfamily: "Noto Sans Traditional Chinese , Oswald";
+
+
+
+

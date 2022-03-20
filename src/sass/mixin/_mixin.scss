@@ -1,0 +1,16 @@
+// ===== 物件水平置中 =====
+@mixin marginCenter(){
+    margin: 0 auto;
+    @content;
+}
+
+// ===== 文字水平置中 =====
+@mixin textCenter {
+    text-align: center;
+}
+
+// ===== body =====
+@mixin body {
+    background-color: $color_W;
+    @content;
+}
