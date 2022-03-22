@@ -19,4 +19,16 @@
     @media (max-width: 575.98px){
       @content;
     }
-  }
+}
+
+// ===== 測試用border =====
+@mixin borderTest($borderc:red){
+  border: 1px solid $borderc;
+}
+
+// ===== wrapper =====
+@mixin wrapper($top: 0, $bottom: 0, $width: 1100px){
+  margin: $top auto $bottom;
+  width: $width;
+  @content;
+}

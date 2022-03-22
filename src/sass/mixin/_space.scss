@@ -1,5 +1,5 @@
 // ===== margin-top =====
-@for $i from 1 through 5 {
+@for $i from 1 through 10 {
     .marginTop#{$i}0 {
         margin-top: $i * 10;
     }
