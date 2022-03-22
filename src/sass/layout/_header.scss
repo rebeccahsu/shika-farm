@@ -1,13 +1,67 @@
-header{
-    background-color: #333;
-    nav{
-        @include borderTest();
-        height: 80px;
-        h1{
-            line-height: 80px;
-            img{
-                width: 260px;
-            }
+.frontHeader{
+    background-color: $color_W;
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    box-shadow: 0px 2px 12px 1px rgba(0, 0, 0, 0.3);
+
+    .main_sel{
+        // background-color: #333;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        @include wrapper(){
+            padding: 0 10px;
+        };
+
+        .headerLogo{
+            width: 230px;
         }
+
+        .navRight{
+            display: flex;
+            align-items: center;
+
+            .cartIcon{
+            width: 55px;
+            margin-right: 20px;
+            }
+
+            .memberIcon{
+                width: 45px;
+                margin-right: 30px;
+            }
+
+            .ham_btn{
+                cursor: pointer;
+                
+                .ham_line_1, .ham_line_2, .ham_line_3{
+                    content: "";
+                    background-color: $color_G;
+                    display: block;
+                    width: 40px;
+                    height: 4px;
+                    border-radius: 3px;
+                    margin: 9px 0;
+                    transition: .5s;
+                    transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                }
+                
+                .ham_line_1.-on{
+                    transform: translateY(12px) rotate(135deg);
+                }
+                
+                .ham_line_2.-on{
+                    transform: scale(0);
+                }
+                
+                .ham_line_3.-on{
+                    transform: translateY(-12px) rotate(-135deg);
+                }
+            }
+        
+        }
+        
     }
 }
