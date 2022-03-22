@@ -9,12 +9,6 @@
     text-align: center;
 }
 
-// ===== body =====
-@mixin body {
-    background-color: $color_W;
-    @content;
-}
-
 // ===== Media query =====
 @mixin pad{
     @media (max-width: 767.98px){

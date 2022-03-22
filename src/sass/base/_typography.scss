@@ -1,19 +1,62 @@
 h2{
-    font-size: 64px;
+    font-size: $h2;
+    letter-spacing: $h2-letter-spacing;
+
+    @include mobile{
+        font-size: 36px;
+        letter-spacing: 5px;
+    }
 }
 
 h3{
-    font-size: 48px;
+    font-size: $h3;
+    letter-spacing: $h3-letter-spacing;
+
+    @include mobile{
+        font-size: 24px;
+        letter-spacing: 3px;
+    }
 }
 
 h4{
-    font-size: 36px;
+    font-size: $h4;
+    letter-spacing: $h4-letter-spacing;
+
+    @include mobile{
+        font-size: 24px;
+        letter-spacing: 2px;
+    }
 }
 
 h5{
-    font-size: 24px;
+    font-size: $h5;
+    line-height: $h5_lh;
+    letter-spacing: $h5-letter-spacing;
+
+    @include mobile{
+        font-size: 18px;
+        letter-spacing: 1px;
+        line-height: 27px;
+    }
 }
 
 p{
-    font-size: 15px;
+    font-size: $p;
+    line-height: $p_lh;
+
+    @include mobile{
+        font-size: 12px;
+        line-height: 20px;
+    }
+}
+
+//英文字
+h6{
+    font-size: $h6;
+    font-family: Oswald;
+
+    @include mobile{
+        font-size: 64px;
+        line-height: 70px;
+    }
 }
