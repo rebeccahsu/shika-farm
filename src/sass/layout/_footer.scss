@@ -1,0 +1,94 @@
+footer{
+    position: relative;
+
+    // .footersvg{
+    //     color: $color_B;
+    //     position: absolute;
+    //     top: -50px;
+    //     left: 0;
+    // }
+
+    // .tree1{
+    //     width: 90px;
+    // }
+
+    // .tree2{
+    //     width: 66px;
+    // }
+
+    // .cow1{
+    //     width: 183px;
+    //     top: -100px;
+    //     left: 0;
+    // }
+
+    // .cow2{
+    //     width: 140px;
+    // }
+
+    // .footerdec{
+    //     position: absolute;
+    //     @include borderTest();
+    // }
+
+    // .hilltop{
+    //     width: 100%;
+    //     display: block;
+    // }
+
+    .ftop{
+        width: 100%;
+        display: block;
+    }
+
+    .footerbg{
+        height: 300px;
+        background-color: $color_G;
+
+        
+        .footermain{
+            padding-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            @include wrapper();
+
+            .footerLogo{
+                flex-grow: 1.2;
+                flex-basis: 0;
+
+                img{
+                    width: 280px;
+                }
+            }
+
+            .footerInfo{
+                flex-grow: 1;
+                flex-basis: 0;
+
+                p{
+                    margin-bottom: 10px;
+                    color: $color_W;
+                }
+            }
+    
+            .socialMediaIcons{
+                // width: 50px;
+                display: flex;
+                flex-basis: 0;
+                justify-content: space-evenly;
+                flex-grow: 0.8;
+
+                .footerIcon{
+                    width: 50px;
+                }
+            }
+            
+        }
+        .tibameMessage{
+            @include wrapper(110px, 0px);
+            @include textCenter();
+            color: $color_W;
+        }
+    }
+}
