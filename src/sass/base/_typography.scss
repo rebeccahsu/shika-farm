@@ -54,7 +54,7 @@ p{
 //英文字
 h6{
     font-size: $fs-2xl;
-    font-family: Oswald;
+    font-family: $fontfamily;
 
     @include mobile{
         font-size: $fs-xl;
