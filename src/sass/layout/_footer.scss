@@ -85,9 +85,9 @@
             
         }
         .tibameMessage{
-            @include wrapper(110px, 0px);
             @include textCenter();
             color: $color_W;
+            margin-top: 90px;
         }
     }
 }
