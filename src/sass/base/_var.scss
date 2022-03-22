@@ -8,24 +8,24 @@ $color_B:#454545;
 
 // ======== 文字大小 ========   
 
-$h2: 64px;
-$h3: 48px;
-$h4: 36px;
-$h5: 24px;
-$p: 15px;
-$h6: 110px;
+$fs-2xs : 12px; //手機版
+$fs-xs: 15px;
+$fs-s: 24px;
+$fs-m: 36px;
+$fs-l: 48px;
+$fs-xl: 64px;
+$fs-2xl: 110px;
 
 // ======== 行高 LineHeight ========
 
-$h5_lh: 38px;
-$p_lh: 24px;
+$LH-38: 38px;
+$LH-24: 24px;
 
 // ======== 字距 ========
 
-$h2-letter-spacing: 6px;
-$h3-letter-spacing: 3px;
-$h4-letter-spacing: 3px;
-$h5-letter-spacing: 2px;
+$letter-spacing-6: 6px;
+$letter-spacing-3: 3px;
+$letter-spacing-2: 2px;
 
 // ======== 字體 ========
 
