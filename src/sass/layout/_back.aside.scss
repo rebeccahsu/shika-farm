@@ -1,0 +1,35 @@
+aside{
+    background-color: $color_G;
+    width: 20%;
+    height: 100vh;
+    align-items: center;
+    display: flex;
+    position: fixed;
+    left: 0;
+    top: 0;
+    img{
+        width: 185px;
+        margin: 60px auto;
+    }
+    ul{
+        list-style: none;
+        width: 100%;
+        padding: 0;
+        @include textCenter();
+    }
+    li{
+        font-size: $fs-s;
+        margin: 30px auto;
+        width: 100%;
+    }
+    li > a{
+        text-decoration: none;
+        display: block;
+        color: $color_B;
+        padding: 20px 0;
+    }
+    li > a:hover{
+        background-color: $color_Y ;
+        color: $color_W;
+    }
+}
