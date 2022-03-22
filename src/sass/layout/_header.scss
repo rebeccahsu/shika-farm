@@ -1,0 +1,13 @@
+header{
+    background-color: #333;
+    nav{
+        @include borderTest();
+        height: 80px;
+        h1{
+            line-height: 80px;
+            img{
+                width: 260px;
+            }
+        }
+    }
+}
