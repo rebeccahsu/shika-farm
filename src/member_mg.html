@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    @@include('./layout/head.html', {
+    @@include('./layout/back_head.html', {
         "title" : "Sìkha 後台"
     })
 </head>
 <body>
     <!-- 側邊導覽列 -->  
-    
-    @@include('./layout/back_aside.html')
     <div class="wrapper">
-        <h2>會員資料管理</h2>
-        <ul>
-        
-        </ul>
+    @@include('./layout/back_aside.html')
+        <div class="main">
+            <h4>會員資料管理</h4>
+            <ul class="titleBar">
+                <li>會員編號</li>
+                <li>姓名</li>
+                <li>E-mail</li>
+                <li>聯絡電話</li>
+                <li>地址</li>
+            </ul>
+        </div>
     </div>
 </body>
 </html>
