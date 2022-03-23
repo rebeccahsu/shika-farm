@@ -1,8 +1,8 @@
 .wrapper{
-    @include borderTest($borderc:blue); // 測試線
-    padding: 0;
-    display: grid;
-    grid-template-columns: 20% 80%;
+    // @include borderTest($borderc:blue); // 測試線
+    // padding: 0;
+    // display: grid;
+    // grid-template-columns: 20% 80%;
     .main{
         h4{
             @include textCenter();
