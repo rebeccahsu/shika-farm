@@ -1,0 +1,48 @@
+
+
+.logo{
+    @include borderTest();
+    @include textCenter;
+    @include marginCenter();
+    display: block;
+    max-width: 400px;
+    padding-top: 60px;
+
+}
+.bl_title{
+    @include textCenter;
+    font-size: $fs-l;
+    margin-top: 60px;
+    border: 1px solid green;
+}
+
+.bl_login{
+// display: block;
+font-size: $fs-s;
+@include marginCenter();
+max-width: 1000px;
+border: 1px solid blue;
+
+}
+
+#username ,#password{
+    border: 1px solid red;
+    width: 300px;
+    height: 44px;
+    border-radius: 4px;
+    display: block;
+    margin: 0 auto;
+}
+
+.bl_btn{
+    background-color: $color_G;
+    color: $color_W;
+    font-size: $fs-s;
+    width: 300px;
+    height: 44px;
+    border-radius: 4px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 40px;
+    
+}
