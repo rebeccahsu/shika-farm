@@ -1,0 +1,75 @@
+.body_out{
+    overflow-x: hidden;
+}
+
+.mainup{
+    max-width: 100%;
+    height: 550px;
+    background-image: url(../../img/news/gozha-net-xDrxJCdedcI-unsplash\ 1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    // border: 1px solid black;
+    // display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mainup h2{
+    color: white;
+    font-size: 64px;
+}
+
+.main_min{
+    position: relative;
+    margin: 0 auto;
+    width: 1100px;
+    height: 800px;
+
+}
+.redboll{
+    position: absolute;
+    height: 600px;
+    top: 750px;
+    right: -100px;
+    z-index: -15;
+}
+
+.yellowboll{
+    position: absolute;
+    height: 300px;
+    top: 600px;
+    left: 380px;
+    z-index: -15;
+}
+
+.div_top{
+    margin-top: 150px;
+}
+
+
+
+.div_top p:first-child{
+    font-size: 48px;
+   
+}
+
+.div_top p{
+    color:$color_G;
+    margin: 0;
+}
+
+.div_top p:first-child{
+    margin-bottom: 20px;
+}
+
+.div_top pre{
+    font-size: 24px;
+    color: $color_G ;
+}
+
+
+
+
+
+
+
+
