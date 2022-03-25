@@ -1,14 +1,33 @@
+.bl_bg{
+    
+}
 
 
+
+
+.bl_wrapper{
+    margin: 40px auto;
+    width: 600px;
+    height: 500px;
+    border: 1px solid black;
+    background-color:$color_W ;
+    // @include marginCenter();
+    border-radius: 8px;
+    
+
+}
+//LOGO
 .logo{
     @include borderTest();
     @include textCenter;
     @include marginCenter();
     display: block;
-    max-width: 400px;
+    max-width: 300px;
     padding-top: 60px;
 
 }
+
+//標題
 .bl_title{
     @include textCenter;
     color:$color_G ;
@@ -17,22 +36,22 @@
     border: 1px solid green;
 }
 
+//輸入頁
 .bl_login{
-// display: block;
+
 font-size: $fs-s;
 @include marginCenter();
 @include textCenter();
-// max-width: 1000px;
 border: 1px solid blue;
 
 }
 
 .group{
-    width: 1000px;
+   
     display: block;
     @include marginCenter();
     margin-top: 20px;
-    margin-left: 35px;
+    margin-right: 110px;
    
 }
 
@@ -51,6 +70,7 @@ label{
     // margin: 0 auto;
 }
 
+//按鈕
 .bl_btn{
     border: 1px solid orange;
     background-color: $color_G;
@@ -62,10 +82,11 @@ label{
     display: block;
     margin: 0 auto;
     margin-top: 40px;
+    cursor: pointer;
     
 }
 
-.bl_btn :hover{
+.bl_btn:hover{
     background-color: $color_Y;
     color: $color_W;
     font-size: $fs-s;
