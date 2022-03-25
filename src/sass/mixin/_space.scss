@@ -1,7 +1,8 @@
-// ===== margin-top =====
-@for $i from 1 through 10 {
-    .marginTop#{$i}0 {
-        margin-top: $i * 10;
+// ===== margin 上下左右 =====
+@mixin Margin($dir , $val){
+    @for $i from 1 through $val {
+       .margin#{$dir}_#{$i} {
+          margin-#{$dir}: $i * 1px;
+       }
     }
-}
-
+  }

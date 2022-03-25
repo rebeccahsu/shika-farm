@@ -1,10 +1,9 @@
-aside{
+.aside{
     background-color: $color_G;
-    // width: 20%;
-    // height: 100vh;
+    width: 20%;
+    height: 100vh;
     align-items: center;
-    grid-row-start: 1;
-    grid-row-end: 3;
+    position: fixed;
     @include borderTest(); //測試線
     .logo{
         width: 185px;
