@@ -1,9 +1,10 @@
 .frontHeader{
     background-color: $color_W;
     position: fixed;
+    z-index: 950;
     width: 100%;
     top: 0px;
-    box-shadow: 0px 2px 12px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 12px 1px rgba(0, 0, 0, 0.2);
 
     .main_sel{
         height: 70px;
@@ -12,36 +13,83 @@
         justify-content: space-between;
 
         .headerLogo{
-            width: 230px;
+            width: 200px;
         }
 
         .navRight{
             display: flex;
             align-items: center;
 
-            .cartIcon{
-            width: 55px;
-            margin-right: 20px;
-            }
+            .head-icon{
+                margin-right: 20px;
+                color: $color_G;
+                // border: 1px solid red;
 
-            .memberIcon{
-                width: 45px;
-                margin-right: 30px;
+                .cartIcon{
+                    font-size: 34px;
+                    // margin-bottom: 2px;
+                    // border: 1px solid blue;
+                    display: block;
+                    transition: .5s;
+                    position: relative;
+                    &:after{
+                        content: '';
+                        display: block;
+                        width: 30px;
+                        height: 6px;
+                    }
+                    &:hover{
+                        color: $color_Y;
+                    }
+
+                    &:hover .cartCount{
+                        background-color: $color_Y;
+                    }
+                }
+
+                .cartCount{
+                    // border: 1px solid red;
+                    width: 15px;
+                    height: 15px;
+                    font-size: 12px;
+                    text-align: center;
+                    font-family: "Noto Sans Traditional Chinese";
+                    line-height: 15px;
+                    display: block;
+                    background-color: $color_R;
+                    color: $color_W;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-43%, -75%);
+                    border-radius: 50%;
+                    transition: .5s;
+                }
+    
+                .memberIcon{
+                    font-size: 36px;
+                    margin-top: 3px;
+                    // border: 1px solid blue;
+                    transition: .5s;
+                    &:hover{
+                        color: $color_Y;
+                    }
+                }
             }
 
             .ham_btn{
                 cursor: pointer;
-                
                 .ham_line_1, .ham_line_2, .ham_line_3{
                     content: "";
                     background-color: $color_G;
                     display: block;
-                    width: 40px;
+                    width: 35px;
                     height: 4px;
                     border-radius: 3px;
-                    margin: 9px 0;
+                    margin: 8px 0;
                     transition: .5s;
                     transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                    
                 }
                 
                 .ham_line_1.-on{
