@@ -1,16 +1,35 @@
-.wrapper{
-    // @include borderTest($borderc:blue); // 測試線
-    // padding: 0;
-    // display: grid;
-    // grid-template-columns: 20% 80%;
-    .main{
-        h4{
-            @include textCenter();
-            margin-top: 20px;
-        }
-        .titleBar{
-            display: flex;
-        }
+.article{
+    @include borderTest(blue);
+    width: calc(100% - 20%);
+    margin-left: auto;
+    margin-right: 0;
+    h4{
+        @include textCenter();
+        margin-top: 30px;
+    }
+    .titleBar{
+        width: 90%;
+        display: grid;
+        grid-template-columns: repeat(5,20%);
+        @include  marginCenter();
+        background-color: $color_G;
+        color: $color_W;
+        padding: 20px;
+    }
+    .search{
+        padding-top: 20px;
+        margin: 2% 0 0 5%;
+    }
+    .mbId_text{
+        display: block;
+        margin-top: 15px;
+        height: 40px;
+        width: 285px;
+        border-radius: 8px;
+        // outline: none;
+        border: 2px solid #c4c4c4;
     }
     
 }
+    
+
