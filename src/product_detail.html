@@ -19,65 +19,80 @@
             <p class="productDetail_bread borderTest" style="margin-top: 130px; ">首頁 | 周邊產品 | 食品</p>
             <div class="row">
                 <div class="col-6 col-sm-12">
-                         <ul class="productDetail_pic borderTest" style="flex: auto;">
-                            <li> <img src="./img/porducts/papaya.jpg" alt=""
-                                    style="max-width:100px ; border:1px solid red;"></li>
-                            <!-- <li> <img src="./img/porducts/papaya.jpg" alt="" style="max-width:100% ;"></li>
+                    <ul class="productDetail_pic borderTest" style="flex: auto;">
+                        <li> <img src="./img/porducts/papaya.jpg" alt=""
+                                style="max-width:100px ; border:1px solid red;"></li>
+                        <!-- <li> <img src="./img/porducts/papaya.jpg" alt="" style="max-width:100% ;"></li>
                                 <li> <img src="./img/porducts/papaya.jpg" alt="" style="max-width:100% ;"></li>
                                 <li> <img src="./img/porducts/papaya.jpg" alt="" style="max-width:100% ;"></li> -->
-                        </ul>
+                    </ul>
 
-                    
+
                 </div>
                 <div class="col-6 col-sm-12 col-lg-6">
                     <div class="productDetail_info">
-                        <h3 class="productDetail_info_name">草莓牛奶(六入組)</h3>
+                        <h3 id="productDetail_info_name">草莓牛奶(六入組)</h3>
                         <p class="productDetail_info_slog">原果新鮮草莓牛奶</p>
                         <p class="productDetail_info_slog">全部手工現做果汁現煮</p>
-                        <p class="productDetail_info_ingredient">．成分：生乳、水、糖、草莓汁 ．保存期限：冷藏14天</p>
-                        <h4 class="productDetail_info_pricr">299</h4>
+                        <p id="productDetail_info_ingredient">．成分：生乳、水、糖、草莓汁 ．保存期限：冷藏14天</p>
+                        <h4 id="productDetail_info_pricr">299</h4>
                         <div class="productDetail_info_stock">
                             <h5>數量</h5>
 
                             <div class="productDetail_stockCount">
                                 <button class="productDetail_stockCount_btn">-</button><input type="text"
-                                    class="productDetail_stockCount_input" value="1" name="add_prd_count">
+                                    id="productDetail_stockCount_input" value="1" name="add_prd_count">
                                 <button class="productDetail_stockCount_btn">+</button>
 
                                 <div class="productDetail_info_btn">
-                                    <button type="button" class="productDetail_info_cart">放入購物車</button>
-                                    <button type="button" class="productDetail_info_buy">直接購買</button>
+                                    <button type="button" id="productDetail_info_cart">放入購物車</button>
+                                    <button type="button" id="productDetail_info_buy">直接購買</button>
                                 </div>
                             </div>
 
 
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
             <hr class="productDetail__hr">
             <div class="row">
-                <div class="col">
-                    
-                    <h3>商品描述</h3>
-                    <div class="row">
-                        <div class="productDetail_intro_odd">
-                            <div class="col-6 col-sm-12" style="background-color: aqua;"><img src="./img/porducts/cow_1200.jpg" alt="" style="max-width: 300px; border-radius: 50%;"></div>
-                            <div class="col-6 col-sm-12" style="background-color: antiquewhite;"><p>使用每日現擠的牛乳製成，無人工反式脂肪與人工賀爾蒙</p></div>
+                <h3>商品描述</h3>
+                <div class="row">
+                    <div class="productDetail_intro_odd">
+                        <div class="col-6 col-sm-12" style="background-color: aqua;"><img
+                                src="./img/porducts/cow_1200.jpg" alt="" style="max-width: 300px; border-radius: 50%;">
+                        </div>
+                        <div class="col-6 col-sm-12" style="background-color: antiquewhite;">
+                            <p>使用每日現擠的牛乳製成，無人工反式脂肪與人工賀爾蒙</p>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="productDetail_intro_even">
-                            <div class="col-6 col-sm-12" style="background-color: aqua;"><img src="./img/porducts/cow_1200.jpg" alt="" style="max-width: 300px; border-radius: 50%; order:2;"></div>
-                            <div class="col-6 col-sm-12" style="background-color: antiquewhite;"><p>使用每日現擠的牛乳製成，無人工反式脂肪與人工賀爾蒙</p></div>
+                </div>
+                <div class="row">
+                    <div class="productDetail_intro_even">
+                        <div class="col-6 col-sm-12" style="background-color: aqua;"><img
+                                src="./img/porducts/cow_1200.jpg" alt=""
+                                style="max-width: 300px; border-radius: 50%; order:2;"></div>
+                        <div class="col-6 col-sm-12" style="background-color: antiquewhite;">
+                            <p>使用每日現擠的牛乳製成，無人工反式脂肪與人工賀爾蒙</p>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="productDetail_recommend">
+                <h3>推薦商品</h3>
+                <ul class="productDetail_recommend_list">
+                    <li><img src="./img/porducts/papaya.jpg" alt="" style="max-width: 150px;"><div class="productDetail_recommend_text"><p class="productDetail_recommend_name">咖啡牛奶</p><p class="productDetail_recommend_price">299</p></div></li>
+                    <li><img src="./img/porducts/papaya.jpg" alt="" style="max-width: 150px;"><div class="productDetail_recommend_text"><p class="productDetail_recommend_name">咖啡牛奶</p><p class="productDetail_recommend_price">299</p></div></li>
+                    <li><img src="./img/porducts/papaya.jpg" alt="" style="max-width: 150px;"><div class="productDetail_recommend_text"><p class="productDetail_recommend_name">咖啡牛奶</p><p class="productDetail_recommend_price">299</p></div></li>
+                </ul>
+            </div>
+
     </main>
 
     <!-- footer -->
     @@include('./layout/footer.html')
 </body>
+
 </html>
