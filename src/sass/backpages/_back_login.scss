@@ -11,6 +11,7 @@
 }
 .bl_title{
     @include textCenter;
+    color:$color_G ;
     font-size: $fs-l;
     margin-top: 60px;
     border: 1px solid green;
@@ -20,9 +21,25 @@
 // display: block;
 font-size: $fs-s;
 @include marginCenter();
-max-width: 1000px;
+@include textCenter();
+// max-width: 1000px;
 border: 1px solid blue;
 
+}
+
+.group{
+    width: 1000px;
+    display: block;
+    @include marginCenter();
+    margin-top: 20px;
+    margin-left: 35px;
+   
+}
+
+label{
+    display: inline-block;
+    width: 100px;
+    text-align: right;
 }
 
 #username ,#password{
@@ -30,11 +47,12 @@ border: 1px solid blue;
     width: 300px;
     height: 44px;
     border-radius: 4px;
-    display: block;
-    margin: 0 auto;
+    display: inline-block;
+    // margin: 0 auto;
 }
 
 .bl_btn{
+    border: 1px solid orange;
     background-color: $color_G;
     color: $color_W;
     font-size: $fs-s;
@@ -46,3 +64,16 @@ border: 1px solid blue;
     margin-top: 40px;
     
 }
+
+.bl_btn :hover{
+    background-color: $color_Y;
+    color: $color_W;
+    font-size: $fs-s;
+    width: 300px;
+    height: 44px;
+    border-radius: 4px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 40px;
+    
+} 
