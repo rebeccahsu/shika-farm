@@ -10,21 +10,23 @@ h4{
     @include textCenter();
     margin-top: 30px;
 }
-
-ul.bi_fuc{
+//ul
+.bi_fuc{
     display: flex;
     width: 200px;
-    border: 1px solid rgb(146, 15, 15);
+    border: 1px solid green;
     
     
 }
 
-li.bi_fuc{
-    width: 200px;
+.bi_fuc > li{
+    width: 400px;
+    height: 400px;
     border: 1px solid red;
 }
 
 .bi_fuc img{
     border: 1px solid rgb(0, 0, 0);
     width: 100px;
+    display: block;
 }
