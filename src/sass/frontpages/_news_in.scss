@@ -1,5 +1,6 @@
 .body_out{
-    overflow-x: hidden;
+    overflow: hidden;
+    position: relative;
 }
 
 .mainup{
@@ -8,8 +9,6 @@
     background-image: url(../../img/news/gozha-net-xDrxJCdedcI-unsplash\ 1.png);
     background-repeat: no-repeat;
     background-size: cover;
-    // border: 1px solid black;
-    // display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -19,17 +18,15 @@
 }
 
 .main_min{
-    position: relative;
+    display: flex;
     margin: 0 auto;
-    width: 1100px;
-    height: 800px;
-
 }
+
 .redboll{
     position: absolute;
     height: 600px;
     top: 750px;
-    right: -100px;
+    right: -80px;
     z-index: -15;
 }
 
@@ -41,31 +38,47 @@
     z-index: -15;
 }
 
-.div_top{
+.divtop{
     margin-top: 150px;
+    height: 130px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 150px;
 }
 
-
-
-.div_top p:first-child{
+.divtop h3{
     font-size: 48px;
-   
+    margin-top: 20px;
+    color: $color_G;
 }
 
-.div_top p{
-    color:$color_G;
-    margin: 0;
-}
-
-.div_top p:first-child{
-    margin-bottom: 20px;
-}
-
-.div_top pre{
+.divtop pre{
+    color: $color_G;
     font-size: 24px;
-    color: $color_G ;
 }
 
+.down{
+    display: flex;
+}
+
+.left > a{
+    font-size: 24px;
+    color: $color_G;
+}
+
+.left a:last-child{
+    margin-left: 50px;
+}
+
+.left p{
+    margin-bottom: 150px;
+    font-size: 15px;
+}
+
+.right{
+    margin-left: 300px;
+    max-height: 300px;
+}
 
 
 
