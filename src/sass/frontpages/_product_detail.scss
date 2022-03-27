@@ -1,0 +1,248 @@
+.pd_main{
+    @include marginCenter;
+}
+
+.pd__hr{
+    width: 95%;
+    opacity: .7;
+    margin: 70px 0;
+}
+
+.pd_bread{
+    color:$color_G;
+    margin-top: 130px;
+    margin-bottom: 70px;
+    font-size: $fs-xs;
+}
+
+.pd_area{
+    display: inline-flex;
+    @include marginCenter;
+    @include pad{
+        display: block;
+    }
+}
+
+// 圖片區
+.pd_topPic{
+    display: block;
+    width: 590px;
+    max-width: 90%;
+    
+}
+
+.pd_topPic img{
+    max-width: 100%;
+}
+
+.pd_pic{
+    display: inline-flex;
+    margin-right: 70px;
+    max-height: 183px;
+    flex-wrap: nowrap;
+    @include pad{
+        margin: auto;
+        display: none;
+    }
+}
+
+.pd_pic img{
+    
+    max-width: 183px;
+    @include borderTest;
+    @include pad{
+        margin-right: 5px;
+        
+    }
+}
+
+// 商品info
+
+#pd_info_name{
+    margin: 20px 0;
+}
+
+#pd_info_ingredient{
+    height: 200px;
+    margin-top: 30px;
+    white-space: pre-wrap;
+}
+
+#pd_info_pricr{
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+h4#pd_info_pricr::before{
+    content:"NT$";
+    font-size: $fs-m;
+    font-weight: bold;
+}
+
+.pd_info_stock{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 70px;
+}
+
+// 數量BTN
+#pd_stockCount{
+    margin:0 10px;
+}
+
+.pd_info_stock:first-child{
+    margin-right: 10px;
+}
+
+#pd_stockCount + h5{
+margin-left: 10px;
+}
+
+.pd_stockCount_btn{
+    background-color: $color_Y;
+    color: $color_B;
+    border: 1px solid $color_Y;
+    font-size: $fs-s;
+    line-height: 32px;
+    &:active{
+        transform: translateY(3px);
+    }
+    &:hover{
+        background-color: $color_R;
+        border: 1px solid $color_R;
+    }
+}
+
+#pd_stockCount_input{
+    background-color: $color_W;
+    border: 1px solid $color_Y;
+    font-size: $fs-s;
+    height: 36px;
+    width: 50px;
+    text-align: center;
+}
+
+// 購買按鈕
+#pd_info_cart{
+    width: 386px;
+    height: 90px;
+    background-color: $color_W;
+    border: 1px solid $color_Y;
+    color: $color_Y;
+    font-size: $fs-s;
+    line-height: $LH-38;
+    margin-bottom: 18px;
+    transition: 1s;
+    &:hover{
+        background-color: $color_Y;
+        color: $color_G;
+    }
+}
+
+#pd_info_buy{
+    width: 386px;
+    height: 90px;
+    background-color: $color_R;
+    border: 1px solid $color_R;
+    color: $color_W;
+    line-height: $LH-38;
+    font-size: $fs-s;
+    transition: 1s;
+    &:hover{
+        background-color: $color_Y;
+        color: $color_G;
+    }
+}
+
+
+// 介紹區塊
+.pd_intro_h3{
+    color: $color_G;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+//推薦區
+.pd_recommend{
+    margin-top: 100px 0 0 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h3{
+        margin: 125px auto;
+        @include pad{
+            margin: 50px auto;
+        }
+    }
+}
+
+@keyframes slide-top {
+    0%{
+        transform: translateY(3%);
+    }
+    100%{transform: translateY(-3%)}
+}
+
+.pd_recommend_list{
+    width: 1100px;
+    display: inline-flex;
+
+    @include pad{
+        flex-direction: column;
+        max-width: 90%;
+    }
+      
+    a>li{
+        background-color: $color_W;
+        margin: 50px 25px 50px;
+        box-shadow: 0 0 20px rgba(33,33,33,.2);
+        border-radius: 5px;
+        transition: .5s;
+        padding-bottom: 10px;
+        &:hover{
+            -webkit-animation: slide-top 0.5s ease-out infinite alternate ;
+	        animation: slide-top 0.5s ease-out infinite alternate ;
+        }
+        
+        img{
+            border-radius: 5px;
+            width: 330px;
+        }
+        p{
+            display: inline-block;
+            font-size: $fs-s;
+            line-height: $LH-24;
+            margin-bottom: 5px;
+            
+        }
+    
+    }
+  
+}
+
+.pd_recommend_list a{
+    color: $color_B;
+    
+}
+
+.pd_recommend_text{
+    padding: 20px;
+    text-align: left;
+}
+
+//品名最大10字
+.pd_recommend_name{
+    text-align: left;
+}
+.pd_recommend_price{
+    float: right;
+}
+
+.pd_recommend_price::before{
+    content:"NT$";
+    font-size: $fs-s;
+    
+}
