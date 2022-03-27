@@ -4,26 +4,27 @@
         <div class="navRight">
             <a href="#" class="head-icon"><i class="bi bi-cart2 cartIcon"><span class="cartCount">1</span></i></a>
             <a href="member.html" class="head-icon"><i class="bi bi-person memberIcon"></i></a>
-
-            <!-- 登入彈跳視窗 -->
-            <!-- <form action="">
-                <h2>登入</h2>
-                電子郵件
-                <input type="text">
-                密碼
-                <input type="text">
-            </form> -->
-
-            <nav class="ham_sel">
-                <div class="ham_btn">
-                    <span class="ham_line ham_line_1"></span>
-                    <span class="ham_line ham_line_2"></span>
-                    <span class="ham_line ham_line_3"></span>
-                </div>
+            <div class="ham_btn">
+                <span class="ham_line ham_line_1"></span>
+                <span class="ham_line ham_line_2"></span>
+                <span class="ham_line ham_line_3"></span>
+            </div>
+            <nav class="hamSel">
+                <ul id="appMenu" class="hamMenu">
+                    <template v-for="menu in menus" v-for="menuLink in menuLinks">
+                        <li class="hamMenuItem">
+                            <a :href="menu.link">
+                                <div class="iconContainer">
+                                    <img :src="menu.icon" alt="" class="menuIcon">
+                                </div>
+                                <h5 class="menuTitle">{{menu.title}}</h5>
+                            </a>
+                        </li>
+                    </template>
+                </ul>
+                
             </nav>   
         </div>
-        <!-- <ul>
-            <li><a href="animal.html">Sìkha動物</a></li>
-        </ul> -->
     </nav>
+    <div class="hamMask"></div>
 </header>

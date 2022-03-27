@@ -4,12 +4,57 @@
     @@include('./layout/head.html', {
         "title" : "Sìkha 牧場 | Sìkha 動物"
     })
+  
 </head>
 <body>
     <!-- header -->
     @@include('./layout/header.html')
+    
+    <div id="wrapper">
+
+        <!-- main -->
+
+        <img class = animal_banner src="./img/animal/animal_banner.png" alt="">
+        <div class = "container">
+                <!-- map -->
+                <div class="icon_map_r ">
+                    <img class = map src="./img/animal/map.png" alt="">
+
+                    <div @click="sheep">
+                        <img class = icon_sheep src="./img/animal/sheep.png" alt="" @click="activeIndex=0" >
+                    </div>
+                    <div @click="cow">
+                        <img class = icon_cow src="./img/animal/cow.png" alt="" @click="activeIndex=1" @click="cow">
+                    </div>
+                    <div @click="alpaca">
+                        <img class = icon_alpaca src="./img/animal/alpaca.png" alt="" @click="activeIndex = 2">
+                    </div>
+                    <div @click="horse">
+                        <img class = icon_horse src="./img/animal/horse.png" alt="" @click="activeIndex = 3">
+                    </div>
+                    <div @click="pig">
+                        <img class = icon_pig src="./img/animal/pig.png" alt="" @click="activeIndex = 4">
+                    </div>
+                    <div @click="deer">
+                        <img class = icon_deer src="./img/animal/deer.png" alt="" @click="activeIndex = 5">
+                    </div>
+                </div>
+                 <!-- data -->
+                <section v-for ="(item,key) in all_data" :class="[activeIndex == key ? '_on' : '']" :id="'s_' + key">
+                    <div class="item">
+                        <div class="item_img"><img :src="item.image" alt=""></div>
+                        <div class="item_p">
+                            <h3 class="item_title">{{item.title}}</h3>
+                            <h5 class="item_desc">{{item.desc}}</h5>
+                        </div>
+                    </div>
+                </section>
+        </div>
+     </div>
 
     <!-- footer -->
     @@include('./layout/footer.html')
+
+    <script src="js/animal.min.js"></script>
 </body>
 </html>

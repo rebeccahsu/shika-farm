@@ -101,7 +101,6 @@
                 flex-basis: 0;
                 justify-content: space-evenly;
                 flex-grow: 0.8;
-                
                 @include pad(){
                     order: 2;
                     margin-top: 20px;
