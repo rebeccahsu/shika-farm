@@ -73,7 +73,26 @@
                     border-radius: 50%;
                     transition: .5s;
                 }
-    
+                //======= 購物車明細 =======
+                // .blackBg{
+                //     width: 100%;
+                //     height: 100%;   
+                // }
+                // .shoppingCar{
+                //     @include positionCenter();
+                //     width: 970px;
+                // }
+                // .carTitle{
+                //     background-color: $color_Y;
+                //     font-size: $fs-l;
+                //     color: $color_W;
+                //     width: 970px;
+
+                // }
+                // .carTitle > ul{
+                //     display: flex;
+                // }
+                //===================================
                 .memberIcon{
                     font-size: 36px;
                     margin-top: 3px;
