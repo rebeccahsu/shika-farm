@@ -1,0 +1,88 @@
+.body_out{
+    overflow: hidden;
+    position: relative;
+}
+
+.mainup{
+    max-width: 100%;
+    height: 550px;
+    background-image: url(../../img/news/gozha-net-xDrxJCdedcI-unsplash\ 1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+}
+.mainup h2{
+    color: white;
+    font-size: 64px;
+}
+
+.main_min{
+    display: flex;
+    margin: 0 auto;
+}
+
+.redboll{
+    position: absolute;
+    height: 600px;
+    top: 750px;
+    right: -80px;
+    z-index: -15;
+}
+
+.yellowboll{
+    position: absolute;
+    height: 300px;
+    top: 600px;
+    left: 380px;
+    z-index: -15;
+}
+
+.divtop{
+    margin-top: 150px;
+    height: 130px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 150px;
+}
+
+.divtop h3{
+    font-size: 48px;
+    margin-top: 20px;
+    color: $color_G;
+}
+
+.divtop pre{
+    color: $color_G;
+    font-size: 24px;
+}
+
+.down{
+    display: flex;
+}
+
+.left > a{
+    font-size: 24px;
+    color: $color_G;
+}
+
+.left a:last-child{
+    margin-left: 50px;
+}
+
+.left p{
+    margin-bottom: 150px;
+    font-size: 15px;
+}
+
+.right{
+    margin-left: 300px;
+    max-height: 300px;
+}
+
+
+
+
+
+
+

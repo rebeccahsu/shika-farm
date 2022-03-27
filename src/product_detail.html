@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    @@include('./layout/head.html', {
+    "title" : "Sìkha 牧場 | 周邊商品 | 商品"
+    })
+
+</head>
+
+<body>
+
+    <!-- header -->
+    @@include('./layout/header.html')
+
+    <!-- 商品內頁開始 -->
+    <main class="pd_main">
+        <div class="container">
+            <p class="pd_bread">首頁 | 周邊產品 | 草莓牛奶(六入組)</p>
+            <div class="row pd_area">
+                <div class="col-6 col-md-12">
+                    <ul class="pd_pic">
+                        <li> <img src="./img/porducts/papaya.jpg" alt=""></li>
+                        <li> <img src="./img/porducts/papaya.jpg" alt=""></li>
+                        <li> <img src="./img/porducts/papaya.jpg" alt=""></li>
+                        <li> <img src="./img/porducts/papaya.jpg" alt=""></li>
+                    </ul>
+
+
+                </div>
+                <div class="col-6 col-md-12 col-lg-6">
+                    <div class="pd_info">
+                        <h3 id="pd_info_name">草莓牛奶(六入組)</h3>
+                        <h5 class="pd_info_slog">原果新鮮草莓牛奶</p>
+                            <h5 class="pd_info_slog">全部手工現做果汁現煮</p>
+                                <p id="pd_info_ingredient">．成分：生乳、水、糖、草莓汁 <BR>．保存期限：冷藏14天</p>
+                                <h4 id="pd_info_pricr">299</h4>
+                                <div class="pd_info_stock">
+                                    <h5>數量</h5>
+
+                                    <div id="pd_stockCount">
+                                        <button class="pd_stockCount_btn">－</button><input type="text"
+                                            id="pd_stockCount_input" value="1" name="add_prd_count"><button class="pd_stockCount_btn">＋</button>
+                                    </div>
+                                    <h5>在庫數量：<span id="pd_inStock">999</span></h5>
+                                </div>
+                                <div class="pd_info_btn">
+                                    <button type="button" id="pd_info_cart">放入購物車</button>
+                                    <button type="button" id="pd_info_buy">直接購買</button>
+                                </div>
+                    </div>
+
+                </div>
+            </div>
+            <hr class="pd__hr">
+            <div>
+                <h3 class="pd_intro_h3">商品描述</h3>
+                <div class="row">
+                    <div class="pd_intro">
+                        <div class="col-6 col-lg-6 col-sm-12" style="background-color: aqua;"><img
+                                src="./img/porducts/cow_1200.jpg" alt="" style="max-width: 300px; border-radius: 50%;">
+                        </div>
+                        <div class="col-6 col-lg-6 col-sm-12" style="background-color: antiquewhite;">
+                            <p>使用每日現擠的牛乳製成，無人工反式脂肪與人工賀爾蒙</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="pd_intro">
+                        <div class="col-6 col-lg-6 col-sm-12" style="background-color: aqua;"><img
+                                src="./img/porducts/cow_1200.jpg" alt=""
+                                style="max-width: 300px; border-radius: 50%; order:2;"></div>
+                        <div class="col-6 col-lg-6 col-sm-12" style="background-color: antiquewhite;">
+                            <p>使用每日現擠的牛乳製成，無人工反式脂肪與人工賀爾蒙</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pd_recommend">
+                <h3>推薦商品</h3>
+                <ul class="pd_recommend_list">
+                    <li><img src="./img/porducts/papaya.jpg" alt="" style="max-width: 150px;">
+                        <div class="pd_recommend_text">
+                            <p class="pd_recommend_name">咖啡牛奶</p>
+                            <p class="pd_recommend_price">299</p>
+                        </div>
+                    </li>
+                    <li><img src="./img/porducts/papaya.jpg" alt="" style="max-width: 150px;">
+                        <div class="pd_recommend_text">
+                            <p class="pd_recommend_name">咖啡牛奶</p>
+                            <p class="pd_recommend_price">299</p>
+                        </div>
+                    </li>
+                    <li><img src="./img/porducts/papaya.jpg" alt="" style="max-width: 150px;">
+                        <div class="pd_recommend_text">
+                            <p class="pd_recommend_name">咖啡牛奶</p>
+                            <p class="pd_recommend_price">299</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+    </main>
+
+    <!-- footer -->
+    @@include('./layout/footer.html')
+</body>
+
+</html>
