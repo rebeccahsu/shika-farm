@@ -25,5 +25,25 @@
     </div>
 
 </footer>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <script src="js/header.min.js"></script>
+<script>
+    new Vue({
+        el: '#appMenu', 
+        data: {
+            // menu: ['Sìkha動物', '園區資訊', '最新消息', '牧場節目', '周邊商品'],
+            // menuLinks: ['animal.html', 'info.html', 'news.html', 'activity.html', 'products.html'],
+
+            menus: [
+                {title: 'Sìkha動物', link: '../animal.html', icon: './img/icon/animal_icon.png'},
+                {title: '園區資訊', link: '../info.html', icon: './img/icon/info_icon.png'},
+                {title: '最新消息', link: '../news.html', icon: './img/icon/news_icon.png'},
+                {title: '牧場節目', link: '../activity.html', icon: './img/icon/activity_icon.png'},
+                {title: '周邊商品', link: '../products.html', icon: './img/icon/products_icon.png'},
+                
+            ],
+        },
+    });
+
+
+</script>

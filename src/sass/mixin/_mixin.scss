@@ -25,3 +25,11 @@
 @mixin borderTest($borderc:red){
   border: 1px solid $borderc;
 }
+
+// 用座標定位水平垂直置中
+@mixin positionCenter(){
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
