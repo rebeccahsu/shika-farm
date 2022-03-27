@@ -1,36 +1,46 @@
-.article{
-    @include borderTest(blue);
-    width: calc(100% - 20%);
-    margin-left: auto;
-    margin-right: 0;
-    h4{
-        @include textCenter();
-        margin-top: 30px;
+.mb_body{
+    .article{
+        // @include borderTest(blue);
+        width: calc(100% - 20%);
+        margin-left: auto;
+        margin-right: 0;
+        h4{
+            @include textCenter();
+            margin-top: 30px;
+        }
+        .titleBar{
+            width: 90%;
+            display: grid;
+            grid-template-columns: repeat(5,20%);
+            @include  marginCenter();
+            background-color: $color_G;
+            color: $color_W;
+            padding: 20px;
+            // border: 1px solid $color_G;
+        }
+        .search{
+            padding-top: 20px;
+            margin: 2% 0 0 5%;
+            position: relative;
+        }
+        .search_icon{
+            position: absolute;
+            width: 20px;
+            top: 60px;
+            left: 250px;
+            cursor: pointer;
+        }
+
+        .mbId_text{
+            display: block;
+            margin: 15px 0 15px 0;
+            height: 40px;
+            width: 285px;
+            border-radius: 8px;
+            // outline: none;
+            border: 2px solid #c4c4c4;
+        }
+
     }
-    .titleBar{
-        width: 90%;
-        display: grid;
-        grid-template-columns: repeat(5,20%);
-        @include  marginCenter();
-        background-color: $color_G;
-        color: $color_W;
-        padding: 20px;
-        // border: 1px solid $color_G;
-    }
-    .search{
-        padding-top: 20px;
-        margin: 2% 0 0 5%;
-    }
-    .mbId_text{
-        display: block;
-        margin-top: 15px;
-        height: 40px;
-        width: 285px;
-        border-radius: 8px;
-        // outline: none;
-        border: 2px solid #c4c4c4;
-    }
-    
-}
-    
+}    
 

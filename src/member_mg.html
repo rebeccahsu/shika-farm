@@ -2,10 +2,10 @@
 <html lang="zh-Hant">
 <head>
     @@include('./layout/back_head.html', {
-        "title" : "Sìkha 後台"
+        "title" : "Sìkha 後台 | 會員資料管理"
     })
 </head>
-<body>
+<body class="mb_body row">
     <!-- 側邊導覽列 -->  
     @@include('./layout/back_aside.html')
 
@@ -15,14 +15,12 @@
             <div class="search">
                 <label for="" class="memberId">會員編號查詢</label>
                 <input type="text" class="mbId_text">
-                <img src="./img/icon/" alt="">
+                <img src="./img/icon/search.png" alt="" class="search_icon">
             </div>
-            <ul class="titleBar">
-                <li>會員編號</li>
-                <li>姓名</li>
-                <li>E-mail</li>
-                <li>聯絡電話</li>
-                <li>地址</li>
+            <ul class="mb_table">
+                <li class="titleBar"><p>會員編號</p><p>姓名</p><p>E-mail</p><p>聯絡電話</p><p>地址</p></li>
+                <li></li>
+                
             </ul>
         </article>
 
