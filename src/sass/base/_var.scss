@@ -29,7 +29,10 @@ $letter-spacing-2: 2px;
 
 // ======== 字體 ========
 
-$fontfamily: "Noto Sans Traditional Chinese , Oswald";
+$fontfamily: (
+    "zhtw" : "Noto Sans TC",
+    "eng" : "Oswald"
+);
 
 
 
