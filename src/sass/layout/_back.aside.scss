@@ -8,28 +8,28 @@
     // @include borderTest(); //測試線
     
     
-    .logo{
+    .aside_logo{
         width: 185px;
         margin: 60px auto;
     }
-    ul{
+    .aside_ul{
         list-style: none;
         width: 100%;
         padding: 0;
         @include textCenter();
     }
-    li{
+    .aside_ul > li{
         font-size: $fs-s;
         margin: 30px auto;
         width: 100%;
     }
-    li > a{
+    .aside_ul > li  a{
         text-decoration: none;
         display: block;
         color: $color_B;
         padding: 20px 0;
     }
-    li > a:hover{
+    .aside_ul > li  a:hover{
         background-color: $color_Y ;
         color: $color_W;
     }
