@@ -32,6 +32,11 @@ $(".ham_btn").on("click", function () {
 $(".hamMask").on("click", function () {
     $(".ham_line").removeClass("-on");
     $(".hamSel").removeClass("-on");
+    $(".hamMask").animate({ opacity: "0" }, { duration: "300" });
+
+    setTimeout(function () {
+        $(".hamMask").css({ display: "none" });
+    }, 300);
     $(".hamMask").removeClass("-on");
 });
 
