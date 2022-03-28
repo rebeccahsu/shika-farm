@@ -5,7 +5,9 @@
 body{
     width: 100%;
     color: #454545;
-    font-family: $fontfamily;
+    // font-family: $fontfamily;
+    font-family: map-get($fontfamily, "zhtw");
+    
 }
 
 // .wrapper{
