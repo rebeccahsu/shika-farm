@@ -20,9 +20,10 @@ $(".ham_btn").on("click", function () {
         $(".ham_line").addClass("-on");
         $(".hamSel").addClass("-on");
         $(".hamMask").addClass("-on");
-        $(".hamMask").css({ display: "block" });
+        // $(".hamMask").css({ display: "block" });
 
         $(".hamMask").animate({ opacity: "1" }, { duration: "300" });
+        $(".hamMask").css({ display: "block" });
 
     };
 
