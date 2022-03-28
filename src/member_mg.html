@@ -15,13 +15,14 @@
                 <input type="text" class="mbId_text">
                 <img src="./img/icon/search.png" alt="" class="search_icon">
             </div>
-            <ul class="mb_table">
+            <ul class="mb_table" id="mb_table">
                 <li class="titleBar"><p>會員編號</p><p>姓名</p><p>E-mail</p><p>聯絡電話</p><p>地址</p></li>
-                <li></li>
-                
+                <li v-for="customer in customers">{{customer}}</li>  
             </ul>
         </article>
 
+
+        <script src="../dist/js/member_mg.min.js"></script>
         
 </body>
 </html>
