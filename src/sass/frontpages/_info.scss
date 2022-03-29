@@ -1,0 +1,162 @@
+.infoTop.container-fluid{
+    padding: 0;
+    background-image: url("../img/info/info_top.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 500px;
+    .pageTitle{
+        text-align: center;
+        line-height: 570px;
+        color: $color_W;
+    }
+   
+}
+
+.infoLocation{
+    .locTitle{
+        margin-bottom: 20px;
+        position: relative;
+        &:after{
+            @include titleDecBall("../img/material/circle_green_800.png"){
+        };
+        }
+    }
+    .infoMap{
+        margin-top: 30px;
+    }
+    .address{
+        margin: 50px 0;
+    }
+
+    .routeInfo{
+        display: flex;
+        flex-basis: 0;
+        padding: 0 30px;
+        align-items: center;
+        margin-bottom: 30px;
+
+        .routeText{
+            flex-grow: 1;
+            padding-left: 40px;
+
+            .recommendRoute{
+                color: $color_G;
+            }
+            p{
+                margin-bottom: 5px;
+            }
+        }
+    }
+}
+
+.timenFee{
+    .timenFeeTitle{
+        position: relative;
+        &:after{
+            @include titleDecBall("../img/material/circle_yellow_800.png"){
+                left: 300px;
+            };
+        }
+    }
+
+    .timenFeeMain{
+        display: flex;
+        justify-content: center;
+        .timenFeeContent{
+            margin-top: 80px;
+            &:first-child{
+                margin-right: 60px;
+            }
+            .tnfContentTitle{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 30px;
+                img{
+                    height: 68px;
+                }
+                h5{
+                    margin-left: 20px;
+                }
+            }
+            
+            .timenFeeText{
+                width: 500px;
+                height: 500px;
+                background-image: url("../img/material/circle_yellow_800.png");
+                background-size: contain;
+                background-repeat: no-repeat;
+                .greenText{
+                    color: $color_G;
+                }
+            }
+            .timeText{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                text-align: center;
+                .lastEntry{
+                    margin-top: 50px;
+                }
+            }
+
+            .feeText{
+                padding: 0 25%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                p{
+                    color: $color_W;
+                }
+                .greenText{
+                    display: inline-block;
+                }
+                .fee{
+                    float: right;
+                }
+
+                .demarcation{
+                    display: block;
+                    background-color: $color_W;
+                    width: 100%;
+                    height: 1px;
+                    margin: 10px auto;
+                }
+
+                .carFee{
+                    display: flex;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                    .carType{
+                        display: block;
+                        width: 50%;
+                        margin-bottom: 5px;
+                    }
+                }
+                
+            }
+        }
+    }
+}
+    
+.infoRule{
+    .ruleTitle{
+        position: relative;
+        margin-bottom: 80px;
+        &:after{
+            @include titleDecBall("../img/material/circle_red_800.png"){
+                top: -20px;
+                left: 170px;
+            };
+        }
+    }
+
+    .rule{
+        margin: 20px 0;
+        &:before{
+            content: url("../img/info/red_dot.png");
+            margin-right: 20px;
+        }
+    }
+}
