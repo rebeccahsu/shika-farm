@@ -1,11 +1,21 @@
 // ===== margin 上下左右 =====
 @mixin Margin($dir , $val){
     @for $i from 1 through $val {
-       .margin#{$dir}_#{$i} {
-          margin-#{$dir}: $i * 1px;
-       }
-    }
+      .margin#{$dir}_#{$i} {
+         margin-#{$dir}: $i * 1px;
+      }
+   }
+}
+
+@include Margin(top, 100);
+
+
+@mixin secMargin($dir , $val_s, $val_e){
+   @for $i from $val_s through $val_e {
+     .margin#{$dir}_#{$i} {
+        margin-#{$dir}: $i * 1px;
+     }
   }
+}
 
-
-  @include Margin(top, 100);
+@include secMargin(top, 180, 250);

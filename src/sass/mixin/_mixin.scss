@@ -33,3 +33,18 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+//圓形按鈕
+@mixin roundButton(){
+  background-image: url(../img/material/round_button_green.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: block;
+  width: 160px;
+  height: 154px;
+  transition: .5s;
+  &:hover{
+      background-image: url(../img/material/round_button_yellow.png);
+  }
+  @content;
+}

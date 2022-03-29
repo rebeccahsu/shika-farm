@@ -57,6 +57,7 @@ p{
 h6{
     font-size: $fs-2xl;
     font-family: map-get($fontfamily, "eng");
+    color: $color_Y;
 
     @include mobile{
         font-size: $fs-xl;
