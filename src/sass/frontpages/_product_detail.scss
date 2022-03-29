@@ -16,29 +16,35 @@
 }
 
 .pd_area{
-    display: inline-flex;
+    display: flex;
     @include marginCenter;
+    @include borderTest;
     @include pad{
         display: block;
     }
 }
 
 // 圖片區
-.pd_topPic{
-    display: block;
-    width: 590px;
-    max-width: 90%;
-    
+.pd_figure{
+    max-width: 100%;
+    @include borderTest;
 }
 
-.pd_topPic img{
+.pd_topPic{
+    display: block;
+    max-width: 590px;
+    @include borderTest;
+    @include pad{
+        max-width: 90%;
+    }
+}
+
+.pd_area img{
     max-width: 100%;
 }
 
 .pd_pic{
     display: inline-flex;
-    margin-right: 70px;
-    max-height: 183px;
     flex-wrap: nowrap;
     @include pad{
         margin: auto;
@@ -46,17 +52,26 @@
     }
 }
 
-.pd_pic img{
+.pd_pic li img{
     
     max-width: 183px;
+    margin-right: 5px;
     @include borderTest;
     @include pad{
-        margin-right: 5px;
+        
         
     }
 }
 
 // 商品info
+.pd_info{
+    flex-basis: 320px;
+    padding-left: 70px;
+    @include borderTest;
+    @include pad{
+        margin: 0;
+    }
+}
 
 #pd_info_name{
     margin: 20px 0;
@@ -77,18 +92,25 @@ h4#pd_info_pricr::before{
     content:"NT$";
     font-size: $fs-m;
     font-weight: bold;
+    @include mobile{
+        font-size: $fs-s;
+       
+    }
 }
 
 .pd_info_stock{
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    // display: inline-flex;
+    // align-items: center;
+    // justify-content: center;
     margin-bottom: 70px;
 }
 
 // 數量BTN
 #pd_stockCount{
     margin:0 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .pd_info_stock:first-child{
@@ -124,8 +146,13 @@ margin-left: 10px;
 }
 
 // 購買按鈕
+.pd_info_btn{
+    display: flex;
+    flex-direction: column;
+}
+
 #pd_info_cart{
-    width: 386px;
+    max-width: 386px;
     height: 90px;
     background-color: $color_W;
     border: 1px solid $color_Y;
@@ -141,7 +168,8 @@ margin-left: 10px;
 }
 
 #pd_info_buy{
-    width: 386px;
+    display: block;
+    max-width: 386px;
     height: 90px;
     background-color: $color_R;
     border: 1px solid $color_R;
@@ -162,6 +190,15 @@ margin-left: 10px;
     font-weight: bold;
     text-align: center;
 }
+
+.pd_intro{
+    margin: 20px;
+    .pd_intro_pic{
+        text-align: right;
+    }
+}
+
+
 
 
 //推薦區
@@ -187,8 +224,11 @@ margin-left: 10px;
 }
 
 .pd_recommend_list{
-    width: 1100px;
+    width: 100%;
+    
     display: inline-flex;
+    
+    @include borderTest;
 
     @include pad{
         flex-direction: column;
@@ -202,6 +242,7 @@ margin-left: 10px;
         border-radius: 5px;
         transition: .5s;
         padding-bottom: 10px;
+        @include borderTest;
         &:hover{
             -webkit-animation: slide-top 0.5s ease-out infinite alternate ;
 	        animation: slide-top 0.5s ease-out infinite alternate ;
@@ -209,7 +250,7 @@ margin-left: 10px;
         
         img{
             border-radius: 5px;
-            width: 330px;
+            max-width: 100%;
         }
         p{
             display: inline-block;
