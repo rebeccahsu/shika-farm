@@ -16,11 +16,33 @@
             <li>訂單確認</li>
           </ul>
       </div>
-      
     </article>
-    <div style="height:1000px"></div>
+    <div class="stepA">
+      <ul id="step1" class="step1">
+        <li class="carName">購物車</li>
+        <li class="carTitle"><p>商品資料</p><p>價格</p><p>數量</p><p>小計</p></li>
+        <li v-for="product in products" class="carTitle carInfo">
+          <img :src="images.blanketg" class="infoImg">
+          <!-- <p>{{product.img}}</p> -->
+          <p>{{product.info}}</p>
+          <p>{{product.price}}</p>
+          <p>
+          <input type="button" class="addBtn mbBtn" value="-"><input type="text" class="quantity" value="1"><input type="button" class="subBtn mbBtn" value="+">
+          </p>
+          <p>{{product.toatl}}</p>
+          <img src="./img/icon/garbageCan.png" class="garbageCan">
+        </li>
+      </ul>
 
+      <ul id="step" class="step1 step1Down">
+        <li class="carName">訂單資訊</li>
+        <li v-for="product in products">{{product.toatl}}</li>
+      </ul>
+    </div>  
     <!-- footer -->
     @@include('./layout/footer.html')
+
+
+    <script src="./js/checkout.min.js"></script>
 </body>
 </html>
