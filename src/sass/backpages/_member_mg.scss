@@ -1,46 +1,88 @@
-.mb_body{
-    .article{
-        // @include borderTest(blue);
-        width: calc(100% - 20%);
-        margin-left: auto;
-        margin-right: 0;
+.mb_article{
+    // @include borderTest(blue);
+    width: calc(100% - 20%);
+    margin-left: auto;
+    margin-right: 0;
+    padding-top: 40px;
+    .mb_mg_title{
+        @include textCenter();
+        .mb_cow{
+            display: inline;
+        }
         h4{
             @include textCenter();
-            margin-top: 30px;
+            margin: 30px;
+            display: inline;
         }
-        .titleBar{
-            width: 90%;
-            display: grid;
-            grid-template-columns: repeat(5,20%);
-            @include  marginCenter();
-            background-color: $color_G;
-            color: $color_W;
-            padding: 20px;
-            // border: 1px solid $color_G;
-        }
-        .search{
-            padding-top: 20px;
-            margin: 2% 0 0 5%;
-            position: relative;
-        }
-        .search_icon{
-            position: absolute;
-            width: 20px;
-            top: 60px;
-            left: 250px;
-            cursor: pointer;
-        }
-
-        .mbId_text{
-            display: block;
-            margin: 15px 0 15px 0;
-            height: 40px;
-            width: 285px;
-            border-radius: 8px;
-            // outline: none;
-            border: 2px solid #c4c4c4;
-        }
-
     }
-}    
+    // ===== 表單標題 =====
+    .titleBar{
+        width: 90%;
+        display: grid;
+        grid-template-columns: 15% 15% 25% 20% 25%;
+        @include  marginCenter();
+        background-color: $color_G;
+        color: $color_W;
+        padding: 10px;
+    }
+    // ===== 表單內容 v-for 顧客資料 =====
+    .mb_content{
+        background-color: $color_W;
+        color: $color_B;
+        border: 1px solid $color_G;
+    }
+    .search{
+        padding-top: 10px;
+        margin: 2% 0 0 5%;
+        position: relative;
+    }
+    .search_icon{
+        position: absolute;
+        width: 20px;
+        top: 50px;
+        left: 250px;
+        cursor: pointer;
+    }
+    .mbId_text{
+        display: block;
+        margin: 15px 0 15px 0;
+        height: 40px;
+        width: 285px;
+        border-radius: 8px;
+        // outline: none;
+        border: 2px solid #c4c4c4;
+    }
+    // ===== page 12345 =====
+    .mb_mgPage{
+        display: flex;
+        width: 100%;
+        margin-top: 20px;
+        padding-left: 35%;
 
+        a{
+            border: 1px solid $color_Y;
+            background-color: $color_Y;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            @include textCenter();
+            margin: 10px;
+    
+            &.pages{
+                border: 1px solid $color_G;
+                background-color: $color_G;
+                font-weight: 1000;
+            }
+            &.active{
+                background-color: $color_R;
+                border: 1px solid $color_R;
+            } 
+        }
+        a:hover{
+            background-color: $color_G;
+            border: 1px solid $color_G;
+    
+        }
+    }
+}

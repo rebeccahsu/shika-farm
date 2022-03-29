@@ -6,31 +6,56 @@
     position: fixed;
     top: 0;
     // @include borderTest(); //測試線
+    @include textCenter();
     
-    
-    .aside_logo{
+    .asideLogo{
         width: 185px;
-        margin: 60px auto;
+        margin: 40px auto;
     }
     .aside_ul{
         list-style: none;
         width: 100%;
         padding: 0;
+        margin-bottom: 80px;
         @include textCenter();
+
+        li{
+            font-size: $fs-s;
+            margin: 30px auto;
+            width: 100%;
+
+            a{
+                text-decoration: none;
+                display: block;
+                color: $color_B;
+                padding: 20px 0;
+            }
+            a:hover{
+                background-color: $color_Y ;
+                color: $color_W;
+            }
+        }
     }
-    .aside_ul > li{
+    .signOut{
         font-size: $fs-s;
-        margin: 30px auto;
-        width: 100%;
-    }
-    .aside_ul > li  a{
-        text-decoration: none;
         display: block;
-        color: $color_B;
         padding: 20px 0;
-    }
-    .aside_ul > li  a:hover{
-        background-color: $color_Y ;
-        color: $color_W;
+        
+        &::after{
+            content:url('');
+            background-image: url('../../img/icon/logout.png');
+            background-size: 25px 25px;
+            width: 25px;
+            height: 25px;
+            display: inline-block;
+            margin-left: 15px;
+        }
+        &:hover{
+            background-color: $color_W;
+            color: $color_R;
+        }
+        &::after:hover{
+            background-image: url('../../img/icon/logout.png');
+        }
     }
 }
