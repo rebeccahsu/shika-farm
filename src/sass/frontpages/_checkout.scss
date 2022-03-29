@@ -1,3 +1,4 @@
+// ========== 流程步驟 1 2 3 ==========
 .checkout_article{
     position: absolute;
     top: 70px;
@@ -16,7 +17,7 @@
             @include textCenter();
             color: $color_G;
         }
-        // ======== 步驟圈圈 ========
+        // ---------- 步驟圈圈 ----------
         .step li:before{
             content: counter(step);
             counter-increment: step;
@@ -32,7 +33,7 @@
             color: $color_W;
             font-size: $fs-m;
         }
-        // ======== 步驟連接線 ========
+        // ---------- 步驟連接線 ----------
         .step li:after{
             content: "";
             position: absolute;
@@ -46,14 +47,16 @@
         .step li:first-child:after{
             content: none;
         }
-        // ======== 步驟變換 ========
+        // ---------- 步驟變換 ----------
         .step li.active::before{
             background-color: $color_G;
         }
     }
 }
+// ============ 結帳流程一 ============
 .stepA{
-    // ===== 購物車 =====
+    display: none;
+    // ---------- 購物車 ----------
     .step1{
         margin: 220px auto 0;
         width: 1200px;
@@ -72,8 +75,7 @@
         .carTitle{
             display: grid;
             grid-template-columns: 35% 20% 10% 30% 10%;
-            // margin-top: 10px;
-            padding-top: 20px; 
+            padding: 20px; 
             @include textCenter();
             border: 1px solid #c4c4c4;
         }
@@ -113,7 +115,134 @@
             }
         }
     }
+    // ---------- 訂單資訊 ----------
     .step1Down{
         margin: 100px auto 0;
+
+        .productInfo{
+            display: grid;
+            grid-template-columns: 50% 50%;
+            @include textCenter();
+            padding: 20px 200px 0;
+            border: 1px solid #c4c4c4;
+        }
+        .allTotal{
+            padding-bottom: 20px;
+        }
+    }
+    .gotoPay{
+        border: 1px solid $color_R;
+        background-color: $color_R;
+        border-radius: 8px;
+        color: $color_W;
+        width: 100px;
+        height: 50px;
+        display: block;
+        margin: 50px auto;
+    }
+}
+// ============ 結帳流程二 ============
+.stepB{
+    // display: none;
+    // ---------- 總計 共買幾項 ----------
+    .step2{
+        margin: 220px auto 0;
+        width: 1200px;
+        // display: grid;
+        // *********** 總計表格標題 ***********
+        .carName2{
+            background-color: $color_Y;
+            width: 100%;
+            height: 90px;
+            // grid-template-rows: 100%;
+            padding: 20px;
+            color: $color_W;
+            font-size: $fs-s;
+            border-radius: 8px 8px 0 0;
+            @include textCenter();
+
+            .titleTop{
+                font-size: $fs-s;
+            }
+        }
+        // *********** 欄位標題 ***********
+        .carTitle{
+            display: grid;
+            grid-template-columns: 35% 20% 10% 30% 10%;
+            padding: 20px; 
+            @include textCenter();
+            border: 1px solid #c4c4c4;
+        }
+        // *********** 購買商品列 ***********
+        .carInfo{
+            display: grid;
+            grid-template-columns: 20% 15% 20% 10% 30% 5%;
+            @include textCenter();
+
+            p{
+                margin-top: 70px;
+            }
+            .infoImg{
+                width: 200px;
+                @include marginCenter();
+            }
+        }
+        .lastTotal{
+            border: 1px solid #c4c4c4;
+            padding: 10px 0 10px 82%;
+        }
+    }
+    // ---------- 送貨資訊 ----------
+    .step2Main{
+        margin: 100px auto 0;
+        // *********** 送貨資訊表格標題 ***********
+        .carName2-2{
+            background-color: $color_Y;
+            width: 100%;
+            height: 65px;
+            grid-template-columns: 100%;
+            padding: 20px;
+            color: $color_W;
+            font-size: $fs-s;
+            border-radius: 8px 8px 0 0;
+        }
+        // *********** 送貨資訊欄位 ***********
+        .send{
+            padding: 10px 50px;
+            border: 1px solid #c4c4c4;
+            // @include textCenter();
+            display: grid;
+            grid-template-columns: 50% 50%;
+            border-bottom: none;
+
+            .sendIn{
+                display: block;
+                padding: 5px 40px;
+            }
+            .np{
+                display: inline;
+                width: 460px;
+                margin: 10px 40px;
+            }
+            
+        }
+        .addressout{
+            border: 1px solid #c4c4c4;
+            border-top: none;
+            padding: 0 50px;
+            .sendIn{
+                display: block;
+                padding: 5px 40px;
+            }
+            .sendAddress{
+                display: block;
+                width: 995px;
+                height: 35px;
+                margin: 10px 40px;
+            }
+            .checkSame{
+                margin: 15px 10px 15px 40px
+            }
+        }    
     }
 }
