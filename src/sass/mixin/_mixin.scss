@@ -39,7 +39,7 @@
   background-color: $bgc;
   color: $fc;
   border: 1px solid $bc;
-  
+}
 //圓形按鈕
 @mixin roundButton(){
   background-image: url("../img/material/round_button_green.png");
