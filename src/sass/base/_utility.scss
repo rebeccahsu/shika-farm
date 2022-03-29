@@ -5,11 +5,13 @@
 body{
     width: 100%;
     color: #454545;
-    font-family: $fontfamily;
+    // font-family: $fontfamily;
+    font-family: map-get($fontfamily, "zhtw");
+    
 }
 
-.wrapper{
-    width: 1200px;
-    margin: 0 auto;
-    padding: 0 10px;
-}
+// .wrapper{
+//     width: 1140px;
+//     margin: 0 auto;
+//     padding: 0 10px;
+// }

@@ -1,6 +1,7 @@
 h2{
     font-size: $fs-xl;
     letter-spacing: $letter-spacing-6;
+    font-weight: 500;
 
     @include mobile{
         font-size: $fs-m;
@@ -11,6 +12,7 @@ h2{
 h3{
     font-size: $fs-l;
     letter-spacing: $letter-spacing-3;
+    font-weight: 500;
 
     @include mobile{
         font-size: $fs-s;
@@ -54,7 +56,8 @@ p{
 //英文字
 h6{
     font-size: $fs-2xl;
-    font-family: $fontfamily;
+    font-family: map-get($fontfamily, "eng");
+    color: $color_Y;
 
     @include mobile{
         font-size: $fs-xl;

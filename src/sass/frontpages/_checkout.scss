@@ -1,0 +1,119 @@
+.checkout_article{
+    position: absolute;
+    top: 70px;
+    .container {
+        .step{
+            display: flex;
+            counter-reset: step;
+            position: absolute;
+            top: 30px;
+            left: 400px;
+            color: $color_W;
+        }
+        .step li {
+            width: 40%;
+            position:relative;
+            @include textCenter();
+            color: $color_G;
+        }
+        // ======== 步驟圈圈 ========
+        .step li:before{
+            content: counter(step);
+            counter-increment: step;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            border: 1px solid $color_G;
+            background-color: #7ec9c5;
+            border-radius: 50%;
+            display: block;
+            @include textCenter();
+            margin: 0 100px 10px;
+            color: $color_W;
+            font-size: $fs-m;
+        }
+        // ======== 步驟連接線 ========
+        .step li:after{
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background-color: $color_G;
+            top: 25px;
+            left: -50%;
+            z-index: -1;
+        }
+        .step li:first-child:after{
+            content: none;
+        }
+        // ======== 步驟變換 ========
+        .step li.active::before{
+            background-color: $color_G;
+        }
+    }
+}
+.stepA{
+    // ===== 購物車 =====
+    .step1{
+        margin: 220px auto 0;
+        width: 1200px;
+        display: grid;
+
+        .carName{
+            background-color: $color_Y;
+            width: 100%;
+            height: 65px;
+            grid-template-columns: 100%;
+            padding: 20px;
+            color: $color_W;
+            font-size: $fs-s;
+            border-radius: 8px 8px 0 0;
+        }
+        .carTitle{
+            display: grid;
+            grid-template-columns: 35% 20% 10% 30% 10%;
+            // margin-top: 10px;
+            padding-top: 20px; 
+            @include textCenter();
+            border: 1px solid #c4c4c4;
+        }
+        .carInfo{
+            display: grid;
+            grid-template-columns: 20% 15% 20% 10% 30% 5%;
+            @include textCenter();
+
+            p{
+                margin-top: 70px;
+            }
+            .infoImg{
+                width: 200px;
+                @include marginCenter();
+            }
+            .garbageCan{
+                width: 20px;
+                height: 20px;
+                margin-top: 70px;
+                cursor: pointer;
+            }
+            .quantity{
+                width: 40px;
+                height: 30px;
+                @include textCenter();
+                border: 1px solid $color_Y;
+                margin: 0;
+            }
+            .mbBtn{
+                width: 30px;
+                height: 30px;
+                font-weight: bold;
+                border: 1px solid $color_Y;
+                background-color: $color_Y;
+                color: $color_W;
+                outline-style:inherit;
+            }
+        }
+    }
+    .step1Down{
+        margin: 100px auto 0;
+    }
+}

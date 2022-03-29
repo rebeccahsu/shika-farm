@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    @@include('./layout/head.html', {
+    "title" : "Sìkha 牧場 | 園區資訊"
+    })
+</head>
+
+<body>
+    <!-- header -->
+    @@include('./layout/header.html')
+
+    <!-- 首圖 -->
+    <div class="infoTop container-fluid">
+        <!-- <img class="indexTopBg" src="img/index/index_top_bg_1920.png" alt=""> -->
+        <h2 class="pageTitle">園區資訊</h2>
+    </div>
+
+    <!-- Section 1: 交通資訊 -->
+    <section class="infoLocation container-lg">
+        <h3 class="locTitle margintop_80">交通資訊</h3>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3640.9839445313764!2d121.27365901421894!3d24.13720197980821!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34689338f46799ed%3A0xb62a5cb50d5871f5!2zNTQ25Y2X5oqV57ij5LuB5oSb6YSJ5LuB5ZKM6LevMTY26Jmf!5e0!3m2!1szh-TW!2stw!4v1648535811253!5m2!1szh-TW!2stw" width="100%" height="300px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="infoMap"></iframe>
+        <h5 class="address">546南投縣仁愛鄉仁和路166號</h5>
+        <div class="routeInfo">
+            <img src="img/info/car_greenbg.png" alt="car" class="routeIcon">
+            <div class="routeText">
+                <p class="recommendRoute">國道三號行駛路線</p>
+                <p>國道三號→ 霧峰系統214K → 國道六號起點0k → 埔里端出口 (國六終點) → 左轉台14線 → Sìkha牧場</p>
+                <p class="recommendRoute">國道一號行駛路線</p>
+                <p>國道一號→彰化系統交流道192K→轉國道三號南下→霧峰系統214K→國道六號起點0K→埔里端出口(國六終點)→左轉台14線→Sìkha牧場</p>
+            </div>
+        </div>
+        <div class="routeInfo">
+            <img src="img/info/bus_greenbg.png" alt="bus" class="routeIcon">
+            <div class="routeText">
+                <p class="recommendRoute">建議路線</p>
+                <p>至台中火車站、高鐵臺中烏日站或埔里轉運站，轉乘【6676】、【6089】或【6002】公車至【牧場站】下車。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: 票價&營業時間 -->
+    <section class="timenFee container-lg margintop_80">
+        <h3 class="timenFeeTitle">票價&營業時間</h3>
+        <div class="timenFeeMain">
+            <div class="timenFeeContent">
+                <div class="tnfContentTitle">
+                    <img src="img/info/info_clock.png" alt="">
+                    <h5>營業時間</h5>
+                </div>
+                <div class="timenFeeText timeText">
+                    <h5 class="time">每日<br>09:00~18:00</h5>
+                    <h5 class="lastEntry greenText">最後入場時間 16:30</h5>
+                </div>
+            </div>
+            <div class="timenFeeContent">
+                <div class="tnfContentTitle">
+                    <img src="img/info/info_tickets.png" alt="">
+                    <h5>票價 & 停車費</h5>
+                </div>
+                <div class="timenFeeText feeText">
+                    <div class="feeTextMCon">
+                        <h5 class="greenText">全票</h5>
+                        <h5 class="fee">$200</h5>
+                        <p>(一般成人)</p>
+                        <h5 class="greenText">學生票</h5>
+                        <h5 class="fee">$160</h5>
+                        <p>(持有學生證之在學學生)</p>
+                        <h5 class="greenText">優待票</h5>
+                        <h5 class="fee">$100</h5>
+                        <p>(65歲以上長者/12歲以下兒童)</p>
+                        <span class="demarcation"></span>
+                        <div class="carFee">
+                            <h5 class="greenText carType">小型車</h5>
+                            <h5 class="fee">$200</h5>   
+                            <h5 class="greenText carType">遊覽車</h5>
+                            <h5 class="fee">$800</h5>
+                            <h5 class="greenText carType">機車</h5>
+                            <h5 class="fee">$100</h5>
+                        </div>
+                    </div>        
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: 入園須知 -->
+    <section class="infoRule container-lg margintop_100">
+        <h3 class="ruleTitle">入園須知</h3>
+        <h5>為了讓大家安全享受，並保護動物的健康，到場時請務必遵守以下規定。</h5>
+        <h5 class="rule">寵物不得入場。</h5>
+        <h5 class="rule">進入前請務必踩踏消毒墊。</h5>
+        <h5 class="rule">接觸動物之前和之後請記得洗手和消毒。</h5>
+        <h5 class="rule">切勿在指定區域以外的地方餵養動物。</h5>
+        <h5 class="rule">請把垃圾帶出場外。</h5>
+        <h5 class="rule">全牧場禁止吸菸，吸菸有礙身體健康。</h5>
+    </section>
+
+
+    <!-- footer -->
+    @@include('./layout/footer.html')
+</body>
+
+</html>

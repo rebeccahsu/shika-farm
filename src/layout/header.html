@@ -9,7 +9,7 @@
                 <span class="ham_line ham_line_2"></span>
                 <span class="ham_line ham_line_3"></span>
             </div>
-            
+
             <!-- 購物車彈跳窗 -->
             <!-- <div class="blackBg">
                 <div class="shoppingCar">
@@ -23,7 +23,7 @@
 
             <nav class="hamSel">
                 <ul id="appMenu" class="hamMenu">
-                    <template v-for="menu in menus" v-for="menuLink in menuLinks">
+                    <template v-for="menu in menus">
                         <li class="hamMenuItem">
                             <a :href="menu.link">
                                 <div class="iconContainer">
@@ -34,9 +34,9 @@
                         </li>
                     </template>
                 </ul>
-                
-            </nav>   
+
+            </nav>
         </div>
     </nav>
-    <div class="hamMask"></div>
+    <div class="hamMask" style="opacity: 0;"></div>
 </header>

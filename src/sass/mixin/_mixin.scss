@@ -39,4 +39,33 @@
   background-color: $bgc;
   color: $fc;
   border: 1px solid $bc;
+  
+//圓形按鈕
+@mixin roundButton(){
+  background-image: url("../img/material/round_button_green.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: block;
+  width: 160px;
+  height: 154px;
+  transition: .5s;
+  &:hover{
+      background-image: url("../img/material/round_button_yellow.png");
+  }
+  @content;
+}
+
+//標題圓球裝飾
+@mixin titleDecBall($url){
+  content: '';
+  display: block;
+  width: 100px;
+  height: 100px;
+  background-image: url($url);
+  background-size: contain;
+  position: absolute;
+  top: -10px;
+  left: 180px;
+  z-index: -1;
+  @content;
 }

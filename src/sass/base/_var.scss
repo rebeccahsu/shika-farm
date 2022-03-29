@@ -14,7 +14,7 @@ $fs-s: 24px;
 $fs-m: 36px;
 $fs-l: 48px;
 $fs-xl: 64px;
-$fs-2xl: 110px;
+$fs-2xl: 96px;
 
 // ======== 行高 LineHeight ========
 
@@ -29,7 +29,10 @@ $letter-spacing-2: 2px;
 
 // ======== 字體 ========
 
-$fontfamily: "Noto Sans Traditional Chinese , Oswald";
+$fontfamily: (
+    "zhtw" : "Noto Sans TC",
+    "eng" : "Oswald"
+);
 
 
 

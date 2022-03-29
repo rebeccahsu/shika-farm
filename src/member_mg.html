@@ -8,20 +8,47 @@
 <body class="mb_body">
     <!-- 側邊導覽列 -->  
     @@include('./layout/back_aside.html')
-        <article class="article">
-            <h4>會員資料管理</h4>
+        <article class="mb_article" id="mb_article">
+            <div class="mb_mg_title">
+                <img src="./img/backpages/title_cow_left.png" alt="" class="mb_cow">
+                <h4>會員資料管理</h4>
+                <img src="./img/backpages/title_cow_right.png" alt="" class="mb_cow">
+            </div>
             <div class="search">
                 <label for="" class="memberId">會員編號查詢</label>
                 <input type="text" class="mbId_text">
                 <img src="./img/icon/search.png" alt="" class="search_icon">
             </div>
-            <ul class="mb_table">
-                <li class="titleBar"><p>會員編號</p><p>姓名</p><p>E-mail</p><p>聯絡電話</p><p>地址</p></li>
-                <li></li>
-                
+            <ul class="mb_table" id="mb_table">
+                <li class="titleBar">
+                    <p>會員編號</p>
+                    <p>姓名</p>
+                    <p>E-mail</p>
+                    <p>聯絡電話</p>
+                    <p>地址</p>
+                </li>
+
+                <li v-for="customer in customers" class="titleBar mb_content">
+                    <p>{{customer.id}}</p>
+                    <p >{{customer.name}}</p>
+                    <p >{{customer.email}}</p>
+                    <p>{{customer.phone}}</p>
+                    <p>{{customer.address}}</p>
+                </li>  
             </ul>
+            <div class="mb_mgPage">
+                <a href="" id="left" class="pages">←</a>
+                <a href="" class="active">1</a>
+                <a href="">2</a>
+                <a href="">3</a>
+                <a href="">4</a>
+                <a href="">5</a>
+                <a href="" id="right" class="pages">→</a>
+            </div>
         </article>
 
+
+        <script src="./js/member_mg.min.js"></script>
         
 </body>
 </html>
