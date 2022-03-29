@@ -33,3 +33,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+// ====button bgc背景色,fc文字顏色,bc框線顏色====
+@mixin buttonSet($bgc:$color_G,$fc:$color_W,$bc:$color_G){
+  background-color: $bgc;
+  color: $fc;
+  border: 1px solid $bc;
+}
