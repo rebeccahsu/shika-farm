@@ -31,8 +31,8 @@
                 padding: 20px 0;
             }
             a:hover{
-                background-color: $color_Y ;
-                color: $color_W;
+                background-color: $color_W ;
+                color: $color_Y;
             }
         }
     }
@@ -53,9 +53,10 @@
         &:hover{
             background-color: $color_W;
             color: $color_R;
-        }
-        &::after:hover{
-            background-image: url('../../img/icon/logout.png');
+
+            &::after{
+                background-image: url('../../img/icon/logout_R.png');
+            }
         }
     }
 }

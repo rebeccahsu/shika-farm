@@ -8,6 +8,7 @@
 <body>
     <!-- header -->
     @@include('./layout/header.html')
+    <!---------- 流程步驟 1 2 3 ---------->
     <article class="checkout_article">
       <div class="container">
           <ul class="step">
@@ -16,11 +17,77 @@
             <li>訂單確認</li>
           </ul>
       </div>
-      
     </article>
-    <div style="height:1000px"></div>
+    <!---------- 結帳流程一 ---------->
+    <div class="stepA">
+      <!--********** 購物車 **********-->
+      <ul id="step1" class="step1">
+        <li class="carName">購物車</li>
+        <li class="carTitle"><p>商品資料</p><p>價格</p><p>數量</p><p>小計</p></li>
+        <li v-for="product in products" class="carTitle carInfo">
+          <img :src="images.blanketg" class="infoImg">
+          <!-- <p>{{product.img}}</p> -->
+          <p>{{product.info}}</p>
+          <p>{{product.price}}</p>
+          <p>
+          <input type="button" class="addBtn mbBtn" value="-"><input type="text" class="quantity" value="1"><input type="button" class="subBtn mbBtn" value="+">
+          </p>
+          <p>{{product.total}}</p>
+          <img src="./img/icon/garbageCan.png" class="garbageCan">
+        </li>
+      </ul>
+      <!--********** 訂單資訊 **********-->
+      <ul id="step" class="step1 step1Down">
+        <li class="carName">訂單資訊</li>
+        <li v-for="product in products" class="productInfo"><p>小計</p><p>{{product.total}}</p><p>運費{{product.freight}}</p></li>
+        <li v-for="product in products" class="productInfo allTotal"><p>合計</p><p>{{product.total}}</p></li>
+      </ul>
+      <button class="gotoPay">前往結帳</button>
+    </div>
 
+    <!---------- 結帳流程二 ---------->  
+    <div class="stepB">
+      
+      <!--********** 總計 共買幾項 **********-->
+      <ul id="step2" class="step2">
+        <li class="carName2" v-for="product in products"><p class="titleTop">總計 {{product.total}}</p><p class="titleDown">購物車(共{{product.quantity}}項)</p></li>
+        <li class="carTitle"><p>商品資料</p><p>價格</p><p>數量</p><p>小計</p></li>
+        <li v-for="product in products" class="carTitle carInfo">
+          <img :src="images.blanketg" class="infoImg">
+          <!-- <p>{{product.img}}</p> -->
+          <p>{{product.info}}</p>
+          <p>{{product.price}}</p>
+          <p>{{product.quantity}}</p>
+          <p>{{product.total}}</p>
+        </li>
+        <li class="lastTotal"><p>小計{{product.total}}</p><p>運費{{product.freight}}</p><p>總計 {{product.total}}</p></li>
+      </ul>
+      <!--********** 送貨資訊 **********-->
+      <ul id="step2-2" class="step2 step2Main">
+        <li class="carName2-2">送貨資訊</li>
+        <!-- 資訊欄位 -->
+        <li class="send">
+          <div>
+            <label for="name" class="sendIn">收件人姓名</label>
+            <input type="text" id="name" class="np">
+          </div>
+          <div>
+            <label for="phone" class="sendIn">連絡電話</label>
+            <input type="text" id="phone" class="np">
+          </div>
+        </li>
+        <li class="addressout">
+          <label for="address" class="sendIn">送貨地址</label>
+          <input type="text" id="address" class="sendAddress">
+          <input type="checkbox" name="" id="same" class="checkSame"><label for="same" class="Same">同會員資料</label>
+        </li>
+        
+      </ul>
+    </div>
     <!-- footer -->
     @@include('./layout/footer.html')
+
+
+    <script src="./js/checkout.min.js"></script>
 </body>
 </html>
