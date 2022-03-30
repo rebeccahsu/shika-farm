@@ -1,0 +1,106 @@
+.backcontainer{
+    width: 80%;
+    padding: 0 40px;
+    float: right;
+    .amTitle{
+        margin-top: 40px;
+        margin-bottom: 20px;
+        &:before{
+            content: url("../../img/backpages/title_cow_left.png");
+            width: 50px;
+            display: inline;
+            margin-right: 50px;
+        }
+        &:after{
+            content: url("../../img/backpages/title_cow_right.png");
+            width: 50px;
+            display: inline;
+            margin-left: 50px;
+        }
+    
+    }
+    .buttonsnNumber{
+        display: flex;
+        justify-content: space-between;
+        .buttons{
+            margin-top: 30px;
+            button{
+                margin-right: 10px;
+            }
+        }
+        .actAvailableTitle{
+            margin-top: 30px;
+        }
+
+    }
+    .showUnavailable{
+        margin-top: 20px;
+        display: flex;
+        vertical-align: middle;
+        .showTitle{
+            margin-left: 10px;
+            margin-top: 2px;
+        }
+    }
+
+    .actLists{
+        margin-top: 30px;
+        .actList{
+            border: 1px solid $color_G;
+            display: flex;
+            padding: 20px;
+            margin-bottom: 40px;
+            .actImgCon{
+                width: 300px;
+                height: 250px;
+                display: flex;
+                align-items: center;
+                position: relative;
+                overflow: hidden;
+                img{
+                    width: 100%;
+                    @include positionCenter();
+                }
+            }
+        }
+        .actContent{
+            margin-left: 40px;
+            flex-grow: 1;
+            // border: 1px solid red;
+
+            .checkbox{
+                float: right;
+            }
+
+            .name{
+                margin-bottom: 20px;
+            }
+            .time{
+                margin: 5px 20px;
+            }
+            .state{
+                margin-top: 30px;
+                display: inline-block;
+                span{
+                    margin-left: 20px;
+                }
+            }
+            .actButtons{
+                float: right;
+                margin-top: 30px;
+                #actModify{
+                    margin-left: 20px;
+                }
+            }
+        }
+    }
+
+    .tibameMessage{
+        margin-bottom: 50px;
+        text-align: center;
+    }
+
+    .actList.-off{
+        background-color: #ccc;
+    }
+}
