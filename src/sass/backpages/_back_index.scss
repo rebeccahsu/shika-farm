@@ -1,61 +1,68 @@
+
+//右邊頁面
 article{
-    @include borderTest(blue);
+    // @include borderTest(blue);
     width: calc(100% - 20%);
-    margin-left: auto;
+    margin: 0 auto;
     margin-right: 0;
+    padding-left: 80px;
+    padding-top: 40px;
 }
 
-
+//文字標題
 h4{
     @include textCenter();
-    margin-top: 30px;
+    font-weight: 600;
+    
 }
+
 //ul
 .bi_fuc{
+    
     display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
     width: 100%;
     height: 200px;
     text-align: center;
-    border: 1px solid $color_G;
-    // background-color: $color_G;
-    // vertical-align : middle;
-    // @include  marginCenter();
-    // border: 1px solid green;
-    
-    
+    // border: 1px solid $color_G;
+    padding-top: 10px;
 }
 
 .bi_fuc > li{
     border: 1px solid $color_G;
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
+    margin-right: 40px;
+    border-radius: 8px;
+    margin-top: 40px;
+}
+
+//ICON
+.bi_fuc img{
+    // border: 1px solid rgb(0, 0, 0);
+    width: 120px;
+    display: block;
+    margin: 40px auto;
+
     
-    
-    // border: 1px solid red;
 }
 .bi_fuc > li a{
     color: $color_B;
 }
 
-.bi_fuc img{
-    border: 1px solid rgb(0, 0, 0);
-    width: 100px;
-    display: block;
-    margin: 30px auto;
 
-    
-}
+
+//hover
 
 
 
 .bi_fuc li:hover{
     background-color: $color_G;
-    // color: $color_W;
     cursor: pointer;
 }
 
 .bi_fuc li:hover a{
-    // background-color: $color_G;
-    color: $color_W;
-    cursor: pointer;
+color: $color_W;
+cursor: pointer;
 }
