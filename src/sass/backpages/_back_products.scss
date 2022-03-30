@@ -1,0 +1,9 @@
+
+
+#back_pds{
+    .pds_right{
+        padding-left: 20%;
+
+        @include back_title;
+    }
+}
