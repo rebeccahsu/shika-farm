@@ -69,3 +69,21 @@
   z-index: -1;
   @content;
 }
+
+// 後台頁title區塊 請搭配back_title.html一起用
+@mixin back_title{
+  .back_title{
+    margin: 30px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h4{
+      margin: 0 30px;
+    }
+
+    .mb_cow{
+      width: 50px;
+    }
+  }
+}
