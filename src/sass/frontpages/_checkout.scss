@@ -2,7 +2,7 @@
 
 	.step{
 		display: flex;
-		margin-top: 200px;
+		margin-top: 100px;
 		color: #79d4cf;
         @include textCenter();
         justify-content: center;
@@ -314,4 +314,26 @@
         margin: 30px auto;
     }
 
+}
+
+// ============ 結帳流程三 ============
+.stepC{
+    margin: 100px auto;
+    @include textCenter();
+    h3{
+        margin-bottom: 30px;
+    }
+    .myMB{
+        color: $color_B;
+        text-decoration: underline;
+    }
+    .gogo{
+        width: 100px;
+        height: 50px;
+        border: 1px solid $color_R;
+        background-color: $color_R;
+        border-radius: 8px;
+        color: $color_W;
+        margin: 30px;
+    }
 }
