@@ -1,5 +1,7 @@
 @import 'base/var';
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
 @import 'base/reset';
+@import 'base/button';
 @import 'mixin/mixin';
 @import 'base/utility';
 @import 'base/typography';
@@ -9,3 +11,4 @@
 @import 'backpages/back_login';
 @import 'backpages/back_index';
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
+@import 'backpages/activity_mg';

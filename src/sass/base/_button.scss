@@ -1,0 +1,37 @@
+@mixin button ($color){
+    display: inline-block;
+    color: $color_W;
+    font-size: $fs-s;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: $color;
+    border: none;
+    border-radius: 5px;
+    transition: .3s;
+    padding: 5px 15px;
+  
+    &:hover {
+        background-color: darken($color, 10);
+    }
+  
+    &:disabled,
+    &.disabled,
+    fieldset:disabled & {
+      opacity: .5;
+    }
+    @content;
+  }
+
+.btn-green{
+    @include button($color_G);
+}
+
+.btn-yellow{
+    @include button($color_Y);
+}
+
+.btn-red{
+    @include button($color_R);
+}
+  
