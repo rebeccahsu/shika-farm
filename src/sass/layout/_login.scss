@@ -46,6 +46,7 @@ div#back_bg {
     .loginBlock {
       margin: 40px auto;
 
+      // 登入表單,重設密碼表單
       #login_form {
         width: 325px;
         margin: 20px;
@@ -60,6 +61,7 @@ div#back_bg {
         h4 {
           margin-bottom: 20px;
         }
+
 
         input {
           padding: 10px 20px;
@@ -133,8 +135,7 @@ div#back_bg {
 }
 
 
-// 註冊填資料
-
+// 註冊填資料 表單
 #register_from{
     margin: 0 20px;
     width: 450px;
@@ -205,5 +206,54 @@ div#back_bg {
           width: 195px;
           margin: 40px auto;
       }
+
+}
+
+// 重設密碼表單
+#password_reset{
+  width: 325px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  // @include borderTest;
+  @media (max-width: 840.98px) {
+    width: auto;
+  }
+
+  h4 {
+    margin-bottom: 20px;
+  }
+
+  p{
+    margin-bottom: 20px;
+  }
+  input {
+    padding: 10px 20px;
+    width: 100%;
+    height: 50px;
+    background-color: #ededed;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #c4c4c4;
+    font-size: $fs-xs;
+    &:focus {
+      border: 1px solid $color_G;
+    }
+  }
+  // 繼續的按鈕
+  #next {
+    margin-top: 40px;
+    @include buttonSet;
+    width: 100%;
+    border-radius: 5px;
+    height: 50px;
+    font-size: $fs-xs;
+    cursor: pointer;
+    @media (max-width: 840.98px) {
+      margin-top: 30px;
+    }
+  }
+
 
 }

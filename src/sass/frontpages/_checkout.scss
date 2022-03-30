@@ -80,6 +80,7 @@
             border: 1px solid #c4c4c4;
         }
         .carInfo{
+            border-top: none;
             display: grid;
             grid-template-columns: 20% 15% 20% 10% 30% 5%;
             @include textCenter();
@@ -144,17 +145,31 @@
 // ============ 結帳流程二 ============
 .stepB{
     // display: none;
-    // ---------- 總計 共買幾項 ----------
+
+    // *********** 表格標題 ***********
+    .carName2-1{
+        background-color: $color_Y;
+        width: 100%;
+        height: 65px;
+        grid-template-columns: 100%;
+        padding: 20px;
+        color: $color_W;
+        font-size: $fs-s;
+        border-radius: 8px 8px 0 0;
+    }
+    // ---------- 送貨資訊 ----------
+    .step2MB{
+        margin: 100px auto 0;
+    }
     .step2{
         margin: 220px auto 0;
         width: 1200px;
-        // display: grid;
+        // =================== 表格1 總計 ===================
         // *********** 總計表格標題 ***********
         .carName2{
             background-color: $color_Y;
             width: 100%;
             height: 90px;
-            // grid-template-rows: 100%;
             padding: 20px;
             color: $color_W;
             font-size: $fs-s;
@@ -191,22 +206,8 @@
             border: 1px solid #c4c4c4;
             padding: 10px 0 10px 82%;
         }
-    }
-    // ---------- 送貨資訊 ----------
-    .step2Main{
-        margin: 100px auto 0;
-        // *********** 送貨資訊表格標題 ***********
-        .carName2-2{
-            background-color: $color_Y;
-            width: 100%;
-            height: 65px;
-            grid-template-columns: 100%;
-            padding: 20px;
-            color: $color_W;
-            font-size: $fs-s;
-            border-radius: 8px 8px 0 0;
-        }
-        // *********** 送貨資訊欄位 ***********
+        // =================== 表格2 送貨資訊 ===================
+        // ----------- 送貨資訊欄位 -----------
         .send{
             padding: 10px 50px;
             border: 1px solid #c4c4c4;
@@ -217,12 +218,12 @@
 
             .sendIn{
                 display: block;
-                padding: 5px 40px;
+                padding: 5px 100px;
             }
             .np{
                 display: inline;
-                width: 460px;
-                margin: 10px 40px;
+                width: 200px;
+                margin: 10px 100px;
             }
             
         }
@@ -230,24 +231,31 @@
             border: 1px solid #c4c4c4;
             border-top: none;
             padding: 0 50px;
-            .sendIn{
-                display: block;
-                padding: 5px 40px;
+            .addressin{
+                .sendIn{
+                    display: block;
+                    padding: 5px 100px;
+                }
+                .sendAddress{
+                    display: block;
+                    width: 735px;
+                    height: 35px;
+                    margin: 10px 100px;
+                }
+                .checkSame{
+                    margin: 15px 10px 15px 40px;
+                    width: 20px;
+                    height: 20px;
+                }
             }
-            .sendAddress{
-                display: block;
-                width: 995px;
-                height: 35px;
-                margin: 10px 40px;
-            }
-            .checkSame{
-                margin: 15px 10px 15px 40px;
-                width: 20px;
-                height: 20px;
-            }
-            .Same{
-                height: 20px;
-            }
-        }    
+        }
+    }
+    // =================== 表格3 付款資訊 ===================
+    .payfor{
+        border: 1px solid #c4c4c4;
+        
+        .paySelect{
+            width: 325px;
+        }
     }
 }
