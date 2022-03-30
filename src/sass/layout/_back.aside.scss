@@ -10,13 +10,13 @@
     
     .asideLogo{
         width: 185px;
-        margin: 40px auto;
+        margin: 50px auto 30px;
     }
     .aside_ul{
         list-style: none;
         width: 100%;
         padding: 0;
-        margin-bottom: 80px;
+        margin-bottom: 40px;
         @include textCenter();
 
         li{

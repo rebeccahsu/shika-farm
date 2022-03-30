@@ -7,17 +7,13 @@
 		<!-- header -->
 		@@include('./layout/header.html')
 		<!---------- 流程步驟 1 2 3 ---------->
-		<article class="checkout_article">
-			<div class="container">
-				<ul class="step">
-					<li class="active">訂單資料</li>
-					<li>付款資訊</li>
-					<li>訂單確認</li>
-				</ul>
-			</div>
-		</article>
+		<ul class="step container-lg">
+			<li class="active"><p class="stepNB">1</p>訂單資料</li>
+			<li><p class="stepNB">2</p>付款資訊</li>
+			<li><p class="stepNB">3</p>訂單確認</li>
+		</ul>
 		<!---------- 結帳流程一 ---------->
-		<div class="stepA">
+		<div class="stepA container-lg">
 			<!--********** 購物車 **********-->
 			<ul id="step1" class="step1">
 				<li class="carName">購物車</li>
@@ -57,7 +53,7 @@
 		</div>
 
 		<!---------- 結帳流程二 ---------->
-		<div class="stepB">
+		<div class="stepB container-lg">
 			<!--********** 表格1 總計 **********-->
 			<ul id="step2" class="step2">
 				<li class="carName2" v-for="product in products">
@@ -111,14 +107,49 @@
 			<ul class="step2 step2MB">
 				<li class="carName2-1">付款資訊</li>
 				<li class="payfor">
-				<p>付款方式</p>
-				<select name="" id="" class="paySelect">
-					<option value="">信用卡</option>
-					<option value="">貨到付款</option>
-				</select>
+					<div class="paymain">
+						<p>付款方式</p>
+						<select name="" id="" class="paySelect">
+						<option value="" class="payOption">信用卡</option>
+						<option value="" class="payOption">貨到付款</option>
+						</select>
+					</div>
+				</li>
+				<li class="card_info">
+					<div class="card_infoI">
+						<p class="cardAll">
+							<label for="payId">信用卡卡號</label>
+							<input type="text" id="payId" class="payId payInput"> -
+							<input type="text" class="payId payInput"> -
+							<input type="text" class="payId payInput"> -
+							<input type="text" class="payId payInput">
+						</p>
+						<p class="cardAll">
+							<label for="date">到期日</label>
+							<input type="text" id="date" class="month date payInput" placeholder="MM"> /
+							<input type="text" class="year date payInput" placeholder="YY">
+						</p>
+					</div>
+					<div class="card_infoI">
+						<p class="cardname cardAll">
+							<label for="cardname">持卡人姓名</label>
+							<input type="text" id="cardname" class="payInput">
+						</p>
+						<p class="cardAll">
+							<label for="CSC">安全碼</label>
+							<input type="text" id="CSC" class="payInput">
+						</p>
+					</div>
 				</li>
 			</ul>
+			
+			<input type="submit" value="提交訂單" class="paysub">
 		</div>
+		<!---------- 結帳流程二 ---------->
+		<div class="stepC container-lg">
+			
+		</div>
+
 		<!-- footer -->
 		@@include('./layout/footer.html')
 
