@@ -65,16 +65,16 @@ exports.allcss = concatall_css;
 // sass 編譯
 const sass = require('gulp-sass')(require('sass'));
 const sourcemaps = require('gulp-sourcemaps');
-
+const autoprefixer = require('gulp-autoprefixer');
 
 function sassstyle() {
     return src('./src/sass/*.scss')
         .pipe(sourcemaps.init())
         .pipe(sass.sync().on('error', sass.logError))
-        // .pipe(sass.sync({
-        //    outputStyle: 'compressed'  //gulp sass 內建壓縮
-        // }).on('error', sass.logError))
         //.pipe(cleanCSS()) // minify css
+        .pipe(autoprefixer({
+        cascade: false
+        }))
         .pipe(sourcemaps.write())
         .pipe(dest('./dist/css'));
 }
@@ -125,3 +125,16 @@ function browser(done) {
     done();
 }
 exports.default = series(parallel(includeHTML, sassstyle, minijs, package), browser);
+
+// 圖片壓縮
+const imagemin = require('gulp-imagemin');
+
+function min_images(){
+    return src('src/img/*.*')
+    .pipe(imagemin([
+        imagemin.mozjpeg({quality: 60, progressive: true}) // 壓縮品質      quality越低 -> 壓縮越大 -> 品質越差 
+    ]))
+    .pipe(dest('dist/images'))
+}
+
+exports.mini_img = min_images;
