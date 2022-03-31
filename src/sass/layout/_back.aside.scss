@@ -16,17 +16,13 @@
         list-style: none;
         width: 100%;
         padding: 0;
-        // margin-bottom: 20px;
         @include textCenter();
         height: 70vh;
-        // border: 1px solid red;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
 
         li{
-            // font-size: $fs-s;
-            // margin: 20px auto;
             width: 100%;
 
             a{
@@ -46,7 +42,6 @@
         }
     }
     .signOut{
-        font-size: $fs-s;
         display: block;
         padding: 20px 0;
 
