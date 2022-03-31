@@ -33,12 +33,12 @@ const uglify = require('gulp-uglify');
 function minijs() {
     return src('src/js/*.js')
         .pipe(uglify())
-        .pipe(rename({
-            extname: '.min.js' // 修改附檔名
-            //prefix : 'web-' // 前綴字
-            //suffix : '-min'  // 後綴字
-            //basename : 'all' //更名
-        }))
+        // .pipe(rename({
+        //     extname: '.min.js' // 修改附檔名
+        //     //prefix : 'web-' // 前綴字
+        //     //suffix : '-min'  // 後綴字
+        //     //basename : 'all' //更名
+        // }))
         .pipe(dest('dist/js'))
 }
 
@@ -127,7 +127,7 @@ function browser(done) {
 const imagemin = require('gulp-imagemin');
 
 function min_images(){
-    return src('src/img/*.*', 'src/img/**/*.*')
+    return src(['src/img/*.*', 'src/img/**/*.*'])
     .pipe(imagemin())
     .pipe(dest('dist/img'))
 }
