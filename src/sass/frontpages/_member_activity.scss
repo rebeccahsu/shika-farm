@@ -1,0 +1,122 @@
+.mem_ac_wrp{
+    width: 1440px;
+    margin: 0 auto;
+    padding-top: 20px;
+
+}
+
+
+
+//btn
+
+.mem_tab{
+    display: flex;
+    width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 60px;
+    justify-content: center; 
+    margin-top: 20px;
+}
+
+.mem_btn{
+    color: white;
+    background-color:$color_G;
+    width: 350px;
+    height: 72px;
+    border-radius: 8px;
+    font-size: 24px;
+    border: none;
+    margin: 0 auto;
+    cursor: pointer;
+    
+    
+}
+
+// .mem_act{
+//     color: white;
+//     background-color:$color_Y;
+//     width: 350px;
+//     height: 72px;
+//     border-radius: 8px;
+//     font-size: 24px;
+//     border: none;
+//     margin: 0 auto;
+// }
+
+
+
+
+
+.act_list{
+    
+    display: flex;
+    margin: 0 auto;
+    width: 1200px;
+    height: 160px;
+    border: 2px solid $color_G ;
+    border-radius: 8px;
+    line-height: 160px;
+    margin-top: 40px;
+    
+    
+}
+
+.act_date{
+    // border: 1px solid green;
+    // display: flex;
+    color: $color_G;
+    padding-left: 40px;
+    display:inline;
+    line-height: 160px;
+    height: 160px;
+    padding-right: 80px;
+    
+}
+
+.act_title{
+    display:inline;
+    padding-right: 20px;
+    
+}
+
+.act_time{
+    display:inline;
+    line-height: 160px;
+    padding-right: 100px;
+
+}
+
+.cancel_btn{
+    margin-top: 45px;
+    // line-height: 160px;
+    font-size: $fs-s;
+    border-radius: 8px;
+    text-align: center;
+    width: 200px;
+    height: 60px;
+    display: inline-block;
+    color:$color_W;
+    background-color:$color_R;
+    border: 1px solid $color_R;
+    cursor: pointer;
+    margin-left:20px;
+
+}
+
+.cancel_btn:hover{
+    margin-top: 45px;
+    
+    font-size: $fs-s;
+    border-radius: 8px;
+    text-align: center;
+    width: 200px;
+    height: 60px;
+    display: inline-block;
+    color:$color_W;
+    background-color:$color_R;
+    border: 1px solid $color_R;
+    cursor: pointer;
+    margin-left:20px;
+
+}
+    
