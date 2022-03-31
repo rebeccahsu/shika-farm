@@ -7,17 +7,80 @@
     })
 
 </head>
+
 <body>
 
     <main id="back_pds">
-<!-- 側邊導覽列 -->  
-     @@include('./layout/back_aside.html')
-<!-- 後台商品列表 -->
-<div class="pds_right">
+        <!-- 側邊導覽列 -->
+        @@include('./layout/back_aside.html')
+        <!-- 後台商品列表 -->
+        <div class="pds_right">
 
-     @@include('./layout/back_title.html', {
-         "back_title" : "商品管理"
-     })
+            @@include('./layout/back_title.html', {
+            "back_title" : "商品管理"
+            })
+            <div class="button_area">
+                <div class="UD">
+                    <button id="on_pd" type="button" class="btn-green">上架</button>
+                    <button id="off_pd" type="button" class="btn-green">下架</button>
+                </div>
+
+                <div class="NDS">
+                    <button id="new_pd" type="button" class="btn-yellow">新增</button>
+                    <button id="del_pd" type="button" class="btn-red">刪除</button>
+                    <input type="text" name="search" id="search">
+                    <button id="search_pd" type="button" class="btn-green">搜尋</button>
+                </div>
+                
+                
+            </div>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+            
+            <section class="list_area">
+                <ul id="pds_list">
+                    <li>
+                        <ol class="_title">
+                            <li class="fieldName">選取</li>
+                            <li class="fieldName">商品圖</li>
+                            <li class="fieldName">品號</li>
+                            <li class="fieldName">品名</li>
+                            <li class="fieldName">成本</li>
+                            <li class="fieldName">售價</li>
+                            <li class="fieldName">庫存</li>
+                            <li class="fieldName">狀態</li>
+                            <li class="fieldName">詳細資訊</li>
+                        </ol>
+                    </li>
+                    
+                    <li data-prd_number="37741249"  data-prd_condition="on" class="list_item -on">
+                        <input type="checkbox" class="prd_list_checkbox">
+                        <img src="./img/porducts/papaya.jpg" alt="" class="prd_pic">
+                        <p class="prd_number">37741249</p>
+                        <p c lass="prd_name">鮮奶酪</p>
+                        <span class="prd_cost">239</span>
+                        <span class="prd_price">339</span>
+                        <p class="pd_inStock">20</p>
+                        <p class="prd_condition">上架中</p>
+                        <button type="button" class="btn-green prd_edit">修改</button>
+                    </li>
+                    <li data-prd_number="37741250" data-prd_condition="off" class="list_item -off">
+                        <input type="checkbox" class="prd_list_checkbox">
+                        <img src="./img/porducts/papaya.jpg" alt="" class="prd_pic">
+                        <p class="prd_number">37741250</p>
+                        <p c lass="prd_name">鮮奶酪</p>
+                        <span class="prd_cost">239</span>
+                        <span class="prd_price">339</span>
+                        <p class="pd_inStock">20</p>
+                        <p class="prd_condition">未上架</p>
+                        <button type="button" class="btn-green prd_edit">修改</button>
+                    </li>
+                </ul>
+
+
+            </section>
 
 
 
@@ -25,10 +88,8 @@
 
 
 
-
-
-</div>
-</main>
+        </div>
+    </main>
 
 </body>
 
