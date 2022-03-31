@@ -19,26 +19,35 @@
             @@include('./layout/back_title.html', {
             "back_title" : "商品管理"
             })
-            <div class="button_area">
-                <div class="UD">
-                    <button id="on_pd" type="button" class="btn-green">上架</button>
-                    <button id="off_pd" type="button" class="btn-green">下架</button>
+            <div class="btn_area">
+                <div class="btn1">
+                    <div class="UD">
+                        <button id="on_pd" type="button" class="btn-green">上架</button>
+                        <button id="off_pd" type="button" class="btn-green">下架</button>
+                    </div>
+
+                    <div class="NDS">
+                        <button id="new_pd" type="button" class="btn-yellow">新增</button>
+                        <button id="del_pd" type="button" class="btn-red">刪除</button>
+                        <input type="text" name="search" id="search">
+                        <button id="search_pd" type="button" class="btn-green">搜尋</button>
+                    </div>
+
+
+                </div>
+                <div class="btn2">
+
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="shoow_off">顯示已下架商品</span>
+
                 </div>
 
-                <div class="NDS">
-                    <button id="new_pd" type="button" class="btn-yellow">新增</button>
-                    <button id="del_pd" type="button" class="btn-red">刪除</button>
-                    <input type="text" name="search" id="search">
-                    <button id="search_pd" type="button" class="btn-green">搜尋</button>
-                </div>
-                
-                
             </div>
-            <label class="switch">
-                <input type="checkbox">
-                <span class="slider round"></span>
-            </label>
-            
+
+
             <section class="list_area">
                 <ul id="pds_list">
                     <li>
@@ -54,25 +63,31 @@
                             <li class="fieldName">詳細資訊</li>
                         </ol>
                     </li>
-                    
-                    <li data-prd_number="37741249"  data-prd_condition="on" class="list_item -on">
-                        <input type="checkbox" class="prd_list_checkbox">
+
+                    <li data-prd_number="37741249" data-prd_condition="on" class="list_item -on">
+                        <label class="check_container">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
                         <img src="./img/porducts/papaya.jpg" alt="" class="prd_pic">
                         <p class="prd_number">37741249</p>
                         <p c lass="prd_name">鮮奶酪</p>
-                        <span class="prd_cost">239</span>
-                        <span class="prd_price">339</span>
+                        <p class="prd_cost">239</p>
+                        <p class="prd_price">339</p>
                         <p class="pd_inStock">20</p>
                         <p class="prd_condition">上架中</p>
                         <button type="button" class="btn-green prd_edit">修改</button>
                     </li>
                     <li data-prd_number="37741250" data-prd_condition="off" class="list_item -off">
-                        <input type="checkbox" class="prd_list_checkbox">
+                        <label class="check_container">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
                         <img src="./img/porducts/papaya.jpg" alt="" class="prd_pic">
                         <p class="prd_number">37741250</p>
                         <p c lass="prd_name">鮮奶酪</p>
-                        <span class="prd_cost">239</span>
-                        <span class="prd_price">339</span>
+                        <p class="prd_cost">239</p>
+                        <p class="prd_price">339</p>
                         <p class="pd_inStock">20</p>
                         <p class="prd_condition">未上架</p>
                         <button type="button" class="btn-green prd_edit">修改</button>
@@ -82,8 +97,28 @@
 
             </section>
 
+<div id="page_area">
+            <ul >
+                <li><a href="#">
+                        <p>＜</p>
+                    </a></li>
+                <li class="page_hear"><a href="#">
+                        <p>1</p>
+                    </a></li>
+                <li><a href="#">
+                        <p>2</p>
+                    </a></li>
+                <li><a href="#">
+                        <p>3</p>
+                    </a></li>
+                
+                <li><a href="#">
+                        <p>＞</p>
+                    </a></li>
+            </ul>
 
 
+        </div>
 
 
 
