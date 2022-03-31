@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    @@include('layout/back_head.html', {
+    "title" : "Sìkha 後台 | 新增商品"
+    })
+
+</head>
+
+<body>
+    <main id="back_pds">
+        <!-- 側邊導覽列 -->
+        @@include('./layout/back_aside.html')
+        <!-- 後台新增商品 -->
+        <div class="pds_right">
+
+            @@include('./layout/back_title.html', {
+            "back_title" : "新增商品"
+            })
+
+            <form action="" method="POST">
+                <div class="prd_image_area">
+                    <h5 class="select_images">選擇商品照片</h5>
+                    <button type="button" class="btn-yellow" id="topImages">選擇圖片</button><br>
+                    <figure>
+                        <div class="select_topImage1"><button type="button" class="arror_l"><i
+                                    class="bi bi-chevron-left"></i></button><span>請上傳圖片</span><button type="button"
+                                class="arror_r"><i class="bi bi-chevron-right"></i></button></div>
+                        <div class="select_topImage2"><img src="./img/logo_16B1AA.svg" alt=""></div>
+                        <div class="select_topImage3"><img src="./img/logo_16B1AA.svg" alt=""></div>
+                        <div class="select_topImage4"><img src="./img/logo_16B1AA.svg" alt=""></div>
+                    </figure>
+
+                </div>
+                <section class="prd_info">
+                    <p for="prd_name">商品名稱</p>
+                    <input type="text" id="prd_name">
+                    <div class="info_box">
+                        <div>
+                            <p for="prd_cost">成本</p><input type="text" id="prd_cost">
+                        </div>
+                        <div>
+                            <p for="prd_price">售價</p>
+                            <input type="text" id="prd_price">
+                        </div>
+                    </div>
+
+                    <div class="info_box">
+                        <div>
+                            <p for="prd_inStock">庫存</p>
+                            <input type="text" id="prd_inStock">
+                        </div>
+                        <div>
+                            <p for="prd_kind">商品類別</p>
+                            <select type="text" id="prd_kind"></select><br>
+                        </div>
+                    </div>
+
+                    <p for="">促銷標語</p>
+                    <input type="text" id="prd_slog1"><br>
+                    <input type="text" id="prd_slog2"><br>
+                    <p for="prd_ingredient">商品規格</p>
+                    <textarea name="prd_ingredient" cols="30" rows="10" id="prd_ingredient">請輸入規格..</textarea>
+
+                </section>
+                <hr>
+                <article>
+                    <h5>商品介紹</h5>
+                    <button class="btn-yellow" id="add_prdIntroduce">新增區塊</button><span>※最少2個區塊，最多5個區塊</span>
+                    <ul id="introduce_area">
+                        <li class="prd_introduce">
+                            <div class="select_image"><img src="./img/porducts/cow_1200.jpg" alt=""><span>更換圖片</span>
+                            </div>
+                            <input type="text" class="prd_introduce_input">
+                        </li>
+                        <li class="prd_introduce">
+                            <div class="select_image"><span>上傳圖片</span></div>
+                            <input type="text" class="prd_introduce_input">
+                        </li>
+                        <li class="prd_introduce">
+                            <div class="select_image"><span>上傳圖片</span></div>
+                            <input type="text" class="prd_introduce_input">
+                            <i class="bi bi-x"></i>
+                        </li>
+                    </ul>
+                </article>
+                <button id="submit" type="submit">新增</button><button type="button" id="Cancel">取消</button>
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>
