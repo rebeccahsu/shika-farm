@@ -10,18 +10,23 @@
     
     .asideLogo{
         width: 185px;
-        margin: 50px auto 30px;
+        margin: 50px auto 10px;
     }
     .aside_ul{
         list-style: none;
         width: 100%;
         padding: 0;
-        margin-bottom: 40px;
+        // margin-bottom: 20px;
         @include textCenter();
+        height: 70vh;
+        // border: 1px solid red;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
 
         li{
-            font-size: $fs-s;
-            margin: 30px auto;
+            // font-size: $fs-s;
+            // margin: 20px auto;
             width: 100%;
 
             a{
@@ -29,6 +34,10 @@
                 display: block;
                 color: $color_B;
                 padding: 20px 0;
+                h5{
+                    line-height: 1;
+                    display: inline;
+                }
             }
             a:hover{
                 background-color: $color_W ;
@@ -40,6 +49,10 @@
         font-size: $fs-s;
         display: block;
         padding: 20px 0;
+
+        h5{
+            display: inline-block;
+        }
         
         &::after{
             content:url('');
