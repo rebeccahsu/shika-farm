@@ -124,6 +124,8 @@ function browser(done) {
     watch(['src/img/*.*', 'src/img/**/*.*'], package).on('change', reload);
     done();
 }
+
+//開發用
 exports.default = series(parallel(includeHTML, sassstyle, minijs, package), browser);
 
 // 圖片壓縮
@@ -138,3 +140,20 @@ function min_images(){
 }
 
 exports.mini_img = min_images;
+
+// js 瀏覽器適應
+const babel = require('gulp-babel');
+
+function babel5() {
+    return src('src/js/*.js')
+        .pipe(babel({
+            presets: ['@babel/env']
+        }))
+        .pipe(uglify())
+        .pipe(dest('dist/js'));
+}
+
+exports.es5 = babel5;
+
+//上線打包用 (壓圖、es6轉es5)
+exports.online = parallel(babel5, min_images);
