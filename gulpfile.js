@@ -45,9 +45,6 @@ function minijs() {
 exports.ugjs = minijs;
 
 // 整合所有檔案
-
-
-
 const concat = require('gulp-concat');
 
 
@@ -125,35 +122,44 @@ function browser(done) {
     done();
 }
 
-//開發用
-exports.default = series(parallel(includeHTML, sassstyle, minijs, package), browser);
 
 // 圖片壓縮
 const imagemin = require('gulp-imagemin');
 
 function min_images(){
-    return src('src/img/*.*')
-    .pipe(imagemin([
-        imagemin.mozjpeg({quality: 60, progressive: true}) // 壓縮品質      quality越低 -> 壓縮越大 -> 品質越差 
-    ]))
-    .pipe(dest('dist/images'))
+    return src('src/img/*.*', 'src/img/**/*.*')
+    .pipe(imagemin())
+    .pipe(dest('dist/img'))
 }
 
 exports.mini_img = min_images;
 
-// js 瀏覽器適應
+// js 瀏覽器適應  babel es6 -> es5
 const babel = require('gulp-babel');
 
 function babel5() {
-    return src('src/js/*.js')
-        .pipe(babel({
-            presets: ['@babel/env']
-        }))
-        .pipe(uglify())
-        .pipe(dest('dist/js'));
+    return src('src/js/*.js', 'src/js/**/*.js')
+    .pipe(babel({
+        presets: ['@babel/env']
+    }))
+    .pipe(uglify())
+    .pipe(dest('dist/js'));
 }
 
 exports.es5 = babel5;
 
-//上線打包用 (壓圖、es6轉es5)
-exports.online = parallel(babel5, min_images);
+
+// 清除舊檔案
+const clean = require('gulp-clean');
+
+function clear() {
+  return src('dist' ,{ read: false ,allowEmpty: true })//不去讀檔案結構，增加刪除效率  / allowEmpty : 允許刪除空的檔案
+  .pipe(clean({force: true})); //強制刪除檔案 
+}
+exports.cls = clear;
+
+//dev
+exports.default = series(parallel(includeHTML, sassstyle, minijs, package), browser);
+
+//online
+exports.online = series(clear, parallel(includeHTML ,sassstyle , babel5 , min_images))
