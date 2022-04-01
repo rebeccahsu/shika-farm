@@ -85,5 +85,18 @@
     .mb_cow{
       width: 50px;
     }
+
+    @include pad {
+      margin: 20px 0;
+      h4{
+        margin: 0 15px;
+      }
+
+      .mb_cow{
+        width: 30px;
+      }
+
+    }
+
   }
 }
