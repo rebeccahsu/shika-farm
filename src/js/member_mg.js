@@ -1,5 +1,5 @@
 new Vue({
-    el: '#mb_table',
+    el: '#step1',
     data : {
         customers :[
             {id: 19832, name:'王大明', email:'wang_mien@gmail.com', phone: '0910993300', address: '台中市北屯區祥順十街25號'},
