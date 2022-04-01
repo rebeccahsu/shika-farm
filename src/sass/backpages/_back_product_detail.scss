@@ -8,11 +8,11 @@
 }
 
 form {
-  width: 100vm;
+  width:100%;
+  margin: 0 10px;
 
-//   圖片區塊
+  //   圖片區塊
   .prd_image_area {
-
     figure {
       width: 590px;
       display: flex;
@@ -23,7 +23,7 @@ form {
         margin: 0 auto;
         font-size: $fs-s;
       }
-    //   首圖
+      //   首圖
       .select_topImage1 {
         display: flex;
         align-items: center;
@@ -72,7 +72,7 @@ form {
         }
       }
 
-    //   其他圖片
+      //   其他圖片
       @for $i from 2 to 5 {
         .select_topImage#{$i} {
           display: flex;
@@ -87,8 +87,8 @@ form {
           }
         }
 
-        .select_topImage3{
-            margin: 10px 20px 0;
+        .select_topImage3 {
+          margin: 10px 20px 0;
         }
       }
     }
@@ -96,107 +96,171 @@ form {
 }
 
 // 商品資訊
-.prd_info{
-    width: 590px;
-    margin: 10px 0;
-    *{
-        vertical-align: middle;
-        margin: 5px 0;
-        font-size: $fs-xs;
-        text-align: center;
-    }   
+.prd_info {
+  width: 590px;
+  margin: 10px 0;
+  * {
+    vertical-align: middle;
+    margin: 5px 0;
+    font-size: $fs-xs;
+    text-align: center;
+  }
 
-    // 各項名稱
-    p{
-        font-size: $fs-s;
-        vertical-align: middle;
-        position: relative;
-        text-align: left;
-    }
-    input{
-        height: 50px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        margin-bottom: 20px;
-        padding: 10px;
-        font-size: $fs-xs;
-    }
+  // 各項名稱
+  p {
+    font-size: $fs-s;
+    vertical-align: middle;
+    position: relative;
+    text-align: left;
+  }
+  input {
+    height: 50px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: $fs-xs;
+  }
 
-    // 單行input
-    #prd_name,#prd_slog1,#prd_slog2,#prd_ingredient{
-        width: 100%;
-    }
+  // 單行input
+  #prd_name,
+  #prd_slog1,
+  #prd_slog2,
+  #prd_ingredient {
+    width: 100%;
+  }
 
-    // 種類select
-    #prd_kind{
-        width: 260px;
-        height: 50px;
-        margin-right: 30px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-    }
+  // 種類select
+  #prd_kind {
+    width: 260px;
+    height: 50px;
+    margin-right: 30px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
 
-    // 半行input
-    #prd_cost,#prd_price,#prd_inStock{
-        width: 260px;
-        margin-right: 30px;
-        
-    }
+  // 半行input
+  #prd_cost,
+  #prd_price,
+  #prd_inStock {
+    width: 260px;
+    margin-right: 30px;
+  }
 
-    // 成本、售價
-    p[for="prd_cost"]::before,p[for="prd_price"]::before{
-        content: 'NT$';
-        font-size: $fs-s;
-        position: absolute;
-        bottom: -46px;
-        left: 8px;
-        z-index: 1;
-    }
+  // 成本、售價
+  p[for="prd_cost"]::before,
+  p[for="prd_price"]::before {
+    content: "NT$";
+    font-size: $fs-s;
+    position: absolute;
+    bottom: -46px;
+    left: 8px;
+    z-index: 1;
+  }
+
+  // 規格輸入框
+  #prd_ingredient {
+    width: 100%;
+    height: 200px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: none;
+    padding: 10px;
+    text-align: left;
+  }
+
+  // 半行列外框
+  .info_box {
+    display: flex;
+    flex-grow: 1;
+  }
+}
+
+.pds_right {
+  // 商品介紹區
+  article {
+    // h5 {
+    //   text-align: center;
+    // }
     
-    // 規格輸入框
-    #prd_ingredient{
-        width: 100%;
-        height: 200px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        resize: none;
-        padding: 10px;
-        text-align: left;
+    button#add_prdIntroduce {
+      margin: 5px 10px 5px 0;
     }
+  }
 
-    // 半行列外框
-    .info_box{
-        display: flex;
-        flex-grow: 1;
+  // 底下的按鈕
+  .submit_area {
+    width: 800px;
+    text-align: center;
+  }
+  #submit {
+    margin: 10px 10px 10px 0;
+  }
+  #Cancel {
+    @include button($color_W) {
+      color: $color_B;
+      border: 1px solid #ccc;
+      margin: 10px 0;
     }
+  }
 }
-
-
-.pds_right{
-    article{
-        h5{  margin: 20px auto;   }
-        button#add_prdIntroduce{ margin: 5px 10px 5px 0; }
-    }
-}
-
 
 // 區塊
-.prd_introduce{
-    width: 500px;
-    
-    .select_image{
-        display: flex;
-        align-items: center;
-        width: 300px;
-        height: 300px;
-        border: 1px solid #ccc;
-        border-radius: 50%;
-        overflow: hidden;
-        img{ width: 100%;  }
+.prd_introduce {
+  width: 800px;
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 25px;
+  position: relative;
 
-        span{
-            text-align: center;
-            margin: 0 auto;
-        }
+  .select_image {
+    display: flex;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      opacity: 1;
+
+      &:hover{
+        opacity: .3;
+      }
     }
+
+    span {
+      position: absolute;
+      text-align: center;
+      margin: 0 auto;
+      font-size: $fs-s;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      z-index: -1;
+    }
+  }
+  .prd_introduce_input {
+    width: 400px;
+    height: 88px;
+    margin-left: 50px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: $fs-s;
+    resize: none;
+  }
+  .bi-x {
+    position: absolute;
+    font-size: 50px;
+    right: 10px;
+    top: 10px;
+  }
 }

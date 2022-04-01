@@ -70,22 +70,26 @@
                     <button class="btn-yellow" id="add_prdIntroduce">新增區塊</button><span>※最少2個區塊，最多5個區塊</span>
                     <ul id="introduce_area">
                         <li class="prd_introduce">
-                            <div class="select_image"><img src="./img/porducts/cow_1200.jpg" alt=""><span>更換圖片</span>
+                            <div class="select_image">
+                                <img src="./img/porducts/cow_1200.jpg" alt=""><span>更換圖片</span>
                             </div>
-                            <input type="text" class="prd_introduce_input">
+                            <textarea type="text" class="prd_introduce_input" row="1" cols="2" maxlength="30"></textarea>
                         </li>
                         <li class="prd_introduce">
                             <div class="select_image"><span>上傳圖片</span></div>
-                            <input type="text" class="prd_introduce_input">
+                            <textarea type="text" class="prd_introduce_input" row="1" cols="2" maxlength="30"></textarea>
                         </li>
                         <li class="prd_introduce">
                             <div class="select_image"><span>上傳圖片</span></div>
-                            <input type="text" class="prd_introduce_input">
+                            <textarea type="text" class="prd_introduce_input" row="1" cols="2" maxlength="30"></textarea>
                             <i class="bi bi-x"></i>
                         </li>
                     </ul>
                 </article>
-                <button id="submit" type="submit">新增</button><button type="button" id="Cancel">取消</button>
+                <div class="submit_area">
+
+                    <button id="submit" type="submit" class="btn-green">新增</button><button type="button" id="Cancel" >取消</button>
+                </div>
             </form>
         </div>
     </main>
