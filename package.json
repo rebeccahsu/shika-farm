@@ -29,8 +29,10 @@
     "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-uglify": "^3.0.2",
-    "sass": "^1.49.9",
-    "jquery": "^3.6.0"
+    "jquery": "^3.6.0",
+    "sass": "^1.49.9"
+  },
+  "dependencies": {
+    "@splidejs/splide": "^3.6.12"
   }
-
 }
