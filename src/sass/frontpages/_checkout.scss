@@ -98,6 +98,7 @@
 				background-color: $color_Y;
 				color: $color_W;
 				outline-style: inherit;
+				cursor: pointer;
 			}
 		}
 	}
@@ -125,11 +126,12 @@
 		height: 50px;
 		display: block;
 		margin: 50px auto;
+		cursor: pointer;
 	}
 }
 // ============ 結帳流程二 ============
 .stepB {
-	display: none;
+	// display: none;
 	// *********** 表格標題 ***********
 	.carName2-1 {
 		background-color: $color_Y;
@@ -312,12 +314,14 @@
         padding: 10px;
         display: block;
         margin: 30px auto;
+		cursor: pointer;
     }
 
 }
 
 // ============ 結帳流程三 ============
 .stepC{
+	display: none;
     margin: 100px auto;
     @include textCenter();
     h3{
