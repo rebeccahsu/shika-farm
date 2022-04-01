@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    @@include('./layout/head.html', {
+    "title" : "訂單查詢"
+    })
+</head>
+    <!-- header -->
+    @@include('./layout/header.html')
+
+    <div class="member_top">
+        <img src="./img/activity/member_banner.png" alt="">
+        <h2 class="memberTitle">會員中心</h2>
+    </div>
+            <!-- 主要內容 -->
+            <div class="mem_tab">
+                <input class="mem_btn "  type="button" value="會員資料" onclick="location.href='./animal.html'">
+                <input class="mem_btn " type="button" value="我的活動" onclick="location.href='./animal.html'">
+                <input class="mem_btn on" type="button" value="訂單查詢" onclick="location.href='./animal.html'">
+            </div>
+
+
+            <ul class="mb_ck_list" id="mb_ck_list">
+                <li class="ck_Bar">
+                    <p>訂單日期</p>
+                    <p>訂單編號</p>
+                    <p>品項數量</p>
+                    <p>訂購總額</p>
+                    <p>付款方式</p>
+                    <p>訂單狀態</p>
+
+                </li>
+
+                <li v-for="customer in customers" class="titleBar mb_content">
+                    <p>{{customer.id}}</p>
+                    <p >{{customer.name}}</p>
+                    <p >{{customer.email}}</p>
+                    <p>{{customer.phone}}</p>
+                    <p>{{customer.address}}</p>
+                </li>  
+            </ul>
