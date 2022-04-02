@@ -1,0 +1,193 @@
+.backcontainer{
+    width: 80%;
+    padding: 0 40px;
+    float: right;
+    @include back_title();
+    .buttonsnNumber{
+        display: flex;
+        justify-content: space-between;
+        .buttons{
+            margin-top: 30px;
+            button{
+                margin-right: 10px;
+            }
+        }
+        .actAvailableTitle{
+            margin-top: 30px;
+        }
+
+    }
+    .showUnavailable{
+        margin-top: 20px;
+        display: flex;
+        vertical-align: middle;
+        .showTitle{
+            margin-left: 10px;
+            margin-top: 2px;
+        }
+    }
+
+    .actLists{
+        margin-top: 30px;
+        .actList{
+            border: 1px solid $color_G;
+            border-radius: 5px;
+            display: flex;
+            padding: 20px;
+            margin-bottom: 40px;
+            .actImgCon{
+                width: 300px;
+                height: 250px;
+                display: flex;
+                align-items: center;
+                position: relative;
+                overflow: hidden;
+                img{
+                    width: 100%;
+                    @include positionCenter();
+                }
+            }
+        }
+        .act-content{
+            margin-left: 40px;
+            flex-grow: 1;
+            .actCheck{
+                float: right;
+            }
+            .name{
+                margin-bottom: 20px;
+            }
+            p{
+                margin-bottom: 10px;
+            }
+            .activity-time{
+                margin: 0 20px;
+            }
+            .state{
+                margin-top: 30px;
+                display: inline-block;
+                span{
+                    margin-left: 20px;
+                }
+            }
+            .actButtons{
+                float: right;
+                margin-top: 30px;
+                #actModify{
+                    margin-left: 20px;
+                }
+            }
+        }
+    }
+
+    .tibameMessage{
+        margin-bottom: 50px;
+        text-align: center;
+    }
+
+    .actList.-off{
+        background-color: #DADCDF;
+    }
+}
+
+// 彈窗
+.act-member-overlay{
+    width: 70%;
+    background-color: $color_W;
+    position: fixed;
+    z-index: 1000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+
+    .x-btn{
+        float: right;
+        margin: 0 10px;
+        font-family: 'arial';
+        cursor: pointer;
+    }
+    .o-activity-title{
+        margin-top: 40px;
+        text-align: center;
+        &:before{
+            content: url("../../img/backpages/title_cow_left.png");
+            width: 30px;
+            display: inline;
+            margin-right: 50px;
+        }
+        &:after{
+            content: url("../../img/backpages/title_cow_right.png");
+            width: 30px;
+            display: inline;
+            margin-left: 50px;
+        }
+    }
+    .selects{
+        text-align: center;
+        margin: 25px 0;
+
+        .o-activity-date{
+            width: 100px;
+            height: 30px;
+            border: 1px solid $color_G;
+            border-radius: 3px;
+        }
+        .o-activity-time{
+            width: 150px;
+            height: 30px;
+            margin-left: 20px;
+            border: 1px solid $color_G;
+            border-radius: 3px;
+        }
+    }
+    .signedup-members{
+        width: 80%;
+        margin: 30px auto 50px;
+        border: 1px solid $color_G;
+        thead{
+            background-color: $color_G;
+            td{
+                color: $color_W;
+                padding: 10px;
+                text-align: center;
+                line-height: 1.6;
+                border: 1px solid $color_W;
+            }
+        }
+        .data{
+            border: 1px solid $color_G;
+            td{
+                padding: 10px;
+                text-align: center;
+                line-height: 1.6;
+                border: 1px solid $color_G;
+            }
+        }
+    }
+    .info-count{
+        width: 80%;
+        margin: 0 auto 50px;
+        p{
+            display: inline-block;
+            margin-right: 30px;
+        }
+    }
+}
+.act-member-overlay.-on{
+    display: block;
+}
+
+.act-mask{
+    position: fixed;
+    z-index: 700;
+    background-color: rgba(51, 51, 51, 0.4);
+    width: 100%;
+    height: 100vh;
+    display: none;
+}
+.act-mask.-on{
+    display: block;
+}
+
+//詳細內容頁
