@@ -40,7 +40,7 @@
 	}
 // ============ 結帳流程一 ============
 .stepA {
-	display: none;
+	// display: none;
 	// ---------- 購物車 ----------
 	.step1 {
 		margin: 100px auto 0;
@@ -89,6 +89,7 @@
 				@include textCenter();
 				border: 1px solid $color_Y;
 				margin: 0;
+				display: inline-block;
 			}
 			.mbBtn {
 				width: 30px;
@@ -110,11 +111,8 @@
 			display: grid;
 			grid-template-columns: 50% 50%;
 			@include textCenter();
-			padding: 20px 200px 0;
+			padding: 20px 200px;
 			border: 1px solid #c4c4c4;
-		}
-		.allTotal {
-			padding-bottom: 20px;
 		}
 	}
 	.gotoPay {
@@ -131,7 +129,7 @@
 }
 // ============ 結帳流程二 ============
 .stepB {
-	// display: none;
+	display: none;
 	// *********** 表格標題 ***********
 	.carName2-1 {
 		background-color: $color_Y;
