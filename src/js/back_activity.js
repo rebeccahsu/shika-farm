@@ -24,9 +24,30 @@ new Vue({
     },
 });
 
-//overlay
-$(function() {
 
+$(function() {
+    
+    //目前頁面
+    let pages = document.querySelector(".aside_ul").querySelectorAll("h5");
+    pages.forEach(function(page){
+        if ( page.innerHTML == "活動管理"){
+            page.closest("a").classList.add("-on");
+        }
+    });
+    
+    //overlay
+    document.addEventListener("click", function(e){
+        if( e.target.classList.contains("member_btn") ){
+            let activity_li = e.target.closest(".act-content");
+            let all_time = activity_li.querySelectorAll(".activity-time");
+            let overlay_time = document.querySelectorAll(".o-time");
+            
+            for(i = 0; i < all_time.length; i++){
+                overlay_time[i].innerHTML = all_time[i].innerHTML;
+            };
+        }
+    });
+    
     $('.x-btn').on("click", function(){
         $('.act-member-overlay').removeClass('-on');
         $('.act-mask').removeClass('-on');
@@ -46,17 +67,76 @@ $(function() {
         $("h5.o-activity-title").html(name);
     });
 
-    document.addEventListener("click", function(e){
-        if( e.target.classList.contains("member_btn") ){
-            let activity_li = e.target.closest(".act-content");
-            let all_time = activity_li.querySelectorAll(".activity-time");
-            let overlay_time = document.querySelectorAll(".o-time");
+    //===== 新刪修 =========
+    let checkbox = document.querySelectorAll(".check-act");
+    function deleteChecked (){
+        checkbox.forEach(function(box){
+            if (box.checked){
+                let del_li = box.closest(".actList");
+                $(del_li).addClass("fade_out");
 
-            for(i = 0; i < all_time.length; i++){
-                overlay_time[i].innerHTML = all_time[i].innerHTML;
-            };
-        }
+                setTimeout(function(){
+                    del_li.remove();
+                }, 1000);
+            }
+        });
+    };
+
+    function onChecked (){
+        let checked_arr  = [];
+        checkbox.forEach(function(box){
+            if (box.checked){
+                let on_li = box.closest(".actList");
+                checked_arr.push(on_li);
+                $(on_li).removeClass("-off");
+                $(on_li).find(".state-text").html("上架中");
+                box.checked = false;
+            }
+        });
+        console.log(checked_arr[0]);
+        alert("已成功上架 " + checked_arr.length + " 個活動！");
+    };
+
+    function offChecked (){
+        let checked_arr  = [];
+        checkbox.forEach(function(box){
+            if (box.checked){
+                let off_li = box.closest(".actList");
+                checked_arr.push(off_li);
+                $(off_li).addClass("-off");
+                $(off_li).find(".state-text").html("已下架");
+                box.checked = false;
+            }
+        });
+        alert("已成功下架 " + checked_arr.length + " 個活動！");
+    };
+
+
+    
+
+    //修改按鈕
+    $("ul").on("click", ".modify_btn", function(e){
+        window.location.href = "../back_activity_detail.html";
     });
 
+    //新增按鈕
+    $(".add-activity").on("click", function(e){
+        window.location.href = "../back_activity_detail.html";
+    });
+
+    //刪除按鈕
+    $(".delete-activity").on("click", function(e){
+        deleteChecked();
+    });
+
+    //上架按鈕
+    $(".on-activity").on("click", function(){
+        onChecked();
+    });
+
+    //下架按鈕
+    $(".off-activity").on("click", function(){
+        offChecked();
+    });
 });
 

@@ -15,17 +15,17 @@
         
         <section class="buttonsnNumber">
             <div class="buttons">
-                <button type="button" class="btn-yellow">新增</button>
-                <button type="button" class="btn-green">上架</button>
-                <button type="button" class="btn-green">下架</button>
-                <button type="button" class="btn-red">刪除</button>
+                <button type="button" class="btn-yellow add-activity">新增</button>
+                <button type="button" class="btn-green on-activity">上架</button>
+                <button type="button" class="btn-green off-activity">下架</button>
+                <button type="button" class="btn-red delete-activity">刪除</button>
             </div>
             <h5 class="actAvailableTitle">上架中的活動：<span class="actAvailable">5</span></h5>
         </section>
 
         <div class="showUnavailable">
             <label class="switch">
-                <input type="checkbox">
+                <input type="checkbox" checked>
                 <span class="slider round"></span>
             </label>
             <p class="showTitle">顯示已下架活動</p>
@@ -39,15 +39,17 @@
                 
                 <div class="act-content">
                     <label class="check_container actCheck">
-                        <input type="checkbox">
+                        <input type="checkbox" class="check-act">
                         <span class="checkmark"></span>
                     </label>
 
                     <h5 class="name">{{activity.name}}</h5>
-                    <p>場次一<span class="activity-time">{{activity.timeI}}</span></p>
-                    <p>場次二<span class="activity-time">{{activity.timeII}}</span></p>
-                    <p>場次三<span class="activity-time">{{activity.timeIII}}</span></p>
-                    <h5 class="state">狀態<span>{{activity.state}}</span></h5>
+                    <div class="activity-time-list">
+                        <p>場次一</p><span class="activity-time">{{activity.timeI}}</span>
+                        <p>場次二</p><span class="activity-time">{{activity.timeII}}</span>
+                        <p>場次三</p><span class="activity-time">{{activity.timeIII}}</span>
+                    </div>
+                    <p class="state">狀態<span class="state-text">{{activity.state}}</span></p>
                     <div class="actButtons">
                         <button class="btn-yellow member_btn">已報名會員</button>
                         <button class="btn-green modify_btn">修改</button>

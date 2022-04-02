@@ -6,14 +6,16 @@
     .buttonsnNumber{
         display: flex;
         justify-content: space-between;
+        margin-top: 20px;
         .buttons{
-            margin-top: 30px;
             button{
                 margin-right: 10px;
             }
         }
         .actAvailableTitle{
-            margin-top: 30px;
+            span{
+                font-size: $fs-s;
+            }
         }
 
     }
@@ -28,16 +30,19 @@
     }
 
     .actLists{
-        margin-top: 30px;
+        margin-top: 20px;
         .actList{
             border: 1px solid $color_G;
             border-radius: 5px;
             display: flex;
             padding: 20px;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
+            opacity: 1;
+            transition: opacity 1s;
+
             .actImgCon{
-                width: 300px;
-                height: 250px;
+                width: 200px;
+                height: 150px;
                 display: flex;
                 align-items: center;
                 position: relative;
@@ -47,37 +52,52 @@
                     @include positionCenter();
                 }
             }
-        }
-        .act-content{
-            margin-left: 40px;
-            flex-grow: 1;
-            .actCheck{
-                float: right;
-            }
-            .name{
-                margin-bottom: 20px;
-            }
-            p{
-                margin-bottom: 10px;
-            }
-            .activity-time{
-                margin: 0 20px;
-            }
-            .state{
-                margin-top: 30px;
-                display: inline-block;
-                span{
-                    margin-left: 20px;
+            .act-content{
+                margin-left: 40px;
+                flex-grow: 1;
+                .actCheck{
+                    float: right;
+                }
+                .name{
+                    margin-bottom: 20px;
+                }
+                p{
+                    margin-bottom: 10px;
+                }
+                .activity-time-list{
+                    display: flex;
+                    p{
+                        // background-color: $color_G;
+                        color: $color_G;
+                        border: 1px solid $color_G;
+                        border-radius: 2px;
+                        padding: 0 5px;
+                    }
+                    .activity-time{
+                        margin: 0 30px 0 10px;
+                    }
+                }
+                
+                .state{
+                    margin-top: 20px;
+                    display: inline-block;
+                    .state-text{
+                        margin-left: 20px;
+                    }
+                }
+                .actButtons{
+                    float: right;
+                    margin-top: 20px;
+                    .modify_btn{
+                        margin-left: 20px;
+                    }
                 }
             }
-            .actButtons{
-                float: right;
-                margin-top: 30px;
-                #actModify{
-                    margin-left: 20px;
-                }
-            }
         }
+        .actList.fade_out{
+            opacity: 0;
+        }
+        
     }
 
     .tibameMessage{
@@ -189,5 +209,3 @@
 .act-mask.-on{
     display: block;
 }
-
-//詳細內容頁
