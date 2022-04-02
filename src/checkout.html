@@ -8,9 +8,18 @@
 		@@include('./layout/header.html')
 		<!---------- 流程步驟 1 2 3 ---------->
 		<ul class="step container-lg">
-			<li class="active"><p class="stepNB">1</p>訂單資料</li>
-			<li><p class="stepNB">2</p>付款資訊</li>
-			<li><p class="stepNB">3</p>訂單確認</li>
+			<li class="active">
+				<p class="stepNB">1</p>
+				訂單資料
+			</li>
+			<li>
+				<p class="stepNB">2</p>
+				付款資訊
+			</li>
+			<li>
+				<p class="stepNB">3</p>
+				訂單確認
+			</li>
 		</ul>
 		<!---------- 結帳流程一 ---------->
 		<div class="stepA container-lg">
@@ -23,30 +32,39 @@
 					<p>數量</p>
 					<p>小計</p>
 				</li>
-				<li v-for="product in products" class="carTitle carInfo">
-					<img :src="images.blanketg" class="infoImg" />
-					<!-- <p>{{product.img}}</p> -->
+				<li v-for="(product, index) in products" class="carTitle carInfo">
+					<img :src="product.img" class="infoImg" />
 					<p>{{product.info}}</p>
-					<p>{{product.price}}</p>
+					<p>NT${{product.price}}</p>
 					<p>
-						<input type="button" class="addBtn mbBtn" value="-" /><input type="text" class="quantity" value="1"/><input type="button" class="subBtn mbBtn" value="+" />
+						<input
+							type="button"
+							class="addBtn mbBtn"
+							value="-"
+							@click="add(index, -1)"
+						/><input
+							type="text"
+							class="quantity"
+							v-model="product.quantity"
+						/><input
+							type="button"
+							class="subBtn mbBtn"
+							value="+"
+							@click="add(index, 1)"
+						/>
 					</p>
-					<p>{{product.total}}</p>
-					<img src="./img/icon/garbageCan.png" class="garbageCan" />
+					<p>NT${{product.price * product.quantity}}</p>
+					<img src="./img/icon/garbageCan.png" class="garbageCan" @click="del(index)"/>
 				</li>
 			</ul>
 			<!--********** 訂單資訊 **********-->
 			<ul id="step" class="step1 step1Down">
 				<li class="carName">訂單資訊</li>
-				<li v-for="product in products" class="productInfo">
-					<p>小計</p>
-					<p>{{product.total}}</p>
+				<li class="productInfo">
 					<p>運費</p>
-					<p>{{product.freight}}</p>
-				</li>
-				<li v-for="product in products" class="productInfo allTotal">
+					<p>NT$ 0</p>
 					<p>合計</p>
-					<p>{{product.total}}</p>
+					<p>NT$ {{sumTotal}}</p>
 				</li>
 			</ul>
 			<button class="gotoPay">前往結帳</button>
@@ -110,8 +128,8 @@
 					<div class="paymain">
 						<p>付款方式</p>
 						<select name="" id="" class="paySelect">
-						<option value="" class="payOption">信用卡</option>
-						<option value="" class="payOption arrival">貨到付款</option>
+							<option value="" class="payOption">信用卡</option>
+							<option value="" class="payOption arrival">貨到付款</option>
 						</select>
 					</div>
 				</li>
@@ -119,31 +137,37 @@
 					<div class="card_infoI">
 						<p class="cardAll">
 							<label for="payId">信用卡卡號</label>
-							<input type="text" id="payId" class="payId payInput"> -
-							<input type="text" class="payId payInput"> -
-							<input type="text" class="payId payInput"> -
-							<input type="text" class="payId payInput">
+							<input type="text" id="payId" class="payId payInput" /> -
+							<input type="text" class="payId payInput" /> -
+							<input type="text" class="payId payInput" /> -
+							<input type="text" class="payId payInput" />
 						</p>
 						<p class="cardAll">
 							<label for="date">到期日</label>
-							<input type="text" id="date" class="month date payInput" placeholder="MM"> /
-							<input type="text" class="year date payInput" placeholder="YY">
+							<input
+								type="text"
+								id="date"
+								class="month date payInput"
+								placeholder="MM"
+							/>
+							/
+							<input type="text" class="year date payInput" placeholder="YY" />
 						</p>
 					</div>
 					<div class="card_infoI">
 						<p class="cardname cardAll">
 							<label for="cardname">持卡人姓名</label>
-							<input type="text" id="cardname" class="payInput">
+							<input type="text" id="cardname" class="payInput" />
 						</p>
 						<p class="cardAll">
 							<label for="CSC">安全碼</label>
-							<input type="text" id="CSC" class="payInput">
+							<input type="text" id="CSC" class="payInput" />
 						</p>
 					</div>
 				</li>
 			</ul>
-			
-			<input type="submit" value="提交訂單" class="paysub">
+
+			<input type="submit" value="提交訂單" class="paysub" />
 		</div>
 		<!---------- 結帳流程三 ---------->
 		<div class="stepC container-lg">
