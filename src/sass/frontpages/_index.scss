@@ -1,23 +1,76 @@
 .indexTop{
     width: 100%;
     overflow: hidden;
-    height: 780px;
+    height: 700px;
     max-width: 1920px;
     position: relative;
-    background-image: url("../img/index/index_top_bg_1920.png");
+    background-image: url("../img/index/1920x700_indexbg.jpg");
     background-size: auto;
     background-position-x: center;
     background-repeat: no-repeat;
-    @include borderTest();
+    position: relative;
 
+    img{
+        position: absolute;
+    }
 
-    // .indexTopBg{
-    //     position: absolute;
-    //     top: 0;
-    //     left: 50%;
-    //     transform: translateX(-50%);
+    //插圖
+    .sun{
+        width: 100px;
+        top: 120px;
+        left: 1000px;
+    }
+    .top-cloud{
+        width: 130px;
+    }
+    .top-cloud1{
+        top: 180px;
+        left: 35px;
+    }
+    .top-cloud2{
+        top: 100px;
+        left: 200px;
+    }
+    .top-cloud3{
+        top: 150px;
+        left:870px;
+    }
+    .top-cloud4{
+        top: 70px;
+        left: 1100px;
+    }
+    .top-horse{
+        width: 240px;
+        top: 210px;
+        left: 40px;
+    }
+    .top-deer{
+        width: 210px;
+        top: 330px;
+        left: 180px;
+        z-index: 2;
+    }
+    .top-sheep{
+        width: 250px;
+        top: 300px;
+        left: 350px;
+    }
+    .top-pig{
+        width: 210px;
+        top: 420px;
+        left: 540px;
+    }
+    .top-alpaca{
+        width: 210px;
+        top: 300px;
+        left: 730px;
+    }
+    .top-cow{
+        width: 340px;
+        top: 260px;
+        left: 885px;
+    }
 
-    // }
 }
 .indexTop.container-fluid{
     padding: 0;
@@ -26,6 +79,16 @@
 // section 1: intro
 .indexWelcome{
     position: relative;
+    .cloud5{
+        position: absolute;
+        top: 90px;
+        right: 10px;
+    }
+    .cloud6{
+        position: absolute;
+        top: -70px;
+        right: -180px;
+    }
 
     .welcomeTitle{
         position: absolute;
@@ -72,6 +135,13 @@
     display: flex;
     flex-basis: 0;
     justify-content: space-evenly;
+    position: relative;
+    .cloud7{
+        position: absolute;
+        top: -150px;
+        left: -100px;
+        z-index: -1;
+    }
 
     .indexNewsTitle{
         h6{
@@ -185,7 +255,6 @@
 
 //section 5: access
 .indexInfo{
-    margin-bottom: 120px;
     .indexMap{
         width: 100%;
         height: 250px;
@@ -289,4 +358,9 @@
             line-height: 154px;
         }
     }
+}
+
+.outer-wrapper{
+    width: 100%;
+    overflow-x: hidden;
 }
