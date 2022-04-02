@@ -1,7 +1,6 @@
 .pd_main {
-  
   margin-bottom: 30px;
-//   @include borderTest(blue);
+  //   @include borderTest(blue);
 
   //   麵包屑
   .pd_bread {
@@ -10,10 +9,9 @@
     margin-top: 130px;
     margin-bottom: 20px;
 
-    @include mobile{
-        margin-top: 90px;
+    @include mobile {
+      margin-top: 90px;
     }
-
   }
 
   .pd_area {
@@ -31,12 +29,15 @@
       flex-wrap: wrap;
       //   @include borderTest(black);
       //   *{border: 1px solid yellow;}
+
       @include pad {
         margin: 0 auto;
         width: 90%;
       }
-/*
+
+      /*
       li {
+         
         margin-bottom: 10px;
 
         &:nth-child(3) {
@@ -53,19 +54,38 @@
           max-width: 100%;
           @include borderTest;
         }
+        
         img {
-          max-width: 100%;
+          max-width: 100% !important; 
         }
 */
-        @media (min-width: 992.98px) and (max-width: 1200px) {
-          margin: 0;
-          &:nth-child(n + 2) {
-            max-width: 100px;
-          }
+      @media (min-width: 992.98px) and (max-width: 1200px) {
+        margin: 0;
+        &:nth-child(n + 2) {
+          max-width: 100px;
         }
       }
+
+      // 套件區=================================
+      .splide__slide > img {
+        max-width: 100%;
+      }
+      // 強制關閉splidejs導覽dot
+      button.splide__pagination__page {
+        display: none;
+      }
+
+      // 平板版以下強制隱藏
+      div#thumbnail-slider1 {
+        @include pad {
+          display: none !important;
+        }
+      }
+
+      // ======================================
     }
   }
+}
 // }
 
 // 商品資料
@@ -219,7 +239,7 @@
   }
 }
 
-// 商品描述
+// 商品描述==============================
 .pd_intro_h3 {
   color: $color_G;
   font-weight: bold;
@@ -236,7 +256,8 @@
     border: 2px solid #ccc;
     border-radius: 8px;
     padding: 25px;
-    position: relative;
+    
+    
 
     .pd_intro_pic {
       display: flex;
@@ -266,24 +287,22 @@
   }
   @media (max-width: 992.98px) and (min-width: 768px) {
     .pd_intro {
-        width: 600px;
-        flex-direction: column;
-        justify-content: center;
+      width: 600px;
+      flex-direction: column;
+      justify-content: center;
     }
   }
-  @include pad{
+  @include pad {
     .pd_intro {
-        width: 90%;
-        flex-direction: column;
-        justify-content: center;
+      width: 90%;
+      flex-direction: column;
+      justify-content: center;
 
-        p{
-            height: auto;
-            font-size: $fs-xs;
-            
-        }
+      p {
+        height: auto;
+        font-size: $fs-xs;
+      }
     }
-    
   }
 }
 
@@ -293,19 +312,17 @@
   margin: 20px 0;
 }
 
-//推薦區
-.pd_recommend {
-  margin-top: 100px 0 0 0;
+//推薦區===================================
+.pd_recommend_h3 {
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  h3 {
-    margin: 125px auto;
-    @include pad {
-      margin: 50px auto;
-    }
+  margin: 125px auto 0;
+  @include pad {
+    margin: 50px auto;
   }
+}
+
+.pd_recommend {
+  margin-top: 20px;
 }
 
 @keyframes slide-top {
@@ -318,43 +335,43 @@
 }
 
 .pd_recommend_list {
-  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-shrink: 1;
+  // @include borderTest;
 
-  display: inline-flex;
-
-  @include borderTest;
-
-  @include pad {
-    flex-direction: column;
-    max-width: 90%;
-  }
-
-  a > li {
-    background-color: $color_W;
+  li {
     margin: 50px 25px 50px;
+    background-color: $color_W;
     box-shadow: 0 0 20px rgba(33, 33, 33, 0.2);
     border-radius: 5px;
     transition: 0.5s;
-    padding-bottom: 10px;
     // @include borderTest;
     &:hover {
       -webkit-animation: slide-top 0.5s ease-out infinite alternate;
       animation: slide-top 0.5s ease-out infinite alternate;
     }
+    @include pad {
+      margin: 25px;
+    }
 
-    img {
-      border-radius: 5px;
+    a {
       max-width: 100%;
-    }
-    p {
-      display: inline-block;
-      font-size: $fs-s;
-      line-height: $LH-24;
-      margin-bottom: 5px;
-    }
+      text-align: center;
+      margin: 0;
+      display: block;
 
-    @include pad{
-        margin: 20px 25px 20px;
+      img {
+        border-radius: 5px;
+        max-width: 100%;
+        // @include borderTest;
+      }
+      p {
+        display: inline-block;
+        font-size: $fs-s;
+        line-height: $LH-24;
+        margin-bottom: 5px;
+      }
     }
   }
 }
@@ -364,6 +381,7 @@
 }
 
 .pd_recommend_text {
+  max-width: 100%;
   padding: 20px;
   text-align: left;
 }

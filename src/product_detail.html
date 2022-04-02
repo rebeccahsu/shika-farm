@@ -5,6 +5,8 @@
     @@include('./layout/head.html', {
     "title" : "Sìkha 牧場 | 周邊商品 | 商品"
     })
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/css/splide.min.css">
+
 </head>
 
 <body>
@@ -19,18 +21,32 @@
 
         <p class="pd_bread">首頁 | 周邊產品 | 草莓牛奶(六入組)</p>
         <div class="pd_area">
-
-            <div id="splide_01">
+            <!-- 商品主圖 -->
+            <div class="splide01">
                 <div class="splide__track">
-                    <ul class="pd_pic splide__list">
-                        <li><img src="./img/porducts/papaya.jpg" alt="" class="top_pic splide__slide"></li>
-                        <li> <img src="./img/porducts/papaya.jpg" alt="" class="splide__slide"></li>
-                        <li> <img src="./img/porducts/papaya.jpg" alt="" class="splide__slide"></li>
-                        <li> <img src="./img/porducts/papaya.jpg" alt="" class="splide__slide"></li>
+                    <ul class="splide__list pd_pic">
+                        <li class="splide__slide"><img src="./img/porducts/papaya.jpg" alt="" style="max-width: 100%;">
+                        </li>
+                        <li class="splide__slide"><img src="./img/porducts/papaya.jpg" alt="">
+                        </li>
+                        <li class="splide__slide"><img src="./img/porducts/papaya.jpg" alt="">
+                        </li>
                     </ul>
                 </div>
-            </div>
+                <div id="thumbnail-slider1" class="splide">
 
+                    <div class="splide__track">
+
+                        <ul class="splide__list under">
+                            <li class="splide__slide"><img src="./img/porducts/papaya.jpg" alt=""></li>
+                            <li class="splide__slide"><img src="./img/porducts/papaya.jpg" alt=""></li>
+                            <li class="splide__slide"><img src="./img/porducts/papaya.jpg" alt=""></li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <!-- 主圖區塊結束 -->
             <div class="pd_info">
                 <h3 id="pd_info_name">草莓牛奶(六入組)</h3>
                 <h5 class="pd_info_slog">原果新鮮草莓牛奶</p>
@@ -67,41 +83,55 @@
                 <p>使用每日現擠的牛乳製成，無人工反式脂肪與人工賀爾蒙</p>
             </div>
         </div>
-        <div class="pd_recommend">
-            <h3>推薦商品</h3>
-            <ul class="pd_recommend_list">
-                <a href="#">
-                    <li><img src="./img/porducts/papaya.jpg" alt="">
-                        <div class="pd_recommend_text">
-                            <p class="pd_recommend_name">咖啡牛奶</p>
-                            <p class="pd_recommend_price">299</p>
-                        </div>
+        <h3 class="pd_recommend_h3">推薦商品</h3>
+<!-- 推薦商品 -->
+<div>
+        <div class="pd_recommend " id="splide02">
+            <div class="splide__track">
+                <ul class="pd_recommend_list splide__list">
+
+                    <li class="splide__slide">
+                        <a href="#">
+                            <img src="./img/porducts/papaya.jpg" alt="">
+                            <div class="pd_recommend_text">
+                                <p class="pd_recommend_name">咖啡牛奶</p>
+                                <p class="pd_recommend_price">299</p>
+                            </div>
+                        </a>
                     </li>
-                </a>
-                <a href="#">
-                    <li><img src="./img/porducts/papaya.jpg" alt="">
-                        <div class="pd_recommend_text">
-                            <p class="pd_recommend_name">咖啡牛奶</p>
-                            <p class="pd_recommend_price">299</p>
-                        </div>
+
+                    <li class="splide__slide">
+                        <a href="#">
+                            <img src="./img/porducts/papaya.jpg" alt="">
+                            <div class="pd_recommend_text">
+                                <p class="pd_recommend_name">咖啡牛奶</p>
+                                <p class="pd_recommend_price">299</p>
+                            </div>
+                        </a>
                     </li>
-                </a>
-                <a href="#">
-                    <li><img src="./img/porducts/papaya.jpg" alt="">
-                        <div class="pd_recommend_text">
-                            <p class="pd_recommend_name">咖啡牛奶</p>
-                            <p class="pd_recommend_price">299</p>
-                        </div>
+                    <li class="splide__slide">
+                        <a href="#">
+                            <img src="./img/porducts/papaya.jpg" alt="">
+                            <div class="pd_recommend_text">
+                                <p class="pd_recommend_name">咖啡牛奶</p>
+                                <p class="pd_recommend_price">299</p>
+                            </div>
+                        </a>
                     </li>
-                </a>
-            </ul>
+                </ul>
+            </div>
         </div>
+
+    </div>
+<!-- 推薦商品結束 -->
 
     </main>
 
     <!-- footer -->
     @@include('./layout/footer.html')
 
+    <!-- <script src="./js/vendors/splide.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/js/splide.min.js"></script>
     <script src="./js/product_detail.js"></script>
 </body>
 
