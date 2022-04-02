@@ -34,6 +34,19 @@
 .btn-red{
     @include button($color_R);
 }
+
+.btn-border{
+    @include button($color_G){
+        color: $color_G;
+        background-color: $color-W;
+        border: 1px solid $color-G;
+
+        &:hover {
+            background-color: $color_R;
+            color: $color-W;
+        }
+    }
+}
   
 //切換按鈕
 .switch {

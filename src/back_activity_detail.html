@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
     @@include('./layout/back_head.html', {
-        "title" : "Sìkha 後台 | 活動管理"
+        "title" : "Sìkha 後台 | 活動內容"
     })
 </head>
 <body>
@@ -10,97 +10,78 @@
     @@include('./layout/back_aside.html')
     <main class="backcontainer">
         @@include('./layout/back_title.html', {
-            "back_title" : "編輯活動"
+            "back_title" : "活動內容"
             })
         
-        <section class="buttonsnNumber">
-            <div class="buttons">
-                <button type="button" class="btn-yellow">新增</button>
-                <button type="button" class="btn-green">上架</button>
-                <button type="button" class="btn-green">下架</button>
-                <button type="button" class="btn-red">刪除</button>
+        <form class="activity-detail">
+            <div class="img-area">
+                <input type="file" id="p_file">
+                <div class="preview" id="drop_zone"><span class="text">圖片拖曳至此處</span></div>
             </div>
-            <h5 class="actAvailableTitle">上架中的活動：<span class="actAvailable">5</span></h5>
-        </section>
+            <div class="margintop_30">
+                <h5>活動名稱</h5>
+                <input type="text" name="name">
+            </div>
+            <div class="oneline margintop_25">
+                <label>人數上限</label>
+                <input type="number">
+            </div>
+            <div class="oneline margintop_25">
+                <label>時間長度</label>
+                <input type="radio" id="30" name="time">
+                <label for="30">30分鐘</label>
+                <input type="radio" id="60" name="time">
+                <label for="60">60分鐘</label>
+                <input type="radio" id="90" name="time">
+                <label for="90">90分鐘</label>
+            </div>
+            <div class="oneline margintop_30">
+                <label for="">場次一時間</label>
+                <input type="time">
+                <h5 class="tilde">~</h5>
+                <input type="time" readonly>
+            </div>
+            <div class="oneline margintop_25">
+                <label for="">場次二時間</label>
+                <input type="time">
+                <h5 class="tilde">~</h5>
+                <input type="time" readonly>
+            </div>
+            <div class="oneline margintop_25">
+                <label for="">場次三時間</label>
+                <input type="time">
+                <h5 class="tilde">~</h5>
+                <input type="time" readonly>
+            </div>
+            <div class="margintop_25">
+                <h5>活動介紹</h5>
+                <textarea rows="10" cols="50"></textarea>
+            </div>
+            <div class="oneline margintop_30">
+                <label for="">上架時間</label>
+                <input type="date">
+                <input type="time" value="23:59">
+            </div>
+            <div class="oneline margintop_25">
+                <label for="">下架時間</label>
+                <input type="date">
+                <input type="time" value="23:59">
+            </div>
 
-        <div class="showUnavailable">
-            <label class="switch">
-                <input type="checkbox">
-                <span class="slider round"></span>
-            </label>
-            <p class="showTitle">顯示已下架活動</p>
-        </div>
+            <div class="buttons">
+                <button type="button" class="btn-green">確認</button>
+                <a href="back_activity.html"><button type="button" class="btn-border">取消</button></a>
+            </div>
+            
 
-        <ul class="actLists">
-            <li class="actList" v-for="activity in activities" :class="activity.stateClass">
-                <div class="actImgCon">
-                    <img :src="activity.img" alt="activity_img" class="activityImg">
-                </div>
-                
-                <div class="act-content">
-                    <label class="check_container actCheck">
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
+        </form>
 
-                    <h5 class="name">{{activity.name}}</h5>
-                    <p>場次一<span class="activity-time">{{activity.timeI}}</span></p>
-                    <p>場次二<span class="activity-time">{{activity.timeII}}</span></p>
-                    <p>場次三<span class="activity-time">{{activity.timeIII}}</span></p>
-                    <h5 class="state">狀態<span>{{activity.state}}</span></h5>
-                    <div class="actButtons">
-                        <button class="btn-yellow member_btn">已報名會員</button>
-                        <button class="btn-green modify_btn">修改</button>
-                    </div>
-                </div>
-            </li>
-        </ul>
     
 
-        <p class="tibameMessage">本網站為緯育TibaMe前端設計工程師班第72期第二組學員專題成果作品，本平台僅供學習、展示之用。</p>
+        <p class="tibameMessage margintop_50">本網站為緯育TibaMe前端設計工程師班第72期第二組學員專題成果作品，本平台僅供學習、展示之用。</p>
         
     </main>
 
-    <div class="act-member-overlay">
-        <h5 class="x-btn">X</h5>
-        <h5 class="o-activity-title"></h5>
-        <div class="selects">
-            <select class="o-activity-date">
-              <option>選擇日期</option>
-              <option v-for="date in dates">{{date}}</option>
-            </select>
-            <select class="o-activity-time">
-                <option>選擇場次時間</option>
-                <option class="o-time"></option>
-                <option class="o-time"></option>
-                <option class="o-time"></option>
-            </select>
-        </div>
-        <table class="signedup-members">
-            <thead>
-                <td>會員編號</td>
-                <td>報名人數</td>
-                <td>報名時間</td>
-            </thead>
-            <tr class="data">
-                <td>19823</td>
-                <td>5</td>
-                <td>2022/03/14 18:22</td>
-            </tr>
-            <tr class="data">
-                <td>19763</td>
-                <td>3</td>
-                <td>2022/03/10 10:34</td>
-            </tr>
-        </table>
-        <div class="info-count">
-            <p>人數上限：<span class="capacity">10</span></p>
-            <p>總計報名人數：<span class="total-signed">8</span></p>
-        </div>
-    </div>
-
-    <div class="act-mask"></div>
-    
-    <script src="js/back_activity.js"></script>
+    <script src="js/back_activity_detail.js"></script>
 </body>
 </html>

@@ -1,0 +1,85 @@
+.backcontainer{
+    .activity-detail{
+        width: 70%;
+        margin: 0 auto;
+        
+
+        #p_file{
+            margin-bottom: 20px;
+        }
+        #drop_zone{
+        border: 1px solid $color_G;
+        width: 100%;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+            .preview-img{
+                max-width: 95%;
+                max-height: 95%;
+            }
+
+        }
+        #drop_zone.-on {
+            border: 1px dashed lightseagreen;
+            box-shadow: 3px 3px 5px lightseagreen inset, -3px -3px 5px lightseagreen inset;
+        }
+
+        label{
+            font-size: $fs-s;
+        }
+
+        .oneline{
+            
+            .tilde{
+                display: inline-block;
+                margin-left: 20px;
+            }
+        }
+
+        textarea{
+            margin-top: 10px;
+            resize: none;
+            padding: 20px;
+            font-size: $fs-xs;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        input {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-left: 20px;
+            padding: 10px;
+            font-size: $fs-xs;
+        }
+
+        input[name="name"]{
+            width: 100%;
+            margin-left: 0;
+        }
+        input[type="date"], input[type="time"]{
+            width: 30%;
+            &:read-only{
+                background-color: #DADCDF;
+            }
+        }
+        input[type="radio"] {
+                width: 5%;
+        }
+        input[type="file"] {
+            border: none;
+        }
+
+        .buttons{
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            button{
+                padding: 5px 30px;
+                margin: 0 20px;
+            }
+        }
+    }
+}

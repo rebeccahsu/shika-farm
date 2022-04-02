@@ -35,6 +35,9 @@
                     display: inline;
                 }
             }
+            a.-on{
+                color: $color_W;
+            }
             a:hover{
                 background-color: $color_W ;
                 color: $color_Y;
