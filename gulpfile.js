@@ -32,7 +32,7 @@ const uglify = require('gulp-uglify');
 
 function minijs() {
     return src(['src/js/*.js', 'src/js/**/*.js'])
-        .pipe(uglify())
+        // .pipe(uglify())
         // .pipe(rename({
         //     extname: '.min.js' // 修改附檔名
         //     //prefix : 'web-' // 前綴字

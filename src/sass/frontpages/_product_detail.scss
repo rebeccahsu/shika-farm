@@ -16,7 +16,7 @@
 
   .pd_area {
     display: flex;
-    @include borderTest(green);
+    // @include borderTest(green);
     @include pad {
       flex-direction: column;
     }
@@ -24,65 +24,60 @@
     .pd_pic {
       width: 590px;
       margin-right: 30px;
-      display: flex;
-      align-items: flex-start;
+      // display: flex;
+      // align-items: flex-start;
       flex-wrap: wrap;
+      position: relative;
       //   @include borderTest(black);
       //   *{border: 1px solid yellow;}
 
+      img {
+        max-width: 100% !important;
+        // @include borderTest(blue);
+      }
+
+      .splide01{
+        position: relative;
+        margin-bottom: 10px;
+      }
+
+      @media (min-width: 991.98px) and (max-width: 1200px) {
+        width: 500px;
+      }
+      @media (min-width: 767.98px) and (max-width: 992px) {
+        margin: 0;
+        width: 400px;
+      }
       @include pad {
         margin: 0 auto;
         width: 90%;
       }
+    
+           // 套件區=================================
+           .splide__slide>img {
+            max-width: 100%;
 
-      /*
-      li {
-         
-        margin-bottom: 10px;
-
-        &:nth-child(3) {
-          margin-right: 5px;
-        }
-        &:last-child {
-          margin-right: 0;
-        }
-        &:nth-child(n + 2) {
-          max-width: 183px;
-        }
-
-        .top_pic {
-          max-width: 100%;
-          @include borderTest;
-        }
-        
-        img {
-          max-width: 100% !important; 
-        }
-*/
-      @media (min-width: 992.98px) and (max-width: 1200px) {
-        margin: 0;
-        &:nth-child(n + 2) {
-          max-width: 100px;
-        }
-      }
-
-      // 套件區=================================
-      .splide__slide > img {
-        max-width: 100%;
-      }
-      // 強制關閉splidejs導覽dot
-      button.splide__pagination__page {
-        display: none;
-      }
-
-      // 平板版以下強制隱藏
-      div#thumbnail-slider1 {
-        @include pad {
-          display: none !important;
-        }
-      }
-
-      // ======================================
+          }
+          // 強制關閉splidejs導覽dot
+          .splide__pagination {
+            display: none !important;
+            @include pad{
+              display: flex;
+           }
+          }
+  
+          // 平板版以下強制隱藏
+          div#thumbnail-slider1 {
+            
+            @include pad {
+              display: none !important;
+            }
+          }
+          .splide__pagination__page.is-active{
+            background: $color_G;
+          }
+  
+          // ======================================
     }
   }
 }
@@ -93,7 +88,7 @@
   flex-grow: 1;
   margin: 0 10px;
 
-  @include borderTest;
+  // @include borderTest;
   //   margin-bottom: 20px;
 
   #pd_info_name {
@@ -141,7 +136,7 @@
 // 數量BTN
 #pd_stockCount {
   margin: 0 10px;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -152,6 +147,12 @@
 
 #pd_stockCount ~ h5 {
   margin-left: 10px;
+}
+
+@media (max-width:1200px) {
+  #pd_stockCount,#pd_stockCount ~ h5{
+    margin-left: 0;
+  }
 }
 
 // +_按鈕
@@ -176,8 +177,9 @@
   border: 1px solid $color_Y;
   font-size: $fs-s;
   height: 36px;
-  width: 50px;
+  max-width: 100px;
   text-align: center;
+
 }
 
 // 購買按鈕
@@ -247,29 +249,37 @@
 }
 
 .intro_area {
-  // 區塊
+  // 區塊================
+  
   .pd_intro {
-    width: 800px;
+    width: 900px;
     display: flex;
     align-items: center;
+    justify-content: center;
     margin: 20px auto;
-    border: 2px solid #ccc;
+    // border: 2px solid #ccc;
     border-radius: 8px;
     padding: 25px;
-    
-    
+
+    &:nth-child(even)  P{
+      order:-1;
+    }
 
     .pd_intro_pic {
       display: flex;
       align-items: center;
-      width: 300px;
-      height: 300px;
+      width: 400px;
+      height: auto;
       border: 1px solid #ccc;
       border-radius: 50%;
       overflow: hidden;
       font-size: 0;
       line-height: 0;
       margin: 0 15px;
+      @include mobile{
+        width: 80%;
+        height: auto;
+      }
 
       img {
         width: 102%;
@@ -290,6 +300,10 @@
       width: 600px;
       flex-direction: column;
       justify-content: center;
+      
+      p {
+        text-align: center;
+      }
     }
   }
   @include pad {
@@ -301,6 +315,7 @@
       p {
         height: auto;
         font-size: $fs-xs;
+        text-align: center;
       }
     }
   }
@@ -308,8 +323,9 @@
 
 // 水平線hr
 .pd__hr {
+  width: 90%;
   border: 1px solid #ccc;
-  margin: 20px 0;
+  margin: 30px auto;
 }
 
 //推薦區===================================
@@ -322,7 +338,37 @@
 }
 
 .pd_recommend {
-  margin-top: 20px;
+  margin: 20px;
+  position: relative;
+
+  // 套件用的=======================
+  .splide__arrows,.splide__pagination{
+    display: none !important;
+    @media (max-width:991.98px) {
+      display: flex !important;
+    }
+  }
+  .splide__pagination__page.is-active{
+    background: $color_G;
+  }
+
+
+    @media (max-width: 992.98px) and (min-width: 768px){
+      .splide__arrows .splide__arrow.splide__arrow--prev{
+        left: 10%;
+        width: 3em;
+        height: 3em;
+          }
+        
+          .splide__arrows .splide__arrow.splide__arrow--next{
+        right: 10%;
+        width: 3em;
+        height: 3em;
+
+      }
+    }
+  
+  // ================================
 }
 
 @keyframes slide-top {
@@ -339,6 +385,13 @@
   display: flex;
   flex-shrink: 1;
   // @include borderTest;
+  @include pad {
+    display: block;
+    position: relative;
+    li {
+      margin: 25px;
+    }
+  }
 
   li {
     margin: 50px 25px 50px;
@@ -347,12 +400,17 @@
     border-radius: 5px;
     transition: 0.5s;
     // @include borderTest;
-    &:hover {
+
+    @media (min-width:768px) {
+          &:hover {
       -webkit-animation: slide-top 0.5s ease-out infinite alternate;
       animation: slide-top 0.5s ease-out infinite alternate;
     }
-    @include pad {
-      margin: 25px;
+    @media (min-width:768px) and (max-width:992px){
+      max-width: 600px;
+      margin: 50px auto 50px;
+    }
+
     }
 
     a {
@@ -394,7 +452,28 @@
   float: right;
 }
 
+@media (max-width:992px) {
+  .pd_recommend_name {
+    margin-left: 30px;
+  }
+  .pd_recommend_price {
+    margin-right: 30px;
+  }
+}
+
 .pd_recommend_price::before {
   content: "NT$";
   font-size: $fs-s;
+}
+
+@include mobile{
+  .pd_recommend_list .pd_recommend_text p{
+    font-size: $fs-xs;
+    line-height: 1.2;
+    margin-bottom: 0px;
+  }
+
+  .pd_recommend_price::before {
+     font-size: $fs-xs;
+  }
 }
