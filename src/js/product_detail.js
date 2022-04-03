@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 var main_2 = new Splide('#splide02', {
     fixedWidth: '80',
-    type: 'fade',
+    type: 'splide',
     rewind: true,
     pagination: true,
     arrows: true,
@@ -100,4 +100,62 @@ $(window).on('resize', function () {
 // ===========================
 
 // 數量調整按鍵
+var stockCount = document.querySelector('#pd_stockCount_input');
+var inStock = document.querySelector('#pd_inStock');
 
+
+$('#pd_stockCount_minus').on('click',(e) => { 
+    stockChack(-1);
+})
+$('#pd_stockCount_plus').on('click',(e) => { 
+    stockChack(+1);
+})
+$('#pd_stockCount_input').on('keyup',(e)=>{
+    // 濾除其他字
+    var str = (e.target.value).replace(/\D/g, "");
+        console.log('keyin');
+        if(str <= parseInt(inStock.innerText)){
+            stockCount.value = str;
+        }else{
+            stockCount.value = 1
+            alert('sorry! 超過在庫數量');
+        }
+})
+
+function stockChack(el){
+    // -+按鈕
+    // 當el= -1 檢查是否大於2
+    switch (el) {
+        case -1:
+            console.log("--");
+            if(parseInt(stockCount.value) > 1){
+                stockCount.value = parseInt(stockCount.value)-1;
+            }
+            break;
+    // 當el = +1 檢查是否<庫存
+        default:
+            console.log("++");
+            if(parseInt(stockCount.value) < parseInt(inStock.innerText)){
+                stockCount.value = parseInt(stockCount.value)+1;
+            }
+            break;
+    }
+
+}
+// 數量調整按鍵end
+// ==========================================
+
+// 放入購物車、直接購買
+
+$('#pd_info_cart').on('click',(e)=>{
+    e.preventDefault();
+    console.log('putincart');
+})
+
+$('#pd_info_buy').on('click',(e)=>{
+    e.preventDefault();
+    console.log('buy');
+})
+
+// 放入購物車、直接購買end
+// ==========================================

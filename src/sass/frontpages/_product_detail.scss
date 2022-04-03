@@ -250,9 +250,7 @@
 
 .intro_area {
   // 區塊================
-  // &:nth-child(even) .pd_intro P{
-  //   order:3;
-  // }
+  
   .pd_intro {
     width: 900px;
     display: flex;
@@ -262,6 +260,10 @@
     // border: 2px solid #ccc;
     border-radius: 8px;
     padding: 25px;
+
+    &:nth-child(even)  P{
+      order:-1;
+    }
 
     .pd_intro_pic {
       display: flex;
