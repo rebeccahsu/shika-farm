@@ -129,7 +129,7 @@
 }
 // ============ 結帳流程二 ============
 .stepB {
-	display: none;
+	// display: none;
 	// *********** 表格標題 ***********
 	.carName2-1 {
 		background-color: $color_Y;
@@ -165,7 +165,7 @@
 		// *********** 欄位標題 ***********
 		.carTitle {
 			display: grid;
-			grid-template-columns: 35% 20% 20% 30%;
+			grid-template-columns: 40% 20% 15% 25%;
 			padding: 20px;
 			@include textCenter();
 			border: 1px solid #c4c4c4;
@@ -173,7 +173,7 @@
 		// *********** 購買商品列 ***********
 		.carInfo {
 			display: grid;
-			grid-template-columns: 20% 20% 20% 10% 30%;
+			grid-template-columns: 20% 20% 20% 15% 25%;
 			@include textCenter();
 
 			p {
@@ -209,6 +209,7 @@
 				margin: 10px 100px;
 				border: 1px solid #c4c4c4;
 				border-radius: 8px;
+				padding: 5px;
 			}
 		}
 		.addressout {
@@ -304,22 +305,36 @@
             padding: 5px;
         }
     }
-    .paysub {
-        border: 1px solid $color_R;
-        background-color: $color_R;
-        color: $color_W;
-        border-radius: 8px;
-        padding: 10px;
-        display: block;
-        margin: 30px auto;
-		cursor: pointer;
-    }
-
+	.payGoback{
+		margin: 0 auto;
+		text-align: center;
+		.goback{
+			border: 1px solid $color_Y;
+			background-color: $color_Y;
+			color: $color_W;
+			border-radius: 8px;
+			padding: 10px;
+			display: inline-block;
+			margin: 30px;
+			cursor: pointer;
+		}
+		.paysub {
+			border: 1px solid $color_R;
+			background-color: $color_R;
+			color: $color_W;
+			border-radius: 8px;
+			padding: 10px;
+			display: inline-block;
+			margin: 30px;
+			cursor: pointer;
+		}
+	}
+	
 }
 
 // ============ 結帳流程三 ============
 .stepC{
-	display: none;
+	// display: none;
     margin: 100px auto;
     @include textCenter();
     h3{

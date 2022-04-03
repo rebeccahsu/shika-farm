@@ -14,42 +14,66 @@
     <img src="./img/activity/member_banner.png" alt="">
     <h2 class="memberTitle">會員中心</h2>
 </div>
-        <!-- 主要內容 -->
+
+       <!-- 切換btn -->
         <div class="mem_tab">
-            <input class="mem_btn on"  type="button" value="會員資料" onclick="location.href='./animal.html'">
-            <input class="mem_btn " type="button" value="我的活動" onclick="location.href='./animal.html'">
-            <input class="mem_btn" type="button" value="訂單查詢" onclick="location.href='./animal.html'">
+            <input class="mem_btn on"  type="button" value="會員資料" onclick="location.href='./member_revise.html'">
+            <input class="mem_btn " type="button" value="我的活動" onclick="location.href='./member_activity.html'">
+            <input class="mem_btn" type="button" value="訂單查詢" onclick="location.href='./member_checklist.html'">
         </div>
 
 
 
-        <div class="mem_form">
-            <form action="" method="get">
+    
+            <div class="mb_re_wrp">
 
-                <div class="mem_txt">
+                <h5>編輯會員資料</h5>
 
-                    <h5>姓名 :王曉明</h5>
-                    <h5>生日 : 1995/09/17</h5>
-
-                    
-                    
-                    <div class="from_group">
-                    <label for="address">聯絡地址</label>
-                    <input id="address" type="text" name="input_address" >
-
-                    <label for="number">連絡電話</label>
-                    <input id="number" type="text" name="input_tel" >
-                    <label for="password">密碼</label>
-                    <input id="password" type="text" name="input_password" >
-                    <label for="passsword">確認密碼</label>
-                    <input id="password" type="text" name="input_password" >
-                </div>
-                </div>
-
-               
+                <div class="mb_name">
+                <label for=""><h5>姓名:王小明</h5></label>
+                <label for=""><h5>信箱:marz840917@gmail.com</h5></label>
+            </div>
 
 
-                <div class="from_group from_btn">
-                    <button type="submit">Submit</button>
-                </div>
-            </form>
+             
+            
+
+
+            <div class="m_address twzipcode">
+                <label for=""><h5>聯絡地址:</h5></label>
+                <select name="county" id="county">台北市</select>
+                <select name="district" id="district" >大安區</select>
+                <input type="text" name="Street">
+            </div>
+
+            <div class="mb_tel">
+                <label for=""><h5>電話號碼:</h5></label>
+                <input type="text" name="tel">
+
+
+            </div>
+
+
+            
+            <div class="mb_pw">
+                <label for=""><h5>密碼:</h5></label>
+
+            </div>
+
+    <div class="mb_btn">
+            <button class="save_btn">確認修改</button>
+
+        </div>
+            </div>
+
+        
+  
+
+          <!-- footer -->
+    @@include('./layout/footer.html')
+    </body>
+    </html>
+
+
+  
+    

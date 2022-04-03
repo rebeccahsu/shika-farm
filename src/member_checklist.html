@@ -13,14 +13,17 @@
         <img src="./img/activity/member_banner.png" alt="">
         <h2 class="memberTitle">會員中心</h2>
     </div>
-            <!-- 主要內容 -->
-            <div class="mem_tab">
-                <input class="mem_btn "  type="button" value="會員資料" onclick="location.href='./animal.html'">
-                <input class="mem_btn " type="button" value="我的活動" onclick="location.href='./animal.html'">
-                <input class="mem_btn on" type="button" value="訂單查詢" onclick="location.href='./animal.html'">
-            </div>
+       
+       <!-- 切換btn -->
+       <div class="mem_tab">
+        <input class="mem_btn "  type="button" value="會員資料" onclick="location.href='./member_revise.html'">
+        <input class="mem_btn on " type="button" value="我的活動" onclick="location.href='./member_activity.html'">
+        <input class="mem_btn" type="button" value="訂單查詢" onclick="location.href='./member_checklist.html'">
+    </div>
 
 
+
+<!-- 
             <ul class="mb_ck_list" id="mb_ck_list">
                 <li class="ck_Bar">
                     <p>訂單日期</p>
@@ -39,4 +42,23 @@
                     <p>{{customer.phone}}</p>
                     <p>{{customer.address}}</p>
                 </li>  
+            </ul> -->
+
+        <div class="mb_cl_wrp">
+            <ul class="cl_list">
+                <li>訂單日期</li>
+                <li>訂單編號</li>
+                <li>品項數量</li>
+                <li>訂購總額</li>
+                <li>付款方式</li>
+                <li>訂單狀態</li>
+
+                
+
+
+
+
+
+
             </ul>
+        </div>
