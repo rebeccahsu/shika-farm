@@ -5,21 +5,34 @@
                 <h4>註冊</h4>
                 <div>
                     <div class="u_name">
-                        <label for="userName"><h5>姓名</h5></label>
-                        <input type="name" name="userName" id="userName">
+                        <label for="userName">
+                            <h5>姓名</h5>
+                        </label>
+                        <input type="name" name="userName" id="userName" placeholder="四卡牧">
                     </div>
                     <div class="u_birth">
-                        <label for="birthday"><h5>生日</h5></label>
+                        <label for="birthday">
+                            <h5>生日</h5>
+                        </label>
                         <input type="date" name="birthday" id="birthday">
                     </div>
                 </div>
-                <div class="u_address twzipcode">
-                    <label for="address"><h5>聯絡地址</h5></label>
-                    <select name="county" id="county"></select><select name="district" id="district" ><select name="zipcode" id="zipcode"></select>
-                    <input type="text" name="Street" id="Street">
+                <div class="u_address">
+                    <label for="address">
+                        <h5>聯絡地址</h5>
+                    </label>
+                    <div id="twzipcode">
+                        <div data-role="county" data-style="county"></div>
+                        <div data-role="district" data-style="district"></div>
+                        <div data-role="zipcode" data-style="zipcode"></div>
+                        <!-- <select name="county" id="county" ></select><select name="district" id="district" ><select name="zipcode" id="zipcode"></select> -->
+                    </div>
+                    <input type="text" name="Street" id="Street" placeholder="仁和路166號">
                 </div>
-                <label for="phoneNumber"><h5>連絡電話</h5></label>
-                <input type="number" name="phoneNumber" id="phoneNumber">
+                <label for="phoneNumber">
+                    <h5>連絡電話</h5>
+                </label>
+                <input type="tel" name="phoneNumber" id="phoneNumber" placeholder="0910456789">
                 <button type="button" id="send">繼續</button>
             </form>
             <i class="bi bi-x"></i>

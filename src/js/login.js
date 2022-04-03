@@ -26,34 +26,36 @@ function closebg(t) {
 // 驗證信箱格式
 const emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
 const passwordRule = /^[\w_-]{4,16}$/;
-$('#userMail').on('blur',()=>{
+$('#userMail').on('blur', () => {
     // console.log('object');
-    if($('#userMail').val().search(emailRule) == -1){
+    if ($('#userMail').val().search(emailRule) == -1) {
         $('label[for="userMail"]').html("<h5>電子郵件<span>*e-mail格式不正確</span></h5>");
-    }else{
+    } else {
         // console.log('c');
         $('label[for="userMail"]').html("<h5>電子郵件</h5>");
     }
 })
 
 // 驗證密碼格式
-$('#password').on('keyup',()=>{
+$('#password').on('keyup', () => {
     let psd = $('#password').val();
-    console.log(psd);
-    if(psd.length < 4 || psd.length > 16){
+    // console.log(psd);
+    if (psd.length < 4 || psd.length > 16) {
         $('label[for="password"]').html("<h5>密碼<span>*密碼須為4~16字以內</span></h5>");
-    }else if(psd.search(passwordRule) == -1){
+    } else if (psd.search(passwordRule) == -1) {
         $('label[for="password"]').html("<h5>密碼<span>*請輸入半形的英文和數字</span></h5>");
-    }else{
+    } else {
         // console.log('c');
         $('label[for="password"]').html("<h5>密碼</h5>");
     }
 
 })
 
-$('#repassword').on('blur',()=>{
-    if($('#password').val() !== $('#repassword').val() ){
+$('#repassword').on('blur', () => {
+    if ($('#password').val() !== $('#repassword').val()) {
         $('label[for="repassword"]').html("<h5>確認密碼<span>*和密碼不一致</span></h5>");
+    } else {
+        $('label[for="repassword"]').html("<h5>確認密碼</h5>");
     }
 })
 
@@ -61,46 +63,55 @@ $('#repassword').on('blur',()=>{
 // ============================================
 
 // 停止預設行為，切換內容
-$('.forget').on('click',(e)=>{
+$('.forget').on('click', (e) => {
+    e.preventDefault();
     console.log(e.target);
 })
 
-$('#login_btn').on('click',(e)=>{
+$('#login_btn').on('click', (e) => {
+    e.preventDefault();
     console.log(e.target);
 })
 
 
-$('#FBlogin_btn').on('click',(e)=>{
+$('#FBlogin_btn').on('click', (e) => {
+    e.preventDefault();
     console.log(e.target);
 })
 
-// 這側會員連結
-$('.register').on('click',(e)=>{
+// 註冊會員連結
+$('.register').on('click', (e) => {
+    e.preventDefault();
     console.log(e.target);
 })
 
 // 註冊送出帳密
-$('#next').on('click',(e)=>{
+$('#next').on('click', (e) => {
+    e.preventDefault();
     console.log(e.target);
 })
 
 // 註冊送出詳細資料
-$('#send').on('click',(e)=>{
+$('#send').on('click', (e) => {
+    e.preventDefault();
     console.log(e.target);
 })
 
 // 忘記密碼時
-$('#send_mail').on('click',(e)=>{
+$('#send_mail').on('click', (e) => {
+    e.preventDefault();
     console.log(e.target);
 })
 
 // 重設密碼
-$('#send_psd').on('click',(e)=>{
+$('#send_psd').on('click', (e) => {
+    e.preventDefault();
     console.log(e.target);
 })
 
 // 註冊完成、重設密碼完成
-$('#register_complete').on('click',(e)=>{
+$('#register_complete').on('click', (e) => {
+    e.preventDefault();
     console.log(e.target);
 })
 
@@ -109,10 +120,41 @@ $('#register_complete').on('click',(e)=>{
 
 // ====================================
 
-// 
+// 註冊詳細資料
+// 驗證手機號碼格式  /  正規表達式的內容{最少字元，最多字元}  /
+const phoneRule = /\d{9,10}/;
+$('#phoneNumber').on('blur', () => {
+    if ($('#phoneNumber').val().search(phoneRule) == -1) {
+        $('label[for="phoneNumber"]').html("<h5>聯絡電話<span>*電話格式不正確</span></h5>");
+    } else {
+        $('label[for="phoneNumber"]').html("<h5>聯絡電話</h5>");
+    }
+})
+
+$('#userName').on('blur',()=>{
+    if ($('#userName').val() == "") {
+        $('label[for="userName"]').html("<h5>姓名<span>*必填欄位</span></h5>");
+    } else {
+        $('label[for="userName"]').html("<h5>姓名</h5>");
+    }
+});
 
 
+$('#birthday').on('blur',()=>{
+    if ($('#birthday').val() == "") {
+        $('label[for="birthday"]').html("<h5>生日<span>*必填欄位</span></h5>");
+    } else {
+        $('label[for="birthday"]').html("<h5>生日</h5>");
+    }
+})
 
+$('#Street').on('blur',()=>{
+    if ($('#Street').val() == "") {
+        $('label[for="address"]').html("<h5>聯絡地址<span>*請輸入地址</span></h5>");
+    } else {
+        $('label[for="address"]').html("<h5>聯絡地址</h5>");
+    }
+})
 
 
 
@@ -120,20 +162,18 @@ $('#register_complete').on('click',(e)=>{
 
 // ============================
 // ============郵遞區號============
-// $('.twzipcode').twzipcode();
-// $('#twz').twzipcode({
-//     language: 'lang/zh-tw' //不需加上 .js
-//   });
+// const twzipcode = new TWzipcode(".twzipcode");
+// twzipcode.destroy();
 
-//   $('#twz').twzipcode('set', {
-//     'county': '臺北市',
-//     'district': '信義區',
-//     'zipcode': 110
-// });
+$('#twzipcode').twzipcode({
+    countyName: 'county', // 設定取得縣市的name
+    districtName: 'district', // 設定取得鄉鎮市區的name
+    zipcodeName: 'zipcode', // 設定取得郵遞區號的name
+    onDistrictSelect: function () {console.log($('.zipcode').val()); },  //  選擇鄉鎮市區後執行
 
+});
 
 /*
-
 // Initialize
 $(document).ready(function () {
     const twzipcode = new TWzipcode(".twzipcode");
@@ -163,9 +203,3 @@ $(document).ready(function () {
 */
 
 // ==========郵遞區號END============
-
-// document.addEventListener('click',function(e){
-//     console.log(e.target);
-// })
-
-// document.addEventListener('click',closebg(this))
