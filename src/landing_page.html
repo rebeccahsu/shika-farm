@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    @@include('./layout/head.html', {
+    "title" : "Sìkha 牧場"
+    })
+    <style>
+        body{
+            /* background-color: #e6e6e6; */
+            background-image: url("img/index/landing_bg.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        .landing-wrapper{
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+        main{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70%;
+            
+        }
+
+        .logo{
+            width: 250px;
+            display: block;
+            margin: 50px auto;
+        }
+        .buttons{
+            width: 80%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .ball{
+            width: 250px;
+            height: 250px;
+            text-align: center;
+            line-height: 250px;
+            font-size: 30px;
+            color: #fff;
+            background-color: #16B1AA;
+            background-size: contain;
+            background-repeat: no-repeat;
+            transition: .5s;
+            
+        }
+        .ball1{
+            animation: ball 8s linear infinite;
+        }
+        .ball2{
+            animation: ball2 8s linear infinite;
+        }
+
+        .ball:hover{
+            background-color: #FF8671;
+        }
+
+        @keyframes ball {
+            0%{border-radius: 65% 35% 68% 32% / 39% 50% 50% 61%    ;}
+            25%{border-radius: 47% 53% 34% 66% / 36% 50% 50% 64%   ;}
+            50%{border-radius: 57% 43% 52% 48% / 41% 49% 51% 59%  ;}
+            75%{border-radius: 66% 34% 36% 64% / 40% 70% 30% 60%    ;}
+            100%{border-radius: 65% 35% 68% 32% / 39% 50% 50% 61%    ;}
+        }
+
+        @keyframes ball2 {
+            0%{border-radius: 62% 38% 34% 66% / 70% 57% 43% 30%  ;}
+            25%{border-radius: 45% 55% 35% 65% / 63% 42% 58% 37% ;}
+            50%{border-radius: 57% 43% 52% 48% / 41% 49% 51% 59%  ;}
+            75%{border-radius: 59% 41% 50% 50% / 28% 54% 46% 72%  ;}
+            100%{border-radius: 62% 38% 34% 66% / 70% 57% 43% 30%  ;}
+        } 
+        p{
+            text-align: center;
+            margin-top: 20vh;
+            color: #fff;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="landing-wrapper">
+        
+        <main>
+            <img src="img/logo_16B1AA.svg" alt="" class="logo">
+            <div class="buttons">
+                <a href="index.html" class="ball ball1">前台</a>
+                <a href="back_index.html" class="ball ball2">後台</a>
+            </div>
+            <p>本網站為緯育TibaMe前端設計工程師班第105期第六組學員專題成果作品，本平台僅供學習、展示之用。</p>
+        </main>
+        
+        
+    
+
+    </div>
+
+</body>
+
+</html>
