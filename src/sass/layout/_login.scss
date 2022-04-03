@@ -27,6 +27,7 @@ div#back_bg {
       background-image: url(../../img/material/login_block.jpg);
       background-repeat: no-repeat;
       background-position: 0 0;
+      border-radius: 5px 0 0 5px;
       display: flex;
 
       h1 {
@@ -61,11 +62,19 @@ div#back_bg {
         h4 {
           margin-bottom: 20px;
         }
+        h5>span{
+          font-size: $fs-xs;
+          color: red;
+        }
 
-
+        label{
+          height: 42px;
+        }
         input {
+          // margin-top: 3px;
           padding: 10px 20px;
           width: 100%;
+          min-width: 222px;
           height: 50px;
           background-color: #ededed;
           border-radius: 5px;

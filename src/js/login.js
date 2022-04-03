@@ -1,22 +1,124 @@
+// import * as is from 'is_js'
+// import { char } from './vendors/is';
+
+// 關閉按鈕和範圍==============
 
 $('#back_bg').on('click', function (e) {
-    closebg(this);
+    closebg();
 })
 
 $('.bi-x').on('click', function (e) {
-    closebg(this);
+    closebg();
 });
 
 $('#login_box').on('click', function (e) {
     e.stopPropagation();
 })
 
-
 function closebg(t) {
     // console.log(t);
     $('#back_bg').remove();
 }
 
+// 關閉按鈕和範圍end
+// ============================
+
+// 驗證信箱格式
+const emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+const passwordRule = /^[\w_-]{4,16}$/;
+$('#userMail').on('blur',()=>{
+    // console.log('object');
+    if($('#userMail').val().search(emailRule) == -1){
+        $('label[for="userMail"]').html("<h5>電子郵件<span>*e-mail格式不正確</span></h5>");
+    }else{
+        // console.log('c');
+        $('label[for="userMail"]').html("<h5>電子郵件</h5>");
+    }
+})
+
+// 驗證密碼格式
+$('#password').on('keyup',()=>{
+    let psd = $('#password').val();
+    console.log(psd);
+    if(psd.length < 4 || psd.length > 16){
+        $('label[for="password"]').html("<h5>密碼<span>*密碼須為4~16字以內</span></h5>");
+    }else if(psd.search(passwordRule) == -1){
+        $('label[for="password"]').html("<h5>密碼<span>*請輸入半形的英文和數字</span></h5>");
+    }else{
+        // console.log('c');
+        $('label[for="password"]').html("<h5>密碼</h5>");
+    }
+
+})
+
+$('#repassword').on('blur',()=>{
+    if($('#password').val() !== $('#repassword').val() ){
+        $('label[for="repassword"]').html("<h5>確認密碼<span>*和密碼不一致</span></h5>");
+    }
+})
+
+// 密碼驗證end
+// ============================================
+
+// 停止預設行為，切換內容
+$('.forget').on('click',(e)=>{
+    console.log(e.target);
+})
+
+$('#login_btn').on('click',(e)=>{
+    console.log(e.target);
+})
+
+
+$('#FBlogin_btn').on('click',(e)=>{
+    console.log(e.target);
+})
+
+// 這側會員連結
+$('.register').on('click',(e)=>{
+    console.log(e.target);
+})
+
+// 註冊送出帳密
+$('#next').on('click',(e)=>{
+    console.log(e.target);
+})
+
+// 註冊送出詳細資料
+$('#send').on('click',(e)=>{
+    console.log(e.target);
+})
+
+// 忘記密碼時
+$('#send_mail').on('click',(e)=>{
+    console.log(e.target);
+})
+
+// 重設密碼
+$('#send_psd').on('click',(e)=>{
+    console.log(e.target);
+})
+
+// 註冊完成、重設密碼完成
+$('#register_complete').on('click',(e)=>{
+    console.log(e.target);
+})
+
+
+
+
+// ====================================
+
+// 
+
+
+
+
+
+
+
+
+// ============================
 // ============郵遞區號============
 // $('.twzipcode').twzipcode();
 // $('#twz').twzipcode({
