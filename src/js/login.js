@@ -51,6 +51,7 @@ $('#password').on('keyup', () => {
 
 })
 
+// 二次確認密碼
 $('#repassword').on('blur', () => {
     if ($('#password').val() !== $('#repassword').val()) {
         $('label[for="repassword"]').html("<h5>確認密碼<span>*和密碼不一致</span></h5>");
@@ -97,12 +98,6 @@ $('#send').on('click', (e) => {
     console.log(e.target);
 })
 
-// 忘記密碼時
-$('#send_mail').on('click', (e) => {
-    e.preventDefault();
-    console.log(e.target);
-})
-
 // 重設密碼
 $('#send_psd').on('click', (e) => {
     e.preventDefault();
@@ -131,7 +126,7 @@ $('#phoneNumber').on('blur', () => {
     }
 })
 
-$('#userName').on('blur',()=>{
+$('#userName').on('blur', () => {
     if ($('#userName').val() == "") {
         $('label[for="userName"]').html("<h5>姓名<span>*必填欄位</span></h5>");
     } else {
@@ -140,7 +135,7 @@ $('#userName').on('blur',()=>{
 });
 
 
-$('#birthday').on('blur',()=>{
+$('#birthday').on('blur', () => {
     if ($('#birthday').val() == "") {
         $('label[for="birthday"]').html("<h5>生日<span>*必填欄位</span></h5>");
     } else {
@@ -148,7 +143,7 @@ $('#birthday').on('blur',()=>{
     }
 })
 
-$('#Street').on('blur',()=>{
+$('#Street').on('blur', () => {
     if ($('#Street').val() == "") {
         $('label[for="address"]').html("<h5>聯絡地址<span>*請輸入地址</span></h5>");
     } else {
@@ -156,8 +151,43 @@ $('#Street').on('blur',()=>{
     }
 })
 
+// 詳細資料end
+// ======================================
+//
+// 忘記密碼時，送出驗證信
+$('#send_mail').on('click', (e) => {
+    e.preventDefault();
+    // console.log(e.target);
+    if ($('#userMail').val() == "") {
+        $('label[for="userMail"]').html("<h5>電子郵件<span>*未輸入e-mail</span></h5>");
+    } else if ($('#userMail').val().search(emailRule) == -1) {
+        $('label[for="userMail"]').html("<h5>電子郵件<span>*e-mail格式不正確</span></h5>");
+    // }else if(){ //送後端預留，如果沒有email，顯示email沒有註冊過
+    } else {
+        $('label[for="userMail"]').html("<h5>電子郵件</h5>");
+        // 當畫面上沒有紅P時，插入紅P，按鈕不可按
+        if ($('#password_reset').has($('#cdTime')).length == 0) {
+            $('label[for="userMail"]').before(`<p style="color:red;" id="cdTime">系統已將信件寄出，若沒有收到信件，請等待<span id="sss"></span>秒後再試，謝謝。 </p>`)
+            $('#send_mail').disabled = true;
+            mail_cd();
+        }
+    }
+})
 
-
+// 設定秒數，倒數
+var cd = 10;
+function mail_cd() {
+    if (cd > 0) {
+        $('#sss').text(cd);
+        console.log(cd);
+        setTimeout(mail_cd, 1000);
+        cd -= 1;
+    } else {
+        $('#cdTime').remove();
+        $('#send_mail').disabled = false;
+        cd=10;
+    }
+}
 
 
 // ============================
@@ -169,7 +199,7 @@ $('#twzipcode').twzipcode({
     countyName: 'county', // 設定取得縣市的name
     districtName: 'district', // 設定取得鄉鎮市區的name
     zipcodeName: 'zipcode', // 設定取得郵遞區號的name
-    onDistrictSelect: function () {console.log($('.zipcode').val()); },  //  選擇鄉鎮市區後執行
+    onDistrictSelect: function () { console.log($('.zipcode').val()); },  //  選擇鄉鎮市區後執行
 
 });
 

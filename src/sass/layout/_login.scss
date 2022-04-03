@@ -107,6 +107,9 @@ div#back_bg {
           font-size: $fs-xs;
           margin-bottom: 15px;
           cursor: pointer;
+          &:hover {
+            background-color: darken($color_G, 10);
+        }
         }
         #FBlogin_btn {
           @include buttonSet(#4267b2, $color_W, #4267b2);
@@ -116,6 +119,9 @@ div#back_bg {
           font-size: $fs-xs;
           margin-bottom: 15px;
           cursor: pointer;
+          &:hover {
+            background-color: darken(#4267b2, 10);
+        }
         }
         .register {
           align-self: center;
@@ -138,6 +144,9 @@ div#back_bg {
           height: 50px;
           font-size: $fs-xs;
           cursor: pointer;
+          &:hover {
+            background-color: darken($color_G, 10);
+        }
         }
       }
       .bi-x {
@@ -201,6 +210,9 @@ div#back_bg {
     height: 50px;
     font-size: $fs-xs;
     cursor: pointer;
+    &:hover {
+      background-color: darken($color_G, 10);
+  }
 
     @media (max-width: 840.98px) {
       margin-top: 0;
@@ -262,6 +274,11 @@ div#back_bg {
     width: auto;
   }
 
+  h5>span{
+    font-size: $fs-xs;
+    color:red;
+  }
+
   h4 {
     margin-bottom: 20px;
   }
@@ -283,14 +300,11 @@ div#back_bg {
     }
   }
   // 繼續的按鈕
-  #next {
+  #send_mail,#send_psd {
     margin-top: 40px;
-    @include buttonSet;
+    @include btn-green;
     width: 100%;
-    border-radius: 5px;
     height: 50px;
-    font-size: $fs-xs;
-    cursor: pointer;
     @media (max-width: 840.98px) {
       margin-top: 30px;
     }
