@@ -33,6 +33,7 @@
     "sass": "^1.49.9"
   },
   "dependencies": {
-    "@splidejs/splide": "^3.6.12"
+    "@splidejs/splide": "^3.6.12",
+    "is_js": "^0.9.0"
   }
 }
