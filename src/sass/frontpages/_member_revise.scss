@@ -1,70 +1,90 @@
+// 外層
 
-.mem_form{
-    width: 1000px;
+.mb_re_wrp{
+    width: 900px;
     margin: 0 auto;
+   
 }
 
 
-.from_group label {
-    color: #505050;
-    font-size: 16px;
-    font-weight: 300;
-    margin: 0 25px 0 0px;
-    width: 64px;
-    line-height: 36px;
-}
-
-.from_group {
-    width: 600px;
+//姓名
+.mb_name{
+    margin-top: 40px;
     display: flex;
-    margin: 20px auto;
-    text-align: right;
+    justify-content: space-between;
 }
 
-// .mem_txt{
+//地址
+.m_address.twzipcode {
+    display: flex;
+    padding-top: 40px;
+    // justify-content: space-between;
 
-// }
+}
+
+.m_address.twzipcode select{
+
+   width: 156px;
+   height: 46px;
+   border: 1px solid rgba(196, 196, 196, 0.8);
+   border-radius: 4px;
 
 
-// .mem_imf{
+.m_address.twzipcode input{
+    border: 1px solid rgba(196, 196, 196, 0.8);
+    height: 46px;
+    width: 350px;
+    border-radius: 4px;
+
+}
+   
     
-//     font-size: 24px;
-//     display: flex;
-//     flex-direction: column;
-// }
-
-// .mem_imf label{
-//     display: flex;
-// }
+}
 
 
-// .from_group{
-// width: 1000px;
-// margin: 0 auto;
-// }
+//電話
+.mb_tel{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 40px;
 
-// #name , #email{
-// padding-right: 10px;
-// width: 400px;
-// height: 44px;
-// border-radius: 8px;
-
-// }
-
-// #address,  #number ,#password{
-//     width: 400px;
-//     height: 44px;
-//     border-radius: 8px;
+}
+.mb_tel input{
+    width: 700px;
+    height: 46px;
+    border: 1px solid rgba(196, 196, 196, 0.8);
+    border-radius: 4px;
+}
 
 
-// }
-// .on{
-//     color: white;
-//     background-color:$color_Y;
-//     width: 350px;
-//     height: 72px;
-//     border-radius: 8px;
-//     font-size: 24px;
-//     border: none;
-//     margin: 0 auto;
-// }
+//密碼
+.mb_pw{
+    padding-top: 40px;
+
+}
+
+
+
+.mb_btn{
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+.save_btn{
+    margin-top: 45px;
+    
+    font-size: $fs-s;
+    border-radius: 8px;
+    text-align: center;
+    width: 200px;
+    height: 60px;
+    display: inline-block;
+    color:$color_W;
+    background-color:$color_R;
+    border: 1px solid $color_R;
+    cursor: pointer;
+   
+}
+
+
+
