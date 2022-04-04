@@ -6,6 +6,7 @@
     "title" : "訂單查詢"
     })
 </head>
+<body>
     <!-- header -->
     @@include('./layout/header.html')
 
@@ -17,34 +18,15 @@
        <!-- 切換btn -->
        <div class="mem_tab">
         <input class="mem_btn "  type="button" value="會員資料" onclick="location.href='./member_revise.html'">
-        <input class="mem_btn on " type="button" value="我的活動" onclick="location.href='./member_activity.html'">
-        <input class="mem_btn" type="button" value="訂單查詢" onclick="location.href='./member_checklist.html'">
+        <input class="mem_btn  " type="button" value="我的活動" onclick="location.href='./member_activity.html'">
+        <input class="mem_btn on" type="button" value="訂單查詢" onclick="location.href='./member_checklist.html'">
     </div>
 
 
 
-<!-- 
-            <ul class="mb_ck_list" id="mb_ck_list">
-                <li class="ck_Bar">
-                    <p>訂單日期</p>
-                    <p>訂單編號</p>
-                    <p>品項數量</p>
-                    <p>訂購總額</p>
-                    <p>付款方式</p>
-                    <p>訂單狀態</p>
 
-                </li>
 
-                <li v-for="customer in customers" class="titleBar mb_content">
-                    <p>{{customer.id}}</p>
-                    <p >{{customer.name}}</p>
-                    <p >{{customer.email}}</p>
-                    <p>{{customer.phone}}</p>
-                    <p>{{customer.address}}</p>
-                </li>  
-            </ul> -->
-
-        <div class="mb_cl_wrp">
+        <!-- <div class="mb_cl_wrp">
             <ul class="cl_list">
                 <li>訂單日期</li>
                 <li>訂單編號</li>
@@ -52,13 +34,8 @@
                 <li>訂購總額</li>
                 <li>付款方式</li>
                 <li>訂單狀態</li>
-
-                
-
-
-
-
-
-
             </ul>
-        </div>
+        </div> -->
+
+
+    </body>
