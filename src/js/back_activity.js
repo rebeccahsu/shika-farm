@@ -26,7 +26,7 @@ new Vue({
 
 
 $(function() {
-    
+    checkAvailability();
     //目前頁面
     let pages = document.querySelector(".aside_ul").querySelectorAll("h5");
     pages.forEach(function(page){
@@ -111,32 +111,75 @@ $(function() {
         alert("已成功下架 " + checked_arr.length + " 個活動！");
     };
 
+    
+    //上架中的活動
+    function checkAvailability (){
+        let activity_li = document.querySelectorAll(".actList");
+        let on_activity = [];
+        activity_li.forEach(function(li){
+            if ( ! li.classList.contains("-off")){
+                on_activity.push(li);
+            }
+        })
+        // console.log(on_activity.length);
+        let on_activity_count = document.querySelector(".actAvailable");
+        on_activity_count.innerHTML = on_activity.length;
+    }
+
+    function checkShowActivity (){
+        let activity_li = document.querySelectorAll(".actList");
+        let switch_button = document.querySelector(".show-switch-btn");
+        if ( switch_button.checked ){
+            activity_li.forEach(function(li){
+                li.style.display = 'flex';
+            })
+        }else{
+            activity_li.forEach(function(li){
+                if (li.classList.contains("-off")){
+                    li.style.display = 'none';
+                }
+            })
+        }
+    }
+
+
+
 
     
 
     //修改按鈕
     $("ul").on("click", ".modify_btn", function(e){
         window.location.href = "../back_activity_detail.html";
+        checkAvailability();
     });
 
     //新增按鈕
     $(".add-activity").on("click", function(e){
         window.location.href = "../back_activity_detail.html";
+        checkAvailability();
     });
 
     //刪除按鈕
     $(".delete-activity").on("click", function(e){
         deleteChecked();
+        checkAvailability();
     });
 
     //上架按鈕
     $(".on-activity").on("click", function(){
         onChecked();
+        checkAvailability();
     });
 
     //下架按鈕
     $(".off-activity").on("click", function(){
         offChecked();
+        checkAvailability();
     });
+
+    $(".show-switch-btn").on("click", function(){
+        checkShowActivity();
+    })
+    
 });
 
