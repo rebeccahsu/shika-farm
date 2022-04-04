@@ -1,21 +1,12 @@
-var modal = document.querySelector('.modal');
-var closeButtons = document.querySelectorAll('.close-modal');
-// set open modal behaviour
-document.querySelector('.open-modal').addEventListener('click', function() {
-  modal.classList.toggle('modal-open');
-});
-// set close modal behaviour
-for (i = 0; i < closeButtons.length; ++i) {
-  closeButtons[i].addEventListener('click', function() {
-    modal.classList.toggle('modal-open');
-	});
-}
-// close modal if clicked outside content area
-document.querySelector('.modal-inner').addEventListener('click', function() {
-  modal.classList.toggle('modal-open');
-});
-// prevent modal inner from closing parent when clicked
-document.querySelector('.modal-content').addEventListener('click', function(e) {
-	e.stopPropagation();
-});
+var button = document.querySelector('.cancel_btn');
+        var showtxt = document.querySelector('.show');
+        function popup2(e) {
+            window.confirm('確認取消本次預約嗎?');
+            if (confirm('ConfirmBox測試成功嗎') == true) {
+                showtxt.innerHTML = 'Yes，測試成功';
+            } else {
+                showtxt.innerHTML = '您已取消確認';
+            }
 
+        };
+        button.addEventListener('click', popup2);
