@@ -73,26 +73,7 @@
                     border-radius: 50%;
                     transition: .5s;
                 }
-                //======= 購物車明細 =======
-                .blackBg{
-                    width: 100%;
-                    height: 100%;   
-                }
-                .shoppingCar{
-                    @include positionCenter();
-                    width: 970px;
-                }
-                .carTitle{
-                    background-color: $color_Y;
-                    font-size: $fs-l;
-                    color: $color_W;
-                    width: 970px;
-
-                }
-                .carTitle > ul{
-                    display: flex;
-                }
-                //===================================
+                
                 .memberIcon{
                     font-size: 36px;
                     margin-top: 3px;
@@ -244,34 +225,39 @@
         opacity: 1;
         // display: block;
     }
-}
-.blackBg{
-    width: 100vw; 
-    height: 100vh; 
-    background-color: rgba(0, 0, 0, .2); 
-    position: fixed; 
-    top: 0; 
-    z-index: 1000;
 
-    .shoppingCar{
-       width: 950px;
-       position: absolute;
-       top: 30%;
-       left: 50%;
-       transform: translate(-30%);
-       
-       .carTitle{
-        border: 1px solid $color_Y;
-        background-color: $color_Y;
-        color: $color_W;
-        @include textCenter();
-       }
-       .carBar{
-           display: flex;
-           justify-content: space-around;
-           background-color: $color_W;
-           border-bottom: 1px solid $color_B;
-           padding: 30px;
-       }
+    
+    //======= 購物車明細 =======
+    .blackBg{
+        width: 100vw; 
+        height: 100vh; 
+        background-color: rgba(0, 0, 0, .2); 
+        position: fixed; 
+        top: 0; 
+        left: 0;
+        z-index: 1000;
+    
+        .shoppingCar{
+           width: 950px;
+           position: absolute;
+           top: 30%;
+           left: 50%;
+           transform: translate(-50%);
+           
+           .carTitle{
+            border: 1px solid $color_Y;
+            background-color: $color_Y;
+            color: $color_W;
+            @include textCenter();
+           }
+           .carBar{
+               display: flex;
+               justify-content: space-around;
+               background-color: $color_W;
+               border-bottom: 1px solid $color_B;
+               padding: 30px;
+           }
+        }
     }
+                
 }

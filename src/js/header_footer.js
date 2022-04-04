@@ -83,10 +83,10 @@ new Vue({
     },
     methods: {
     
-        openCart(){
-            this.isShow = !this.isShow;
-            console.log(this.isShow);
-        }
+        // openCart(){
+        //     this.isShow = !this.isShow;
+        //     console.log(this.isShow);
+        // }
         
     },
 });

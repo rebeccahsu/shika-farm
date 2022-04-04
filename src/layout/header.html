@@ -7,8 +7,7 @@
 		</h1>
 		<div class="navRight">
 			<a href="#" class="head-icon" @click.prevent="openCart"
-				><i class="bi bi-cart2 cartIcon"><span class="cartCount">1</span></i></a
-			>
+				><i class="bi bi-cart2 cartIcon"><span class="cartCount">1</span></i>
 			<a href="member.html" class="head-icon"
 				><i class="bi bi-person memberIcon"></i
 			></a>
@@ -31,24 +30,24 @@
 					</template>
 				</ul>
 			</nav>
+              <!-- 購物車彈跳窗 -->
+              <div v-if="!isShow"  class="blackBg"  id="blackBg">
+                <div class="shoppingCar container">
+                    <div class="carTitle"><h5>購物車明細</h5></div>
+                    <ul>
+                        <li class="carBar">
+                            <p>商品名稱</p>
+                            <p>價格</p>
+                            <p>數量</p>
+                            <p>小計</p>
+                        </li>
+                    
+                        <li></li>
+                    </ul>
+                </div>
+            </a>
 		</div>
 	</nav>
 	<div class="hamMask" style="opacity: 0"></div>
 </header>
-
-<!-- 購物車彈跳窗 -->
-<div v-if="isShow" id="blackBg" class="blackBg">
-	<div class="shoppingCar container">
-		<div class="carTitle"><h5>購物車明細</h5></div>
-		<ul>
-			<li class="carBar">
-				<p>商品名稱</p>
-				<p>價格</p>
-				<p>數量</p>
-				<p>小計</p>
-			</li>
-
-			<li></li>
-		</ul>
-	</div>
 </div>
