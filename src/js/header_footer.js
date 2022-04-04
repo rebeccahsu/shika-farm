@@ -41,6 +41,8 @@ $(".hamMask").on("click", function () {
 });
 
 
+
+
 new Vue({
     el: '#appMenu',
     data: {
@@ -52,5 +54,39 @@ new Vue({
             { title: '周邊商品', link: '../products.html', icon: './img/icon/products_icon.png' },
 
         ],
+    },
+});
+
+gsap.to(['.tree1', '.tree2'], {
+    repeat: -1,
+    keyframes: [
+        { duration: 2, rotation: 3},
+        { duration: 1, rotation: -3},
+        { duration: 1, rotation: -10},
+    ]
+});
+
+gsap.to(['.cow1', '.cow2'], {
+    repeat: -1,
+    keyframes: [
+        { duration: 2, rotation: 3},
+        { duration: 1, rotation: -3},
+        { duration: 1, rotation: 10},
+    ]
+});
+new Vue({
+    el:'#blackBg',
+    data:()=>{
+        return{
+            isShow: true,
+        }
+    },
+    methods: {
+    
+        openCart(){
+            this.isShow = !this.isShow;
+            console.log(this.isShow);
+        }
+        
     },
 });
