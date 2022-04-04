@@ -1,133 +1,339 @@
-.indexTop{
-    width: 100%;
-    overflow: hidden;
-    height: 700px;
-    max-width: 1920px;
+.outer-wrapper{
     position: relative;
-    background-image: url("../img/index/1920x700_indexbg.jpg");
-    background-size: auto;
-    background-position-x: center;
-    background-repeat: no-repeat;
-    position: relative;
-
-    img{
-        position: absolute;
-    }
-
-    //插圖
     .sun{
+        position: absolute;
         width: 100px;
-        top: 12%;
+        top: 2%;
         left: 78%;
+        z-index: 5;
+        @include pad{
+            width: 80px;
+        }
+        @include mobile{
+            width: 60px;
+        }
     }
     .top-cloud{
+        position: absolute;
+        z-index: 5;
         width: 130px;
+        @include pad{
+            width: 90px;
+        }
+        @include mobile{
+            width: 70px;
+        }
     }
     .top-cloud1{
-        top: 20%;
+        top: 3%;
         left: 3%;
+        @include mobile{
+            top: 15%;
+            left: -5%;
+        }
     }
     .top-cloud2{
-        top: 12%;
-        left: 15%;
+        top: 2%;
+        left: 17%;
+        @include mobile{
+            display: none;
+        }
     }
     .top-cloud3{
-        top: 23%;
+        top: 3%;
         left: 66%;
+        @include mobile{
+            top: 10%;
+            left: 50%;
+        }
     }
     .top-cloud4{
-        top: 11%;
+        top: 1%;
         left: 88%;
-    }
-    .top-horse{
-        width: 240px;
-        top: 31%;
-        left: 2%;
-    }
-    .top-deer{
-        width: 210px;
-        top: 47%;
-        left: 15%;
-        z-index: 2;
-    }
-    .top-sheep{
-        width: 250px;
-        top: 41%;
-        left: 30%;
-    }
-    .top-pig{
-        width: 210px;
-        top: 60%;
-        left: 45%;
-    }
-    .top-alpaca{
-        width: 210px;
-        top: 42%;
-        left: 61%;
-    }
-    .top-cow{
-        width: 340px;
-        top: 36%;
-        left: 73%;
+        @include mobile{
+            top: 13%;
+        }
     }
 
+    .indexTop{
+        width: 100%;
+        overflow: hidden;
+        height: 700px;
+        max-width: 1920px;
+        position: relative;
+        background-image: url("../img/index/1920x700_indexbg.jpg");
+        background-size: auto;
+        background-position-x: center;
+        background-repeat: no-repeat;
+        position: relative;
+
+        @include pad{
+            background-image: url("../img/index/768_indexbg.jpg");
+            background-size: cover;
+        }
+        @include mobile{
+            height: 670px;
+        }
+
+        img{
+            position: absolute;
+        }
+
+        //插圖
+        
+        .top-horse{
+            width: 240px;
+            top: 31%;
+            left: 2%;
+            animation: 'left-right' 2s ease;
+            @include pad{
+                width: 160px;
+                top: 27%;
+                left: 0%;
+            }
+            @include mobile{
+                width: 130px;   
+                left: -2%;
+                top: 25%;
+            }
+            @include desktop-s{
+                width: 190px;
+            }
+        }
+        .top-deer{
+            width: 210px;
+            top: 47%;
+            left: 15%;
+            z-index: 2;
+            animation: 'left-right' 2s ease;
+            @include pad{
+                width: 130px;
+                left: 13%;
+            }
+            @include mobile{
+                width: 110px;
+                left: 27%;
+                top: 30%;
+                z-index: 1;
+            }
+            @include desktop-s{
+                width: 160px;
+            }
+        }
+        .top-sheep{
+            width: 250px;
+            top: 41%;
+            left: 30%;
+            animation: 'left-right' 2s ease;
+            @include pad{
+                width: 150px;
+                top: 35%;
+            }
+            @include mobile{
+                width: 120px;
+                left: 9%;
+                top: 47%;
+            }
+            @include desktop-s{
+                width: 200px;
+            }
+        }
+        .top-pig{
+            width: 210px;
+            top: 60%;
+            left: 45%;
+            z-index: 2;
+            animation: 'right-left' 2s ease;
+            @include pad{
+                width: 130px;
+                top: 58%;
+                left: 41%;
+            }
+            @include mobile{
+                width: 100px;
+                top: 61%;
+            }
+            @include desktop-s{
+                width: 160px;
+            }
+        }
+        .top-alpaca{
+            width: 210px;
+            top: 42%;
+            left: 61%;
+            animation: 'right-left' 2s ease;
+            @include pad{
+                width: 130px;
+                left: 56%;
+            }
+            @include mobile{
+                width: 100px;
+                top: 28%;
+                left: 68%;
+            }
+            @include desktop-s{
+                width: 160px;
+            }
+        }
+        .top-cow{
+            width: 340px;
+            top: 36%;
+            left: 73%;
+            animation: 'right-left' 2s ease;
+            @include pad{
+                width: 230px;
+                left: 70%;
+            }
+            @include mobile{
+                width: 190px;
+                top: 42%;
+                left: 57%;
+            }
+            @include desktop-s{
+                width: 290px;
+            }
+        }
+
+    }
 }
 .indexTop.container-fluid{
     padding: 0;
 }
 
+@keyframes left-right {
+    0%{
+        opacity: 0;
+        transform: translateX(-30px);
+    }    
+    100%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes right-left {
+    0%{
+        opacity: 0;
+        transform: translateX(30px);
+    }    
+    100%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 // section 1: intro
-.indexWelcome{
+.welcome-wrapper{
     position: relative;
     .cloud5{
         position: absolute;
         top: 90px;
         right: 10px;
+        @include mobile{
+            display: none;
+        }
+        @include desktop-s{
+            width: 250px;
+        }
     }
     .cloud6{
         position: absolute;
         top: -70px;
         right: -180px;
-    }
-
-    .welcomeTitle{
-        position: absolute;
-        top: 22%;
-    }
-
-    .decYellow{
-        width: 57%;
-        min-width: 600px;
-        position: absolute;
-        top: 8%;
-        left: -15%;
-        z-index: -1;
-    }
-    .mainImg{
-        width: 60%;
-        min-width: 650px;
-        border-radius: 50%;
-        margin-left: 80px;
-    }
-    .nameIntroContainer{
-        background-image: url('../img/material/green_textbg.png');
-        background-repeat: no-repeat;
-        width: 545px;
-        height: 500px;
-        display: flex;
-        align-items: center;
-        position: absolute;
-        right: -3%;
-        bottom: -15%;
-
-        .nameIntro{
-            color: $color_W;
-            font-weight: 300;
-            padding: 0 70px;
-            line-height: 2;
+        @include mobile{
+            width: 150px;
+            right: 6px;
+        }
+        @include desktop-s{
+            width: 250px;
         }
     }
 
+    .indexWelcome{
+        position: relative;
+        @include pad{
+            height: 700px;
+        }
+
+        .welcomeTitle{
+            position: absolute;
+            top: 22%;
+            z-index: 5;
+            @include pad{
+                z-index: 3;
+                top: 10%;
+                left: 5%;
+            }
+        }
+
+        .decYellow{
+            width: 57%;
+            min-width: 600px;
+            position: absolute;
+            top: 8%;
+            left: -15%;
+            z-index: -1;
+            @include pad{
+                top: -20%;
+                left: -12%;
+                z-index: 1;
+                min-width: 300px;
+            }
+        }
+        .mainImg{
+            width: 60%;
+            min-width: 650px;
+            border-radius: 50%;
+            margin-left: 80px;
+            @include pad{
+                margin-left: 0;
+                position: absolute;
+                z-index: 1;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                min-width: 280px;
+                width: 70%;
+            }
+        }
+        .nameIntroContainer{
+            background-image: url('../img/material/green_textbg.png');
+            background-repeat: no-repeat;
+            width: 545px;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            position: absolute;
+            right: -3%;
+            bottom: -15%;
+            @include pad{
+                right: -7%;
+                bottom: -20%;
+            }
+            @include mobile{
+                top: 40%;
+                right: -10%;
+                background-size: contain;
+                width: 400px;
+                height: 340px;
+            }
+            @include desktop-s{
+                z-index: -1;
+                bottom: -50%;
+            }
+
+            .nameIntro{
+                color: $color_W;
+                font-weight: 300;
+                padding: 0 70px;
+                line-height: 2;
+                @include mobile{
+                    padding: 0 15% 0 20%;
+                }
+            }
+        }
+
+    }
 }
 
 // section 2: news
@@ -136,16 +342,41 @@
     flex-basis: 0;
     justify-content: space-evenly;
     position: relative;
+    margin-top: 250px;
+    @include pad{
+        flex-direction: column;
+        padding: 0 5%;
+    }
+    @include mobile{
+        margin-top: 60px;
+    }
+    @include desktop-s{
+        margin-top: 370px;
+    }
     .cloud7{
         position: absolute;
         top: -150px;
         left: -100px;
         z-index: -1;
+        @include mobile{
+            width: 70px;
+        }
+        @include desktop-s{
+            width: 250px;
+        }
     }
 
     .indexNewsTitle{
         h6{
             margin-top: 10px;
+            position: relative;
+            @include pad{
+                position: absolute;
+                top: -50px;
+                right: 10px;
+                z-index: -1;
+                opacity: .8;
+            }
         }
     }
 
@@ -153,23 +384,70 @@
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
+        @include pad{
+            margin: 30px 0;
+        }
         li{
+            @include pad{
+                margin-bottom: 20px;
+            }
+            @include desktop-s{
+                margin-left: 20px;
+            }
             p{
                 display: inline-block;
                 margin-right: 20px;
+                @include pad{
+                    display: block;
+                    margin-right: 0;
+                    margin-bottom: 5px;
+                }
+                @include desktop-s{
+                    display: block;
+                    margin-right: 5px;
+                }
             }
             h5{
                 display: inline-block;
+                @include pad{
+                    display: block;
+                }
+                @include desktop-s{
+                    display: block;
+                    margin-bottom: 5px
+                }
             }
         }
     }
 
     .viewMore{
         @include roundButton();
-
+        @include pad{
+            margin: 0 auto;
+            width: 120px;
+            height: 115px;
+        }
+        @include mobile{
+            width: 100px;
+            height: 96px;                
+        }
+        @include desktop-s{
+            align-self: center;
+        }
         .viewText{
             text-align: center;
             line-height: 154px;
+            @include pad{
+                line-height: 115px;
+            }
+            @include mobile{
+                line-height: 96px;
+                font-size: 15px;
+            }
+            @include desktop-s{
+                line-height: 121px;
+                font-size: 20px;
+            }
         }
     }
 }
@@ -177,6 +455,14 @@
 // section 3: memory
 .indexMemory{
     position: relative;
+    margin-top: 180px;
+    @include pad{
+        margin-top: 80px;
+        height: 700px;
+    }
+    @include mobile{
+        height: auto;
+    }
     img{
         // margin-bottom: 100px;
         margin: 0 auto 100px;
@@ -185,6 +471,12 @@
         max-width: 1200px;
         width: 80%;
         min-width: 800px;
+        @include pad{
+            transform: translateX(0);
+        }
+        @include mobile{
+            margin: 0 auto 120px;
+        }
     }
     .memoryText{
         background-image: url('../../img/material/yellow_textbg.png');
@@ -201,9 +493,27 @@
         left: 50%;
         transform: translateX(-10%);
         bottom: 0;
+        @include pad{
+            transform: translateX(-50%);
+            width: 700px;
+            padding: 8% 15%;
+            bottom: 0%;
+            justify-content: flex-start;
+        }
+        @include mobile{
+            width: 110%;
+            padding: 5% 20%;
+            bottom: -195px;
+        }
 
         h4{
             line-height: 1.3;
+        }
+
+        p{
+            @include desktop-s{
+                padding-right: 30%;
+            }
         }
     }
 }
@@ -215,6 +525,10 @@
 
 // section 4: activity
 .indexActivity{
+    margin-top: 80px;
+    @include pad{
+        margin-top: 40px;
+    }
     h6{
         margin-top: 10px;
     }
@@ -226,18 +540,33 @@
         .activityCard{
             .actPhotoContainer{
                 width: 300px;
-                padding-top: 100%;
+                height: 300px;
                 border-radius: 50%;
                 overflow: hidden;
                 position: relative;
+                margin: 0 auto;
+                @include pad{
+                    width: 250px;
+                    height: 250px;
+                }
+                @include mobile{
+                    width: 290px;
+                    height: 290px;
+                }
+                @include desktop-s{
+                    width: 230px;
+                    height: 230px
+                }
                 img{
-                    height: 300px;
+                    height: 100%;
+                    width: auto;
                     @include positionCenter();
                 }
             }
             h5{
                 text-align: center;
                 margin-top: 20px;
+                margin-bottom: 10px;
             }
         }
     }
@@ -245,10 +574,26 @@
     .viewMore{
         @include roundButton(){
             margin: 60px auto;
+            @include pad{
+                margin: 30px auto 0;
+                width: 120px;
+                height: 115px;
+            }
+            @include mobile{
+                width: 100px;
+                height: 96px;                
+            }
         };
         .viewText{
             text-align: center;
             line-height: 154px;
+            @include pad{
+                line-height: 115px;
+            }
+            @include mobile{
+                line-height: 96px;
+                font-size: 15px;
+            }
         }
     }
 }
@@ -263,9 +608,21 @@
         margin-top: 60px;
         display: flex;
         justify-content: space-evenly;
+        @include mobile{
+            margin-top: 20px;
+            flex-direction: column;
+        }
         .infoCard{
             padding: 0 30px;
             flex-basis: 30%;
+            @include pad{
+                padding: 0;
+                flex-basis: 33%;
+                margin-bottom: 20px;
+            }
+            @include desktop-s{
+                padding: 0;
+            }
 
             .mainIconBg{
                 width: 150px;
@@ -273,6 +630,11 @@
                 background-size: contain;
                 position: relative;
                 margin: 0 auto 40px;
+                @include mobile{
+                    width: 80px;
+                    height: 80px;
+                    margin: 0 auto 20px;
+                }
             }
         }
         .location{
@@ -281,6 +643,9 @@
                 img{
                     width: 70px;
                     @include positionCenter();
+                    @include mobile{
+                        width: 50px;
+                    }
                 }
             }
             .transportationIcon{
@@ -292,12 +657,27 @@
                 margin: 0 auto 20px;
                 .carIcon{
                     height: 35px;
+                    @include pad{
+                        height: 20px;
+                    }
+                    @include desktop-s{
+                        height: 30px;
+                    }
                 }
                 .busIcon{
                     height: 49px;
+                    @include pad{
+                        height: 28px;
+                    }
+                    @include desktop-s{
+                        height: 42px;
+                    }
                 }
                 p{
                     margin-left: 20px;
+                    @include pad{
+                        margin-left: 10px;
+                    }
                 }
             }
         }
@@ -308,6 +688,9 @@
                 img{
                     width: 80px;
                     @include positionCenter();
+                    @include mobile{
+                        width: 60px;
+                    }
                 }
             }
             .ticketPrice{
@@ -316,12 +699,31 @@
                 margin: 0 auto;
                 li{
                     margin-bottom: 35px;
+                    @include pad{
+                        text-align: center;
+                    }
+                    @include mobile{
+                        text-align: left;
+                        margin-bottom: 10px;
+                    }
                 }
                 p{
                     display: inline;
+                    @include pad{
+                        display: block;
+                    }
+                    @include mobile{
+                        display: inline;
+                    }
                 }
                 .tp{
                     float: right;
+                    @include pad{
+                        float: none;
+                    }
+                    @include mobile{
+                        float: right;
+                    }
                 }
             }
         }
@@ -332,6 +734,9 @@
                 img{
                     width: 70px;
                     @include positionCenter();
+                    @include mobile{
+                        width: 50px;
+                    }
                 }
             }
             p{
@@ -345,6 +750,9 @@
                     height: 70px;
                     background-color: $color_B;
                     margin: 10px auto;
+                    @include mobile{
+                        height: 40px;
+                    }
                 }
             }
         }
@@ -352,10 +760,26 @@
     .viewMore{
         @include roundButton(){
             margin: 60px auto;
+            @include pad{
+                margin: 30px auto 0;
+                width: 120px;
+                height: 115px;
+            }
+            @include mobile{
+                width: 100px;
+                height: 96px;                
+            }
         };
         .viewText{
             text-align: center;
             line-height: 154px;
+            @include pad{
+                line-height: 115px;
+            }
+            @include mobile{
+                line-height: 96px;
+                font-size: 15px;
+            }
         }
     }
 }
