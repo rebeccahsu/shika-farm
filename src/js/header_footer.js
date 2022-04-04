@@ -41,6 +41,8 @@ $(".hamMask").on("click", function () {
 });
 
 
+
+
 new Vue({
     el: '#appMenu',
     data: {
@@ -71,4 +73,20 @@ gsap.to(['.cow1', '.cow2'], {
         { duration: 1, rotation: -3},
         { duration: 1, rotation: 10},
     ]
+});
+new Vue({
+    el:'#blackBg',
+    data:()=>{
+        return{
+            isShow: false,
+        }
+    },
+    methods: {
+    
+        openCart(){
+            this.isShow = !this.isShow;
+            console.log(this.isShow);
+        }
+        
+    },
 });
