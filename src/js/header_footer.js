@@ -1,10 +1,4 @@
-// $(".ham_btn").on("click", function(){
-//     $(".ham_line").toggleClass("-on");
-//     $(".hamSel").toggleClass("-on");
-//     $(".hamMask").toggleClass("-on");
-//     $(".hamMask").animate({opacity: "1"});
-//     $(".hamMask").css({display: "block"});
-// });
+AOS.init();
 
 $(".ham_btn").on("click", function () {
     if ($(".hamSel").hasClass("-on")) {

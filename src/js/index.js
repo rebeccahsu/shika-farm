@@ -86,5 +86,3 @@ let scenesSelector = document.querySelectorAll('.p_scene');
 for( i = 0; i < scenesSelector.length; i++ ){
     scenes[i] = new Parallax(scenesSelector[i]);
 };
-
-AOS.init();

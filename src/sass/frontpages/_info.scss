@@ -82,6 +82,7 @@
 
 .timenFee{
     margin-top: 80px;
+    overflow: hidden;
     @include pad{
         margin-top: 50px;
     }
@@ -89,6 +90,7 @@
         position: relative;
         &:after{
             @include titleDecBall("../img/material/circle_yellow_800.png"){
+                top: 10px;
                 left: 300px;
                 @include pad{
                     left: 70%;
