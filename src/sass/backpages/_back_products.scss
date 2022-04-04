@@ -78,6 +78,7 @@
     border: 1px solid $color_G;
     align-items: center;
     margin: 5px;
+    
 
     * {
       flex-basis: 90px;
@@ -108,7 +109,9 @@
 
     // }
   }
+
 }
+
 
 #page_area {
   width: 1000px;
