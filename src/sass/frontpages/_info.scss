@@ -3,22 +3,38 @@
     background-image: url("../img/info/info_top.png");
     background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
     height: 500px;
+    @include mobile{
+        height: 250px;
+    }
     .pageTitle{
         text-align: center;
         line-height: 570px;
         color: $color_W;
+        @include mobile{
+            line-height: 320px;
+        }
     }
    
 }
 
 .infoLocation{
     .locTitle{
+        margin-top: 80px;
         margin-bottom: 20px;
         position: relative;
         &:after{
             @include titleDecBall("../img/material/circle_green_800.png"){
-        };
+                @include pad{
+                    left: 70%;
+                }
+            };
+        }
+        @include pad{
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 0;
         }
     }
     .infoMap{
@@ -26,6 +42,10 @@
     }
     .address{
         margin: 50px 0;
+        @include pad{
+            text-align: center;
+            margin: 30px 0;
+        }
     }
 
     .routeInfo{
@@ -34,6 +54,17 @@
         padding: 0 30px;
         align-items: center;
         margin-bottom: 30px;
+        @include pad{
+            padding: 0 15px;
+        }
+        @include mobile{
+            align-items: flex-start;
+        }
+        .routeIcon{
+            @include mobile{
+                width: 50px;
+            }
+        }
 
         .routeText{
             flex-grow: 1;
@@ -50,28 +81,58 @@
 }
 
 .timenFee{
+    margin-top: 80px;
+    @include pad{
+        margin-top: 50px;
+    }
     .timenFeeTitle{
         position: relative;
         &:after{
             @include titleDecBall("../img/material/circle_yellow_800.png"){
                 left: 300px;
+                @include pad{
+                    left: 70%;
+                }
             };
+        }
+        @include pad{
+            text-align: center;
         }
     }
 
     .timenFeeMain{
         display: flex;
         justify-content: center;
+        @include pad{
+            flex-direction: column;
+            align-items: center;
+        }
+        @include desktop-s{
+            overflow: hidden;
+        }
+
         .timenFeeContent{
             margin-top: 80px;
+            @include pad{
+                margin-top: 50px;
+            }
             &:first-child{
                 margin-right: 60px;
+                @include pad{
+                    margin-right: 0;
+                }
+                @include desktop-s{
+                    margin-right: 30px;
+                }
             }
             .tnfContentTitle{
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 margin-bottom: 30px;
+                @include pad{
+                    margin-bottom: 0px;
+                }
                 img{
                     height: 68px;
                 }
@@ -88,6 +149,10 @@
                 background-repeat: no-repeat;
                 .greenText{
                     color: $color_G;
+                }
+                @include desktop-s{
+                    width: 400px;
+                    height: 400px;
                 }
             }
             .timeText{
@@ -138,9 +203,18 @@
             }
         }
     }
+
 }
     
 .infoRule{
+    margin-top: 100px;
+    @include pad{
+        margin-top: 70px;
+        padding: 0 5%;
+    }
+    @include mobile{
+        padding: 0 3%;
+    }
     .ruleTitle{
         position: relative;
         margin-bottom: 80px;
@@ -148,15 +222,29 @@
             @include titleDecBall("../img/material/circle_red_800.png"){
                 top: -20px;
                 left: 170px;
+                @include pad{
+                    left: 60%;
+                    top: -50px;
+                }
             };
+        }
+        @include pad{
+            text-align: center;
+            margin-bottom: 50px;
         }
     }
 
     .rule{
         margin: 20px 0;
+        @include mobile{
+            margin: 15px 0;
+        }
         &:before{
             content: url("../img/info/red_dot.png");
             margin-right: 20px;
+            @include mobile{
+                margin-right: 15px;
+            }
         }
     }
 }
