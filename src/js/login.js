@@ -107,9 +107,18 @@ $('#send_psd').on('click', (e) => {
 // 註冊完成、重設密碼完成
 $('#register_complete').on('click', (e) => {
     e.preventDefault();
-    console.log(e.target);
+    // console.log(e.target);
+    // {前一步送出成功之後，維持登入狀態?}}
+    closebg();
 })
 
+// 重設密碼完成
+$('#psdReset_complete').on('click', (e) => {
+    e.preventDefault();
+    // console.log(e.target);
+    // {前一步送出成功之後，維持登入狀態?}}
+    location.href = "./index.html";
+})
 
 
 
