@@ -25,17 +25,47 @@
 
 
 
-
-        <!-- <div class="mb_cl_wrp">
-            <ul class="cl_list">
-                <li>訂單日期</li>
-                <li>訂單編號</li>
-                <li>品項數量</li>
-                <li>訂購總額</li>
-                <li>付款方式</li>
-                <li>訂單狀態</li>
+    <div class="accordion" id="accordionExample">
+                <li class="cl_t accordion-header" id="headingOne">
+                    <p>訂單日期</p>
+                    <p>訂單編號</p>
+                    <p>品項數量</p>
+                    <p>訂購總額</p>
+                    <p>付款方式</p>
+                    <p>訂單狀態</p>
+                </li>
+                <div class="cl_d" id="cl_d">
+                <li class="cl_t cl_list2" >
+                    <p>2022/03/20</p>
+                    <p>1000224</p>
+                    <p>1</p>
+                    <p>$690</p>
+                    <p>信用卡付款</p>
+                    <p>檢貨中</p>
+                    <button class="cel_list_btn">取消訂單</button>
+                    <button id="op_btn">+</button>
+                </li>
             </ul>
-        </div> -->
+
+            
+           
+            <div class="list_dt" id="list_dt" style="display:none">
+            <p>羊毛毯(綠)</p>
+            <p >1件</p>
+            <p>NTS.499</p>
+        </div>        
+            </div>
+            </div>
+
+             </div>
 
 
+       
+
+
+ <!-- footer -->
+ @@include('./layout/footer.html')
+ <script src="js/member_checklist.js"></script>
+
+      
     </body>
