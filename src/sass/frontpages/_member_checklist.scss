@@ -1,8 +1,72 @@
 .mb_cl_wrp{
-    width: 1000px;
     margin: 0 auto;
+    
+    // border: 1px solid red;
+
 }
 
 .cl_list{
+    // display: flex;
+    justify-content: space-between;
+    // width: 1000px;
+    color: $color_W;
+    line-height: 60px;
+    display: grid;
+    grid-template-columns: 100%;
+    
+}
+
+.cl_t{
+    display: grid;
+    grid-template-columns: 15% 15% 10% 15% 15% 14%;
+    text-align: center;
+    padding: 16px;
+    border: 1px solid green;
+    height: 60px;
+    background-color: $color_G;
+    
+}
+
+.cl_list2{
+    background-color: $color_W;
+    color: $color_G;
+    line-height: 60px;
+    border: 1px solid $color_G;
+    display: grid;
+    grid-template-columns: 15% 15% 10% 15% 15% 15% 10% 5%;
+    text-align: center;
+}
+
+
+.list_bd2{
     display: flex;
+    justify-content: space-between;
+    width: 1000px;
+    color: $color_G;
+    line-height: 60px;
+}
+
+
+.cel_list_btn{
+    background-color: $color_R;
+    width: 100px;
+    border: none;
+    color: $color_W;
+    cursor: pointer;
+    
+    // margin-left: 20px;
+
+
+}
+
+.list_dt{
+    display: grid;
+    grid-template-columns:  33% 33%;
+    padding: 16px;
+    border: 1px solid $color_G;
+    // color: $color_G;
+    // height: 80px;
+    text-align: center;
+    
+
 }
