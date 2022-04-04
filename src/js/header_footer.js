@@ -78,7 +78,7 @@ new Vue({
     el:'#blackBg',
     data:()=>{
         return{
-            isShow: false,
+            isShow: true,
         }
     },
     methods: {
