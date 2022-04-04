@@ -27,35 +27,64 @@ gsap.to('.sun', {
     // repeatRefresh: true,
 });
 
-gsap.to( ['.top-cloud1', '.top-cloud3'], {
+gsap.to( ['.top-cloud1', '.top-cloud3', '.cloud5', '.cloud7'], {
     repeat: -1,
     repeatRefresh: true,
     keyframes: [
-        { duration: 2, y: 10},
-        { duration: 2, y: 0},
+        { duration: 2, x: 10, y: 12},
+        { duration: 2, x: 0, y: 0},
     ]
 });
 
-gsap.to( ['.top-cloud2', '.top-cloud4'], {
+gsap.to( ['.top-cloud2', '.top-cloud4', '.cloud6'], {
     repeat: -1,
     repeatRefresh: true,
     keyframes: [
-        { duration: 3, y: 15},
-        { duration: 2, y: 0},
+        { duration: 3, x: -10, y: 18},
+        { duration: 2, x: 0, y: 0},
     ]
 });
 
-const t6 = gsap.timeline({
-    defaults: {
-      duration: .6,
-    },
-  });
+// const t6 = gsap.timeline({
+//     defaults: {
+//       duration: .6,
+//     },
+//   });
   
-t6.to('.top-horse', { x: '5%', })
-    .to('.top-sheep', { x: '5%', })
-    .to('.top-cow', { x: '-5%' });
+// t6.to('.top-horse', { x: '5%', })
+//     .to('.top-sheep', { x: '5%', })
+//     .to('.top-cow', { x: '-5%' });
 
-t6.to('.top-deer', { x: '5%' })
-    .to('.top-alpaca', { x: '-5%' });
+// t6.to('.top-deer', { x: '5%' })
+//     .to('.top-alpaca', { x: '-5%' });
 
-gsap.to('.top-pig', { x: '-5%', });
+// gsap.to('.top-pig', { x: '-5%', });
+
+// --------- Carousel ------------
+$(".owl-carousel").owlCarousel({
+    loop: true,
+    margin: 20,
+    // nav: true,
+    responsiveClass: true,
+    responsive: {
+      0: {
+        items: 1
+      },
+      576: {
+        items: 2
+      },
+      768: {
+        items: 3
+      }
+    }
+});
+
+//==== parrallax.js ====
+
+let scenes = [];
+let scenesSelector = document.querySelectorAll('.p_scene');
+for( i = 0; i < scenesSelector.length; i++ ){
+    scenes[i] = new Parallax(scenesSelector[i]);
+};
+
+AOS.init();

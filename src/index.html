@@ -52,8 +52,8 @@
     <section class="indexNews container-lg">
         <img src="img/index/cloud.png" alt="cloud" class="side-cloud cloud7">
         <div class="indexNewsTitle">
-            <h3>最新消息</h3>
-            <h6>NEWS</h6>
+            <h3 data-aos="fade-right" data-aos-duration="1500">最新消息</h3>
+            <h6 data-aos="fade-right" data-aos-duration="2500">NEWS</h6>
         </div>
         <ul id="indexNewsApp" class="indexNewsList">
             <li v-for="news in newslist">
@@ -61,7 +61,7 @@
                 <h5>{{news.title}}</h5>
             </li>
         </ul>
-        <a href="news.html" class="viewMore">
+        <a href="news.html" class="viewMore" data-aos="zoom-in" data-aos-duration="1500">
             <h5 class="viewText">瀏覽更多</h5>
         </a>
     </section>
@@ -88,8 +88,8 @@
 
     <!-- Section 4: 熱門活動 -->
     <section class="indexActivity container-lg">
-        <h3>熱門活動</h3>
-        <h6>ACTIVITY</h6>
+        <h3 data-aos="fade-right" data-aos-duration="1500">熱門活動</h3>
+        <h6 data-aos="fade-right" data-aos-duration="2500">ACTIVITY</h6>
         <div class="activity owl-carousel owl-theme" id="indexActivity">
             <div class="activityCard" v-for="activity in activities">
                 <div class="actPhotoContainer">
@@ -98,17 +98,17 @@
                 <h5>{{activity.title}}</h5>
             </div>
         </div>
-        <a href="activity.html" class="viewMore">
+        <a href="activity.html" class="viewMore" data-aos="zoom-in" data-aos-duration="1500">
             <h5 class="viewText">瀏覽更多</h5>
         </a>
     </section>
 
     <!-- Section 5: 地圖票價 -->
     <section class="indexInfo container-lg margintop_100">
-        <h6>ACCESS · PRICE</h6>
+        <h6 data-aos="fade-right" data-aos-duration="2500">ACCESS · PRICE</h6>
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3640.9839445313764!2d121.27365901421894!3d24.13720197980821!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34689338f46799ed%3A0xb62a5cb50d5871f5!2zNTQ25Y2X5oqV57ij5LuB5oSb6YSJ5LuB5ZKM6LevMTY26Jmf!5e0!3m2!1szh-TW!2stw!4v1648535811253!5m2!1szh-TW!2stw" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="indexMap"></iframe>
         <div class="infoCards">
-            <div class="infoCard location">
+            <div class="infoCard location" data-aos="zoom-in-up" data-aos-duration="1500">
                 <div class="mainIconBg">
                     <img src="img/icon/map.png" alt="map_icon">
                 </div>
@@ -121,7 +121,7 @@
                     <p>搭乘【6676】、【6089】或【6002】公車至【牧場站】下車。</p>
                 </div>
             </div>
-            <div class="infoCard tickets">
+            <div class="infoCard tickets" data-aos="zoom-in-up" data-aos-duration="2100">
                 <div class="mainIconBg">
                     <img src="img/icon/tickets.png" alt="tickets_icon">
                 </div>
@@ -131,7 +131,7 @@
                     <li><p>優待票</p><p class="tp">NT$100</p></li>
                 </ul>
             </div>
-            <div class="infoCard businessHours">
+            <div class="infoCard businessHours" data-aos="zoom-in-up" data-aos-duration="2400">
                 <div class="mainIconBg">
                     <img src="img/icon/clock.png" alt="clock_icon">
                 </div>
@@ -139,7 +139,7 @@
                 <p>18:00</p>
             </div>
         </div>
-        <a href="info.html" class="viewMore">
+        <a href="info.html" class="viewMore" data-aos="zoom-in" data-aos-duration="1500">
             <h5 class="viewText">瀏覽詳情</h5>
         </a>
     </section>
