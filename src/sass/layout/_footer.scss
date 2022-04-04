@@ -122,6 +122,9 @@
             
         }
         .tibameMessage{
+            p{
+                margin-bottom: 0px;
+            }
             @include textCenter();
             color: $color_W;
             margin-top: 90px;
