@@ -41,6 +41,8 @@ $(".hamMask").on("click", function () {
 });
 
 
+
+
 new Vue({
     el: '#appMenu',
     data: {
@@ -52,5 +54,22 @@ new Vue({
             { title: '周邊商品', link: '../products.html', icon: './img/icon/products_icon.png' },
 
         ],
+    },
+});
+
+new Vue({
+    el:'#blackBg',
+    data:()=>{
+        return{
+            isShow: false,
+        }
+    },
+    methods: {
+    
+        openCart(){
+            this.isShow = !this.isShow;
+            console.log(this.isShow);
+        }
+        
     },
 });
