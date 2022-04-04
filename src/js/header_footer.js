@@ -54,3 +54,21 @@ new Vue({
         ],
     },
 });
+
+gsap.to(['.tree1', '.tree2'], {
+    repeat: -1,
+    keyframes: [
+        { duration: 2, rotation: 3},
+        { duration: 1, rotation: -3},
+        { duration: 1, rotation: -10},
+    ]
+});
+
+gsap.to(['.cow1', '.cow2'], {
+    repeat: -1,
+    keyframes: [
+        { duration: 2, rotation: 3},
+        { duration: 1, rotation: -3},
+        { duration: 1, rotation: 10},
+    ]
+});

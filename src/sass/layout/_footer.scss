@@ -2,45 +2,105 @@
     position: relative;
     width: 100%;
 
-    // .footersvg{
-    //     color: $color_B;
-    //     position: absolute;
-    //     top: -50px;
-    //     left: 0;
-    // }
+    .footersvg{
+        color: $color_B;
+        position: absolute;
+        top: -50px;
+        left: 0;
+    }
 
-    // .tree1{
-    //     width: 90px;
-    // }
+    .tree1{
+        width: 120px;
+        top: -20%;
+        left: 12%;
+        transform: rotate(-15deg);
+        @include pad{
+            width: 80px;
+            top: -12%;
+            left: 11%;
+            transform: rotate(-10deg);
+        }
+        @include mobile{
+            width: 50px;
+            top: -33px;
+            left: 12%;
+            transform: rotate(-10deg);
+        }
+    }
 
-    // .tree2{
-    //     width: 66px;
-    // }
+    .tree2{
+        width: 78px;
+        top: -54px;
+        left: 25%;
+        transform: rotate(-10deg);
+        @include pad{
+            width: 60px;
+            top: -11%;
+            left: 25%;
+        }
+        @include mobile{
+            width: 40px;
+            top: -30px;
+            left: 25%;
+            transform: rotate(-10deg);
+        }
+    }
 
-    // .cow1{
-    //     width: 183px;
-    //     top: -100px;
-    //     left: 0;
-    // }
+    .cow1{
+        width: 125px;
+        top: -92px;
+        left: 63%;
+        transform: rotate(10deg);
+        @include pad{
+            width: 80px;
+            top: -13%;
+        }
+        @include mobile{
+            width: 50px;
+            top: -35px;
+        }
+    }
 
-    // .cow2{
-    //     width: 140px;
-    // }
+    .cow2{
+        width: 95px;
+        top: -8%;
+        left: 83%;
+        transform: rotate(15deg);
+        @include pad{
+            width: 65px;
+            top: -6%;
+        }
+        @include mobile{
+            width: 37px;
+            top: -9px;
+            transform: rotate(10deg);
+        }
+    }
 
     // .footerdec{
     //     position: absolute;
     //     @include borderTest();
+    //     top: -113px;
+    //     left: 50%;
+    //     transform: translateX(-50%);
     // }
 
-    // .hilltop{
-    //     width: 100%;
-    //     display: block;
-    // }
+    .hilltop{
+        width: 100%;
+        display: block;
+        margin-top: 200px;
+        @include mobile{
+            margin-top: 100px;
+        }
+    }
 
     .ftop{
         width: 100%;
         display: block;
         margin-top: 100px;
+        @include mobile{
+            margin-top: 80px;
+        }
     }
 
     .footerbg{
