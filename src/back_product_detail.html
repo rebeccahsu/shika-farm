@@ -38,7 +38,8 @@
                     <input type="text" id="prd_name">
                     <div class="info_box">
                         <div>
-                            <p for="prd_cost">成本</p><input type="text" id="prd_cost">
+                            <p for="prd_cost">成本</p>
+                            <input type="text" id="prd_cost">
                         </div>
                         <div>
                             <p for="prd_price">售價</p>
@@ -53,7 +54,12 @@
                         </div>
                         <div>
                             <p for="prd_kind">商品類別</p>
-                            <select type="text" id="prd_kind"></select><br>
+                            <select type="text" id="prd_kind">
+                                <option value="n" selected style="display: none;">請選擇</option>
+                                <option value="食品">食品</option>
+                                <option value="冷凍食品">冷凍食品</option>
+                                <option value="日常用品">日常用品</option>
+                            </select><br>
                         </div>
                     </div>
 
@@ -67,7 +73,7 @@
                 <hr>
                 <article>
                     <h5>商品介紹</h5>
-                    <button class="btn-yellow" id="add_prdIntroduce">新增區塊</button><span>※最少2個區塊，最多5個區塊</span>
+                    <button class="btn-yellow" id="add_prdIntroduce" type="button">新增區塊</button><span>※最少2個區塊，最多5個區塊</span>
                     <ul id="introduce_area">
                         <li class="prd_introduce">
                             <div class="select_image">
@@ -88,11 +94,13 @@
                 </article>
                 <div class="submit_area">
 
-                    <button id="submit" type="submit" class="btn-green">新增</button><button type="button" id="Cancel" >取消</button>
+                    <button id="submit" type="button" class="btn-green">新增</button><button type="button" id="cancel" >取消</button>
                 </div>
             </form>
         </div>
     </main>
+
+    <script src="./js/back_product_detail.js"></script>
 </body>
 
 </html>
