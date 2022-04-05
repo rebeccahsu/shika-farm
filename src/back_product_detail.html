@@ -19,17 +19,34 @@
             "back_title" : "新增商品"
             })
 
+            <!-- 彈窗 -->
+            <div id="back_bg">
+                <div id="pop_box">
+                    <span>商品主圖1</span>
+                    <input type="file" name="select_topImage1" id="file1"><br>
+                    <span>商品主圖2</span>
+                    <input type="file" name="select_topImage2" id="file2"><br>
+                    <span>商品主圖3</span>
+                    <input type="file" name="select_topImage3" id="file3"><br>
+                    <span>商品主圖4</span>
+                    <input type="file" name="select_topImage4" id="file4"><br>
+                    <button type="button" class="btn-green upload">上傳</button>
+                    <button type="button" class="cancel">取消</button>
+                    <i class="bi bi-x"></i>
+                </div>
+            </div>
+
             <form action="" method="POST">
                 <div class="prd_image_area">
                     <h5 class="select_images">選擇商品照片</h5>
                     <button type="button" class="btn-yellow" id="topImages">選擇圖片</button><br>
                     <figure>
-                        <div class="select_topImage1"><button type="button" class="arror_l"><i
-                                    class="bi bi-chevron-left"></i></button><span>請上傳圖片</span><button type="button"
+                        <div class="select_topImage1 select_topImage"><button type="button" class="arror_l"><i
+                                    class="bi bi-chevron-left"></i></button><img src="" alt=""><span>請上傳圖片</span><button type="button"
                                 class="arror_r"><i class="bi bi-chevron-right"></i></button></div>
-                        <div class="select_topImage2"><img src="./img/logo_16B1AA.svg" alt=""></div>
-                        <div class="select_topImage3"><img src="./img/logo_16B1AA.svg" alt=""></div>
-                        <div class="select_topImage4"><img src="./img/logo_16B1AA.svg" alt=""></div>
+                        <div class="select_topImage2 select_topImage"><img src="./img/logo_16B1AA.svg" alt=""></div>
+                        <div class="select_topImage3 select_topImage"><img src="./img/logo_16B1AA.svg" alt=""></div>
+                        <div class="select_topImage4 select_topImage"><img src="./img/logo_16B1AA.svg" alt=""></div>
                     </figure>
 
                 </div>
@@ -73,30 +90,36 @@
                 <hr>
                 <article>
                     <h5>商品介紹</h5>
-                    <button class="btn-yellow" id="add_prdIntroduce" type="button">新增區塊</button><span>※最少2個區塊，最多5個區塊</span>
+                    <button class="btn-yellow" id="add_prdIntroduce"
+                        type="button">新增區塊</button><span>※最少2個區塊，最多5個區塊</span>
                     <ul id="introduce_area">
                         <li class="prd_introduce">
                             <div class="select_image">
                                 <img src="./img/porducts/cow_1200.jpg" alt=""><span>更換圖片</span>
                             </div>
-                            <textarea type="text" class="prd_introduce_input" row="1" cols="2" maxlength="30"></textarea>
+                            <textarea type="text" class="prd_introduce_input" row="1" cols="2"
+                                maxlength="30"></textarea>
                         </li>
                         <li class="prd_introduce">
                             <div class="select_image"><span>上傳圖片</span></div>
-                            <textarea type="text" class="prd_introduce_input" row="1" cols="2" maxlength="30"></textarea>
+                            <textarea type="text" class="prd_introduce_input" row="1" cols="2"
+                                maxlength="30"></textarea>
                         </li>
                         <li class="prd_introduce">
                             <div class="select_image"><span>上傳圖片</span></div>
-                            <textarea type="text" class="prd_introduce_input" row="1" cols="2" maxlength="30"></textarea>
+                            <textarea type="text" class="prd_introduce_input" row="1" cols="2"
+                                maxlength="30"></textarea>
                             <i class="bi bi-x"></i>
                         </li>
                     </ul>
                 </article>
                 <div class="submit_area">
 
-                    <button id="submit" type="button" class="btn-green">新增</button><button type="button" id="cancel" >取消</button>
+                    <button id="submit" type="button" class="btn-green">新增</button><button type="button"
+                        id="cancel">取消</button>
                 </div>
             </form>
+
         </div>
     </main>
 
