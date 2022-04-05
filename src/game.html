@@ -27,8 +27,9 @@
             text-align: center;
         }
         .game-bg{
-            background-image: url("img/game/bg.jpg");
-            background-size: contain;
+            background-image: url("img/game/game-bg.png");
+            background-size: cover;
+            background-repeat: no-repeat;
             width: 100%;
             height: 100vh;
             /* position: relative; */
@@ -36,12 +37,7 @@
 
         .sheep{
             position: relative;
-            /* border: 1px solid blue; */
             display: block;
-            /* display: flex; */
-            /* top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%); */
             overflow: hidden;
             width: 400px;
             margin: 0 auto;
@@ -50,7 +46,6 @@
         .fur{
             position: absolute;
             z-index: 40;
-
         }
 
 
@@ -63,6 +58,25 @@
             /* border: 1px solid blue; */
             width: 150px;
             z-index: 50;
+        }
+
+        @media (max-width: 576px){
+            p{
+            margin-bottom: 10px;
+            }
+            .game-bg{
+                height: 95vh;
+            }
+            .sheep{
+                transform: scale(.7) translateX(-12%);
+            }
+
+            .shaver{
+                position: fixed;
+                /* border: 1px solid blue; */
+                width: 100px;
+                z-index: 50;
+            }
         }
 
         .fall{
@@ -99,7 +113,7 @@
             <img src="img/game/no_fur.png" alt="" class="sheep-img">
             <img src="img/game/sheep_after.png" alt="" class="sheep-done" style="display: none;">
             <!-- <div class="fur" style="top: 8px; left: 53px;"> -->
-            <div class="fur" style="top: -20px; left: 38px;">
+            <div class="fur" style="top: -3px; left: 51px;">
                 <img src="img/game/headfur.png" alt="" >
             </div>
             <div class="fur" style="top: 98px; left: 76px;">
@@ -180,42 +194,72 @@
         // console.log(fur_x);
         // console.log(fur_y);
         // console.log(fur.clientTop);
-        document.addEventListener("mousemove", function(e){
-            // console.log(e.pageX); // 滑鼠距離頁面最左側的距離
-            // console.log(e.pageY); // 滑鼠距離頁面最上方的距離
-            //console.log(window.scrollY);
-            
-            shaver.style.left = e.pageX - 60 + "px";
-            shaver.style.top = e.pageY - window.scrollY - 60 + "px";
-            if(document.querySelector('.fur') == undefined){
-                $('.sheep-img').fadeOut(2000);
-                setTimeout(function(){
-                    $('.sheep-done').fadeIn(2000);
-                }, 2000)
-            }
+        if(window.innerWidth >= 768){
+            document.addEventListener("mousemove", function(e){
+                // console.log(e.pageX); // 滑鼠距離頁面最左側的距離
+                // console.log(e.pageY); // 滑鼠距離頁面最上方的距離
+                //console.log(window.scrollY);
+                
+                shaver.style.left = e.pageX - 60 + "px";
+                shaver.style.top = e.pageY - window.scrollY - 60 + "px";
+                if(document.querySelector('.fur') == undefined){
+                    $('.sheep-img').fadeOut(2000);
+                    setTimeout(function(){
+                        $('.sheep-done').fadeIn(2000);
+                    }, 2000)
+                }
 
-        });
-
-        fur.forEach(function(el){
-            // console.log(el);
-            el.addEventListener("mousemove", function(){
-                // console.log(0);
-                el.classList.add("fall");
-                setTimeout(function(){
-                    el.remove();
-                }, 2000)
             });
-        });
 
-        gsap.to('.shaver', {
-            duration: 1,
-            repeat: -1,
-            // repeatRefresh: true,
-            keyframes: [
-                { duration: 1, rotation: 10},
-                { duration: 1, rotation: 0},
-            ]
-        });
+            fur.forEach(function(el){
+                // console.log(el);
+                el.addEventListener("mousemove", function(){
+                    // console.log(0);
+                    el.classList.add("fall");
+                    setTimeout(function(){
+                        el.remove();
+                    }, 2000)
+                });
+            });
+
+            gsap.to('.shaver', {
+                duration: 1,
+                repeat: -1,
+                // repeatRefresh: true,
+                keyframes: [
+                    { duration: 1, rotation: 10},
+                    { duration: 1, rotation: 0},
+                ]
+            });
+        }else{
+            shaver.remove();
+            let instruction = document.querySelector("p");
+            instruction.innerHTML = "動動手指來幫綿羊剃毛吧！";
+            document.addEventListener("touchmove", function(e){
+                
+                // console.log(e);
+            
+                if(document.querySelector('.fur') == undefined){
+                    $('.sheep-img').fadeOut(2000);
+                    setTimeout(function(){
+                        $('.sheep-done').fadeIn(2000);
+                    }, 2000)
+                }
+
+            });
+
+            fur.forEach(function(el){
+                // console.log(el);
+                el.addEventListener("touchmove", function(){
+                    // console.log(0);
+                    el.classList.add("fall");
+                    setTimeout(function(){
+                        el.remove();
+                    }, 2000)
+                });
+            });
+
+        }
     </script>
 </body>
 
