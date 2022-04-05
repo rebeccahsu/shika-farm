@@ -1,0 +1,334 @@
+#login_box {
+	background-color: $color_W;
+	border-radius: 5px;
+	width: 50%;
+	min-width: 840px;
+	display: flex;
+	z-index: 1001;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	@media (max-width: 840.98px) {
+	min-width: 90%;
+	}
+
+  .shikaBlock {
+    max-width: 326px;
+    height: 596px;
+    background-image: url(../../img/material/login_block.jpg);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    border-radius: 5px 0 0 5px;
+    display: flex;
+
+    h1 {
+      padding-top: 200px;
+      margin: 0 25px;
+      flex-grow: 1;
+
+      img {
+        width: 274px;
+      }
+    }
+
+    @media (max-width: 840.98px) {
+      display: none;
+    }
+  }
+  .loginBlock {
+    margin: 40px auto;
+
+    // 登入表單,重設密碼表單
+    #login_form {
+      width: 325px;
+      margin: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-items: center;
+      // @include borderTest;
+      @media (max-width: 840.98px) {
+        width: auto;
+      }
+      @include mobile {
+        max-height: 100vw;
+      }
+
+      h4 {
+        margin-bottom: 20px;
+      }
+      h5 > span {
+        font-size: $fs-xs;
+        color: red;
+      }
+
+      label {
+        height: 42px;
+      }
+      input {
+        // margin-top: 3px;
+        padding: 10px 20px;
+        width: 100%;
+        min-width: 222px;
+        height: 50px;
+        background-color: #ededed;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        border: 1px solid #c4c4c4;
+        font-size: $fs-xs;
+        &:focus {
+          border: 1px solid $color_G;
+        }
+      }
+
+      .forget {
+        margin-top: 10px;
+        margin-bottom: 25px;
+        align-self: flex-end;
+        color: $color_B;
+        transition: 0.5s;
+        &:hover {
+          color: $color_G;
+        }
+      }
+      #login_btn {
+        @include buttonSet;
+        width: 100%;
+        border-radius: 5px;
+        height: 50px;
+        font-size: $fs-xs;
+        margin-bottom: 15px;
+        cursor: pointer;
+        &:hover {
+          background-color: darken($color_G, 10);
+        }
+      }
+      #FBlogin_btn {
+        @include buttonSet(#4267b2, $color_W, #4267b2);
+        width: 100%;
+        border-radius: 5px;
+        height: 50px;
+        font-size: $fs-xs;
+        margin-bottom: 15px;
+        cursor: pointer;
+        &:hover {
+          background-color: darken(#4267b2, 10);
+        }
+      }
+      .register {
+        align-self: center;
+        color: $color_B;
+        transition: 0.5s;
+        &:hover {
+          color: $color_G;
+        }
+      }
+      // 繼續的按鈕
+      #next,
+      #send,
+      #send_mail,
+      #send_psd,
+      #register_complete,
+      #psdReset_complete {
+        margin-top: 75px;
+        @include buttonSet;
+        width: 100%;
+        border-radius: 5px;
+        height: 50px;
+        font-size: $fs-xs;
+        cursor: pointer;
+        &:hover {
+          background-color: darken($color_G, 10);
+        }
+      }
+    }
+    .bi-x {
+      font-size: 40px;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+	  cursor: pointer;
+    }
+  }
+}
+
+div#back_bg {
+	background-color: rgba(45, 45, 45, 0.5);
+	opacity: 1;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	position: fixed;
+	display: flex;
+	align-items: center;
+}
+
+.register_link{
+	text-align: center;
+  cursor: pointer;
+}
+
+// 註冊填資料 表單
+.register_form {
+  margin: 0 20px;
+  width: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  // @include borderTest;
+  @media (max-width: 840.98px) {
+    width: auto;
+  }
+
+  h5 > span {
+    color: red;
+    font-size: $fs-xs;
+  }
+
+  h4 {
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+
+  input {
+    padding: 10px 20px;
+    width: 100%;
+    height: 50px;
+    background-color: #ededed;
+    border-radius: 5px;
+    border: 1px solid #c4c4c4;
+    font-size: $fs-xs;
+    margin-bottom: 10px;
+    padding: 0 20px;
+
+    @include mobile {
+      height: 40px;
+      // width: 222px;
+    }
+  }
+
+  #next,
+  #register_complete,
+  #send,
+  #send_mail,
+  #send_psd,
+  #psdReset_complete {
+    margin-top: 20px;
+    @include buttonSet;
+    width: 100%;
+    border-radius: 5px;
+    height: 50px;
+    font-size: $fs-xs;
+    cursor: pointer;
+    &:hover {
+      background-color: darken($color_G, 10);
+    }
+
+    @media (max-width: 840.98px) {
+      margin-top: 0;
+    }
+  }
+
+  p {
+    margin: 0 auto;
+  }
+  img {
+    width: 195px;
+    margin: 40px auto;
+  }
+}
+
+// ==================
+#twzipcode {
+  div {
+    display: inline;
+    select {
+      font-size: $fs-xs;
+      width: 219px;
+      height: 50px;
+      background-color: #ededed;
+      border-radius: 5px;
+      border: 1px solid #c4c4c4;
+      margin-bottom: 5px;
+      padding: 0 20px;
+      @media (max-width: 840.98px) {
+        width: 100%;
+      }
+      @include mobile {
+        // width: 222px;
+        height: 40px;
+      }
+    }
+    .zipcode {
+      display: none;
+    }
+
+    .county {
+      margin-right: 8px;
+    }
+  }
+}
+
+// ==================
+
+// 重設密碼表單
+#password_reset {
+	width: 325px;
+	margin: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-items: center;
+	// @include borderTest;
+	@media (max-width: 840.98px) {
+	width: auto;
+	}
+
+	h5 > span {
+		font-size: $fs-xs;
+		color: red;
+	}
+
+	h4 {
+	margin-bottom: 20px;
+	}
+
+	p {
+	margin-bottom: 20px;
+	}
+	input {
+	padding: 10px 20px;
+	width: 100%;
+	height: 50px;
+	background-color: #ededed;
+	border-radius: 5px;
+	margin-bottom: 5px;
+	border: 1px solid #c4c4c4;
+	font-size: $fs-xs;
+	&:focus {
+	border: 1px solid $color_G;
+	}
+  }
+  // 繼續的按鈕
+  #send_mail,
+  #send_psd {
+    margin-top: 40px;
+    @include button ($color-G);
+    width: 100%;
+    height: 50px;
+    @media (max-width: 840.98px) {
+      margin-top: 30px;
+    }
+  }
+}
+
+.register_form.form-off{
+  display: none;
+}
+
+#login_box.-off{
+  display: none;
+}
+
+#back_bg.-off{
+  display: none;
+}
