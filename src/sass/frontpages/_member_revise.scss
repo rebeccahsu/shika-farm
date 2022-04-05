@@ -7,6 +7,7 @@
 }
 
 
+
 //姓名
 .mb_name{
     margin-top: 40px;
@@ -14,59 +15,55 @@
     justify-content: space-between;
 }
 
-//地址
-.m_address.twzipcode {
+
+
+.mb_adr{
     display: flex;
     padding-top: 40px;
-    // justify-content: space-between;
-
 }
 
-.m_address.twzipcode select{
-
-   width: 156px;
-   height: 46px;
-   border: 1px solid rgba(196, 196, 196, 0.8);
-   border-radius: 4px;
-
-
-.m_address.twzipcode input{
-    border: 1px solid rgba(196, 196, 196, 0.8);
-    height: 46px;
-    width: 350px;
-    border-radius: 4px;
-
+.mb_adr select #city #area{
+    border: 1px solid green;
+    height: 460px;
+    width: 100px;
 }
-   
-    
-}
+
+
 
 
 //電話
-.mb_tel{
-    display: flex;
-    justify-content: space-between;
-    padding-top: 40px;
+// .mb_tel input{
+//     // width: 700px;
+//     height: 24px;
+//     border: 1px solid rgba(196, 196, 196, 0.8);
+//     border-radius: 4px;
+// }
+  
 
-}
-.mb_tel .mb_pw input{
-    width: 700px;
-    height: 46px;
+//所有input框
+.mb_input{
+    height: 25px;
     border: 1px solid rgba(196, 196, 196, 0.8);
     border-radius: 4px;
 }
 
-
 //密碼
 .mb_pw{
-    padding-top: 40px;
-    display: flex;
+    padding-top: -5px;
+    .mb_input{
 
+    }
+}
+
+.ch_pw{
+    display: inline-block;
 }
 
 
 
-
+.lbt{
+    display: inline-block;
+}
 
 .mb_btn{
     display: flex;
@@ -90,10 +87,20 @@
 }
 
 .ch_pw{
-    display: block;
+    display: inline-block;
     color: $color_G;
 }
 
+.cts{
+    padding: 10px;
+
+    .ads{
+        border: 1px solid #c4c4c4;
+        padding: 3px;
+        border-radius: 4px;
+        margin: 0 5px;
+    }
+}
 
 
 #op_btn{
