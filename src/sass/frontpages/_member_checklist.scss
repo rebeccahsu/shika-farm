@@ -1,7 +1,7 @@
 .mb_cl_wrp{
     margin: 0 auto;
-    
-    // border: 1px solid red;
+    width: 1200px;
+    border: 1px solid red;
 
 }
 
@@ -13,6 +13,7 @@
     line-height: 60px;
     display: grid;
     grid-template-columns: 100%;
+    
     
 }
 
@@ -53,6 +54,7 @@
     border: none;
     color: $color_W;
     cursor: pointer;
+    border-radius: 4px;
     
     // margin-left: 20px;
 
@@ -61,7 +63,7 @@
 
 .list_dt{
     display: grid;
-    grid-template-columns:  33% 33%;
+    grid-template-columns:  33% 33% 33%;
     padding: 16px;
     border: 1px solid $color_G;
     // color: $color_G;
