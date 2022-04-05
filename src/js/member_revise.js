@@ -20,9 +20,9 @@ $.ajax({
 					if(city == res[i].name) {
                         console.log(res[j].districts)
 
-					    // $('#area').append(`
-					    // <option>${res[j].districts[j].name}</option>
-					    // `)
+					    $('#area').append(`
+					    <option>${res[j].districts.name}</option>
+					    `)
 					}
 				}
 			});
