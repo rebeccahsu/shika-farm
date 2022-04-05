@@ -31,7 +31,7 @@
 				</ul>
 			</nav>
               <!-- 購物車彈跳窗 -->
-              <div v-if="!isShow"  class="blackBg"  id="blackBg">
+              <div v-if="isShow"  class="blackBg"  id="blackBg">
                 <div class="shoppingCar container">
                     <div class="carTitle"><h5>購物車明細</h5></div>
                     <ul>
@@ -42,8 +42,43 @@
                             <p>小計</p>
                         </li>
                     
-                        <li></li>
+                        <li class="carArr">
+                            <img src="../img/porducts/blanket_g.jpg" alt="">
+                            <p>羊毛毯(綠)</p>
+                            <p>NT$ 499</p>
+                            <p>
+                                <input
+								type="button"
+								class="addBtn spBtn"
+								value="-"
+							/><input
+								type="text"
+								class="quantity"
+                                value="1"
+							/><input
+								type="button"
+								class="subBtn spBtn"
+								value="+"
+							/>
+                            </p>
+                            <p>NT$ 499</p>
+
+                            <img
+							src="./img/icon/garbageCan.png"
+							class="garbageCan"
+						    />
+                        </li>
+
+                        <div class="carBottom">
+                            <p>結帳總金額</p>
+                            <p>NT$ 499</p> 
+                        </div>
+                        <div class="spOrout">
+                            <button class="gosp">繼續購物</button>
+                            <button class="Co">結帳</button>
+                        </div>
                     </ul>
+
                 </div>
             </a>
 		</div>

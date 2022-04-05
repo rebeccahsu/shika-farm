@@ -251,12 +251,104 @@
             @include textCenter();
            }
            .carBar{
-               display: flex;
-               justify-content: space-around;
+               display: grid;
+               grid-template-columns: 45% 15% 15% 15%;
                background-color: $color_W;
-               border-bottom: 1px solid $color_B;
-               padding: 30px;
+               padding: 20px 0;
+               text-align: center;
+               position: relative;
+
+                :after{
+                    content: '';
+                    width: 85%;
+                    position: absolute;
+                    top: 80%;
+                    left: 8%;
+                    border: 1px solid $color_B;
+                    background-color: $color_B;
+                }
            }
+           .carArr{
+               display: grid;
+               grid-template-columns: 25% 20% 15% 15% 15% 10%;
+               background-color: $color_W;
+               text-align: center;
+               
+               p{
+                   margin-top: 50px;
+               }
+               img{
+                   width: 150px;
+               }
+               .quantity {
+				width: 30px;
+				height: 30px;
+				@include textCenter();
+				border: 1px solid $color_Y;
+				margin: 0;
+				display: inline-block;
+			    }
+
+               .spBtn {
+				width: 30px;
+				height: 30px;
+				font-weight: bold;
+				border: 1px solid $color_Y;
+				background-color: $color_Y;
+				color: $color_W;
+				outline-style: inherit;
+				cursor: pointer;
+			    }
+                .garbageCan {
+                    width: 20px;
+                    height: 20px;
+                    margin-top: 50px;
+                    cursor: pointer;
+                }
+            }
+            .carBottom{
+                background-color: $color_W;
+                position: relative;
+                padding: 15px 50px;
+                text-align: end;
+
+                ::before{
+                    content: '';
+                    width: 85%;
+                    position: absolute;
+                    top: 0;
+                    left: 8%;
+                    border: 1px solid $color_B;
+                    background-color: $color_B;
+                }
+                p{
+                    display: inline-block;
+                    margin: 0 10px;
+                }
+            }
+            .spOrout{
+                background-color: $color_W;
+                margin: 0 auto;
+                text-align: center;
+                padding: 20px;
+
+                button{
+                    width: 80px;
+                    height: 40px;
+                    margin: 10px;
+                }
+                .gosp{
+                    border: 1px solid $color_B;
+                    background-color: $color_W;
+                    cursor: pointer;
+                }
+                .Co{
+                    border: 1px solid $color_R;
+                    background-color: $color_R;
+                    color: $color_W;
+                    cursor: pointer;
+                }
+            }
         }
     }
                 
