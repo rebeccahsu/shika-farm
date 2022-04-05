@@ -112,6 +112,7 @@ form {
     vertical-align: middle;
     position: relative;
     text-align: left;
+    height: 28px;
   }
   input {
     height: 50px;
@@ -174,6 +175,13 @@ form {
     display: flex;
     flex-grow: 1;
   }
+  .warn{
+    border: 2px solid red !important;
+  }
+  span{
+    font-size: $fs-xs;
+    color: red;
+  }
 }
 
 .pds_right {
@@ -196,7 +204,7 @@ form {
   #submit {
     margin: 10px 10px 10px 0;
   }
-  #Cancel {
+  #cancel {
     @include button($color_W) {
       color: $color_B;
       border: 1px solid #ccc;
@@ -221,6 +229,7 @@ form {
     align-items: center;
     width: 300px;
     height: 300px;
+    margin: 0 10px;
     border: 1px solid #ccc;
     border-radius: 50%;
     overflow: hidden;
@@ -250,17 +259,21 @@ form {
   .prd_introduce_input {
     width: 400px;
     height: 88px;
-    margin-left: 50px;
+    margin: 0 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 10px;
     font-size: $fs-s;
     resize: none;
   }
+  &:nth-child(even) textarea{
+    order:-1;
+  }
   .bi-x {
     position: absolute;
     font-size: 50px;
     right: 10px;
     top: 10px;
+    cursor: pointer;
   }
 }
