@@ -1,0 +1,114 @@
+.img_top {
+    width: 100%;
+}
+
+.main_in {
+    margin: 15px auto 0px;
+}
+
+.main_top {
+    display: flex;
+    justify-content: center;
+}
+
+.main_in .noting {
+    // margin-left: 137px;
+}
+
+.noting_out {
+    margin-top: 150px;
+    margin-bottom: 50px;
+}
+
+.noting a {
+    text-decoration: none;
+    color: #7D7D7D;
+}
+
+.main_top a {
+    border: 1px solid $color_G;
+    border-radius: 10px;
+    text-decoration: none;
+    text-align: center;
+    color: $color_G;
+    margin-right: 20px;
+    height: 84px;
+    width: 184px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+.main_top a:hover {
+    background-color: $color_G;
+    color: white;
+}
+
+.main_in .list{
+    display: flex;
+    justify-content: end;
+    margin-right: 330px;
+    margin-top: 30px;
+    margin-bottom: 28px;
+}
+
+.main_in .list p{
+    font-size: 24px;
+    margin-bottom: 0rem;
+    margin-right: 20px;
+}
+
+.main_in .list section{
+    width: 100px;
+    height: 100px;
+}
+
+.main_down{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.main_down div {
+    width: 300px;
+    border: 1px solid #eeeeee;
+    border-radius: 15px;
+}
+
+.main_down a {
+    width: 330px;
+    height: 400px;
+    text-decoration: none;
+    color: black;
+    font-size: 24px;
+}
+
+.main_down div>img {
+    max-width: 100%;
+}
+
+.main_down .price {
+    color: $color_G;
+}
+
+.main_down .down-in {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+
+.main_in > button{
+    margin: 0 auto;
+    font-size: 24px;
+    display: block;
+    background-color: #ff8671;
+    text-align: center;
+    border-radius: 15px;
+    text-decoration: none;
+    color: white;
+    width: 384px;
+    height: 103px;
+    border: 0px;
+}

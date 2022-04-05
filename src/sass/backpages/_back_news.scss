@@ -1,0 +1,111 @@
+
+.bi_top{
+    display: flex;
+
+}
+
+.bk_in .yellor{
+    height: 40px;
+    width: 80px;
+    background-color: yellow;
+    border: 0px;
+    font-size: 24px;
+}
+
+.bk_in .orange{
+    height: 40px;
+    width: 80px;
+    background-color: #ff8671;
+    border: 0px;
+    margin-left: 24px;
+    font-size: 24px;
+}
+
+.bi_top .left{
+    margin-top: 60px;
+    margin-left: 100px;
+}
+
+.bi_top .right{
+    margin-top: 60px;
+    display: flex;
+    margin-left: 300px;
+}
+
+.select_left{
+    width: 160px;
+    height: 40px;
+    border: 1px solid $color_G;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.select_right{
+    width: 160px;
+    height: 40px;
+    border: 1px solid $color_G;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.main{
+    display: flex;
+    margin-left: 675px;
+}
+
+.main p:nth-child(2){
+    margin-left: 200px;
+}
+.main p:nth-child(3){
+    margin-left: 200px;
+}
+
+.list{
+margin-left: 260px;
+}
+
+.list img{
+    width: 140px;
+    height: 100px;
+}
+
+.list .list_in{
+    width: 935px;
+    height: 160px;
+    display: flex;
+    border: 1px solid $color_G;
+    border-radius: 5px;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 300px;
+    margin-top: 25px;
+}
+
+.list_in p{
+    font-size: 15px;
+    width: 259px;
+}
+
+.list_in button{
+    background-color: $color_G;
+    border: 0;
+    width: 68px;
+    height: 38px;
+    font-size: 15px;
+}
+
+.down{
+    height: 60px;
+    margin-left: 1200px;
+}
+
+.down a{
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    margin: 8px 5px;
+    background-color: #fecc55;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 50%;
+}
