@@ -43,3 +43,10 @@ $.ajax({
 		// });
 	},
 });
+
+
+var el =document.querySelector('.ch_pw');
+el.addEventListener('click' ,function(e){
+e.preventDefault();
+console.log('test');
+},false);

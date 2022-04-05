@@ -9,11 +9,12 @@
 <body>
         <!-- header -->
         @@include('./layout/header.html')
+
         <!-- 首圖 -->
-<div class="member_top">
-    <img src="./img/activity/member_banner.png" alt="">
-    <h2 class="memberTitle">會員中心</h2>
-</div>
+        <div class="member_top">
+            <img src="./img/activity/member_banner.png" alt="">
+            <h2 class="memberTitle">會員中心</h2>
+        </div>
 
        <!-- 切換btn -->
         <div class="mem_tab">
@@ -22,32 +23,28 @@
             <input class="mem_btn" type="button" value="訂單查詢" onclick="location.href='./member_checklist.html'">
         </div>
 
+        <div class="mb_re_wrp">
+            <p>編輯會員資料</p>
+            <div class="mb_name">
+            <label for=""><h5>姓名:王小明</h5></label>
+            <label for=""><h5>信箱:marz840917@gmail.com</h5></label>
+        </div>
 
-
-    
-            <div class="mb_re_wrp">
-
-                <p>編輯會員資料</p>
-
-                <div class="mb_name">
-                <label for=""><h5>姓名:王小明</h5></label>
-                <label for=""><h5>信箱:marz840917@gmail.com</h5></label>
-            </div>
-
-
-            <label for=""><h5>聯絡地址:</h5></label>
-            <div>
-                <select name="" id="city">
+        <div class="mb_adr">
+            <label for="" class="lbt"><h5>聯絡地址:</h5></label>
+            <div class="cts">
+                <select name="" id="city"  class="ads">
                     <option value="">請選取</option>
-
                 </select>
-            </div>
 
-            <div>
-                <select name="" id="area">
-
+                <select name="" id="area" class="ads">
+                <option value="">請選取</option>
                 </select>
+
+                <input type="text" id="address" class="mb_input">
+                
             </div>
+        </div>
 
 
             <!-- <div class="m_address " id="twzipcode">
@@ -57,36 +54,32 @@
                 <input type="text" name="Street">
             </div> -->
 
-            <div class="mb_tel">
-                <label for=""><h5>電話號碼:</h5></label>
-                <input type="text" name="tel">
+        <div class="mb_tel">
+            <label for="" class="lbt" ><h5>電話號碼:</h5></label>
+            <input type="text" name="tel"  class="mb_input">
+        </div>
 
 
-            </div>
 
-<hr>
 
-<p>修改密碼</p>
+
+
+        <label for="" class="lbt" ><h5>密碼:</h5></label>
+        <a href="#" class="ch_pw"><h5>修改密碼</h5></a>
+
 
             
-            <div class="mb_pw">
-                <label for=""><h5>輸入舊密碼:</h5></label>
-                <input type="text" name="tel">
+        <div class="mb_pw">
+            <label for="" class="lbt"><h5>輸入舊密碼:</h5></label>
+            <input type="text" name="tel"  class="mb_input">
+            <label for="" class="lbt"><h5>輸入新密碼:</h5></label>
+            <input type="text" name="tel"  class="mb_input">
+        </div>
 
-                <label for=""><h5>輸入新密碼:</h5></label>
-                <input type="text" name="tel">
-                
-
-            
-
-            </div>
-
-    <div class="mb_btn">
+        <div class="mb_btn">
             <button class="save_btn">確認修改</button>
             <p class='show'></p>
-
         </div>
-            </div>
 
         
   
