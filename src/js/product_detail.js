@@ -145,11 +145,19 @@ function stockChack(el){
 // 數量調整按鍵end
 // ==========================================
 
+let img = document.getElementsByClassName('splide__slide')[0];
+// let info = document.querySelector('');
 // 放入購物車、直接購買
+// let products = [
+//     {
+//         // 'img': img,
+//         // 'info' : info,
 
+//     },
+// ]
 $('#pd_info_cart').on('click',(e)=>{
     e.preventDefault();
-    console.log('putincart');
+    localStorage.setItem('products', JSON.stringify('products'));
 })
 
 $('#pd_info_buy').on('click',(e)=>{

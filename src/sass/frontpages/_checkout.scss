@@ -344,13 +344,18 @@
         color: $color_B;
         text-decoration: underline;
     }
-    .gogo{
-        width: 100px;
-        height: 50px;
-        border: 1px solid $color_R;
-        background-color: $color_R;
-        border-radius: 8px;
-        color: $color_W;
-        margin: 30px;
-    }
+
+	.gogoa{
+		display: inline-block;
+    	.gogo{
+    	    width: 100px;
+    	    height: 50px;
+    	    border: 1px solid $color_R;
+    	    background-color: $color_R;
+    	    border-radius: 8px;
+    	    color: $color_W;
+    	    margin: 30px;
+			cursor: pointer;
+    	}
+	}
 }

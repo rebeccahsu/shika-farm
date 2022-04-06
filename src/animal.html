@@ -41,10 +41,21 @@
                     <img class=icon_deer src="./img/animal/deer.png" alt="" @click="activeIndex = 5">
                 </div>
             </div>
+
+            <!--Button-->
+            <ul class="buttonList">
+                <li><img @click="sheep" src="./img/animal/sheep 2.png" alt=""></li>
+                <li><img @click="cow" src="./img/animal/cow 2.png" alt=""></li>
+                <li><img @click="alpaca" src="./img/animal/alpaca 2.png" alt=""></li>
+                <li><img @click="horse" src="./img/animal/horse 2.png" alt=""></li>
+                <li><img @click="pig" src="./img/animal/pig 2.png" alt=""></li>
+                <li><img @click="deer" src="./img/animal/deer 2.png" alt=""></li>
+            </ul>
+
             <!-- data -->
             <section v-for="(animalItem,key) in all_data" :class="[activeIndex == key ? '_on' : '']" :id="'s_' + key">
                 <div class="animalItem">
-                    <div class="animalItem_img"><img :src="animalItem.image" alt=""></div>
+                    <div class="animalItem_cover"><img :src="animalItem.image" alt=""></div>
                     <div class="animalItem_p">
                         <h5 class="animalItem_title">{{animalItem.title}}</h5>
                         <p class="animalItem_desc">{{animalItem.desc}}

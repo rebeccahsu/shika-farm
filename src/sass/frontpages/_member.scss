@@ -1,7 +1,12 @@
 //member首圖
 
 .member_top{
- position: relative;
+    width: 100%;
+    position: relative;
+    height: 500px;
+    background-image: url(../../img/activity/member_banner.png);
+    background-repeat: no-repeat;
+    background-size: cover; 
 }
 .member_top img{
     display: block;
@@ -15,10 +20,8 @@
     top: 50%; 
     left: 50%; 
     transform: translate(-50%, -50%); 
-    color: $color_W;
-    
-
-    }
+    color: $color_W;   
+}
 
  //title
 
