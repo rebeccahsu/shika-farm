@@ -31,11 +31,12 @@
 				</ul>
 			</nav>
               <!-- 購物車彈跳窗 -->
-              <div v-if="isShow"  class="blackBg"  id="blackBg">
+              <div v-if="!isShow"  class="blackBg"  id="blackBg">
                 <div class="shoppingCar container">
                     <div class="carTitle"><h5>購物車明細</h5></div>
                     <ul>
                         <li class="carBar">
+							<p>商品圖片</p>
                             <p>商品名稱</p>
                             <p>價格</p>
                             <p>數量</p>
