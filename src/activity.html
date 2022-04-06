@@ -6,6 +6,10 @@
     "title" : "Sìkha 牧場 | Sìkha 動物"
     })
     <style>
+        #blackBg {
+            display: none !important;
+        }
+
         .black_bg {
             position: fixed;
             top: 0;
@@ -155,7 +159,7 @@
 
 
     <div id="app">
-
+        <img class="activity_banner" src="./img/activity/activity_banner.png" alt="">
         <!-- 3D slider -->
         <div class="checkList">
             <section id="slider">
@@ -191,9 +195,10 @@
             <!-- <h5>取值測試一：{{modal_open}}</h5>
             <h5>取值測試二：{{}}</h5> -->
             <!---->
-            <input type="radio" v-model="period" value="period1"> 時段一：{{}}<br>
-            <input type="radio" v-model="period" value="period2"> 時段二：{{}}<br>
-            <input type="radio" v-model="period" value="period3"> 時段三：{{}}<br>
+            <!-- <input type="radio" v-model="period" value="period1"> {{modal_open.title}}<br> -->
+            <template v-for="item2 in modal_open.time_period">
+                <input type="radio"> {{item2}}<br>
+            </template>
 
             預約人數： <input type="number" name="quantity" min="1" max="10"> 人</br>
             剩餘人數： {{剩餘人數}} 人</br><br>
@@ -209,21 +214,26 @@
                     <img class="item_img" :src="aaa.image" alt="">
                     <div class="item_r_cover">
                         <img class="item_img_icon" :src="aaa.icon_img" alt="">
-                        <bottom :id="activeIndex == aaa.name ? 'ep_' + aaa.name  : 'not_ep_' + key + '_' +aaa.title "
-                            class="reserve" @click="open(item)">{{aaa.reserve}}</bottom>
+                        <button v-if="activeIndex == aaa.name"
+                            :id="activeIndex == aaa.name ? 'ep_' + aaa.name  : 'not_ep_' + key + '_' +aaa.title "
+                            class="reserve" @click="open(aaa)">{{aaa.reserve}}</button>
                     </div>
                 </div>
                 <div class="item_p">
-                    <h3 class="item_title">{{aaa.title}}</h3>
-                    <h5 class="item_desc">{{aaa.desc}}</h5>
+                    <h5 class="item_title">{{aaa.title}}</h5>
+                    <p class="item_desc">{{aaa.desc}}</p>
                     <br>
                     <!--<h5 class="item_desc">{{item.data}}</h5>-->
-                    <input type="radio" value="periodChoise1" id="periodChoise1" name="period" v-model="period">
+                    <!-- <input type="radio" value="periodChoise1" id="periodChoise1" name="period" v-model="period">
                     <label for="periodChoise1">{{aaa.p1}}</label><br>
                     <input type="radio" value="periodChoise2" id="periodChoise2" name="period" v-model="period">
                     <label for="periodChoise2">{{aaa.p2}}</label><br>
                     <input type="radio" value="periodChoise3" id="periodChoise3" name="period" v-model="period">
-                    <label for="periodChoise3">{{aaa.p3}}</label><br><br>
+                    <label for="periodChoise3">{{aaa.p3}}</label><br><br> -->
+
+                    <template v-for="item2 in aaa.time_period">
+                        <input type="radio"> {{item2}}<br>
+                    </template>
 
                 </div>
             </div>
@@ -251,6 +261,7 @@
                                         icon_img: '',
                                         desc: '每日限量100罐營養好喝的ㄋㄟㄋㄟ，憑門票可兌換一罐，每張門票限兌換一罐，喜歡綿羊的大朋友小朋友請把握機會，跟綿羊更親近。',
                                         data: ['3/11', '3/13'],
+                                        time_period: [],
                                         p1: '',
                                         p2: '',
                                         p3: '',
@@ -263,6 +274,7 @@
                                         icon_img: './img/activity/sheep1.png',
                                         desc: '想知道服裝織品中常見的羊毛，最開始的原型是什麼樣子嗎？讓我們專業的剃羊毛技師為你們揭開這層面紗，攜手一探究竟吧。',
                                         data: ['3/11', '3/13'],
+                                        time_period: ["0900", "1100"],
                                         p1: '9:00-10:00',
                                         p2: '14:00-15:00',
                                         p3: '',
@@ -275,6 +287,7 @@
                                         icon_img: './img/activity/soap_icon.png',
                                         desc: '喜歡洗澡嗎 ? 簡單三步驟就能讓你完成屬於自己的肥皂 ，讓Sìkha肥皂滲透你的肌膚，享受肌膚絲緞般的觸感，自用送禮兩相宜，還不快來體驗！ ',
                                         data: ['3/11', '3/13'],
+                                        time_period: ["0900", "1100", "1200"],
                                         p1: '9:00-10:30',
                                         p2: '13:00-14:30',
                                         p3: '15:00-16:30',
@@ -416,6 +429,7 @@
             },
             methods: {
                 open(data) {
+                    //console.log(data);
                     this.modal_open = data
                 },
                 close() {

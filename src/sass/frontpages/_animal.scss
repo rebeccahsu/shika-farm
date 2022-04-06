@@ -45,7 +45,6 @@
     left: calc(100vw*(637.94)/1440);
     animation: swing 1s infinite ;
     transform-origin: bottom;
-   
 }
 
 .icon_cow{
@@ -94,7 +93,7 @@
     transform-origin: bottom;
 }
 
-.item{
+.animalItem{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -103,52 +102,17 @@
 }
 
 
-
-
-// section{
-//     display: flex;
-//     justify-content: center;
-// } 
-
-// section:nth-child(odd) {
-//     background-color: rgb(177, 177, 177);
-//     flex-direction: row-reverse;
-// }  
-
-
-
-/* section:nth-child(odd) {
-    background-color: rgb(177, 177, 177);
-} 
-
-section:nth-child(odd) img{
-    background-color: rgb(164, 219, 223);
-    position: absolute;
-    right: 0px;
-}  */
-
-
-/* .item:nth-child(odd){
-    background-color: rgb(177, 177, 177);
-    flex-direction: row-reverse;
-}  */
-
-
-
-
-.item_desc{
-    width: 450px;
-    height: 200px;
+.animalItem_img{
+    width: 600px;
 }
 
-
-.item_img{
-    /* width:calc(100vw*427/1440); */
-    margin: 0px 40px 40px 0px;
+.animalItem_img img{
+    width: 500px;
 }
 
-.item_p{
-    margin: 110px 20px 20px 0px;
+.animalItem_p{
+    width: 400px;
+    padding-top: 60px;
 }
 
 .animal-container{
@@ -160,19 +124,32 @@ section:nth-child(odd) img{
     }  
 }
 
+section:nth-child(odd){
+    .animalItem{  
+            .animalItem_img{
+                order: 2;
+            }
+            .animalItem_p{
+                order: 1;
+            }
+    }
+}
+
 
 .animal-container{
-    @media screen and (min-width: 995px){
+    @media screen and (max-width: 1000px){
+        .animalItem_p{
+            padding-top: 0px;}
+            
         section:nth-child(odd){
-            .item{  
+            .animalItem{  
                 background-color: rgb(226, 180, 180);
-                    .item_img{
-                        order: 2;
+                    .animalItem_img{
+                        order: 1;
                         background-color: rgb(228, 90, 90);
                     }
-                    .item_p{
-                        order: 1;
-                        margin: 100px 0px 0px 0px;
+                    .animalItem_p{
+                        order: 2;
                     }
             }
         }
@@ -180,14 +157,9 @@ section:nth-child(odd) img{
 }
 
 @media screen and (max-width: 1200px){
-    .item_p{
-        margin: 0px 0px 0px 0px;
+    .animalItem_p{
         background-color: rgb(166, 230, 224);
     }
-    .item_img{
-        margin: 0px 0px 0px 0px;
-    }
-    
 }  
 
 
