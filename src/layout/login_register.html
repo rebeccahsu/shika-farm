@@ -4,8 +4,9 @@
     <div class="loginBlock" id="login_register_app">
 
         <component :is='content'></component>
-        <div @click="off">
+        <div @click="off" class="toggle-links">
             <p class="register_link" @click="content='register'">還不是Sìkha會員嗎？點我註冊</p>
+            <p class="forget_link" @click="content='forgetPwd'">忘記密碼？</p>
         </div>
 
         <!-- 註冊第二步 -->
@@ -52,6 +53,9 @@
             <button type="button" id="register_complete" class="register_done">完成</button>
         </form>
 
+        <!-- 忘記密碼 -->
+        
+
         <i class="bi bi-x"></i>
     </div>
 </div>
@@ -67,7 +71,6 @@
                     <input type="email" name="userMail" id="userMail">
                     <label for="password"><h5>密碼</h5></label>
                     <input type="password" name="password" id="password">
-                    <a href="#" class="forget">忘記密碼？</a>
                     <button type="button" id="login_btn">登入</button>
                     <button type="button" id="FBlogin_btn">透過FACEBOOK登入</button>
                     
@@ -88,6 +91,18 @@
             <button type="button" id="next" class="next">繼續</button>
         </form>`, 
     });
+
+    Vue.component('forgetPwd', {
+        template: `
+        <form action="" method="POST" id="password_reset">
+            <h4>忘記密碼</h4>
+            <p>請在下面輸入您的信箱或帳號。我們會寄一封信給您，裡面含有可以重新設定您的密碼的連結。</p>
+            <label for="userMail"><h5>電子郵件</h5></label>
+            <input type="email" name="userMail" id="userMail">
+            
+            <button type="button" id="send_mail">送出</button>
+        </form>`, 
+    });
         
     new Vue({
         el: '#login_register_app',
@@ -97,6 +112,7 @@
         methods: {
             off(){
                 $('.register_link').remove();
+                $('.forget_link').remove();
             },
         },
     });
