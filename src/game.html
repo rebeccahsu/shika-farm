@@ -6,27 +6,32 @@
     "title" : "Sìkha 牧場"
     })
     <style>
-        html{
+        html {
             cursor: none;
         }
-        body{
+
+        body {
             margin: 0;
             padding: 0;
         }
-        img{
+
+        img {
             user-select: none;
             pointer-events: none;
         }
-        h4{
+
+        h4 {
             text-align: center;
             padding-top: 50px;
         }
-        p{
+
+        p {
             padding-top: 20px;
             margin-bottom: 50px;
             text-align: center;
         }
-        .game-bg{
+
+        .game-bg {
             background-image: url("img/game/game-bg.png");
             background-size: cover;
             background-repeat: no-repeat;
@@ -35,7 +40,7 @@
             /* position: relative; */
         }
 
-        .sheep{
+        .sheep {
             position: relative;
             display: block;
             overflow: hidden;
@@ -44,19 +49,20 @@
             padding-right: 46px;
         }
 
-        .fur{
+        .fur {
             position: absolute;
             z-index: 40;
         }
 
 
-        .sheep-img, .sheep-done{
+        .sheep-img,
+        .sheep-done {
             padding-right: 0px;
             width: 100%;
             /* display: none; */
         }
 
-        .sheep-done{
+        .sheep-done {
             display: block;
             display: none;
             width: 115%;
@@ -64,25 +70,28 @@
             padding-top: 10px;
         }
 
-        .shaver{
+        .shaver {
             position: fixed;
             /* border: 1px solid blue; */
             width: 150px;
             z-index: 50;
         }
 
-        @media (max-width: 576px){
-            p{
-            margin-bottom: 10px;
-            font-size: 15px;
+        @media (max-width: 576px) {
+            p {
+                margin-bottom: 10px;
+                font-size: 15px;
             }
-            .game-bg{
+
+            .game-bg {
                 position: fixed;
             }
-            .sheep{
+
+            .sheep {
                 transform: scale(.8) translateX(-3%) translateY(6%);
             }
-            .shaver{
+
+            .shaver {
                 position: fixed;
                 /* border: 1px solid blue; */
                 width: 100px;
@@ -90,27 +99,29 @@
             }
         }
 
-        .fall{
+        .fall {
             animation: fall 1.5s ease;
         }
 
         @keyframes fall {
-            0%{
+            0% {
                 transform: translateY(0), rotate(10deg);
                 opacity: 1;
             }
-            50%{
+
+            50% {
                 transform: translateY(100%), rotate(-10deg);
             }
-            75%{
+
+            75% {
                 opacity: .8;
             }
-            100%{
+
+            100% {
                 transform: translateY(200%);
                 opacity: 0;
-            }            
+            }
         }
-
     </style>
 </head>
 
@@ -123,56 +134,65 @@
             <img src="img/game/no_fur.png" alt="" class="sheep-img">
             <img src="img/game/sheep_after.png" alt="" class="sheep-done">
             <div class="fur" style="top: -5px; left: 39px;">
-                <img src="img/game/headfur.png" alt="" >
+                <img src="img/game/headfur.png" alt="">
             </div>
             <div class="fur" style="top: 98px; left: 76px;">
-                <img src="img/game/fur8.png" alt="" >
+                <img src="img/game/fur8.png" alt="">
             </div>
             <div class="fur" style="top: 81px; left: 124px;">
-                <img src="img/game/fur7.png" alt="" >
+                <img src="img/game/fur7.png" alt="">
             </div>
             <!-- ----- -->
             <div class="fur" style="top: 140px; left: 88px;">
-                <img src="img/game/fur8.png" alt="" >
+                <img src="img/game/fur8.png" alt="">
             </div>
             <div class="fur" style="top: 141px; left: 131px;">
-                <img src="img/game/fur7.png" alt="" >
+                <img src="img/game/fur7.png" alt="">
             </div>
             <div class="fur" style="top: 89px; left: 180px;">
-                <img src="img/game/fur8.png" alt="" >
+                <img src="img/game/fur8.png" alt="">
             </div>
             <!-- ----- -->
             <div class="fur" style="top: 185px; left: 88px;">
-                <img src="img/game/fur8.png" alt="" >
+                <img src="img/game/fur8.png" alt="">
             </div>
             <div class="fur" style="top: 200px; left: 162px;">
-                <img src="img/game/fur7.png" alt="" >
+                <img src="img/game/fur7.png" alt="">
             </div>
             <div class="fur" style="top: 153px; left: 187px;">
-                <img src="img/game/fur8.png" alt="" >
+                <img src="img/game/fur8.png" alt="">
             </div>
             <div class="fur" style="top: 97px; left: 234px;">
-                <img src="img/game/fur7.png" alt="" >
+                <img src="img/game/fur7.png" alt="">
             </div>
             <div class="fur" style="top: 108px; left: 289px;">
-                <img src="img/game/fur8.png" alt="" >
+                <img src="img/game/fur8.png" alt="">
             </div>
             <!-- ----- -->
             <div class="fur" style="top: 206px; left: 120px;">
-                <img src="img/game/fur8.png" alt="" >
+                <img src="img/game/fur8.png" alt="">
             </div>
             <div class="fur" style="top: 198px; left: 237px;">
-                <img src="img/game/fur7.png" alt="" >
+                <img src="img/game/fur7.png" alt="">
             </div>
             <div class="fur" style="top: 162px; left: 228px;">
-                <img src="img/game/fur8.png" alt="" >
+                <img src="img/game/fur8.png" alt="">
             </div>
             <div class="fur" style="top: 166px; left: 276px;">
-                <img src="img/game/fur7.png" alt="" >
+                <img src="img/game/fur7.png" alt="">
             </div>
             <div class="fur" style="top: 139px; left: 326px;">
-                <img src="img/game/fur8.png" alt="" >
+                <img src="img/game/fur8.png" alt="">
             </div>
+        </div>
+    </div>
+
+    <div class="message_out">
+        <div class="message_in">
+            <img src="./img/material/round_button_green.png" alt="" class="button_green">
+            <p>恭喜你完成了！</p>
+            <p>想到Sìkha牧場親眼看看剃羊毛秀嗎？</p>
+            <a href="">GO <br>立即預約</a>
         </div>
     </div>
 
@@ -181,29 +201,29 @@
         let fur = document.querySelectorAll(".fur");
         let click_type = "click";
 
-        function shaveFur (type){
-            fur.forEach(function(el){
-                el.addEventListener(type, function(){
+        function shaveFur(type) {
+            fur.forEach(function (el) {
+                el.addEventListener(type, function () {
                     el.classList.add("fall");
-                    setTimeout(function(){
+                    setTimeout(function () {
                         el.remove();
                     }, 1500)
                 });
             });
         };
 
-        function showSheepAfter (){
-            if(document.querySelector('.fur') == undefined){
-                    $('.sheep-img').fadeOut(800);
-                    setTimeout(function(){
-                        $('.sheep-done').fadeIn(1000);
-                    }, 800)
-                }
+        function showSheepAfter() {
+            if (document.querySelector('.fur') == undefined) {
+                $('.sheep-img').fadeOut(800);
+                setTimeout(function () {
+                    $('.sheep-done').fadeIn(1000);
+                }, 800)
+            }
         };
 
-        if(window.innerWidth >= 768){
+        if (window.innerWidth >= 768) {
             click_type = "mousemove";
-            document.addEventListener(click_type, function(e){
+            document.addEventListener(click_type, function (e) {
                 shaver.style.left = e.pageX - 60 + "px";
                 shaver.style.top = e.pageY - window.scrollY - 60 + "px";
                 showSheepAfter();
@@ -216,19 +236,19 @@
                 repeat: -1,
                 // repeatRefresh: true,
                 keyframes: [
-                    { duration: 1, rotation: 10},
-                    { duration: 1, rotation: 0},
+                    { duration: 1, rotation: 10 },
+                    { duration: 1, rotation: 0 },
                 ]
             });
-        
-        }else{
+
+        } else {
             shaver.remove();
             document.querySelector("p").innerHTML = "用手指點擊來幫綿羊剃毛吧！";
             click_type = "click";
-            document.addEventListener("touchstart", function(e){
+            document.addEventListener("touchstart", function (e) {
                 showSheepAfter();
             });
-            
+
             shaveFur(click_type);
         }
 
