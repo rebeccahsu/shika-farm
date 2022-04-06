@@ -148,18 +148,18 @@ let cart = document.getElementById('cart');
 let spcart = document.getElementById('blackBg');
 let gosp = document.getElementById('gosp');
 cart.addEventListener('click',function(e){
-    spcart.style.display='block';
     e.preventDefault();
+    spcart.classList.toggle('active');
 });
 
 spcart.addEventListener('click',function(e){
     if(e.target == spcart){
-        spcart.style.display='none';
+        spcart.classList.toggle('active');
     }
 });
 
 gosp.addEventListener('click',function(e){
-    spcart.style.display='none';
+    spcart.classList.toggle('active');
 });
 
 
