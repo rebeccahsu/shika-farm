@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 showData(pdata);
                 $('.back_title').find('h4').text('修改商品');
                 $('.select_images').after(`<spap style="float:right">品號：${task[i].prd_number}</spap>`)
-
             }
         })
     }
@@ -30,15 +29,9 @@ function showData(pdata) {
     $("#prd_cost").val(pdata.prd_cost);
     $("#prd_name").val(pdata.prd_name);
     $("#prd_ingredient").val(pdata.prd_ingredient);
-
     putin_intro(pdata.prd_intro);
     putin_topimg(pdata.prd_topImage)
-    // pdata.prd_slog
-
 }
-
-
-
 
 function putin_topimg(d) {
     console.log(d);
@@ -89,14 +82,14 @@ function putin_intro(d) {
                     // console.log(el_img);
                     // console.log(el_text);
                     // console.log(d[0].text);
-                    el_img.innerHTML = `<img src="${d[0].src}"/>`;
+                    el_img.innerHTML = `<img src="${d[0].src}" class="intro_img"/><span>更換圖片</span>`;
                     el_text.innerText = d[0].text;
                     break;
                 case 1:
                     el = document.querySelectorAll('.prd_introduce')[1];
                     el_img = el.querySelector(".select_image");
                     el_text = el.querySelector("textarea");
-                    el_img.innerHTML = `<img src="${d[1].src}"/><span>更換圖片</span>`;
+                    el_img.innerHTML = `<img src="${d[1].src}" class="intro_img"/><span>更換圖片</span>`;
                     el_text.innerText = d[1].text;
                     break;
 
@@ -104,7 +97,7 @@ function putin_intro(d) {
                     el = document.querySelectorAll('.prd_introduce')[2];
                     el_img = el.querySelector(".select_image");
                     el_text = el.querySelector("textarea");
-                    el_img.innerHTML = `<img src="${d[2].src}"/><span>更換圖片</span>`;
+                    el_img.innerHTML = `<img src="${d[2].src}" class="intro_img"/><span>更換圖片</span>`;
                     el_text.innerText = d[2].text;
                     break;
 
@@ -112,14 +105,14 @@ function putin_intro(d) {
                     el = document.querySelectorAll('.prd_introduce')[3];
                     el_img = el.querySelector(".select_image");
                     el_text = el.querySelector("textarea");
-                    el_img.innerHTML = `<img src="${d[3].src}"/><span>更換圖片</span>`;
+                    el_img.innerHTML = `<img src="${d[3].src}" class="intro_img"/><span>更換圖片</span>`;
                     el_text.innerText = d[3].text;
                     break;
                 case 4:
                     el = document.querySelectorAll('.prd_introduce')[4];
                     el_img = el.querySelector(".select_image");
                     el_text = el.querySelector("textarea");
-                    el_img.innerHTML = `<img src="${d[4].src}"/><span>更換圖片</span>`;
+                    el_img.innerHTML = `<img src="${d[4].src}" class="intro_img"/><span>更換圖片</span>`;
                     el_text.innerText = d[4].text;
                     break;
                 default:
@@ -218,6 +211,7 @@ $('#add_prdIntroduce').on('click', (e) => {
     e.preventDefault;
     if ($('.prd_introduce').length == 2 || $('.prd_introduce').length < 5) {
         $('#introduce_area').append(`<li class="prd_introduce">
+        <input type="file" name="" class="select_introPic">
         <div class="select_image"><span>上傳圖片</span></div>
         <textarea type="text" class="prd_introduce_input" row="1" cols="2" maxlength="30"></textarea>
         <i class="bi bi-x"></i>
@@ -302,7 +296,7 @@ var preview_img = function (file) {
     });
 };
 
-
+// topImage 首圖區塊
 $("#file1").on("change", (e) => {
     // console.log($("#file1")[0]);
     if ($("#file1")[0].files.length > 0) {
@@ -360,6 +354,29 @@ $(".upload").on('click', (e) => {
     }
     closebg();
 })
+
+// intro區塊
+$(document).on('click',function(e){
+    console.log(e.target);
+    let select_introPic1 = document.querySelectorAll('.select_introPic')[0];
+    let select_introPic2 = document.querySelectorAll('.select_introPic')[1];
+    let select_introPic3 = document.querySelectorAll('.select_introPic')[2];
+    let select_introPic4 = document.querySelectorAll('.select_introPic')[3];
+    let select_introPic5 = document.querySelectorAll('.select_introPic')[4];
+
+    
+
+})
+
+
+
+
+
+
+
+
+
+
 
 
 // =================================================

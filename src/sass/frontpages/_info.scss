@@ -1,22 +1,5 @@
 .infoTop.container-fluid{
-    padding: 0;
-    background-image: url("../img/info/info_top.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 500px;
-    @include mobile{
-        height: 250px;
-    }
-    .pageTitle{
-        text-align: center;
-        line-height: 570px;
-        color: $color_W;
-        @include mobile{
-            line-height: 320px;
-        }
-    }
-   
+    @include top_block("../img/info/info_top.png");
 }
 
 .infoLocation{
@@ -26,6 +9,7 @@
         position: relative;
         &:after{
             @include titleDecBall("../img/material/circle_green_800.png"){
+                left: 149px;
                 @include pad{
                     left: 70%;
                 }
@@ -90,10 +74,11 @@
         position: relative;
         &:after{
             @include titleDecBall("../img/material/circle_yellow_800.png"){
-                top: 10px;
-                left: 300px;
+                top: 2px;
+                left: -12px;
                 @include pad{
                     left: 70%;
+                    top: 0px;
                 }
             };
         }

@@ -1,3 +1,6 @@
+.animalTop.container-fluid{
+    @include top_block("../img/animal/animal_banner.png");
+}
 
 .animal_banner{
     width: 100%;
