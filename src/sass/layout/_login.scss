@@ -302,7 +302,8 @@ div#back_bg {
   }
   // 繼續的按鈕
   #send_mail,
-  #send_psd {
+  #send_psd,
+  #psdReset_complete {
     margin-top: 40px;
     @include button ($color-G);
     width: 100%;

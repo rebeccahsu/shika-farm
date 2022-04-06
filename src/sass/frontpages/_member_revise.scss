@@ -3,7 +3,6 @@
 .mb_re_wrp{
     width: 600px;
     height: 400px;
-    // border: 1px solid $color_G;
     border-radius: 8px;
     margin: 0 auto;
    
@@ -17,21 +16,19 @@
 
 //姓名
 .mb_name{
-    margin-top: 40px;
-    padding-bottom: 20px;
+    margin: 40px auto 10px;
    
 }
 
 .mb_name label p{
-    padding-bottom: 24px;
+    margin: 20px auto;
 }
 
 
 
 .mb_adr{
     display: flex;
-    // padding-top: 40px;
-    
+    margin: 20px auto;
 }
 
 .mb_adr select #city #area{
@@ -44,12 +41,9 @@
 
 
 //電話
-// .mb_tel input{
-//     // width: 700px;
-//     height: 24px;
-//     border: 1px solid rgba(196, 196, 196, 0.8);
-//     border-radius: 4px;
-// }
+.mb_tel{
+    margin: 20px auto;
+}
   
 
 //所有input框
@@ -61,7 +55,7 @@
 
 //密碼
 .mb_pw{
-    padding-top: -5px;
+    margin: 20px auto;
     display: none;
 }
 
@@ -83,11 +77,11 @@
 .save_btn{
     margin-top: 45px;
     
-    font-size: $fs-s;
+    font-size: $fs-xs;
     border-radius: 8px;
     text-align: center;
-    width: 200px;
-    height: 60px;
+    width: 100px;
+    height: 50px;
     display: inline-block;
     color:$color_W;
     background-color:$color_R;
@@ -102,8 +96,6 @@
 }
 
 .cts{
-    // padding: 10px;
-
     .ads{
         border: 1px solid #c4c4c4;
         padding: 3px;

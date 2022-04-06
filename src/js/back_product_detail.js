@@ -1,9 +1,62 @@
 // 進入頁面是否讀資料
-// $(function(){
-//     if(window.href == )
-// })
+var editRule = /[prd_number=]\d{8}$/
+$(function(){
+    if(editRule.test(location.search)){
+        let task = JSON.parse(localStorage.getItem("prd_list"));
+        let number0 = location.search.slice(12,20);
+        // console.log(number);
+        // console.log(task);
+        task.forEach(function(value,i){
+            if(task[i].prd_number == number0){
+                console.log(task[i]);
+                let pdata = task[i];
+                $('.back_title').find('h4').text('修改商品');
+                $('.select_images').after(`<spap style="float:right">品號：${task[i].prd_number}</spap>`)
+            // 帶入資料
+                showData(pdata);
+            
+            }
+        })
+    }
+});
+
+function showData (pdata){
+    // console.log(pdata);
+    putin_topimg(pdata.prd_topImage);
+
+    // putin_intro(pdata.prd_intro);
+}
+
+function putin_topimg(d){
+    console.log(d);
+    for(i=0;i<4;i++){
+        console.log(i+ "資料" +d[i]);
+        if(d[i] != undefined){
+            $('.select_topImage').html(`<img src="${d[i]}" class="preview_img">`);
+        //    let aaa=document.querySelectorAll('.select_topImage');
+        //    aaa[i].innerHTML(`<img src="${d[i]}" class="preview_img">`);
+        }
+    }
+}
 
 
+function putin_intro(d){
+    console.log(d);
+    for(i=0; i<5; i++){
+        if(d[i] !=null){
+            switch (i){
+                case "1":
+                    $('.prd_introduce')[0].querySelector('img').setAttribute('src',d[i]);
+                    break;
+                case "2":
+                    break;
+                default:
+
+
+            }
+        }
+    }
+}
 
 // ========================================
 // 提示價錢未寫、成本比售價高
