@@ -8,6 +8,7 @@
 </head>
 
 <body class="game-body">
+    <a href="activity.html" class="backtoactivity"><img src="../img/material/sign.png" alt=""></a>
     <img src="img/game/shaver.png" alt="" class="shaver" id="shaver">
     <div class="game-bg">
         <h4>剃羊毛達人</h4>
@@ -82,10 +83,11 @@
         let shaver = document.getElementById("shaver");
         let fur = document.querySelectorAll(".fur");
         let click_type = "click";
+        let game_area = document.querySelector('.game-bg');
 
-        function shaveFur(type) {
+        function shaveFur(clickType) {
             fur.forEach(function (el) {
-                el.addEventListener(type, function () {
+                el.addEventListener(clickType, function () {
                     el.classList.add("fall");
                     setTimeout(function () {
                         el.remove();
@@ -108,7 +110,7 @@
 
         if (window.innerWidth >= 768) {
             click_type = "mousemove";
-            document.addEventListener(click_type, function (e) {
+            game_area.addEventListener(click_type, function (e) {
                 shaver.style.left = e.pageX - 60 + "px";
                 shaver.style.top = e.pageY - window.scrollY - 60 + "px";
                 showSheepAfter();
@@ -128,7 +130,7 @@
 
         } else {
             shaver.remove();
-            document.querySelector("p").innerHTML = "用手指點擊來幫綿羊剃毛吧！";
+            game_area.querySelector("p").innerHTML = "用手指點擊來幫綿羊剃毛吧！";
             click_type = "click";
             document.addEventListener("touchstart", function (e) {
                 showSheepAfter();
