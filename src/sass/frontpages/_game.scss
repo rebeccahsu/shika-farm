@@ -1,5 +1,123 @@
+.game-html {
+    cursor: none;
+}
 
-.message_out{
+.game-body {
+    margin: 0;
+    padding: 0;
+
+    img {
+        user-select: none;
+        pointer-events: none;
+    }
+
+    h4 {
+        text-align: center;
+        padding-top: 50px;
+    }
+
+    p {
+        padding-top: 20px;
+        margin-bottom: 50px;
+        text-align: center;
+    }
+
+    .game-bg {
+        background-image: url("../img/game/game-bg.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100vh;
+        /* position: relative; */
+    }
+
+    .sheep {
+        position: relative;
+        display: block;
+        overflow: hidden;
+        width: 400px;
+        margin: 0 auto;
+        padding-right: 46px;
+    }
+
+    .fur {
+        position: absolute;
+        z-index: 40;
+    }
+
+
+    .sheep-img,
+    .sheep-done {
+        padding-right: 0px;
+        width: 100%;
+        /* display: none; */
+    }
+
+    .sheep-done {
+        display: block;
+        display: none;
+        width: 115%;
+        padding-left: 20px;
+        padding-top: 10px;
+    }
+
+    .shaver {
+        position: fixed;
+        /* border: 1px solid blue; */
+        width: 150px;
+        z-index: 50;
+    }
+
+    @media (max-width: 576px) {
+        p {
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .game-bg {
+            position: fixed;
+        }
+
+        .sheep {
+            transform: scale(.8) translateX(-3%) translateY(6%);
+        }
+
+        .shaver {
+            position: fixed;
+            /* border: 1px solid blue; */
+            width: 100px;
+            z-index: 50;
+        }
+    }
+}
+
+
+
+.fall {
+    animation: fall 1.5s ease;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0), rotate(10deg);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(100%), rotate(-10deg);
+    }
+
+    75% {
+        opacity: .8;
+    }
+
+    100% {
+        transform: translateY(200%);
+        opacity: 0;
+    }
+}
+
+.game_message_out{
     width: 100vw;
     height: 100vh;
     position: fixed;
@@ -7,43 +125,70 @@
     top: 0;
     left: 0;
     z-index: 1000;
+    display: none;
+
+    .message_in{
+        width: 50%;
+        min-width: 300px;
+        height: 350px;
+        position: absolute;
+        background-color: #fecc55;
+        border-radius: 15px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 30px;
+
+        @include pad{
+            width: 65%;
+            height: 60%;
+        }
+        @include mobile{
+            width: 85%;
+            max-width: 500px;
+            height: 50%;
+        }
+    }
+    
+    .message_in p{
+        margin-bottom: 15px;
+
+    }
+    
+    
+    .message_in a{
+        text-align: center;
+        line-height: 140px;
+        width: 150px;
+        height: 150px;
+        background-image: url("../img/material/round_button_green.png");
+        display: block;
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin: 30px auto 0;
+
+        @include pad{
+            margin: 30px auto 0;
+        }
+
+        @include mobile{
+            line-height: 120px;
+            width: 120px;
+            height: 120px;
+            margin: 20px auto 0;
+        }
+    }
+    
+    .message_in .button_green{
+        position: absolute;
+        height: 200px;
+        top: 45%;
+        left: 37%;
+    }
 }
 
-.message_in{
-    width: 750px;
-    height: 474px;
-    position: absolute;
-    background-color: #fecc55;
-    border-radius: 15px;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%
-);
-}
-
-.message_in p{
-    padding-top: 30px;
-    font-size: 24px;
-    margin-bottom: 15px;
-}
 
 
-.message_in a{
-    position: absolute;
-    text-align: center;
-    top: 59%;
-    left: 44%;
-    font-size: 24px;
-    background-image: url(/src/img/material/round_button_green.png);
-}
-
-.message_in .button_green{
-    position: absolute;
-    height: 200px;
-    top: 45%;
-    left: 37%;
-}
-
-.message_out{
+.game_message_out.-off{
     display: none;
 }

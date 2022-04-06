@@ -1,131 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" class="game-html">
 
 <head>
     @@include('./layout/head.html', {
     "title" : "Sìkha 牧場"
     })
-    <style>
-        html {
-            cursor: none;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-        }
-
-        img {
-            user-select: none;
-            pointer-events: none;
-        }
-
-        h4 {
-            text-align: center;
-            padding-top: 50px;
-        }
-
-        p {
-            padding-top: 20px;
-            margin-bottom: 50px;
-            text-align: center;
-        }
-
-        .game-bg {
-            background-image: url("img/game/game-bg.png");
-            background-size: cover;
-            background-repeat: no-repeat;
-            width: 100%;
-            height: 100vh;
-            /* position: relative; */
-        }
-
-        .sheep {
-            position: relative;
-            display: block;
-            overflow: hidden;
-            width: 400px;
-            margin: 0 auto;
-            padding-right: 46px;
-        }
-
-        .fur {
-            position: absolute;
-            z-index: 40;
-        }
-
-
-        .sheep-img,
-        .sheep-done {
-            padding-right: 0px;
-            width: 100%;
-            /* display: none; */
-        }
-
-        .sheep-done {
-            display: block;
-            display: none;
-            width: 115%;
-            padding-left: 20px;
-            padding-top: 10px;
-        }
-
-        .shaver {
-            position: fixed;
-            /* border: 1px solid blue; */
-            width: 150px;
-            z-index: 50;
-        }
-
-        @media (max-width: 576px) {
-            p {
-                margin-bottom: 10px;
-                font-size: 15px;
-            }
-
-            .game-bg {
-                position: fixed;
-            }
-
-            .sheep {
-                transform: scale(.8) translateX(-3%) translateY(6%);
-            }
-
-            .shaver {
-                position: fixed;
-                /* border: 1px solid blue; */
-                width: 100px;
-                z-index: 50;
-            }
-        }
-
-        .fall {
-            animation: fall 1.5s ease;
-        }
-
-        @keyframes fall {
-            0% {
-                transform: translateY(0), rotate(10deg);
-                opacity: 1;
-            }
-
-            50% {
-                transform: translateY(100%), rotate(-10deg);
-            }
-
-            75% {
-                opacity: .8;
-            }
-
-            100% {
-                transform: translateY(200%);
-                opacity: 0;
-            }
-        }
-    </style>
 </head>
 
-<body>
+<body class="game-body">
     <img src="img/game/shaver.png" alt="" class="shaver" id="shaver">
     <div class="game-bg">
         <h4>剃羊毛達人</h4>
@@ -187,12 +69,12 @@
         </div>
     </div>
 
-    <div class="message_out">
+    <div class="game_message_out">
         <div class="message_in">
-            <img src="./img/material/round_button_green.png" alt="" class="button_green">
+            <!-- <img src="./img/material/round_button_green.png" alt="" class="button_green"> -->
             <p>恭喜你完成了！</p>
             <p>想到Sìkha牧場親眼看看剃羊毛秀嗎？</p>
-            <a href="">GO <br>立即預約</a>
+            <a href="activity.html">GO 立即預約</a>
         </div>
     </div>
 
@@ -218,6 +100,9 @@
                 setTimeout(function () {
                     $('.sheep-done').fadeIn(1000);
                 }, 800)
+                setTimeout(function(){
+                    $('.game_message_out').fadeIn(1000);
+                }, 2300)
             }
         };
 
