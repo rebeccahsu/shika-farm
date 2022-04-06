@@ -76,10 +76,34 @@
 }
 
 .right{
-    margin-left: 300px;
-    max-height: 300px;
+    display: flex;
+    justify-content: center;
 }
 
+.right > img{
+    max-width: 390px;
+    max-height: 254px;
+    margin-left: 400px;
+}
+
+
+@media screen and (max-width:576px){
+    .right img{
+        margin-left: 0px;
+        width: 150px;
+        height: 100px;
+        // max-width: 100%;
+    }
+
+    .redboll{
+        height: 280px;
+        right: 28px;
+    }
+
+    .yellowboll{
+            left: 2px;
+    }
+}
 
 
 

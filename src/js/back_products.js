@@ -34,6 +34,11 @@ $(function () {
                 prd_inStock: $('.prd_inStock')[i].innerText,
                 prd_pic: `${$('.prd_pic')[i].getAttribute("src")}`, //(主圖網址) "./img/producds/${品號}_top01"  <-> "varchar"
                 prd_condition: `${$('.prd_condition')[i].innerText}`,
+                prd_topImage: [`${$('.prd_pic')[i].getAttribute("src")}`], // (網址) ["./img/producds/${品號}_top01"] max=4
+                prd_intro: [], //商品介紹,"varchar" [{"src","text"}]  (網址)[{"./img/producds/${品號}_01"},{}] max=5
+                prd_kind: "", //和資料庫關聯
+                prd_slog: ["string", "string"], //促銷標語 max=2
+                prd_ingredient: "", //innerHtml 商品規格
             }
 
             // console.log(product);
@@ -202,25 +207,79 @@ $("#off_pd").on('click', () => {
 // ==================================
 // 商品搜尋
 
-$('#search_pd').on('click',()=>{
+$('#search_pd').on('click', () => {
     let search_target = $('#search').val();
     console.log(search_target);
     let list_item_el = $('.list_item');
-    $('.list_item').each((index,value)=>{
+    $('.list_item').each((index, value) => {
         console.log('33333');
-        if(value.getAttribute('data-prd_number').search(search_target) == -1 & value.getAttribute('data-prd_name').search(search_target) == -1){
+        if (value.getAttribute('data-prd_number').search(search_target) == -1 & value.getAttribute('data-prd_name').search(search_target) == -1) {
             console.log(value);
             value.setAttribute("style", "display:none;");
-        }else if (search_target ==""){
-            if($('#show_off').has('checked') && value.getAttribute('data-prd_condition').search('on') >0){
+        } else if (search_target == "") {
+            if ($('#show_off').has('checked') && value.getAttribute('data-prd_condition').search('on') > 0) {
                 console.log('X');
                 value.removeAttribute("style");
-            }else if($('#show_off').has('checked') ){
-                    console.log('v');
-                    value.removeAttribute("style");
+            } else if ($('#show_off').has('checked')) {
+                console.log('v');
+                value.removeAttribute("style");
             }
         }
 
     })
 
 })
+
+
+// 商品搜尋end
+// ========================================
+// 新增商品
+
+$('#new_pd').on('click', () => {
+    location.href = "./back_product_detail.html";
+})
+
+//=========================================
+
+//停止頁籤預設行為
+$('.page_hear').on('click', (e) => {
+    e.preventDefault;
+    // console.log('a');
+
+})
+
+$('.prev_page').on('click', (e) => {
+    e.preventDefault;
+    // console.log('a');
+    if (!($('.page_hear').find("p").text() == '1')) {
+        // console.log('hear');
+        $('.page_hear').prev().addClass('page_hear');
+        $('.page_hear')[1].classList.remove('page_hear');
+    }
+})
+
+$('.next_page').on('click', (e) => {
+    e.preventDefault;
+    // console.log('a');
+    if (!($('.page_hear').next().is('.next_page'))) {
+        // console.log('hear');
+        $('.page_hear').next().addClass('page_hear');
+        $('.page_hear')[0].classList.remove('page_hear');
+    }
+})
+
+// ========================================
+// 修改按鈕
+    $(document).on('click', (e) => {
+        // console.log(e.target.getAttribute('class'));
+        if($('.prd_edit')){
+            // console.log('edit');
+            let target_prd = $(e.target).closest('li').data('prd_number');
+            console.log(target_prd);
+            location.href = `./back_product_detail.html?${target_prd}`;
+        }
+    })
+
+// ===========================================
+
+

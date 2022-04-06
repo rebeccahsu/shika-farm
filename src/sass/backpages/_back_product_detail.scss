@@ -8,7 +8,7 @@
 }
 
 form {
-  width:100%;
+  width: 100%;
   margin: 0 10px;
 
   //   圖片區塊
@@ -27,6 +27,7 @@ form {
       .select_topImage1 {
         display: flex;
         align-items: center;
+        justify-content: center;
         max-width: 100%;
         width: 590px;
         height: 590px;
@@ -45,7 +46,7 @@ form {
         button {
           width: 30px;
           height: 30px;
-          display: inline-block;
+          display: none;
           color: $color_W;
           font-size: $fs-s;
           text-align: center;
@@ -69,6 +70,7 @@ form {
         // 插入圖片後
         img {
           max-width: 100%;
+
         }
       }
 
@@ -77,6 +79,7 @@ form {
         .select_topImage#{$i} {
           display: flex;
           align-items: center;
+          justify-content: center;
           width: 183px;
           height: 183px;
           border: 2px double #ccc;
@@ -112,6 +115,7 @@ form {
     vertical-align: middle;
     position: relative;
     text-align: left;
+    height: 28px;
   }
   input {
     height: 50px;
@@ -174,6 +178,13 @@ form {
     display: flex;
     flex-grow: 1;
   }
+  .warn {
+    border: 2px solid red !important;
+  }
+  span {
+    font-size: $fs-xs;
+    color: red;
+  }
 }
 
 .pds_right {
@@ -182,7 +193,7 @@ form {
     // h5 {
     //   text-align: center;
     // }
-    
+
     button#add_prdIntroduce {
       margin: 5px 10px 5px 0;
     }
@@ -196,7 +207,7 @@ form {
   #submit {
     margin: 10px 10px 10px 0;
   }
-  #Cancel {
+  #cancel {
     @include button($color_W) {
       color: $color_B;
       border: 1px solid #ccc;
@@ -221,6 +232,7 @@ form {
     align-items: center;
     width: 300px;
     height: 300px;
+    margin: 0 10px;
     border: 1px solid #ccc;
     border-radius: 50%;
     overflow: hidden;
@@ -231,8 +243,8 @@ form {
       width: 100%;
       opacity: 1;
 
-      &:hover{
-        opacity: .3;
+      &:hover {
+        opacity: 0.3;
       }
     }
 
@@ -243,24 +255,77 @@ form {
       font-size: $fs-s;
       top: 50%;
       left: 50%;
-      transform: translate(-50%,-50%);
+      transform: translate(-50%, -50%);
       z-index: -1;
     }
   }
   .prd_introduce_input {
     width: 400px;
     height: 88px;
-    margin-left: 50px;
+    margin: 0 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 10px;
     font-size: $fs-s;
     resize: none;
   }
+  &:nth-child(even) textarea {
+    order: -1;
+  }
   .bi-x {
     position: absolute;
     font-size: 50px;
     right: 10px;
     top: 10px;
+    cursor: pointer;
   }
+}
+
+.y_shadow {
+  box-shadow: inset 0 0 15px $color_Y;
+}
+
+// 彈窗
+div#back_bg {
+  background-color: rgba(45, 45, 45, 0.5);
+  opacity: 1;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  position: fixed;
+  display: none;
+  &.-on{
+    display: block !important;
+  }
+
+  #pop_box {
+    margin:50px;
+    padding: 50px;
+    background-color: $color_W;
+    border-radius: 5px;
+    width: 800px;
+    height: 300px;
+    z-index: 1001;
+    position: relative;
+    
+  }
+  .bi-x {
+    font-size: 40px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+  .cancel {
+    @include button($color_W) {
+      color: $color_B;
+      border: 1px solid #ccc;
+      margin: 10px 10px 10px;
+    }
+  }
+  span+input{
+      font-size: $fs-xs;
+      margin-bottom: 10px;
+      width: 400px;
+    }
 }
