@@ -36,6 +36,16 @@ $('#userMail').on('blur', () => {
     }
 })
 
+$('.userMail').on('blur', () => {
+    // console.log('object');
+    if ($('.userMail').val().search(emailRule) == -1) {
+        $('label[for="userMail"]').html("<h5>電子郵件<span>*e-mail格式不正確</span></h5>");
+    } else {
+        // console.log('c');
+        $('label[for="userMail"]').html("<h5>電子郵件</h5>");
+    }
+})
+
 // 驗證密碼格式
 $('#password').on('keyup', () => {
     let psd = $('#password').val();
@@ -203,14 +213,14 @@ function mail_cd() {
 // ============郵遞區號============
 // const twzipcode = new TWzipcode(".twzipcode");
 // twzipcode.destroy();
+let twzip = new TWzipcode('#twzipcode');
 
-$('#twzipcode').twzipcode({
-    countyName: 'county', // 設定取得縣市的name
-    districtName: 'district', // 設定取得鄉鎮市區的name
-    zipcodeName: 'zipcode', // 設定取得郵遞區號的name
-    onDistrictSelect: function () { console.log($('.zipcode').val()); },  //  選擇鄉鎮市區後執行
-
-});
+// $('#twzipcode').twzipcode({
+//     countyName: 'county', // 設定取得縣市的name
+//     districtName: 'district', // 設定取得鄉鎮市區的name
+//     zipcodeName: 'zipcode', // 設定取得郵遞區號的name
+//     // onDistrictSelect: function () { console.log($('.zipcode').val()); },  //  選擇鄉鎮市區後執行
+// });
 
 /*
 // Initialize

@@ -15,10 +15,10 @@
 
   .shikaBlock {
     max-width: 326px;
-    height: 596px;
+    height: auto;
     background-image: url(../../img/material/login_block.jpg);
     background-repeat: no-repeat;
-    background-position: 0 0;
+    background-position:0 0;
     border-radius: 5px 0 0 5px;
     display: flex;
 
@@ -70,7 +70,7 @@
         padding: 10px 20px;
         width: 100%;
         min-width: 222px;
-        height: 50px;
+        height: 40px;
         background-color: #ededed;
         border-radius: 5px;
         margin-bottom: 5px;
@@ -81,22 +81,14 @@
         }
       }
 
-      .forget {
-        margin-top: 10px;
-        margin-bottom: 25px;
-        align-self: flex-end;
-        color: $color_B;
-        transition: 0.5s;
-        &:hover {
-          color: $color_G;
-        }
-      }
+      
       #login_btn {
         @include buttonSet;
         width: 100%;
         border-radius: 5px;
         height: 50px;
         font-size: $fs-xs;
+        margin-top: 25px;
         margin-bottom: 15px;
         cursor: pointer;
         &:hover {
@@ -163,10 +155,27 @@ div#back_bg {
 	align-items: center;
 }
 
-.register_link{
-	text-align: center;
-  cursor: pointer;
+.toggle-links{
+  text-align: center;
+  .register_link{
+    cursor: pointer;
+    &:hover {
+      color: $color_G;
+    }
+  }
+  
+  .forget_link {
+    margin: 15px auto 0;
+    display: block;
+    color: $color_B;
+    transition: 0.5s;
+    cursor: pointer;
+    &:hover {
+      color: $color_G;
+    }
+  }
 }
+
 
 // 註冊填資料 表單
 .register_form {
@@ -193,7 +202,7 @@ div#back_bg {
   input {
     padding: 10px 20px;
     width: 100%;
-    height: 50px;
+    height: 40px;
     background-color: #ededed;
     border-radius: 5px;
     border: 1px solid #c4c4c4;
@@ -245,7 +254,7 @@ div#back_bg {
     select {
       font-size: $fs-xs;
       width: 219px;
-      height: 50px;
+      height: 40px;
       background-color: #ededed;
       border-radius: 5px;
       border: 1px solid #c4c4c4;
@@ -263,7 +272,7 @@ div#back_bg {
       display: none;
     }
 
-    .county {
+    select[name="county"] {
       margin-right: 8px;
     }
   }
@@ -298,7 +307,7 @@ div#back_bg {
 	input {
 	padding: 10px 20px;
 	width: 100%;
-	height: 50px;
+	height: 40px;
 	background-color: #ededed;
 	border-radius: 5px;
 	margin-bottom: 5px;
