@@ -1,4 +1,7 @@
 #back_pds {
+  .b_aside{
+    z-index: 3;
+  }
   .pds_right {
     padding-left: 20%;
     margin: 10px 30px;
@@ -227,6 +230,11 @@ form {
   padding: 25px;
   position: relative;
 
+  .select_introPic{
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
   .select_image {
     display: flex;
     align-items: center;
