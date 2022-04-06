@@ -1,25 +1,37 @@
 // 外層
 
 .mb_re_wrp{
-    width: 900px;
+    width: 600px;
+    height: 400px;
+    // border: 1px solid $color_G;
+    border-radius: 8px;
     margin: 0 auto;
    
 }
 
+.tit1{
+    color: $color_G;
+    
+}
 
 
 //姓名
 .mb_name{
     margin-top: 40px;
-    display: flex;
-    justify-content: space-between;
+    padding-bottom: 20px;
+   
+}
+
+.mb_name label p{
+    padding-bottom: 24px;
 }
 
 
 
 .mb_adr{
     display: flex;
-    padding-top: 40px;
+    // padding-top: 40px;
+    
 }
 
 .mb_adr select #city #area{
@@ -50,9 +62,7 @@
 //密碼
 .mb_pw{
     padding-top: -5px;
-    .mb_input{
-
-    }
+    display: none;
 }
 
 .ch_pw{
@@ -92,7 +102,7 @@
 }
 
 .cts{
-    padding: 10px;
+    // padding: 10px;
 
     .ads{
         border: 1px solid #c4c4c4;
