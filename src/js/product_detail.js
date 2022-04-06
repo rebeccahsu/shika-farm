@@ -52,33 +52,37 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 var main_2 = new Splide('#splide02', {
-    fixedWidth: '80',
+    fixedWidth: '90',
+    autoHeight:true,
     type: 'splide',
     rewind: true,
     pagination: true,
     arrows: true,
-    padding: { right: 10, left: 10, bottom: 10 },
-    // mediaQuery: 'min',  //mediaQuery:'min'or'max'配合breakpoints: 尺寸
+    gap:20,
+    padding: {  bottom: 10 },
+    mediaQuery: 'min',  //mediaQuery:'min'or'max'配合breakpoints: 尺寸
     // destroy: false,  //廢棄會將此段套件區塊會display:none
-    // breakpoints: {
-    //     768: {
-    //         destroy: true
-    //     }}
+    breakpoints: {
+        992: {
+            drag: false,
+        }}
 }).mount();
 
-if (window.innerWidth > 991.98) { removeSplide(); }
+
+    if (window.innerWidth > 992){ removeSplide(); }
+
 
 
 // for resize
 function addSplide() {
-    $('.pd_recommend').attr("id", "splide02")
+    $('.pd_recommend').children("div").attr("id", "splide02")
     $('.pd_recommend_list').parent("div").addClass('splide__track');
     $('.pd_recommend_list').addClass('splide__list');
     $('.pd_recommend_list').find("li").addClass('splide__slide');
 }
 
 function removeSplide() {
-    $('.pd_recommend').removeAttr("id", "splide02")
+    $('.pd_recommend').children("div").removeAttr("id", "splide02")
     $('.pd_recommend_list').parent("div").removeClass('splide__track');
     $('.pd_recommend_list').removeClass('splide__list');
     $('.pd_recommend_list').find("li").removeClass('splide__slide');
@@ -86,7 +90,7 @@ function removeSplide() {
 
 $(window).on('resize', function () {
     console.log(innerWidth);
-    if (window.innerWidth > 991.98) {
+    if (window.innerWidth > 992.98) {
         if ($('.pd_recommend').has('#splide02')) {
             removeSplide();
 

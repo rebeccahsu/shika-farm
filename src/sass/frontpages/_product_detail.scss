@@ -1,6 +1,11 @@
 .pd_main {
   margin-bottom: 30px;
-  //   @include borderTest(blue);
+
+  @media (max-width: 992px) {
+    max-width: 80%;
+  }
+  
+  // *{@include borderTest(blue);}
 
   //   麵包屑
   .pd_bread {
@@ -53,7 +58,7 @@
         width: 90%;
       }
     
-           // 套件區=================================
+           // 套件區 top_img=================================
            .splide__slide>img {
             max-width: 100%;
 
@@ -76,6 +81,8 @@
           .splide__pagination__page.is-active{
             background: $color_G;
           }
+
+          
   
           // ======================================
     }
@@ -264,10 +271,17 @@
     &:nth-child(even)  P{
       order:-1;
     }
+    @media (max-width:992.98px) {
+      &:nth-child(even)  P{
+        order:0;
+      }
+    }
 
     .pd_intro_pic {
       display: flex;
       align-items: center;
+      justify-content: center;
+      flex-shrink: 1;
       width: 400px;
       height: auto;
       border: 1px solid #ccc;
@@ -275,14 +289,16 @@
       overflow: hidden;
       font-size: 0;
       line-height: 0;
-      margin: 0 15px;
+      margin: 15px;
       @include mobile{
-        width: 80%;
+        width: 90%;
         height: auto;
       }
 
       img {
-        width: 102%;
+        max-width: 105%;
+        max-height: 105%;
+
       }
     }
     p {
@@ -338,34 +354,56 @@
 }
 
 .pd_recommend {
-  margin: 20px;
+  margin: 20px auto;
   position: relative;
+  max-width: 100%;
+  // *{    @include borderTest}
+  @media (max-width: 992.98px) {
+    
+    margin:20px 0;
+  }
 
-  // 套件用的=======================
+
+  // 套件用的 推薦img=======================
+  .splide02-track{
+    @media (max-width: 992.98px){
+      max-width: 100%;
+    }
+  }
+
   .splide__arrows,.splide__pagination{
     display: none !important;
-    @media (max-width:991.98px) {
+    @media (max-width:992.98px) {
       display: flex !important;
+
     }
   }
   .splide__pagination__page.is-active{
     background: $color_G;
   }
 
+  .splide__pagination li{
+    transform: translateY(30px);
+  }
+
 
     @media (max-width: 992.98px) and (min-width: 768px){
       .splide__arrows .splide__arrow.splide__arrow--prev{
-        left: 10%;
+        left: 5%;
         width: 3em;
         height: 3em;
           }
         
           .splide__arrows .splide__arrow.splide__arrow--next{
-        right: 10%;
+        right: 0%;
         width: 3em;
         height: 3em;
 
       }
+    }
+
+    .splide__track{
+      overflow: unset;
     }
   
   // ================================
@@ -384,31 +422,43 @@
   max-width: 100%;
   display: flex;
   flex-shrink: 1;
+  // @include borderTest(green);
   // @include borderTest;
+  @media (min-width:768px) and (max-width:992px){
+    // margin: 20px;
+    
+  }
   @include pad {
-    display: block;
+
+    display: flex;
     position: relative;
-    li {
-      margin: 25px;
-    }
+    // overflow: hidden;
+    // #splide02-slide02{
+    //   margin: 0 20px;
+    // }
   }
 
   li {
+    
     margin: 50px 25px 50px;
     background-color: $color_W;
     box-shadow: 0 0 20px rgba(33, 33, 33, 0.2);
     border-radius: 5px;
     transition: 0.5s;
-    // @include borderTest;
+    // @include borderTest(blue);
 
+    @include pad{
+      max-width: 100%;
+      margin: 0px;
+    }
     @media (min-width:768px) {
           &:hover {
       -webkit-animation: slide-top 0.5s ease-out infinite alternate;
       animation: slide-top 0.5s ease-out infinite alternate;
     }
     @media (min-width:768px) and (max-width:992px){
-      max-width: 600px;
-      margin: 50px auto 50px;
+      max-width: 100%;
+      margin: 50px 20px 50px;
     }
 
     }
@@ -475,5 +525,14 @@
 
   .pd_recommend_price::before {
      font-size: $fs-xs;
+  }
+  .pd_recommend_name {
+    margin-left: 5px;
+  }
+  .pd_recommend_price {
+    margin-right: 5px;
+  }
+  .pd_recommend_text{
+    padding: 20px 0;
   }
 }
