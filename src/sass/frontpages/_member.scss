@@ -2,11 +2,13 @@
 
 .member_top{
  position: relative;
+ width: 100%;
+ height: 500px;
+ background-image: url('../../img/activity/member_banner.png');
+ background-repeat: no-repeat;
+//  background-size: cover;
 }
-.member_top img{
-    display: block;
-    margin: 0 auto;
-}
+
 
 .memberTitle{
     text-align: center;
