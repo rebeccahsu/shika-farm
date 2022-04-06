@@ -236,11 +236,12 @@
         top: 0; 
         left: 0;
         z-index: 1000;
+        display: none;
     
         .shoppingCar{
            width: 950px;
            position: absolute;
-           top: 30%;
+           top: 10%;
            left: 50%;
            transform: translate(-50%);
            
@@ -332,12 +333,17 @@
                 margin: 0 auto;
                 text-align: center;
                 padding: 20px;
-
+                
                 button{
                     width: 80px;
                     height: 40px;
                     margin: 10px;
                 }
+                
+                a{
+                    display: inline-block;
+                }
+
                 .gosp{
                     border: 1px solid $color_B;
                     background-color: $color_W;

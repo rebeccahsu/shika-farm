@@ -6,8 +6,9 @@
 			/></a>
 		</h1>
 		<div class="navRight">
-			<a href="#" class="head-icon" @click.prevent="openCart"
+			<a href="#" class="head-icon" id="cart"
 				><i class="bi bi-cart2 cartIcon"><span class="cartCount">1</span></i>
+			</a>
 			<a href="member.html" class="head-icon member-icon"
 				><i class="bi bi-person memberIcon"></i
 			></a>
@@ -31,7 +32,7 @@
 				</ul>
 			</nav>
               <!-- 購物車彈跳窗 -->
-              <div v-if="!isShow"  class="blackBg"  id="blackBg">
+            <div class="blackBg" id="blackBg">
                 <div class="shoppingCar container">
                     <div class="carTitle"><h5>購物車明細</h5></div>
                     <ul>
@@ -43,46 +44,47 @@
                             <p>小計</p>
                         </li>
                     
-                        <li class="carArr">
-                            <img src="../img/porducts/blanket_g.jpg" alt="">
-                            <p>羊毛毯(綠)</p>
-                            <p>NT$ 499</p>
+                        <li v-for="(product, index) in products" class="carArr">
+                            <img :src="product.img" alt="">
+                            <p>{{product.info}}</p>
+                            <p>NT$ {{product.price}}</p>
                             <p>
-                                <input
-								type="button"
-								class="addBtn spBtn"
-								value="-"
-							/><input
-								type="text"
-								class="quantity"
-                                value="1"
-							/><input
-								type="button"
-								class="subBtn spBtn"
-								value="+"
-							/>
+                            	<input
+									type="button"
+									class="addBtn spBtn"
+									value="-"
+									@click="add(index, -1)"
+								/><input
+									type="text"
+									class="quantity"
+									v-model="product.quantity"
+								/><input
+									type="button"
+									class="subBtn spBtn"
+									value="+"
+									@click="add(index, 1)"
+								/>
                             </p>
-                            <p>NT$ 499</p>
+                            <p>NT$ {{product.price * product.quantity}}</p>
 
                             <img
 							src="./img/icon/garbageCan.png"
 							class="garbageCan"
+							@click="del(index)"
 						    />
                         </li>
 
                         <div class="carBottom">
                             <p>結帳總金額</p>
-                            <p>NT$ 499</p> 
+                            <p>NT$ {{sumTotal}}</p> 
                         </div>
                         <div class="spOrout">
-                            <button class="gosp">繼續購物</button>
-                            <button class="Co">結帳</button>
+                            <button class="gosp" id="gosp">繼續購物</button>
+                            <a href="../checkout.html"><button class="Co">結帳</button></a>
                         </div>
                     </ul>
-
                 </div>
-            </a>
-		</div>
+			</div>
 	</nav>
 	<div class="hamMask" style="opacity: 0"></div>
 </header>
