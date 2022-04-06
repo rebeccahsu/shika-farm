@@ -15,10 +15,10 @@
 
   .shikaBlock {
     max-width: 326px;
-    height: 596px;
+    height: auto;
     background-image: url(../../img/material/login_block.jpg);
     background-repeat: no-repeat;
-    background-position: 0 0;
+    background-position:0 0;
     border-radius: 5px 0 0 5px;
     display: flex;
 
@@ -70,7 +70,7 @@
         padding: 10px 20px;
         width: 100%;
         min-width: 222px;
-        height: 50px;
+        height: 40px;
         background-color: #ededed;
         border-radius: 5px;
         margin-bottom: 5px;
@@ -202,7 +202,7 @@ div#back_bg {
   input {
     padding: 10px 20px;
     width: 100%;
-    height: 50px;
+    height: 40px;
     background-color: #ededed;
     border-radius: 5px;
     border: 1px solid #c4c4c4;
@@ -254,7 +254,7 @@ div#back_bg {
     select {
       font-size: $fs-xs;
       width: 219px;
-      height: 50px;
+      height: 40px;
       background-color: #ededed;
       border-radius: 5px;
       border: 1px solid #c4c4c4;
@@ -272,7 +272,7 @@ div#back_bg {
       display: none;
     }
 
-    .county {
+    select[name="county"] {
       margin-right: 8px;
     }
   }
@@ -307,7 +307,7 @@ div#back_bg {
 	input {
 	padding: 10px 20px;
 	width: 100%;
-	height: 50px;
+	height: 40px;
 	background-color: #ededed;
 	border-radius: 5px;
 	margin-bottom: 5px;
