@@ -1,57 +1,129 @@
 // 進入頁面是否讀資料
 var editRule = /[prd_number=]\d{8}$/
-$(function(){
-    if(editRule.test(location.search)){
+document.addEventListener("DOMContentLoaded", function (e) {
+    if (editRule.test(location.search)) {
         let task = JSON.parse(localStorage.getItem("prd_list"));
-        let number0 = location.search.slice(12,20);
+        let number0 = location.search.slice(12, 20);
         // console.log(number);
         // console.log(task);
-        task.forEach(function(value,i){
-            if(task[i].prd_number == number0){
+        task.forEach(function (value, i) {
+            if (task[i].prd_number == number0) {
                 console.log(task[i]);
                 let pdata = task[i];
+                // 帶入資料
+                showData(pdata);
                 $('.back_title').find('h4').text('修改商品');
                 $('.select_images').after(`<spap style="float:right">品號：${task[i].prd_number}</spap>`)
-            // 帶入資料
-                showData(pdata);
-            
+
             }
         })
     }
 });
 
-function showData (pdata){
-    // console.log(pdata);
-    putin_topimg(pdata.prd_topImage);
+function showData(pdata) {
+    console.log(pdata);
+    // console.log(pdata.prd_slog[0]);
+    $('#prd_slog1').val(pdata.prd_slog[0]);
+    $('#prd_slog2').val(pdata.prd_slog[1]);
+    $('#prd_inStock').val(pdata.prd_inStock);
+    $("#prd_price").val(pdata.prd_price);
+    $("#prd_cost").val(pdata.prd_cost);
+    $("#prd_name").val(pdata.prd_name);
+    $("#prd_ingredient").val(pdata.prd_ingredient);
 
-    // putin_intro(pdata.prd_intro);
+    putin_intro(pdata.prd_intro);
+    putin_topimg(pdata.prd_topImage)
+    // pdata.prd_slog
+
 }
 
-function putin_topimg(d){
+
+
+
+function putin_topimg(d) {
     console.log(d);
-    for(i=0;i<4;i++){
-        console.log(i+ "資料" +d[i]);
-        if(d[i] != undefined){
-            $('.select_topImage').html(`<img src="${d[i]}" class="preview_img">`);
-        //    let aaa=document.querySelectorAll('.select_topImage');
-        //    aaa[i].innerHTML(`<img src="${d[i]}" class="preview_img">`);
+    let el;
+    for (var i = 0; i < 4; i++) {
+        console.log(i + "資料" + d[i]);
+        let img_src = d[i];
+        if (d[i] != undefined) {
+            console.log(img_src);
+            switch (i) {
+                case 0:
+                    el = document.querySelector('.select_topImage1');
+                    el.innerHTML = `<img src="${d[0]}"/>`;
+                    break;
+                case 1:
+                    el = document.querySelector('.select_topImage1');
+                    el.innerHTML = `<img src="${d[1]}"/>`;
+                    break;
+                case 2:
+                    el = document.querySelector('.select_topImage1');
+                    el.innerHTML = `<img src="${d[2]}"/>`;
+                    break;
+                case 3:
+                    el = document.querySelector('.select_topImage1');
+                    el.innerHTML = `<img src="${d[3]}"/>`;
+                    break;
+                default:
+                    console.log("default-topImg");
+            }
         }
     }
 }
 
 
-function putin_intro(d){
+function putin_intro(d) {
     console.log(d);
-    for(i=0; i<5; i++){
-        if(d[i] !=null){
-            switch (i){
-                case "1":
-                    $('.prd_introduce')[0].querySelector('img').setAttribute('src',d[i]);
+    let el;
+    let el_img;
+    let el_text;
+    for (i = 0; i < 5; i++) {
+        if (d[i] != null) {
+            switch (i) {
+                case 0:
+                    // console.log('bb');
+                    el = document.querySelectorAll('.prd_introduce')[0];
+                    el_img = el.querySelector(".select_image");
+                    el_text = el.querySelector("textarea");
+                    // console.log(el_img);
+                    // console.log(el_text);
+                    // console.log(d[0].text);
+                    el_img.innerHTML = `<img src="${d[0].src}"/>`;
+                    el_text.innerText = d[0].text;
                     break;
-                case "2":
+                case 1:
+                    el = document.querySelectorAll('.prd_introduce')[1];
+                    el_img = el.querySelector(".select_image");
+                    el_text = el.querySelector("textarea");
+                    el_img.innerHTML = `<img src="${d[1].src}"/><span>更換圖片</span>`;
+                    el_text.innerText = d[1].text;
+                    break;
+
+                case 2:
+                    el = document.querySelectorAll('.prd_introduce')[2];
+                    el_img = el.querySelector(".select_image");
+                    el_text = el.querySelector("textarea");
+                    el_img.innerHTML = `<img src="${d[2].src}"/><span>更換圖片</span>`;
+                    el_text.innerText = d[2].text;
+                    break;
+
+                case 3:
+                    el = document.querySelectorAll('.prd_introduce')[3];
+                    el_img = el.querySelector(".select_image");
+                    el_text = el.querySelector("textarea");
+                    el_img.innerHTML = `<img src="${d[3].src}"/><span>更換圖片</span>`;
+                    el_text.innerText = d[3].text;
+                    break;
+                case 4:
+                    el = document.querySelectorAll('.prd_introduce')[4];
+                    el_img = el.querySelector(".select_image");
+                    el_text = el.querySelector("textarea");
+                    el_img.innerHTML = `<img src="${d[4].src}"/><span>更換圖片</span>`;
+                    el_text.innerText = d[4].text;
                     break;
                 default:
-
+                    console.log('default');
 
             }
         }
@@ -203,7 +275,7 @@ $('.select_topImage').on("drop", (e) => {
 
 
 // 抓檔案
-var preview_img = function(file) {
+var preview_img = function (file) {
     var reader = new FileReader(); // 用來讀取檔案
     reader.readAsDataURL(file); // 讀取檔案
     reader.addEventListener("load", function () {
@@ -218,73 +290,73 @@ var preview_img = function(file) {
 
 // 呼叫FileReader轉base64
 var preview_el;
-var preview_img = function(file){
+var preview_img = function (file) {
 
     var reader = new FileReader(); // 用來讀取檔案
     reader.readAsDataURL(file); // 讀取檔案
     reader.addEventListener("load", function () {
-      //console.log(reader.result);
-      let img_str = '<img src="' + reader.result + '" class="preview_img">';
-      preview_el.innerHTML = img_str;
-    //   console.log(img_str);
+        //console.log(reader.result);
+        let img_str = '<img src="' + reader.result + '" class="preview_img">';
+        preview_el.innerHTML = img_str;
+        //   console.log(img_str);
     });
-  };
+};
 
 
-$("#file1").on("change", (e)=>{
+$("#file1").on("change", (e) => {
     // console.log($("#file1")[0]);
-    if($("#file1")[0].files.length > 0){
+    if ($("#file1")[0].files.length > 0) {
         preview_el = $(".select_topImage1")[0];
         preview_img($("#file1")[0].files[0]);
-      }else{
+    } else {
         preview_el = $(".select_topImage1")[0];
         preview_el.innerHTML = '<span>請上傳圖片</span>';
-      }
+    }
 })
 
-$("#file2").on("change", (e)=>{
+$("#file2").on("change", (e) => {
     // console.log($("#file2")[0]);
-    if($("#file2")[0].files.length > 0){
+    if ($("#file2")[0].files.length > 0) {
         preview_el = $(".select_topImage2")[0];
         preview_img($("#file2")[0].files[0]);
-      }else{
+    } else {
         preview_el = $(".select_topImage2")[0];
         preview_el.innerHTML = '<img src="./img/logo_16B1AA.svg" alt="">';
-      }
+    }
 })
 
-$("#file3").on("change", (e)=>{
+$("#file3").on("change", (e) => {
     // console.log($("#file3")[0]);
-    if($("#file3")[0].files.length > 0){
+    if ($("#file3")[0].files.length > 0) {
         preview_el = $(".select_topImage3")[0];
         preview_img($("#file3")[0].files[0]);
-      }else{
+    } else {
         preview_el = $(".select_topImage3")[0];
         preview_el.innerHTML = '<img src="./img/logo_16B1AA.svg" alt="">';
-      }
+    }
 })
 
-$("#file4").on("change", (e)=>{
+$("#file4").on("change", (e) => {
     // console.log($("#file4")[0]);
-    if($("#file4")[0].files.length > 0){
+    if ($("#file4")[0].files.length > 0) {
         preview_el = $(".select_topImage4")[0];
         preview_img($("#file4")[0].files[0]);
-      }else{
+    } else {
         preview_el = $(".select_topImage4")[0];
         preview_el.innerHTML = '<img src="./img/logo_16B1AA.svg" alt="">';
-      }
+    }
 })
 
-$(".upload").on('click',(e)=>{
+$(".upload").on('click', (e) => {
     e.preventDefault();
     let img_base64 = [];
-    for(let i=0; i<$('.preview_img').length; i++){
+    for (let i = 0; i < $('.preview_img').length; i++) {
         let img = $('.preview_img')[i].getAttribute('src');
-       if(img !== "./img/logo_16B1AA.svg" || img == null){
-           img_base64.push(img);
-        //    console.log(img_base64);
-           sessionStorage.setItem("top_img", JSON.stringify(img_base64));
-       }
+        if (img !== "./img/logo_16B1AA.svg" || img == null) {
+            img_base64.push(img);
+            //    console.log(img_base64);
+            sessionStorage.setItem("top_img", JSON.stringify(img_base64));
+        }
     }
     closebg();
 })

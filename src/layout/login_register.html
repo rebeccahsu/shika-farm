@@ -1,6 +1,8 @@
 <div id="back_bg" class="-off"></div>
 <div id="login_box" class="-off">
-    <div class="shikaBlock"><h1><img src="../img/logo_white.svg" alt=""></h1></div>
+    <div class="shikaBlock">
+        <h1><img src="../img/logo_white.svg" alt=""></h1>
+    </div>
     <div class="loginBlock" id="login_register_app">
 
         <component :is='content'></component>
@@ -61,21 +63,22 @@
 </div>
 </div>
 
+
 <script src="js/login.js"></script>
 <script>
     Vue.component('login', {
-            template: `
+        template: `
                 <form action="" method="POST" id="login_form">
                     <h4>登入</h4>
                     <label for="userMail"><h5>電子郵件</h5></label>
-                    <input type="email" name="userMail" id="userMail">
+                    <input type="email" name="userMail" class="userMail">
                     <label for="password"><h5>密碼</h5></label>
                     <input type="password" name="password" id="password">
                     <button type="button" id="login_btn">登入</button>
                     <button type="button" id="FBlogin_btn">透過FACEBOOK登入</button>
                     
             </form>
-            `,    
+            `,
     });
 
     Vue.component('register', {
@@ -83,13 +86,13 @@
         <form action="" method="POST" id="login_form">
             <h4>註冊</h4>
             <label for="userMail"><h5>電子郵件</h5></label>
-            <input type="email" name="userMail" id="userMail">
+            <input type="email" name="userMail" class="userMail">
             <label for="password"><h5>密碼</h5></label>
             <input type="password" name="password" id="password">
             <label for="repassword"><h5>確認密碼</h5></label>
             <input type="password" name="repassword" id="repassword">
             <button type="button" id="next" class="next">繼續</button>
-        </form>`, 
+        </form>`,
     });
 
     Vue.component('forgetPwd', {
@@ -110,33 +113,33 @@
             content: 'login',
         },
         methods: {
-            off(){
+            off() {
                 $('.register_link').remove();
                 $('.forget_link').remove();
             },
         },
     });
-    
 
-    $(".member-icon").on("click", function(e){
+
+    $(".member-icon").on("click", function (e) {
         e.preventDefault();
         // TODO: 檢查是否有登入
         $("#login_box").removeClass("-off");
         $("#back_bg").removeClass("-off");
     })
 
-    $('.loginBlock').on("click", function(e){
-        if (e.target.classList.contains("next")){
+    $('.loginBlock').on("click", function (e) {
+        if (e.target.classList.contains("next")) {
             $("#login_form").remove();
             $("#register2").removeClass("form-off");
         }
 
-        if (e.target.classList.contains("to3")){
+        if (e.target.classList.contains("to3")) {
             $("#register2").remove();
             $("#register3").removeClass("form-off");
         }
 
-        if(e.target.classList.contains("register_done")){
+        if (e.target.classList.contains("register_done")) {
             $("#login_box").addClass("-off");
             $('#back_bg').addClass("-off");
         }
@@ -147,5 +150,6 @@
         $("#login_box").addClass("-off");
         $("#back_bg").addClass("-off");
     });
+
 
 </script>
