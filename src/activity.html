@@ -79,9 +79,7 @@
         }
 
         .modal_img {
-            width: 10vw;
-            animation: swing 1s infinite;
-            transform-origin: bottom;
+            width: 140px;
         }
 
 
@@ -92,6 +90,12 @@
             border: none;
             border-radius: 10px;
             letter-spacing: 3px;
+
+        }
+
+        .modal_date {
+            height: 50px;
+            width: 150px;
         }
 
 
@@ -146,6 +150,14 @@
             transform: rotate(-45deg);
             top: auto;
         }
+
+        .reserve {
+            cursor: pointer;
+        }
+
+        .item_img_icon {
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -186,14 +198,14 @@
                     <span class="-hr -bottom"></span>
                 </button>
             </div>
-            <input id="date" type="date"><br><br>
+            <input class="modal_date" id="date" type="date"><br><br>
             <!--取值測試-->
             <!-- <h5>取值測試一：{{modal_open}}</h5>
             <h5>取值測試二：{{}}</h5> -->
             <!---->
             <!-- <input type="radio" v-model="period" value="period1"> {{modal_open.title}}<br> -->
             <template v-for="item2 in modal_open.time_period">
-                <input type="radio"> {{item2}}<br>
+                <input type="radio" id="period" name="period"><label for="period"> {{item2}}</label><br>
             </template>
 
             預約人數： <input type="number" name="quantity" min="1" max="10"> 人</br>
