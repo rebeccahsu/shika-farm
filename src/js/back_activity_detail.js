@@ -124,3 +124,12 @@ on_date.addEventListener("change", function(){
 });
 // let on_time = document.getElementById('on_time');
 // on_time.min = current_time;
+
+
+//目前頁面
+let pages = document.querySelector(".aside_ul").querySelectorAll("h5");
+pages.forEach(function(page){
+    if ( page.innerHTML == "活動管理"){
+        page.closest("a").classList.add("-on");
+    }
+});

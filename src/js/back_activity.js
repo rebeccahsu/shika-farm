@@ -149,13 +149,13 @@ $(function() {
 
     //修改按鈕
     $("ul").on("click", ".modify_btn", function(e){
-        window.location.href = "../back_activity_detail.html";
+        window.location.href = "../back_activity_modify.html";
         checkAvailability();
     });
 
     //新增按鈕
     $(".add-activity").on("click", function(e){
-        window.location.href = "../back_activity_detail.html";
+        window.location.href = "../back_activity_add.html";
         checkAvailability();
     });
 
