@@ -1,13 +1,13 @@
 
 .bi_top{
     display: flex;
-
+    margin-left: 150px;
 }
 
 .bk_in .yellor{
     height: 40px;
     width: 80px;
-    background-color: yellow;
+    @include button($color_Y);
     border: 0px;
     font-size: 24px;
 }
@@ -15,7 +15,7 @@
 .bk_in .orange{
     height: 40px;
     width: 80px;
-    background-color: #ff8671;
+    @include button($color_R);
     border: 0px;
     margin-left: 24px;
     font-size: 24px;
@@ -30,6 +30,12 @@
     margin-top: 60px;
     display: flex;
     margin-left: 300px;
+}
+
+.bi_top .right p{
+    font-size: 24px;
+    margin-left: 15px;
+    margin-top: 5px;
 }
 
 .select_left{
@@ -50,18 +56,18 @@
 
 .main{
     display: flex;
-    margin-left: 675px;
+    margin-left: 490px;
 }
 
 .main p:nth-child(2){
-    margin-left: 200px;
+    margin-left: 150px;
 }
 .main p:nth-child(3){
     margin-left: 200px;
 }
 
 .list{
-margin-left: 260px;
+margin-left: 80px;
 }
 
 .list img{
@@ -75,7 +81,7 @@ margin-left: 260px;
     display: flex;
     border: 1px solid $color_G;
     border-radius: 5px;
-    justify-content:x` space-around;
+    justify-content:space-around;
     align-items: center;
     margin-left: 300px;
     margin-top: 25px;
@@ -87,7 +93,7 @@ margin-left: 260px;
 }
 
 .list_in button{
-    background-color: $color_G;
+    @include button($color_G);
     border: 0;
     width: 68px;
     height: 38px;
@@ -96,7 +102,9 @@ margin-left: 260px;
 
 .down{
     height: 60px;
-    margin-left: 1200px;
+    display: flex;
+    justify-content: end;
+    margin-right: 150px;
 }
 
 .down a{
