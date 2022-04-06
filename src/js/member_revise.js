@@ -39,23 +39,7 @@ $.ajax({
     //             <option value="${res[i].name}">${res[i].name}</option>
     //         `);
 
-	// 		$("select#city").on("change", function () {
-	// 			for (let j = 0; j < res[i].districts.length; j++) {
-                    
-	// 				let city = $('#city :selected').val();
-    
-                   
-                   
-	// 				if(city == res[i].name) {
-    //                     console.log(res[j].districts)
 
-	// 				    $('#area').append(`
-	// 				    <option>${res[j].districts.name}</option>
-	// 				    `)
-	// 				}
-	// 			}
-	// 		});
-	// 	}
 		// $("select#city").on("change", function () {
 		// 	console.log(res);
 		//     for (let i = 0; i < res.length; i++) {
@@ -72,6 +56,17 @@ $.ajax({
 // 		// });
 // 	},
 // });
+
+//取消a連結預設
+var el = document.querySelector('.ch_pw');
+el.addEventListener('click', function (e) {
+	e.preventDefault();
+	console.log('test');
+	$('.mb_pw').show()
+});
+
+// 把修改密碼輸入框display:block
+
 
 
 var el =document.querySelector('.ch_pw');
