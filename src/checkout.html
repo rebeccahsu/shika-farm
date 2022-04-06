@@ -130,9 +130,16 @@
 					<li class="payfor">
 						<div class="paymain">
 							<p>付款方式</p>
-							<select name="" id="" class="paySelect" @change="payType = $event.target.value">
+							<select
+								name=""
+								id=""
+								class="paySelect"
+								@change="payType = $event.target.value"
+							>
 								<option class="payOption" value="card">信用卡</option>
-								<option class="payOption arrival" value="arrival">貨到付款</option>
+								<option class="payOption arrival" value="arrival">
+									貨到付款
+								</option>
 							</select>
 						</div>
 					</li>
@@ -141,10 +148,18 @@
 						<div class="card_infoI">
 							<p class="cardAll">
 								<label for="payId">信用卡卡號</label>
-								<input type="text" id="payId" class="payId payInput" placeholder="0000"/> -
-								<input type="text" class="payId payInput" placeholder="0000"/> -
-								<input type="text" class="payId payInput" placeholder="0000"/> -
-								<input type="text" class="payId payInput" placeholder="0000"/>
+								<input
+									type="text"
+									id="payId"
+									class="payId payInput"
+									placeholder="0000"
+								/>
+								-
+								<input type="text" class="payId payInput" placeholder="0000" />
+								-
+								<input type="text" class="payId payInput" placeholder="0000" />
+								-
+								<input type="text" class="payId payInput" placeholder="0000" />
 							</p>
 							<p class="cardAll">
 								<label for="date">到期日</label>
@@ -176,14 +191,14 @@
 				</ul>
 				<div class="payGoback">
 					<button class="goback" @click="step = 'A'">回上一步</button>
-					<button class="paysub">提交訂單</button>
+					<button class="paysub" @click="step = 'C'">提交訂單</button>
 				</div>
 			</div>
 			<!---------- 結帳流程三 ---------->
 			<div v-else-if="step == 'C'" class="stepC container-lg">
 				<h3>訂單已完成，您的訂單編號為#20220311</h3>
-				<h5>您可以前往(<a href="" class="myMB">我的會員</a>)查詢訂單狀態</h5>
-				<button class="gogo">繼續購物</button>
+				<h5>您可以前往(<a href="member.html" class="myMB">我的會員</a>)查詢訂單狀態</h5>
+				<a href="products.html" class="gogoa"><button class="gogo">繼續購物</button></a>
 			</div>
 		</div>
 		<!-- footer -->
