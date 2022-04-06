@@ -269,14 +269,15 @@ $('.next_page').on('click', (e) => {
 })
 
 // ========================================
-// 修改按鈕
+// 修改按鈕>網址轉跳
     $(document).on('click', (e) => {
+        // console.log(e.target);
         // console.log(e.target.getAttribute('class'));
-        if($('.prd_edit')){
-            // console.log('edit');
+        if(e.target.getAttribute('class') == 'btn-green prd_edit'){
+            console.log('edit');
             let target_prd = $(e.target).closest('li').data('prd_number');
             console.log(target_prd);
-            location.href = `./back_product_detail.html?${target_prd}`;
+            location.href = `./back_product_detail.html?prd_number=${target_prd}`;
         }
     })
 
