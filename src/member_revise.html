@@ -11,10 +11,10 @@
         @@include('./layout/header.html')
 
         <!-- 首圖 -->
-        <div class="member_top">
-            <img src="./img/activity/member_banner.png" alt="">
-            <h2 class="memberTitle">會員中心</h2>
-        </div>
+        <!-- 首圖 -->
+    <div class="memberTop container-fluid">
+        <h3 class="pageTitle">會員中心</h3>
+    </div>
 
        <!-- 切換btn -->
         <div class="mem_tab">
@@ -29,26 +29,24 @@
             <p class="tit1">編輯會員資料</p>
 
             <div class="mb_name">
-                <label for=""><p>姓名: 王小明</p></label>
-                <label for=""><p>信箱: marz840917@gmail.com</p></label>
+                <label for=""><p>姓名:王小明</p></label>
+                <label for=""><p>信箱:marz840917@gmail.com</p></label>
             </div>
-        
+
             <div class="mb_adr">
                 <label for="" class="lbt"><p>聯絡地址:</p></label>
                 <div class="cts">
                     <select name="" id="city"  class="ads">
-                        <option value="000">---請選取---</option>
+                        <option value="000">---台北市---</option>
                     </select>
 
                     <select name="" id="area" class="ads">
-                    <option value="000">---請選取---</option>
+                    <option value="000">---大安區---</option>
                     </select>
 
                     <input type="text" id="address" class="mb_input">
                 </div>
             </div>
-
-              
 
             <div class="mb_tel">
                 <label for="" class="lbt" ><p>電話號碼:</p></label>
@@ -70,7 +68,9 @@
             <div class="mb_btn">
                 <button class="save_btn">確認修改</button>
             </div>
+            
         </div>
+
         
     <script src="./js/member_revise.js"></script>
               <!-- footer -->

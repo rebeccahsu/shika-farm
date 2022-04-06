@@ -1,8 +1,7 @@
-.activity_banner{
-    width: 100%;
-	height: auto;
-	display: block;
+.activityTop.container-fluid{
+    @include top_block("../img/activity/activity_banner.png");
 }
+
 .checkList {
     display: flex;
 }
@@ -89,7 +88,7 @@
     right: 0;
     bottom: 0;
     animation: shake 1s infinite;
-            transform-origin: bottom;
+    transform-origin: bottom;
 }
 
 .reserve{

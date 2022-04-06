@@ -1,0 +1,73 @@
+.bk_index .bk_top{
+    display: flex;
+}
+.bk_top .bk_text{
+    font-size: 24px;
+}
+
+.bk_top .bk_input{
+    width: 500px;
+}
+
+.bk_index form{
+    margin: 0;
+}
+
+.bk_main .bk_img{
+    width: 550px;
+    height: 330px;
+    margin-left: 105px;
+}
+
+.bk_img img{
+    max-width: 100%;
+    height: 330px;
+}
+
+.bk_maintext{
+    display: flex;
+    margin-top: 15px;
+    align-items: center;
+    
+}
+
+.bk_file{
+    width: 200px;
+    height: 50px;
+    
+}
+
+.bl_down{
+    display: flex;
+    margin-top: 50px;
+}
+
+
+.bl_down .bl_input{
+    width: 750px;
+    height: 414px;
+}
+
+.bk_down{
+    margin-top: 50px;
+}
+
+.buttonArea{
+    display: flex;
+}
+
+
+.buttonArea .btn_o{
+    width: 203px;
+    height: 62px;
+    @include button($color_G);
+    margin-left: 270px;
+}
+
+.buttonArea .btn_d{
+    width: 203px;
+    height: 62px;
+    @include button($color_R);
+    margin-left: 20px;
+}
+
