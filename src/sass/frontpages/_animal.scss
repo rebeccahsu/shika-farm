@@ -1,3 +1,6 @@
+.animalTop.container-fluid{
+    @include top_block("../img/animal/animal_banner.png");
+}
 
 .animal_banner{
     width: 100%;
@@ -45,6 +48,7 @@
     left: calc(100vw*(637.94)/1440);
     animation: swing 1s infinite ;
     transform-origin: bottom;
+    cursor: pointer;
 }
 
 .icon_cow{
@@ -54,6 +58,7 @@
     left: calc(100vw*(358.76)/1440);
     animation: swing 1s infinite ;
     transform-origin: bottom;
+    cursor: pointer;
 }
 
 
@@ -64,6 +69,7 @@
     left: calc(100vw*(761.61)/1440);
     animation: swing 1s infinite ;
     transform-origin: bottom;
+    cursor: pointer;
 }
 
 .icon_horse{
@@ -73,6 +79,7 @@
     left: calc(100vw*(259.58)/1440);
     animation: swing 1s infinite ;
     transform-origin: bottom;
+    cursor: pointer;
 }
 
 .icon_pig{
@@ -82,6 +89,7 @@
     left: calc(100vw*(1086.09)/1440);
     animation: swing 1s infinite ;
     transform-origin: bottom;
+    cursor: pointer;
 }
 
 .icon_deer{
@@ -91,6 +99,7 @@
     left: calc(100vw*(33.06)/1440);
     animation: swing 1s infinite ;
     transform-origin: bottom;
+    cursor: pointer;
 }
 
 .animalItem{

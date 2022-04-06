@@ -1,18 +1,5 @@
-
-.mainup{
-    max-width: 100%;
-    height: 550px;
-    background-image: url(../../img/news/gozha-net-xDrxJCdedcI-unsplash\ 1.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    // border: 1px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.mainup h2{
-    color: white;
-    font-size: 64px;
+.newsTop.container-fluid{
+    @include top_block("../img/news/newstop.png");
 }
 
 .main_out{
@@ -25,7 +12,6 @@
     margin: 0 auto;
     width: 100%;
     height: 220px;
-    margin-left: 15px;
 }
 
 .maintop h3{
@@ -34,6 +20,7 @@
     padding-top: 100px;
     margin: 0;
     font-size: 48px;
+    margin-left: 40px;
 }
 
 .yellow{
@@ -52,9 +39,9 @@
 }
 
 .main_min .min_news{
-    width: 550px;
+    width: 400px;
     text-decoration: none;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .main_min a{
@@ -96,5 +83,15 @@
     margin-top: 30px;
 }
 
+.main_min .a_out{
+    width: 500px;
+    margin-top: 15px;
+}
 
+
+@media screen and (max-width:576px){
+    .min_news{
+        width: 400px;
+    }
+}
 

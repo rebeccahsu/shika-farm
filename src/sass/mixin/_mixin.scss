@@ -106,3 +106,39 @@
     @content;
   }
 }
+
+// 前台首圖
+@mixin top_block ($url) {
+  padding: 0;
+    background-image: url($url);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 450px;
+    @include pad{
+        height: 300px;
+    }
+    @include mobile{
+        height: 250px;
+    }
+    @include desktop-s{
+        height: 380px;
+    }
+    .pageTitle{
+        text-align: center;
+        line-height: 520px;
+        color: $color_W;
+        @include pad{
+            font-size: $fs-m;
+            line-height: 370px;
+        }
+        @include mobile{
+            font-size: $fs-m;
+            line-height: 320px;
+        }
+        @include desktop-s{
+            line-height: 450px;
+        }
+    }
+   
+}

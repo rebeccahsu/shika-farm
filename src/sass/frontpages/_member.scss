@@ -1,14 +1,8 @@
 //member首圖
 
-.member_top{
-    width: 100%;
-    position: relative;
-    height: 500px;
-    background-image: url(../../img/activity/member_banner.png);
-    background-repeat: no-repeat;
-    background-size: cover; 
+.memberTop.container-fluid{
+    @include top_block("../img/material/membertop.png");
 }
-
 
 .memberTitle{
     text-align: center;
