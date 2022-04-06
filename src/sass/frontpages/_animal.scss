@@ -102,12 +102,13 @@
 }
 
 
-.animalItem_img{
-    width: 600px;
+.animalItem_cover{
+    width: 450px;
 }
 
-.animalItem_img img{
-    width: 500px;
+.animalItem_cover img{
+    width: 400px;
+    text-align: center;
 }
 
 .animalItem_p{
@@ -126,25 +127,41 @@
 
 section:nth-child(odd){
     .animalItem{  
-            .animalItem_img{
+            .animalItem_cover{
                 order: 2;
             }
             .animalItem_p{
                 order: 1;
+                margin-right: 50px;
+                background-color: rgb(218, 213, 157);
+            }
+    }
+}
+
+section:nth-child(even){
+    .animalItem{  
+            .animalItem_cover{
+            }
+            .animalItem_p{
+                margin-left: 50px;
             }
     }
 }
 
 
 .animal-container{
-    @media screen and (max-width: 1000px){
+    @media screen and (max-width: 900px){
         .animalItem_p{
-            padding-top: 0px;}
+            padding-top: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+            background-color: rgb(24, 63, 134);
+        }
             
         section:nth-child(odd){
             .animalItem{  
                 background-color: rgb(226, 180, 180);
-                    .animalItem_img{
+                    .animalItem_cover{
                         order: 1;
                         background-color: rgb(228, 90, 90);
                     }
@@ -158,9 +175,41 @@ section:nth-child(odd){
 
 @media screen and (max-width: 1200px){
     .animalItem_p{
-        background-color: rgb(166, 230, 224);
+        // background-color: rgb(166, 230, 224);
     }
 }  
+
+.buttonList {
+    list-style: none;
+    position: fixed;
+    opacity: 0;
+    visibility: hidden;
+    right: 10px;
+    top: 90px;
+    z-index: 13;
+    // background-color: #FECC55;
+    // border-radius: 10px;
+}
+
+.buttonList.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.buttonList img {
+    width: 5vw;
+    min-width: 80px;
+}
+
+// .buttonList img:hover {
+//     transform: scale(1.3);
+// }
+
+.buttonList li:hover{
+    background-color: #FECC55;
+    border-radius: 50%;
+}
+
 
 
 
