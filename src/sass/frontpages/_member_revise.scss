@@ -19,7 +19,7 @@
 
 .mb_adr{
     display: flex;
-    padding-top: 40px;
+    margin: 10px auto;
 }
 
 .mb_adr select #city #area{
@@ -32,12 +32,9 @@
 
 
 //電話
-// .mb_tel input{
-//     // width: 700px;
-//     height: 24px;
-//     border: 1px solid rgba(196, 196, 196, 0.8);
-//     border-radius: 4px;
-// }
+.mb_tel{
+    margin: 10px auto;
+}
   
 
 //所有input框
@@ -49,10 +46,7 @@
 
 //密碼
 .mb_pw{
-    padding-top: -5px;
-    .mb_input{
-
-    }
+    margin: 10px auto;
 }
 
 .ch_pw{
