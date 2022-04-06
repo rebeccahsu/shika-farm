@@ -41,6 +41,7 @@
             overflow: hidden;
             width: 400px;
             margin: 0 auto;
+            padding-right: 46px;
         }
 
         .fur{
@@ -52,7 +53,17 @@
         .sheep-img, .sheep-done{
             padding-right: 0px;
             width: 100%;
+            /* display: none; */
         }
+
+        .sheep-done{
+            display: block;
+            display: none;
+            width: 115%;
+            padding-left: 20px;
+            padding-top: 10px;
+        }
+
         .shaver{
             position: fixed;
             /* border: 1px solid blue; */
@@ -63,15 +74,14 @@
         @media (max-width: 576px){
             p{
             margin-bottom: 10px;
+            font-size: 15px;
             }
             .game-bg{
-                height: 95vh;
                 position: fixed;
             }
             .sheep{
-                transform: scale(.7) translateX(-12%);
+                transform: scale(.8) translateX(-3%) translateY(6%);
             }
-
             .shaver{
                 position: fixed;
                 /* border: 1px solid blue; */
@@ -81,7 +91,7 @@
         }
 
         .fall{
-            animation: fall 2s ease;
+            animation: fall 1.5s ease;
         }
 
         @keyframes fall {
@@ -110,11 +120,9 @@
         <h4>剃羊毛達人</h4>
         <p>移動滑鼠來幫綿羊剃毛吧！</p>
         <div class="sheep">
-            <!-- <div class="fur"></div> -->
             <img src="img/game/no_fur.png" alt="" class="sheep-img">
-            <img src="img/game/sheep_after.png" alt="" class="sheep-done" style="display: none;">
-            <!-- <div class="fur" style="top: 8px; left: 53px;"> -->
-            <div class="fur" style="top: -3px; left: 51px;">
+            <img src="img/game/sheep_after.png" alt="" class="sheep-done">
+            <div class="fur" style="top: -5px; left: 39px;">
                 <img src="img/game/headfur.png" alt="" >
             </div>
             <div class="fur" style="top: 98px; left: 76px;">
@@ -130,7 +138,7 @@
             <div class="fur" style="top: 141px; left: 131px;">
                 <img src="img/game/fur7.png" alt="" >
             </div>
-            <div class="fur" style="top: 104px; left: 190px;">
+            <div class="fur" style="top: 89px; left: 180px;">
                 <img src="img/game/fur8.png" alt="" >
             </div>
             <!-- ----- -->
@@ -143,17 +151,17 @@
             <div class="fur" style="top: 153px; left: 187px;">
                 <img src="img/game/fur8.png" alt="" >
             </div>
-            <div class="fur" style="top: 106px; left: 245px;">
+            <div class="fur" style="top: 97px; left: 234px;">
                 <img src="img/game/fur7.png" alt="" >
             </div>
-            <div class="fur" style="top: 119px; left: 300px;">
+            <div class="fur" style="top: 108px; left: 289px;">
                 <img src="img/game/fur8.png" alt="" >
             </div>
             <!-- ----- -->
-            <div class="fur" style="top: 226px; left: 120px;">
+            <div class="fur" style="top: 206px; left: 120px;">
                 <img src="img/game/fur8.png" alt="" >
             </div>
-            <div class="fur" style="top: 214px; left: 219px;">
+            <div class="fur" style="top: 198px; left: 237px;">
                 <img src="img/game/fur7.png" alt="" >
             </div>
             <div class="fur" style="top: 162px; left: 228px;">
@@ -165,63 +173,43 @@
             <div class="fur" style="top: 139px; left: 326px;">
                 <img src="img/game/fur8.png" alt="" >
             </div>
-            <!-- ----- -->
-            <div class="fur" style="top: 234px; left: 160px;">
-                <img src="img/game/fur8.png" alt="" >
-            </div>
-            <div class="fur" style="top: 211px; left: 272px;">
-                <img src="img/game/fur7.png" alt="" >
-            </div>
-            <div class="fur" style="top: 234px; left: 197px;">
-                <img src="img/game/fur8.png" alt="" >
-            </div>
-            <div class="fur" style="top: 181px; left: 317px;">
-                <img src="img/game/fur7.png" alt="" >
-            </div>
-            <div class="fur" style="top: 230px; left: 326px;">
-                <img src="img/game/fur8.png" alt="" >
-            </div>
-            
         </div>
     </div>
 
     <script>
         let shaver = document.getElementById("shaver");
         let fur = document.querySelectorAll(".fur");
-        // let fur_x = fur.pageX;
-        // console.log(fur_x);
-        let fur_x = $('.fur').offset().top + 120;
-        let fur_y = $('.fur').offset().left + 120;
-        // console.log(fur_x);
-        // console.log(fur_y);
-        // console.log(fur.clientTop);
-        if(window.innerWidth >= 768){
-            document.addEventListener("mousemove", function(e){
-                // console.log(e.pageX); // 滑鼠距離頁面最左側的距離
-                // console.log(e.pageY); // 滑鼠距離頁面最上方的距離
-                //console.log(window.scrollY);
-                
-                shaver.style.left = e.pageX - 60 + "px";
-                shaver.style.top = e.pageY - window.scrollY - 60 + "px";
-                if(document.querySelector('.fur') == undefined){
-                    $('.sheep-img').fadeOut(2000);
-                    setTimeout(function(){
-                        $('.sheep-done').fadeIn(2000);
-                    }, 2000)
-                }
+        let click_type = "click";
 
-            });
-
+        function shaveFur (type){
             fur.forEach(function(el){
-                // console.log(el);
-                el.addEventListener("mousemove", function(){
-                    // console.log(0);
+                el.addEventListener(type, function(){
                     el.classList.add("fall");
                     setTimeout(function(){
                         el.remove();
-                    }, 2000)
+                    }, 1500)
                 });
             });
+        };
+
+        function showSheepAfter (){
+            if(document.querySelector('.fur') == undefined){
+                    $('.sheep-img').fadeOut(800);
+                    setTimeout(function(){
+                        $('.sheep-done').fadeIn(1000);
+                    }, 800)
+                }
+        };
+
+        if(window.innerWidth >= 768){
+            click_type = "mousemove";
+            document.addEventListener(click_type, function(e){
+                shaver.style.left = e.pageX - 60 + "px";
+                shaver.style.top = e.pageY - window.scrollY - 60 + "px";
+                showSheepAfter();
+            });
+
+            shaveFur(click_type);
 
             gsap.to('.shaver', {
                 duration: 1,
@@ -232,35 +220,18 @@
                     { duration: 1, rotation: 0},
                 ]
             });
+        
         }else{
             shaver.remove();
-            let instruction = document.querySelector("p");
-            instruction.innerHTML = "動動手指來幫綿羊剃毛吧！";
-            document.addEventListener("touchmove", function(e){
-                
-                // console.log(e);
+            document.querySelector("p").innerHTML = "用手指點擊來幫綿羊剃毛吧！";
+            click_type = "click";
+            document.addEventListener("touchstart", function(e){
+                showSheepAfter();
+            });
             
-                if(document.querySelector('.fur') == undefined){
-                    $('.sheep-img').fadeOut(2000);
-                    setTimeout(function(){
-                        $('.sheep-done').fadeIn(2000);
-                    }, 2000)
-                }
-
-            });
-
-            fur.forEach(function(el){
-                // console.log(el);
-                el.addEventListener("touchmove", function(){
-                    // console.log(0);
-                    el.classList.add("fall");
-                    setTimeout(function(){
-                        el.remove();
-                    }, 2000)
-                });
-            });
-
+            shaveFur(click_type);
         }
+
     </script>
 </body>
 
