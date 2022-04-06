@@ -9,13 +9,16 @@
         position: relative;
         li:after{
             content: "";
-            width: 30%;
+            width: 400px;
             height: 1px;
             background-color: $color_G;
             position: absolute;
             top: 40px;
             left: 35%;
             z-index: -1;
+			@include pad{
+				left: 170px;
+			}
         }
         .stepNB{
             font-size: $fs-m;
@@ -40,12 +43,14 @@
 	}
 // ============ 結帳流程一 ============
 .stepA {
-	// display: none;
 	// ---------- 購物車 ----------
 	.step1 {
 		margin: 100px auto 0;
 		width: 1000px;
 		display: grid;
+		@include pad{
+			width: 650px;
+		}
 
 		.carName {
 			background-color: $color_Y;
@@ -63,12 +68,18 @@
 			padding: 20px;
 			@include textCenter();
 			border: 1px solid #c4c4c4;
+			@include pad{
+				display: none;
+			}
 		}
 		.carInfo {
 			border-top: none;
 			display: grid;
 			grid-template-columns: 20% 15% 20% 10% 30% 5%;
 			@include textCenter();
+			@include pad{
+				grid-template-columns: 35% 30% 35%;
+			}
 
 			p {
 				margin-top: 70px;
@@ -76,6 +87,9 @@
 			.infoImg {
 				width: 200px;
 				@include marginCenter();
+				@include pad{
+					width: 100px;
+				}
 			}
 			.garbageCan {
 				width: 20px;
