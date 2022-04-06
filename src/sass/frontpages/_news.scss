@@ -1,18 +1,5 @@
-
-.mainup{
-    max-width: 100%;
-    height: 550px;
-    background-image: url(../../img/news/gozha-net-xDrxJCdedcI-unsplash\ 1.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    // border: 1px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.mainup h2{
-    color: white;
-    font-size: 64px;
+.newsTop.container-fluid{
+    @include top_block("../img/news/newstop.png");
 }
 
 .main_out{
