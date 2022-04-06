@@ -252,7 +252,7 @@
            }
            .carBar{
                display: grid;
-               grid-template-columns: 45% 15% 15% 15%;
+               grid-template-columns: 25% 20% 15% 15% 15%;
                background-color: $color_W;
                padding: 20px 0;
                text-align: center;
@@ -267,7 +267,7 @@
                     border: 1px solid $color_B;
                     background-color: $color_B;
                 }
-           }
+            }
            .carArr{
                display: grid;
                grid-template-columns: 25% 20% 15% 15% 15% 10%;
@@ -276,10 +276,11 @@
                
                p{
                    margin-top: 50px;
-               }
+                }
                img{
                    width: 150px;
-               }
+                   margin: 0 auto;
+                }
                .quantity {
 				width: 30px;
 				height: 30px;

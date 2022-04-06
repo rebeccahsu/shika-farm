@@ -23,68 +23,57 @@
             <input class="mem_btn" type="button" value="訂單查詢" onclick="location.href='./member_checklist.html'">
         </div>
 
-        <div class="mb_re_wrp">
-            <p>編輯會員資料</p>
+
+
+        <div class="mb_re_wrp container-lg">
+            <p class="tit1">編輯會員資料</p>
+
             <div class="mb_name">
-            <label for=""><h5>姓名:王小明</h5></label>
-            <label for=""><h5>信箱:marz840917@gmail.com</h5></label>
-        </div>
+                <label for=""><p>姓名: 王小明</p></label>
+                <label for=""><p>信箱: marz840917@gmail.com</p></label>
+            </div>
+        
+            <div class="mb_adr">
+                <label for="" class="lbt"><p>聯絡地址:</p></label>
+                <div class="cts">
+                    <select name="" id="city"  class="ads">
+                        <option value="000">---請選取---</option>
+                    </select>
 
-        <div class="mb_adr">
-            <label for="" class="lbt"><h5>聯絡地址:</h5></label>
-            <div class="cts">
-                <select name="" id="city"  class="ads">
-                    <option value="">請選取</option>
-                </select>
+                    <select name="" id="area" class="ads">
+                    <option value="000">---請選取---</option>
+                    </select>
 
-                <select name="" id="area" class="ads">
-                <option value="">請選取</option>
-                </select>
+                    <input type="text" id="address" class="mb_input">
+                </div>
+            </div>
 
-                <input type="text" id="address" class="mb_input">
-                
+              
+
+            <div class="mb_tel">
+                <label for="" class="lbt" ><p>電話號碼:</p></label>
+                <input type="text" name="tel"  class="mb_input">
+            </div> 
+
+
+            <label for="" class="lbt" ><p>密碼:</p></label>
+            <a href="#" class="ch_pw"><p>修改密碼</p></a>
+            
+            <div class="mb_pw">
+                <label for="" class="lbt"><p>輸入舊密碼:</p></label>
+                <input type="text" name="tel"  class="mb_input">
+                <label for="" class="lbt"><p>輸入新密碼:</p></label>
+                <input type="text" name="tel"  class="mb_input">
+            </div>
+
+
+            <div class="mb_btn">
+                <button class="save_btn">確認修改</button>
             </div>
         </div>
-
-
-            <!-- <div class="m_address " id="twzipcode">
-                
-                <select name="county" id="county">台北市</select>
-                <select name="district" id="district" >大安區</select>
-                <input type="text" name="Street">
-            </div> -->
-
-        <div class="mb_tel">
-            <label for="" class="lbt" ><h5>電話號碼:</h5></label>
-            <input type="text" name="tel"  class="mb_input">
-        </div>
-
-
-
-
-
-
-        <label for="" class="lbt" ><h5>密碼:</h5></label>
-        <a href="#" class="ch_pw"><h5>修改密碼</h5></a>
-
-
-            
-        <div class="mb_pw">
-            <label for="" class="lbt"><h5>輸入舊密碼:</h5></label>
-            <input type="text" name="tel"  class="mb_input">
-            <label for="" class="lbt"><h5>輸入新密碼:</h5></label>
-            <input type="text" name="tel"  class="mb_input">
-        </div>
-
-        <div class="mb_btn">
-            <button class="save_btn">確認修改</button>
-            <p class='show'></p>
-        </div>
-
         
-  
-            <script src="./js/member_revise.js"></script>
-          <!-- footer -->
+    <script src="./js/member_revise.js"></script>
+              <!-- footer -->
     @@include('./layout/footer.html')
     </body>
     </html>
