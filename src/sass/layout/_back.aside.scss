@@ -54,7 +54,7 @@
         
         &::after{
             content:url('');
-            background-image: url('../../img/icon/logout.png');
+            background-image: url('../img/icon/logout.png');
             background-size: 25px 25px;
             width: 25px;
             height: 25px;
@@ -66,7 +66,7 @@
             color: $color_R;
 
             &::after{
-                background-image: url('../../img/icon/logout_R.png');
+                background-image: url('../img/icon/logout_R.png');
             }
         }
     }

@@ -79,7 +79,7 @@ function putin_intro(d) {
     let el;
     let el_img;
     let el_text;
-    for (i = 0; i < 5; i++) {
+    for (let i = 0; i < 5; i++) {
         if (d[i] != null) {
             if(i>1){
                 let ul_el = document.querySelector('#introduce_area');
