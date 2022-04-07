@@ -5,11 +5,39 @@
     </div>
     <div class="loginBlock" id="login_register_app">
 
-        <component :is='content'></component>
+        <!-- <component :is='content'></component>
         <div @click="off" class="toggle-links">
             <p class="register_link" @click="content='register'">還不是Sìkha會員嗎？點我註冊</p>
             <p class="forget_link" @click="content='forgetPwd'">忘記密碼？</p>
+        </div> -->
+
+        <!-- 登入頁 -->
+        <form action="" method="POST" class="login_form" id="login_form">
+            <h4>登入</h4>
+            <label for="userMail"><h5>電子郵件</h5></label>
+            <input type="email" name="userMail" class="userMail">
+            <label for="password"><h5>密碼</h5></label>
+            <input type="password" name="password" id="password">
+            <button type="button" id="login_btn">登入</button>
+            <button type="button" id="FBlogin_btn">透過FACEBOOK登入</button>                    
+        </form>
+
+        <div class="toggle-links">
+            <p class="register_link">還不是Sìkha會員嗎？點我註冊</p>
+            <p class="forget_link">忘記密碼？</p>
         </div>
+
+        <!-- 註冊第一步 -->
+        <form action="" method="POST" id="register1" class="login_form form-off">
+            <h4>註冊</h4>
+            <label for="userMail"><h5>電子郵件</h5></label>
+            <input type="email" name="userMail" class="userMail">
+            <label for="password"><h5>密碼</h5></label>
+            <input type="password" name="password" id="register_password">
+            <label for="repassword"><h5>確認密碼</h5></label>
+            <input type="password" name="repassword" id="repassword">
+            <button type="button" id="next" class="next">繼續</button>
+        </form>
 
         <!-- 註冊第二步 -->
         <form action="" method="POST" id="register2" class="register_form form-off">
@@ -56,6 +84,15 @@
         </form>
 
         <!-- 忘記密碼 -->
+
+        <form action="" method="POST" id="password_reset" class="forget-password form-off">
+            <h4>忘記密碼</h4>
+            <p>請在下面輸入您的信箱或帳號。我們會寄一封信給您，裡面含有可以重新設定您的密碼的連結。</p>
+            <label for="userMail"><h5>電子郵件</h5></label>
+            <input type="email" name="userMail" id="userMail">
+            
+            <button type="button" id="send_mail">送出</button>
+        </form>
         
 
         <i class="bi bi-x"></i>
@@ -66,66 +103,67 @@
 
 <script src="js/login.js"></script>
 <script>
-    Vue.component('login', {
-        template: `
-                <form action="" method="POST" id="login_form">
-                    <h4>登入</h4>
-                    <label for="userMail"><h5>電子郵件</h5></label>
-                    <input type="email" name="userMail" class="userMail">
-                    <label for="password"><h5>密碼</h5></label>
-                    <input type="password" name="password" id="password">
-                    <button type="button" id="login_btn">登入</button>
-                    <button type="button" id="FBlogin_btn">透過FACEBOOK登入</button>
+    // Vue.component('login', {
+    //     template: `
+    //             <form action="" method="POST" id="login_form">
+    //                 <h4>登入</h4>
+    //                 <label for="userMail"><h5>電子郵件</h5></label>
+    //                 <input type="email" name="userMail" class="userMail">
+    //                 <label for="password"><h5>密碼</h5></label>
+    //                 <input type="password" name="password" id="password">
+    //                 <button type="button" id="login_btn">登入</button>
+    //                 <button type="button" id="FBlogin_btn">透過FACEBOOK登入</button>
                     
-            </form>
-            `,
-    });
+    //         </form>
+    //         `,
+    // });
 
-    Vue.component('register', {
-        template: `
-        <form action="" method="POST" id="login_form">
-            <h4>註冊</h4>
-            <label for="userMail"><h5>電子郵件</h5></label>
-            <input type="email" name="userMail" class="userMail">
-            <label for="password"><h5>密碼</h5></label>
-            <input type="password" name="password" id="password">
-            <label for="repassword"><h5>確認密碼</h5></label>
-            <input type="password" name="repassword" id="repassword">
-            <button type="button" id="next" class="next">繼續</button>
-        </form>`,
-    });
+    // Vue.component('register', {
+    //     template: `
+    //     <form action="" method="POST" id="login_form">
+    //         <h4>註冊</h4>
+    //         <label for="userMail"><h5>電子郵件</h5></label>
+    //         <input type="email" name="userMail" class="userMail">
+    //         <label for="password"><h5>密碼</h5></label>
+    //         <input type="password" name="password" id="password">
+    //         <label for="repassword"><h5>確認密碼</h5></label>
+    //         <input type="password" name="repassword" id="repassword">
+    //         <button type="button" id="next" class="next">繼續</button>
+    //     </form>`,
+    // });
 
-    Vue.component('forgetPwd', {
-        template: `
-        <form action="" method="POST" id="password_reset">
-            <h4>忘記密碼</h4>
-            <p>請在下面輸入您的信箱或帳號。我們會寄一封信給您，裡面含有可以重新設定您的密碼的連結。</p>
-            <label for="userMail"><h5>電子郵件</h5></label>
-            <input type="email" name="userMail" id="userMail">
+    // Vue.component('forgetPwd', {
+    //     template: `
+    //     <form action="" method="POST" id="password_reset">
+    //         <h4>忘記密碼</h4>
+    //         <p>請在下面輸入您的信箱或帳號。我們會寄一封信給您，裡面含有可以重新設定您的密碼的連結。</p>
+    //         <label for="userMail"><h5>電子郵件</h5></label>
+    //         <input type="email" name="userMail" id="userMail">
             
-            <button type="button" id="send_mail">送出</button>
-        </form>`, 
-    });
+    //         <button type="button" id="send_mail">送出</button>
+    //     </form>`, 
+    // });
         
-    new Vue({
-        el: '#login_register_app',
-        data: {
-            content: 'login',
-        },
-        methods: {
-            off() {
-                $('.register_link').remove();
-                $('.forget_link').remove();
-            },
+    // new Vue({
+    //     el: '#login_register_app',
+    //     data: {
+    //         content: 'login',
+    //     },
+    //     methods: {
+    //         off() {
+    //             $('.register_link').remove();
+    //             $('.forget_link').remove();
+    //         },
 
-        },
-        updated() {
-            // alert(1);
-        },
+    //     },
+    //     updated() {
+    //         // alert(1);
+    //     },
 
-    });
+    // });
 
 
+    // 登入註冊切換
     $(".member-icon").on("click", function (e) {
         e.preventDefault();
         // TODO: 檢查是否有登入
@@ -134,13 +172,27 @@
     })
 
     $('.loginBlock').on("click", function (e) {
+        if (e.target.classList.contains("register_link")) {
+            $(".register_link").remove();
+            $(".forget_link").remove();
+            $('#login_form').addClass("form-off");
+            $("#register1").removeClass("form-off");
+        }
+
+        if (e.target.classList.contains("forget_link")) {
+            $(".forget_link").remove();
+            $(".register_link").remove();
+            $('#login_form').addClass("form-off");
+            $("#password_reset").removeClass("form-off");
+        }
+
         if (e.target.classList.contains("next")) {
-            $("#login_form").remove();
+            $("#register1").addClass("form-off");
             $("#register2").removeClass("form-off");
         }
 
         if (e.target.classList.contains("to3")) {
-            $("#register2").remove();
+            $("#register2").addClass("form-off");
             $("#register3").removeClass("form-off");
         }
 
@@ -148,13 +200,19 @@
             $("#login_box").addClass("-off");
             $('#back_bg').addClass("-off");
         }
-
     })
+
+
+    //==== 彈窗關閉 ====
 
     $('.bi-x').on('click', function (e) {
         $("#login_box").addClass("-off");
         $("#back_bg").addClass("-off");
     });
 
+    $("#back_bg").on('click', function () {
+        $("#login_box").addClass("-off");
+        $("#back_bg").addClass("-off");
+    });
 
 </script>
