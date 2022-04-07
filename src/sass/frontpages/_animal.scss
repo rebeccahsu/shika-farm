@@ -218,7 +218,16 @@ section:nth-child(even){
     }
 }
 
+
+@media screen and (max-width: 576px) {
+
+    .buttonList{
+        display: none;
+    }
+}
 @media screen and (max-width: 500px) {
+
+    
     .animalImg_cover{
         width: 400px;
         height: 380px;
