@@ -1,20 +1,22 @@
 // 外層
 
+.mb_container{
+    width: 1200px;
+    margin: 0 auto;
+    @include mobile {
+        width: auto;
+    }
+}
+
 .mb_re_wrp{
     width: 600px;
     height: 400px;
     border-radius: 8px;
     margin: 0 auto;
-    @include pad{
-        width: 400px;
-    height: 200px;
-    @include mobile{
-        width: 200px;
-        height: 100px;
-    }
+   
     }
    
-}
+
 
 .tit1{
     color: $color_G;

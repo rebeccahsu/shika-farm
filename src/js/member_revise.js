@@ -1,4 +1,24 @@
-// $('#city')
+
+
+//tab切換效果
+let mb_btn = $('.mem_btn')   //先選擇BTN 三個CLASS必須一樣才能使用
+mb_btn.eq(0).addClass('on')  //選到第一個BTN加上CLASS EQ0第的一個
+let tab =$('.tab')           //同第一
+tab.hide()                   //隱藏全部
+tab.eq(0).show()             //顯示第一個內容
+mb_btn.on('click',function(){  //綁定按鈕事件
+  mb_btn.removeClass('on')       //先移除全部class 當點btn後 this會顯示當前的btn
+  $(this).addClass('on')
+  tab.hide()                   //準備換別頁面//點及後會先隱藏隱藏內容
+  let tab_id =$(this).attr('id')   //為了得到那個id
+  // console.log(tab_id)
+  $('.tab[data-id="'+ tab_id+ '"]').show()
+})
+
+
+
+
+//Tab1會員修改-地址欄位
 
 $.ajax({
 	url: "../JSON/city.json",
@@ -32,32 +52,11 @@ $.ajax({
       });
     }
 });
-	// success: function (res) {
-	// 	// console.log(res);
-	// 	for (let i = 0; i < res.length; i++) {
-	// 		$("#city").append(`
-    //             <option value="${res[i].name}">${res[i].name}</option>
-    //         `);
 
 
-		// $("select#city").on("change", function () {
-		// 	console.log(res);
-		//     for (let i = 0; i < res.length; i++) {
 
-		//     }
 
-		// 	// for (let i = 0; i < res.length; i++) {
-		// 	// 	for (let j = 0; j < res[i].length; j++) {
-		// 	// 		$("#area").append(`
-		//     //             <option>${res[i][j].name}</option>
-		//     //         `);
-		// 	// 	}
-// 		// 	// }
-// 		// });
-// 	},
-// });
-
-//取消a連結預設
+//密碼欄位取消a連結預設
 var el = document.querySelector('.ch_pw');
 el.addEventListener('click', function (e) {
 	e.preventDefault();
@@ -67,10 +66,40 @@ el.addEventListener('click', function (e) {
 
 // 把修改密碼輸入框display:block
 
-
-
 var el =document.querySelector('.ch_pw');
 el.addEventListener('click' ,function(e){
 e.preventDefault();
 console.log('test');
 });
+
+
+//Tab2 預約欄位取消預約
+
+
+
+$('#cancel_btn').on('click',function(){
+  if(confirm("確定取消預約?")){
+   $('#act_list').hide()
+  }
+})
+
+//Tab3 詳細訂單
+
+//詳細產品下拉按鈕
+$('#op_btn').on('click',function(){
+  console.log('1')
+  $('#list_dt').slideToggle()
+  console.log('2')
+
+})
+
+//取消訂單
+
+$('.cel_list_btn').on('click',function(){
+  if(confirm("確定取消訂單?")){
+   $('#cl_d').hide()
+  }
+})
+
+
+

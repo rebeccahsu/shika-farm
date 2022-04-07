@@ -3,36 +3,142 @@
 
 <head>
     @@include('./layout/head.html', {
-    "title" : "會員中心"
+    "title" : "會員修改"
     })
 </head>
+
 <body>
-        <!-- header -->
-        @@include('./layout/header.html')
+    <!-- header -->
+    @@include('./layout/header.html')
 
     <!-- 首圖 -->
-    <div class="memberTop container-fluid">
-        <h3 class="pageTitle">會員中心</h3>
+    <div class="member_top">
+
+        <h2 class="memberTitle">會員中心</h2>
+    </div>
+    <div class="mb_container">
+        <!-- 切換btn -->
+        <div class="mem_tab">
+            <input class="mem_btn " id="btn1" type="button" value="會員資料">
+            <input class="mem_btn " id="btn2" type="button" value="我的活動">
+            <input class="mem_btn" id="btn3" type="button" value="訂單查詢">
+               
+        </div>
+
+
+        <!-- 第一區 會員資料修改 -->
+
+        <div class="mb_re_wrp container-lg tab" data-id="btn1">
+            <p class="tit1">編輯會員資料</p>
+
+            <div class="mb_name">
+                <label for="">
+                    <p>姓名:王小明</p>
+                </label>
+                <label for="">
+                    <p>信箱:marz840917@gmail.com</p>
+                </label>
+            </div>
+
+            <div class="mb_adr">
+                <label for="" class="lbt">
+                    <p>聯絡地址:</p>
+                </label>
+                <div class="cts">
+                    <select name="" id="city" class="ads">
+                        <option value="000">---台北市---</option>
+                    </select>
+
+                    <select name="" id="area" class="ads">
+                        <option value="000">---大安區---</option>
+                    </select>
+
+                    <input type="text" placeholder="忠孝東路四段216號2樓" id="address" class="mb_input">
+                </div>
+            </div>
+
+            <div class="mb_tel">
+                <label for="" class="lbt">
+                    <p>電話號碼:</p>
+                </label>
+                <input type="text" placeholder="0919387222" name="tel" class="mb_input">
+            </div>
+
+
+            <label for="" class="lbt">
+                <p>密碼:</p>
+            </label>
+            <a href="#" class="ch_pw">
+                <p>修改密碼</p>
+            </a>
+
+            <div class="mb_pw">
+                <label for="" class="lbt">
+                    <p>輸入舊密碼:</p>
+                </label>
+                <input type="text" name="tel" class="mb_input">
+                <label for="" class="lbt">
+                    <p>輸入新密碼:</p>
+                </label>
+                <input type="text" name="tel" class="mb_input">
+            </div>
+
+
+            <div class="mb_btn">
+                <button class="save_btn">確認修改</button>
+            </div>
+
+        </div>
     </div>
 
-        <!-- 主要內容 -->
+
+    <!-- 第二區  活動預約-->
+
+    <div class="act_list tab" id="act_list" data-id="btn2">
+        <h3 class="act_date">5/20(六)</h3>
+        <h4 class="act_title">乳牛吃飽飽 </h4>
+        <p class="act_time">預約時間:下午:2:00 預約人數:4人 </p>
+
+        <button class="cancel_btn" id="cancel_btn">取消行程</button>
+    </div>
 
 
-    <article class="member_wp">
-    <h3>會員專區</h3>
-    <ul class="mem_fuc">
-        <li><a href="./member_revise.html"><img src="./img/icon/mem.png" alt="">會員查詢</a></li>
-        <li><a href="./member_activity.html"><img src="./img/icon/cal.png" alt="">我的活動</a></li>
-        <li><a href="./member_checklist.html"><img src="./img/icon/list.png" alt="">訂單管理</a></li>
-    </ul>
+
+    <!-- 第三區  訂單查詢 -->
+    <div class="mb_cl_wrp tab" data-id="btn3">
+        <ul class=".cl_list">
+            <li class="cl_t accordion-header" id="headingOne">
+                <p>訂單日期</p>
+                <p>訂單編號</p>
+                <p>品項數量</p>
+                <p>訂購總額</p>
+                <p>付款方式</p>
+                <p>訂單狀態</p>
+            </li>
+            <div class="cl_d" id="cl_d">
+                <li class="cl_t cl_list2">
+                    <p>2022/03/20</p>
+                    <p>1000224</p>
+                    <p>1</p>
+                    <p>$690</p>
+                    <p>信用卡付款</p>
+                    <p>檢貨中</p>
+                    <button class="cel_list_btn">取消訂單</button>
+                    <button id="op_btn">+</button>
+                </li>
+                <div class="list_dt" id="list_dt" style="display:none">
+                    <p>羊毛毯(綠)</p>
+                    <p>1件</p>
+                    <p>NTS.499</p>
+                </div>
+            </div>
+        </ul>
+    </div>
 
 
-
-
-    </article>
-            
-            <!-- footer -->
-        @@include('./layout/footer.html')
+    <script src="./js/member_revise.js"></script>
+    <!-- footer -->
+    @@include('./layout/footer.html')
 </body>
 
 </html>

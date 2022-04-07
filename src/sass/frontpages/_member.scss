@@ -1,89 +1,40 @@
 //member首圖
 
-.memberTop.container-fluid{
-    @include top_block("../img/material/membertop.jpg");
+
+
+.member_top {
+    width: 100%;
+    position: relative;
+    height: 500px;
+    background-image: url(../../img/activity/member_banner.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    @include mobile{
+        height: 250px;
+    }
 }
 
-.memberTitle{
+.memberTitle {
     text-align: center;
-    display: block;
-    position: absolute; 
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
-    color: $color_W; 
-    @include pad{
-        width: 80px;
-    }
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
     @include mobile{
-        width: 60px;
+        font-size: 24px;
+        text-align: center;
     }
-    
 }
+
+
 
 
 .member_wp{
-    width: 1000px;
+    width: 100%;
+    
 }
 
  //title
 
-    .member_wp h3{
-        text-align: center;
-        padding-top: 40px;
-        color: black;
-    } 
-
-    .member_wp{
-        margin: 0 auto;
-        padding-bottom: 100px;
-    }
-
-
-
-    .mem_fuc{
-    
-        display: flex;
-        flex-wrap: wrap;
-        justify-content:center;
-        width: 100%;
-        height: auto;
-        text-align: center;
-        // border: 1px solid $color_G;
-        padding-top: 40px;
-        margin-right: 10px;
-        // padding-bottom: 200px;
-        
-    }
-    
-    .mem_fuc > li{
-        border: 1px solid $color_G;
-        width: 250px;
-        height: 250px;
-        margin-right: 40px;
-        border-radius: 8px;
-        margin-top: 40px;
-    }
-
-    //ICON
-.mem_fuc img{
-    // border: 1px solid rgb(0, 0, 0);
-    width: 120px;
-    display: block;
-    margin: 40px auto;
-
-    
-}
-.mem_fuc > li a{
-    color: $color_B;
-}
-
-.mem_fuc li:hover{
-    background-color: $color_G;
-    cursor: pointer;
-}
-
-.mem_fuc li:hover a{
-color: $color_W;
-cursor: pointer;
-}
