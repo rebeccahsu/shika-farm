@@ -1,0 +1,47 @@
+.order-detail{
+    .order-info{
+        border: 1px solid $color_G;
+        margin-bottom: 20px;
+        .title{
+            background-color: $color_G;
+            color: $color_W;
+            line-height: 40px;
+            padding-left: 60px;
+        }
+        .content{
+            margin-top: 10px;
+            li{
+                display: grid;
+                grid-template-columns: 20% 20% 20% 20% 20%;
+                text-align: center;
+                align-items: center;
+            }
+            .head{
+                border-bottom: 1px solid $color_G;
+                padding-bottom: 3px;
+            }
+            .product{
+                img{
+                    width: 100px;
+                }
+            }
+        }
+
+        .info{
+            padding: 10px 60px 20px;
+            display: grid;
+            grid-template-columns: 50% 50%;
+            grid-template-rows: auto;
+            row-gap: 10px;
+        }
+    }
+
+    a{
+        margin: 30px auto 50px;
+        display: block;
+        width: 100px;
+        font-size: 18px;
+        padding: 8px 15px;
+    }
+
+}

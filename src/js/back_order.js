@@ -1,5 +1,5 @@
 $(function() {
-    //目前頁面
+    //目前頁面亮燈
     let pages = document.querySelector(".aside_ul").querySelectorAll("h5");
     pages.forEach(function(page){
         if ( page.innerHTML == "訂單管理"){
@@ -56,6 +56,11 @@ $(function() {
         $(".order-li").filter(function() {
           $(this).toggle($(this).text().indexOf(target) > -1)
         });
+    });
+
+    // ===== 詳情按鈕 ====
+    $('#order-list').on("click", ".order_info", function(){
+        window.location.href = "./back_order_detail.html";
     });
 
 
