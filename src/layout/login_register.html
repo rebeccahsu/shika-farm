@@ -91,7 +91,7 @@
             <label for="userMail"><h5>電子郵件</h5></label>
             <input type="email" name="userMail" id="userMail">
             
-            <button type="button" id="send_mail">送出</button>
+            <button type="button" id="send_mail" class="send-reset-email">送出</button>
         </form>
         
 
@@ -199,6 +199,12 @@
         if (e.target.classList.contains("register_done")) {
             $("#login_box").addClass("-off");
             $('#back_bg').addClass("-off");
+        }
+
+
+        // 忘記密碼
+        if(e.target.classList.contains("send-reset-email")){
+            window.location.href = "./password_reset_2.html";
         }
     })
 
