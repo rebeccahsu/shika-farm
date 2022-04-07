@@ -141,7 +141,7 @@ section:nth-child(odd){
             }
             .animalItem_p{
                 order: 1;
-                margin-right: 50px;
+                // margin-right: 50px;
                 background-color: rgb(218, 213, 157);
             }
     }
@@ -152,41 +152,14 @@ section:nth-child(even){
             .animalItem_cover{
             }
             .animalItem_p{
-                margin-left: 50px;
+                // margin-left: 50px;
             }
     }
 }
 
 
-.animal-container{
-    @media screen and (max-width: 900px){
-        .animalItem_p{
-            padding-top: 0px;
-            margin-left: 0px;
-            margin-right: 0px;
-            background-color: rgb(24, 63, 134);
-        }
-            
-        section:nth-child(odd){
-            .animalItem{  
-                background-color: rgb(226, 180, 180);
-                    .animalItem_cover{
-                        order: 1;
-                        background-color: rgb(228, 90, 90);
-                    }
-                    .animalItem_p{
-                        order: 2;
-                    }
-            }
-        }
-    } 
-}
 
-@media screen and (max-width: 1200px){
-    .animalItem_p{
-        // background-color: rgb(166, 230, 224);
-    }
-}  
+
 
 .buttonList {
     list-style: none;
@@ -219,6 +192,98 @@ section:nth-child(even){
     border-radius: 50%;
     cursor: pointer;
 }
+
+
+//---------------------------RWD-----------------------------------
+
+@media screen and (max-width: 915px) {
+
+    .odd_item:nth-child(odd) {
+        .item{  
+            .animalItemImg_cover{
+                order: 1;
+            }
+            .animalItem_p{
+                order: 2;
+            }
+            }
+    }
+    .animalItem_p{
+        padding-top: 20px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .animalItem_img{
+        width: 400px;
+        height: 400px;
+    }
+
+    .animalItemImg_cover{
+        width: 400px;
+    }
+    
+    .animalItem_p{
+       width: 300px;
+    }
+}
+
+
+@media screen and (max-width: 380px) {
+    .animalItem_img{
+        width: 300px;
+        height: 300px;
+    }
+
+    .animalitem_imgcover{
+        width: 300px;
+    }
+    
+    .animalItem_p{
+       width: 250px;
+    }
+}
+
+
+.animalItem_cover{
+    width: 600px;
+    display: flex;
+    justify-content: center;
+}
+
+.animalItem_cover img{
+    width: 500px;
+}
+
+.animalItem_p{
+    width: 400px;
+    padding-top: 60px;
+}
+
+.animal-container{
+    @media screen and (max-width: 900px){
+        .animalItem_p{
+            padding-top: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+            background-color: rgb(129, 158, 212);
+        }
+            
+        section:nth-child(odd){
+            .animalItem{  
+                background-color: rgb(226, 180, 180);
+                    .animalItem_cover{
+                        order: 1;
+                        background-color: rgb(228, 90, 90);
+                    }
+                    .animalItem_p{
+                        order: 2;
+                    }
+            }
+        }
+    } 
+}
+
 
 
 
