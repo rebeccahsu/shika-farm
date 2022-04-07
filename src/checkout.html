@@ -69,7 +69,7 @@
 					<li class="carName">訂單資訊</li>
 					<li class="productInfo">
 						<p>運費</p>
-						<p>NT$ 0</p>
+						<p>NT$ {{freight}}</p>
 						<p>合計</p>
 						<p>NT$ {{sumTotal}}</p>
 					</li>
@@ -92,14 +92,16 @@
 						<p>小計</p>
 					</li>
 					<li v-for="(product, index) in products" class="carTitle carInfo">
-						<img :src="product.img" class="infoImg" />
-						<p>{{product.info}}</p>
-						<p>{{product.price}}</p>
+						<div class="imgInfo">
+							<img :src="product.img" class="infoImg" />
+							<p>{{product.info}}</p>
+						</div>
+						<p>NT$ {{product.price}}</p>
 						<p>{{product.quantity}}</p>
-						<p>{{product.price * product.quantity}}</p>
+						<p>NT$ {{product.price * product.quantity}}</p>
 					</li>
 					<li class="lastTotal">
-						<p>運費NT$ 0</p>
+						<p>運費NT$ {{freight}}</p>
 						<p>總計NT$ {{sumTotal}}</p>
 					</li>
 				</ul>
@@ -155,13 +157,35 @@
 									id="payId"
 									class="payId payInput"
 									placeholder="0000"
+									maxlength="4"
+									@keydown="creditdown"
+									@keyup="creditup"
 								/>
 								-
-								<input type="text" class="payId payInput" placeholder="0000" />
+								<input
+									type="text"
+									class="payId payInput"
+									placeholder="0000"
+									maxlength="4"
+									@keydown="creditdown"
+									@keyup="creditup"
+								/>
 								-
-								<input type="text" class="payId payInput" placeholder="0000" />
+								<input
+									type="text"
+									class="payId payInput"
+									placeholder="0000"
+									maxlength="4"
+									@keydown="creditdown"
+									@keyup="creditup"
+								/>
 								-
-								<input type="text" class="payId payInput" placeholder="0000" />
+								<input
+									type="text"
+									class="payId payInput"
+									placeholder="0000"
+									maxlength="4"
+								/>
 							</p>
 							<p class="cardAll">
 								<label for="date">到期日</label>
@@ -170,12 +194,18 @@
 									id="date"
 									class="month date payInput"
 									placeholder="MM"
+									maxlength="2"
+									@keydown="creditdown"
+									@keyup="creditup"
 								/>
 								/
 								<input
 									type="text"
 									class="year date payInput"
 									placeholder="YY"
+									maxlength="2"
+									@keydown="creditdown"
+									@keyup="creditup"
 								/>
 							</p>
 						</div>
@@ -186,7 +216,7 @@
 							</p>
 							<p class="cardAll">
 								<label for="CSC">安全碼</label>
-								<input type="text" id="CSC" class="payInput" />
+								<input type="text" id="CSC" class="payInput" maxlength="3" />
 							</p>
 						</div>
 					</li>
