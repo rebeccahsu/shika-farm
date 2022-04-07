@@ -2,7 +2,7 @@ new Vue({
     el: '#a_detail',
     data: {
         activity: 
-            { img: './img/activity/riding.png', 
+            { img: './img/activity/riding.jpg', 
             name:'我要當牛仔', 
             capacity: '10', 
             time: '90',
