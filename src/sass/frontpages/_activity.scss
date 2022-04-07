@@ -2,6 +2,166 @@
     @include top_block("../img/activity/activity_banner.jpg");
 }
 
+
+
+//-----------------------彈窗-------------------------------------
+
+.black_bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgb(0, 0, 0, 0.5);
+    height: 100%;
+    z-index: 10;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 400px;
+    height: 470px;
+    background-color: #FECC55;
+    border-radius: 10px;
+    z-index: 13;
+
+    padding-top: 50px;
+    text-align: center;
+    line-height: 1.6;
+}
+
+@keyframes swing {
+    15% {
+        transform: rotate(10deg);
+    }
+
+    40% {
+        transform: rotate(-10deg);
+    }
+
+    65% {
+        transform: rotate(5deg);
+    }
+
+    85% {
+        transform: rotate(-5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes shake {
+    15% {
+        transform: rotate(2deg);
+    }
+
+    40% {
+        transform: rotate(-2deg);
+    }
+
+    65% {
+        transform: rotate(3deg);
+    }
+
+    85% {
+        transform: rotate(-3deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.modal_img {
+    width: 140px;
+}
+
+
+.modal_button {
+    height: 25px;
+    width: 90px;
+    background-color: #16B1AA;
+    border: none;
+    border-radius: 10px;
+    letter-spacing: 3px;
+
+}
+
+.modal_date {
+    height: 50px;
+    width: 150px;
+}
+
+
+
+.x_icon_position {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+
+
+button.hamburger_icon {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    cursor: pointer;
+    border-style: none;
+    background: none;
+}
+
+
+
+button.hamburger_icon span.-hr {
+    height: 1px;
+    width: 50%;
+    background-color: #16B1AA;
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+/* 上方的線 */
+button.hamburger_icon span.-hr.-top {
+    transform-origin: top left;
+    top: 5px;
+    left: 6px;
+    width: 102%;
+    transform: rotate(45deg);
+}
+
+
+/* 下方的線 */
+button.hamburger_icon span.-hr.-bottom {
+    transform-origin: top left;
+    bottom: 5px;
+    left: 6px;
+    width: 102%;
+    transform: rotate(-45deg);
+    top: auto;
+}
+
+.reserve {
+    cursor: pointer;
+}
+
+.item_img_icon {
+    cursor: pointer;
+}
+
+
+//----------------------------3D slider------------------------------
+
 .checkList {
     display: flex;
     margin-top: 50px;
@@ -22,115 +182,6 @@
 .checkList img:hover {
     transform: scale(1.3);
 }
-
-
-.odd_item:nth-child(odd) {
-
-    background-color: rgb(223, 223, 223);
-    .item{  
-        .item_imgcover{
-            order: 2;
-        }
-        .item_p{
-            order: 1;
-        }
-}
-}
-
-// section:nth-child(odd){
-//     .item{  
-//             .item_img{
-//                 order: 2;
-//             }
-//             .item_p{
-//                 order: 1;
-//             }
-//     }
-// }
-
- 
-.item{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.item_p {
-    padding-top: 150px;
-    color: rgb(0, 0, 0);
-    width: 400px;
-}
-
-
-.item .reserve{
-    width: 90px;
-    /* height: 20px;  */
-    border-radius: 10px;
-    text-align: center;
-    letter-spacing: 3px;
-}
-
-.item_imgcover{
-    width: 500px;
-    height: 500px;
-    object-fit: cover; 
-    position: relative;
-    overflow: hidden;
-}
-
-.item_img{
-    border-radius: 50%;
-    position: absolute;
-    object-position: left 50%;
-    /* width: 100%;
-    height: auto; */
-    height: 400px; 
-    top:50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-}
-
-
-.item_img_icon{
-    position: absolute;
-    z-index: 1;
-    right: 0;
-    bottom: 0;
-    animation: shake 2s infinite;
-    transform-origin: bottom;
-}
-
-.reserve{
-    width: 100px;
-    position: absolute;
-    z-index: 2;
-    right: 0;
-    bottom: 0;
-}
-
-
-#ep_0{
-    background-color: #FF8671;
-}
-#ep_1{
-    background-color: #16B1AA;
-}
-#ep_2{
-    background-color: #FECC55;
-}
-#ep_3{
-    background-color: #FF8671;
-}
-#ep_4{
-    background-color: #16B1AA;
-}
-#ep_5{
-    background-color: #FECC55;
-}
-
-
-
-
 
 #slider {
     position: relative;
@@ -263,15 +314,141 @@ input .slider [type=radio]:checked {
     transform: translate3d(-13.88vw, 0, -6.94vw);
 }
 
+
+
+
+//--------------------------main-------------------------------
+ 
+.item{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.item_p {
+    padding-top: 150px;
+    color: rgb(0, 0, 0);
+    width: 400px;
+}
+
+
+.item .reserve{
+    width: 90px;
+    /* height: 20px;  */
+    border-radius: 10px;
+    text-align: center;
+    letter-spacing: 3px;
+}
+
+.item_imgcover{
+    width: 500px;
+    height: 500px;
+    object-fit: cover; 
+    position: relative;
+    overflow: hidden;
+}
+
+.item_img{
+    border-radius: 50%;
+    position: absolute;
+    object-position: left 50%;
+    /* width: 100%;
+    height: auto; */
+    height: 400px; 
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+
+.item_img_icon{
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    bottom: 0;
+    animation: shake 2s infinite;
+    transform-origin: bottom;
+}
+
+.reserve{
+    width: 100px;
+    position: absolute;
+    border-style: none;
+    z-index: 2;
+    right: 0;
+    bottom: 0;
+}
+
+
+
+
+
+
+.odd_item:nth-child(odd) {
+
+    // background-color: rgb(223, 223, 223);
+    .item{  
+        .item_imgcover{
+            order: 2;
+        }
+        .item_p{
+            order: 1;
+        }
+}
+}
+
+
+//---------------------------RWD-----------------------------------
+
 @media screen and (max-width: 915px) {
 
-    .item_img {
-        /* order: 2; */
-        background-color: rgb(228, 90, 90);
+    .odd_item:nth-child(odd) {
+        .item{  
+            .item_imgcover{
+                order: 1;
+            }
+            .item_p{
+                order: 2;
+            }
+            }
     }
-
-    .item_p {
-        /* order: 1; */
-        padding: 0px 0px 0px 0px;
+    .item_p{
+        padding-top: 20px;
     }
 }
+
+@media screen and (max-width: 500px) {
+    .item_img{
+        width: 400px;
+        height: 400px;
+    }
+
+    .item_imgcover{
+        width: 400px;
+    }
+    
+    .item_p{
+       width: 300px;
+    }
+}
+
+
+@media screen and (max-width: 380px) {
+    .item_img{
+        width: 300px;
+        height: 300px;
+    }
+
+    .item_imgcover{
+        width: 300px;
+    }
+    
+    .item_p{
+       width: 250px;
+    }
+}
+
+
+
+
+
