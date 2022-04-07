@@ -90,6 +90,7 @@
     border: none;
     border-radius: 10px;
     letter-spacing: 3px;
+    color: black;
 
 }
 
@@ -381,6 +382,9 @@ input .slider [type=radio]:checked {
     z-index: 2;
     right: 0;
     bottom: 0;
+    color: black;
+    height: 25px;
+    width: 90px;
 }
 
 
@@ -445,7 +449,7 @@ input .slider [type=radio]:checked {
 
 .game img{
     position: relative;
-    animation: ball3 3s infinite ;
+    animation: ball3 6s linear infinite ;
     width: 10vw;
     min-width: 120px;
 }
