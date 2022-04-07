@@ -3,7 +3,7 @@
 
 <head>
     @@include('./layout/head.html', {
-    "title" : "會員修改"
+    "title" : "會員中心"
     })
 </head>
 
@@ -93,6 +93,7 @@
 
 
     <!-- 第二區  活動預約-->
+   <div class="mb_container">
 
     <div class="act_list tab" id="act_list" data-id="btn2">
         <h3 class="act_date">5/20(六)</h3>
@@ -101,10 +102,12 @@
 
         <button class="cancel_btn" id="cancel_btn">取消行程</button>
     </div>
+</div>
 
 
 
     <!-- 第三區  訂單查詢 -->
+    <div class="mb_container">
     <div class="mb_cl_wrp tab" data-id="btn3">
         <ul class=".cl_list">
             <li class="cl_t accordion-header" id="headingOne">
@@ -134,6 +137,7 @@
             </div>
         </ul>
     </div>
+</div>
 
 
     <script src="./js/member_revise.js"></script>

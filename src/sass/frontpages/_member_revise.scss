@@ -13,6 +13,11 @@
     height: 400px;
     border-radius: 8px;
     margin: 0 auto;
+    @include mobile{
+        width: 370px;
+    
+    }
+    
    
     }
    

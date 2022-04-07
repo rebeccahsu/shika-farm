@@ -7,7 +7,7 @@
     justify-content: center; 
     align-items: center; 
     @include mobile {
-        width: 80px;
+       
     }
 }
 
@@ -24,8 +24,17 @@
     margin:0 6%;
     cursor: pointer;
 
+    @include mobile {
+        width: 80%;
+     }
+
     &.on {
         background-color: $color_Y;
+        @include mobile {
+           width: 70;
+        }
+
+        
     }
 
 
