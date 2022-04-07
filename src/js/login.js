@@ -3,22 +3,22 @@
 
 // 關閉按鈕和範圍==============
 
-$('#back_bg').on('click', function (e) {
-    closebg();
-})
+// $('#back_bg').on('click', function (e) {
+//     closebg();
+// })
 
-$('.bi-x').on('click', function (e) {
-    closebg();
-});
+// $('.bi-x').on('click', function (e) {
+//     closebg();
+// });
 
-$('#login_box').on('click', function (e) {
-    e.stopPropagation();
-})
+// $('#login_box').on('click', function (e) {
+//     e.stopPropagation();
+// })
 
-function closebg(t) {
-    // console.log(t);
-    $('#back_bg').remove();
-}
+// function closebg(t) {
+//     // console.log(t);
+//     $('#back_bg').remove();
+// }
 
 // 關閉按鈕和範圍end
 // ============================
@@ -64,9 +64,9 @@ $('#password').on('keyup', () => {
 // 二次確認密碼
 $('#repassword').on('blur', () => {
     if ($('#password').val() !== $('#repassword').val()) {
-        $('label[for="repassword"]').html("<h5>確認密碼<span>*和密碼不一致</span></h5>");
+        $('label[for="repassword"]').html("<h5>密碼確認<span>*和密碼不一致</span></h5>");
     } else {
-        $('label[for="repassword"]').html("<h5>確認密碼</h5>");
+        $('label[for="repassword"]').html("<h5>密碼確認</h5>");
     }
 })
 
@@ -111,8 +111,28 @@ $('#send').on('click', (e) => {
 // 重設密碼
 $('#send_psd').on('click', (e) => {
     e.preventDefault();
-    console.log(e.target);
+    // console.log(e.target);
+    // 驗證密碼
+    let psd = $('#password').val();
+    let repsd =  $('#repassword').val()
+    // console.log(psd);
+    if (psd == "" ){
+        $('label[for="password"]').html("<h5>密碼<span>*密碼須為4~16字以內</span></h5>");
+    }else if(psd.search(passwordRule) == -1){
+        $('label[for="password"]').html("<h5>密碼<span>*請輸入半形的英文和數字</span></h5>");
+    }else if(repsd == "") { 
+        console.log('object');
+        $('label[for="repassword"]').html("<h5>密碼確認<span>*和密碼不一致</span></h5>");
+    }else if(psd != repsd){
+        $('label[for="repassword"]').html("<h5>密碼確認<span>*和密碼不一致</span></h5>");
+    }else{
+        location.href = `./password_reset_3.html`;
+    }
 })
+
+
+
+
 
 // 註冊完成、重設密碼完成
 $('#register_complete').on('click', (e) => {

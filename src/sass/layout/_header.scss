@@ -248,6 +248,10 @@
            top: 10%;
            left: 50%;
            transform: translate(-50%);
+           @include mobile{
+               top: 5%;
+                width: 350px;
+            }
            
            .carTitle{
             border: 1px solid $color_Y;
@@ -262,6 +266,10 @@
                padding: 20px 0;
                text-align: center;
                position: relative;
+            
+               @include mobile{
+                    display: none;
+                }
 
                 :after{
                     content: '';
@@ -275,9 +283,21 @@
             }
            .carArr{
                display: grid;
-               grid-template-columns: 25% 20% 15% 15% 15% 10%;
+               grid-template-columns: 90% 10%;
                background-color: $color_W;
                text-align: center;
+               border-top: 1px solid #c4c4c4;
+               padding-bottom: 10px;
+
+               .car_one{
+                display: grid;
+                grid-template-columns: 25% 75%;
+
+                @include mobile{
+                    display: block;
+                }
+               }
+               
                
                p{
                    margin-top: 50px;
@@ -291,36 +311,50 @@
                    margin: 0 auto;
                    @include pad{
                     width: 100px;
-                }
-                }
-               .quantity {
-				    width: 30px;
-				    height: 30px;
-				    @include textCenter();
-				    border: 1px solid $color_Y;
-				    margin: 0;
-				    display: inline-block;
-
-                    @include pad{
-                        width: 20px;
-                        height: 20px;
                     }
-			    }
-
-               .spBtn {
-				width: 30px;
-				height: 30px;
-				font-weight: bold;
-				border: 1px solid $color_Y;
-				background-color: $color_Y;
-				color: $color_W;
-				outline-style: inherit;
-				cursor: pointer;
-                @include pad{
-                    width: 20px;
-                    height: 20px;
                 }
-			    }
+
+                .carMain{
+                    display: grid;
+                    grid-template-columns: 35% 15% 30% 20%;
+                    @include mobile{
+                        display: block;
+                        .carPrice{
+                            display: none;
+                        }
+                    }
+
+
+                    .quantity {
+                        width: 30px;
+                        height: 30px;
+                        @include textCenter();
+                        border: 1px solid $color_Y;
+                        margin: 0;
+                        display: inline-block;
+    
+                        @include pad{
+                            width: 20px;
+                            height: 20px;
+                        }
+                    }
+    
+                   .spBtn {
+                        width: 30px;
+                        height: 30px;
+                        font-weight: bold;
+                        border: 1px solid $color_Y;
+                        background-color: $color_Y;
+                        color: $color_W;
+                        outline-style: inherit;
+                        cursor: pointer;
+                        @include pad{
+                            width: 20px;
+                            height: 20px;
+                        }
+                    }
+                }
+
                 .garbageCan {
                     width: 20px;
                     height: 20px;
@@ -329,7 +363,11 @@
                     @include pad{
                         margin-top: 35px;
                     }
+                    @include mobile {
+                        margin: 50px 50px 50px 0;
+                    }
                 }
+                
             }
             .carBottom{
                 background-color: $color_W;

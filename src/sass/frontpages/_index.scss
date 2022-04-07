@@ -28,7 +28,6 @@
         top: 3%;
         left: 3%;
         @include mobile{
-            top: 15%;
             left: -5%;
         }
     }
@@ -43,7 +42,7 @@
         top: 3%;
         left: 66%;
         @include mobile{
-            top: 10%;
+            top: 2%;
             left: 50%;
         }
     }
@@ -51,7 +50,8 @@
         top: 1%;
         left: 88%;
         @include mobile{
-            top: 13%;
+            top: 1%;
+            left: 25%;
         }
     }
 
@@ -242,7 +242,9 @@
         right: -180px;
         @include mobile{
             width: 150px;
-            right: 6px;
+            top: -100px;
+            right: 0px;
+            z-index: 3;
         }
         @include desktop-s{
             width: 250px;

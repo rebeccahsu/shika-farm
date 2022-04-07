@@ -102,92 +102,7 @@
     cursor: pointer;
 }
 
-.animalItem{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    position: relative;
-    margin-bottom: 20px;
-}
-
-
-.animalItem_cover{
-    width: 450px;
-}
-
-.animalItem_cover img{
-    width: 400px;
-    text-align: center;
-}
-
-.animalItem_p{
-    width: 400px;
-    padding-top: 60px;
-}
-
-.animal-container{
-    @media screen and (max-width: 575.98px){
-        section:not(._on){
-            display: none;
-        }
-        
-    }  
-}
-
-section:nth-child(odd){
-    .animalItem{  
-            .animalItem_cover{
-                order: 2;
-            }
-            .animalItem_p{
-                order: 1;
-                margin-right: 50px;
-                background-color: rgb(218, 213, 157);
-            }
-    }
-}
-
-section:nth-child(even){
-    .animalItem{  
-            .animalItem_cover{
-            }
-            .animalItem_p{
-                margin-left: 50px;
-            }
-    }
-}
-
-
-.animal-container{
-    @media screen and (max-width: 900px){
-        .animalItem_p{
-            padding-top: 0px;
-            margin-left: 0px;
-            margin-right: 0px;
-            background-color: rgb(24, 63, 134);
-        }
-            
-        section:nth-child(odd){
-            .animalItem{  
-                background-color: rgb(226, 180, 180);
-                    .animalItem_cover{
-                        order: 1;
-                        background-color: rgb(228, 90, 90);
-                    }
-                    .animalItem_p{
-                        order: 2;
-                    }
-            }
-        }
-    } 
-}
-
-@media screen and (max-width: 1200px){
-    .animalItem_p{
-        // background-color: rgb(166, 230, 224);
-    }
-}  
-
+//--------------button-----------------
 .buttonList {
     list-style: none;
     position: fixed;
@@ -219,6 +134,136 @@ section:nth-child(even){
     border-radius: 50%;
     cursor: pointer;
 }
+
+
+//---------------item-------------------
+
+.animalItem{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+
+.animalImg_cover{
+    width: 600px;
+    display: flex;
+    justify-content: center;
+}
+
+.animalItem_img{
+    width: 500px;
+}
+
+.animalItem_p{
+    width: 400px;
+    padding-top: 130px;
+}
+
+
+
+
+.animal-container{
+    @media screen and (max-width: 575.98px){
+        section:not(._on){
+            display: none;
+        }
+        
+    }  
+}
+
+section:nth-child(odd){
+    .animalItem{  
+            .animalImg_cover{
+                order: 2;
+            }
+            .animalItem_p{
+                order: 1;
+                // margin-right: 50px;
+            }
+    }
+}
+
+section:nth-child(even){
+    .animalItem{  
+            .animalItem_cover{
+            }
+            .animalItem_p{
+                // margin-left: 50px;
+            }
+    }
+}
+
+
+
+//---------------------------RWD-----------------------------------
+
+@media screen and (max-width: 999px) {
+
+    section:nth-child(odd){
+        .animalItem{  
+                .animalImg_cover{
+                    order: 1;
+                }
+                .animalItem_p{
+                    order: 2;
+                }
+        }
+    }
+    .animalItem_p{
+        padding-top: 20px;
+        padding-bottom: 10px;
+    }
+}
+
+
+@media screen and (max-width: 576px) {
+
+    .buttonList{
+        display: none;
+    }
+}
+@media screen and (max-width: 500px) {
+
+    
+    .animalImg_cover{
+        width: 400px;
+        height: 350px;
+    }
+
+    .animalItem_img{
+        width: 400px;
+        height: 350px;
+    }
+    
+    .animalItem_p{
+       width: 400px;
+    }
+}
+
+
+@media screen and (max-width: 420px) {
+    .animalImg_cover{
+        width: 350px;
+        height: 300px;
+    }
+
+    .animalItem_img{
+        width: 300px;
+        height: 260px;
+    }
+    
+    .animalItem_p{
+       width: 300px;
+    }
+}
+
+
+
+
+
 
 
 

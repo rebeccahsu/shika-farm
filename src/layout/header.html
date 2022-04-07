@@ -45,29 +45,33 @@
                         </li>
                     
                         <li v-for="(product, index) in products" class="carArr">
-                            <img :src="product.img" alt="">
-                            <p>{{product.info}}</p>
-                            <p>NT$ {{product.price}}</p>
-                            <p>
-                            	<input
-									type="button"
-									class="addBtn spBtn"
-									value="-"
-									@click="add(index, -1)"
-								/><input
-									type="text"
-									class="quantity"
-									v-model="product.quantity"
-								/><input
-									type="button"
-									class="subBtn spBtn"
-									value="+"
-									@click="add(index, 1)"
-								/>
-                            </p>
-                            <p>NT$ {{product.price * product.quantity}}</p>
-
-                            <img
+							<div class="car_one">
+                            	<img :src="product.img" alt="">
+								<div class="carMain">
+									<p>{{product.info}}</p>
+                            		<p class="carPrice">NT$ {{product.price}}</p>
+                            		<p>
+                            			<input
+											type="button"
+											class="addBtn spBtn"
+											value="-"
+											@click="add(index, -1)"
+										/><input
+											type="text"
+											class="quantity"
+											v-model="product.quantity"
+										/><input
+											type="button"
+											class="subBtn spBtn"
+											value="+"
+											@click="add(index, 1)"
+										/>
+                            		</p>
+                            		<p>	NT$ {{product.price * product.quantity}}</p>
+								</div>
+							</div>
+							
+                        	<img
 							src="./img/icon/garbageCan.png"
 							class="garbageCan"
 							@click="del(index)"

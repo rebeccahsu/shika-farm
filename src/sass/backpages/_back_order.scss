@@ -1,29 +1,43 @@
 .order-container{
-	.btn_area {
+	
+	.back_title{
+		width: 900px;
+		margin: 30px auto;
+	}
+	.o_btn_area {
 		width: 900px;
 		margin: 0 auto;
 		display: flex;
 		justify-content: space-between;
-			#search_order {
-			width: 160px;
-			height: 40px;
-			border-radius: 3px;
-			border: 1px solid #ccc;
-			padding: 3px;
+		button{
 			margin-right: 20px;
+		}
+		.search-area{
+			display: flex;
+			align-items: center;
+			position: relative;
+			#search_order {
+				width: 250px;
+				height: 40px;
+				border-radius: 8px;
+				border: 2px solid #ccc;
+				padding: 3px 10px;
+				margin-right: 10px;
 			}
-			#search_order_btn {
-			margin-left: 0;
+			.search_icon{
+				width: 25px;
+				position: absolute;
+				right: 20px;
 			}
+		}
 
-			button{
-				margin-right: 20px;
-			}
 	}
 	
 	.list_area {
-		#order_list {
-			margin: 20px auto;
+		width: 920px;
+		margin: 0 auto;
+		#order-list {
+			margin: 20px 0;
 			li {
 				display: grid;
 				grid-template-columns: 6% 16% 20% 16% 15% 15% 12%;
@@ -60,7 +74,7 @@
 
 	
 	
-	#page_area {
+	#o_page_area {
 		width: 900px;
 		margin: 0 auto;
 		padding-bottom: 80px;
