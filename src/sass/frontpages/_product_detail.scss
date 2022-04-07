@@ -95,7 +95,7 @@
 // 商品資料
 .pd_info {
   flex-grow: 1;
-  margin: 0 10px;
+  margin: 0 10px 0 20px;
 
   // @include borderTest;
   //   margin-bottom: 20px;
@@ -135,6 +135,10 @@
   align-items: center;
   // justify-content: center;
   margin-bottom: 70px;
+
+  span{
+    font-size: $fs-s;
+  }
 
   @media (max-width: 1200.98px) and (min-width: 768px) {
     flex-direction: column;
