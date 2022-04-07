@@ -1,142 +1,99 @@
-#back_pds {
-    .b_aside{
-      z-index: 3;
-    }
-    .pds_right {
-      padding-left: 20%;
-      margin: 0 30px;
-  
-      @include back_title;
-    }
-  }
-  
-  .btn_area {
-    width: 1000px;
-    margin: 0 auto;
-    .btn1 {
-      margin: 0 auto 20px;
-      display: flex;
-      justify-content: space-between;
-      button {
-        font-size: $fs-s;
-        width: 88px;
-        height: 44px;
-        margin: 0 15px;
-      }
-  
-      .NDS {
-        #search {
-          width: 157px;
-          height: 44px;
-          padding: 3px;
-          margin: 0;
-        }
-        #search_pd {
-          margin-left: 0;
-        }
-      }
-    }
-  }
-  
-  .list_area {
-    #pds_list {
-      width: 1000px;
-      text-align: center;
-      margin: 20px auto;
-      li {
-        ol {
-          // border: 1px solid blue;
-          display: flex;
-          align-items: center;
-          * {
-            flex-basis: 90px;
-            margin: 5px;
-            // @include borderTest;
-            flex-grow: 1;
-          }
-          &:first-child {
-            flex-grow: 0;
-          }
-          .fieldName {
-            font-size: 18px;
-          }
-        }
-      }
-    }
-  
-    .-off {
-      background-color: #ccc;
-    }
-    .list_item {
-      display: flex;
-      border: 1px solid $color_G;
-      align-items: center;
-      margin: 5px;
-      
-  
-      * {
-        flex-basis: 90px;
-        margin: 5px;
-        // @include borderTest;
-        flex-grow: 1;
-      }
-  
-      .check_container {
-        // @include borderTest;
-        position: relative;
-        * {
-          position: absolute;
-          top: -18px;
-          left: 28px;
-        }
-      }
-      .prd_price::before,
-      .prd_cost::before {
-        content: "NT$";
-        font-size: $fs-xs;
-      }
-      img {
-        width: 80px;
-        border: 1px solid $color_B;
-      }
-      // input{
-  
-      // }
-    }
-  
-  }
-  
-  
-  #page_area {
-    width: 1000px;
-    margin: 0 auto;
-    ul {
-    display: flex;
-    float: right;
-  
-      li {
-        margin: 5px;
-        background-color: $color_Y;
-        border-radius: 50%;
-        width: 30px;
-        height: 30px;
-        color: $color_B;
-  
-        &:first-child,
-        &:last-child {
-          background-color: $color_G;
-        }
-      }
-  
-      p {
-        text-align: center;
-        transform: translateY(3px);
-      }
-  
-      .page_hear {
-        background-color: $color_R;
-      }
-    }
-  }
-  
-  
+.order-container{
+	.btn_area {
+		width: 1000px;
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-between;
+			#search_order {
+			width: 160px;
+			height: 40px;
+			border-radius: 3px;
+			border: 1px solid #ccc;
+			padding: 3px;
+			margin-right: 20px;
+			}
+			#search_order_btn {
+			margin-left: 0;
+			}
+
+			button{
+				margin-right: 20px;
+			}
+	}
+	
+	.list_area {
+		#order_list {
+			margin: 20px auto;
+			li {
+				display: grid;
+				grid-template-columns: 6% 16% 20% 16% 15% 15% 12%;
+				padding: 12px 0;
+				text-align: center;
+				align-items: center;
+				border: 1px solid $color_G;
+
+				&:first-child {
+					background-color: $color_G;
+					p{
+						color: $color_W;
+					}
+				}
+
+				.check_container{
+					transform: translate(16px, -7px);
+				}
+
+				.order_edit{
+					width: 50px;
+					height: 30px;
+					line-height: 2px;
+					margin: 0 auto;
+				}
+			}
+		}
+	
+		.-off {
+		background-color: #ccc;
+		}
+
+		.order_price::before,
+		.order_cost::before {
+			content: "NT$";
+		}
+		}
+	
+
+	
+	
+	#page_area {
+		width: 1000px;
+		margin: 0 auto;
+		ul {
+		display: flex;
+		float: right;
+	
+		li {
+			margin: 5px;
+			background-color: $color_Y;
+			border-radius: 50%;
+			width: 30px;
+			height: 30px;
+			color: $color_B;
+	
+			&:first-child,
+			&:last-child {
+			background-color: $color_G;
+			}
+		}
+	
+		p {
+			text-align: center;
+			transform: translateY(3px);
+		}
+	
+		.page_hear {
+			background-color: $color_R;
+		}
+		}
+	}
+}

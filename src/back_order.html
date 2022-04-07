@@ -10,39 +10,35 @@
 
 <body>
 
-    <main id="back_pds">
         <!-- 側邊導覽列 -->
         @@include('./layout/back_aside.html')
-        <!-- 後台商品列表 -->
-        <div class="pds_right">
-
+        <!-- 後台訂單列表 -->
+        <div class="backcontainer order-container">
             @@include('./layout/back_title.html', {
             "back_title" : "訂單管理"
             })
             <div class="btn_area">
-                <div class="btn1">
-                    <div class="Ordrt_NDS">
-                        <button id="new_pd" type="button" class="btn-yellow">退回</button>
-                        <button id="del_pd" type="button" class="btn-red">出貨</button>
-                        <input type="text" name="search" id="search">
-                        <button id="search_pd" type="button" class="btn-green">搜尋</button>
-                    </div>
+                <div>
+                    <button id="new_order" type="button" class="btn-yellow">退回</button>
+                    <button id="del_order" type="button" class="btn-red">出貨</button>
+                </div>
+                <div class="search-area">
+                    <input type="text" name="search" id="search_order">
+                    <button id="search_order_btn" type="button" class="btn-green">搜尋</button>
                 </div>
             </div>
 
 
             <section class="list_area">
-                <ul id="pds_list">
-                    <li>
-                        <ol class="_title">
-                            <li class="fieldName">選取</li>
-                            <li class="fieldName">訂單編號</li>
-                            <li class="fieldName">成立時間</li>
-                            <li class="fieldName">訂購會員</li>
-                            <li class="fieldName">訂單金額</li>
-                            <li class="fieldName">物流狀況</li>
-                            <li class="fieldName">詳細內容</li>
-                        </ol>
+                <ul id="order_list">
+                    <li class="">                
+                        <p class="fieldName"></p>
+                        <p class="fieldName">訂單編號</p>
+                        <p class="fieldName">成立時間</p>
+                        <p class="fieldName">訂購會員</p>
+                        <p class="fieldName">訂單金額</p>
+                        <p class="fieldName">物流狀況</p>
+                        <p class="fieldName">詳細內容</p>
                     </li>
 
                     <li>
@@ -50,121 +46,121 @@
                             <input class="checkBox" type="checkbox">
                             <span class="checkmark"></span>
                         </label>
-                        <p class="prd_number">8601</p>
-                        <p class="prd_name">2022/03/15</p>
-                        <p class="prd_cost">88811</p>
-                        <p class="prd_price">$860</p>
-                        <p class="prd_condition">撿貨中</p>
-                        <!-- <p class="prd_condition">上架中</p> -->
-                        <button type="button" class="btn-green prd_edit">...</button>
+                        <p class="order_number">8601</p>
+                        <p class="order_name">2022/03/15</p>
+                        <p class="order_cost">88811</p>
+                        <p class="order_price">$860</p>
+                        <p class="order_condition">撿貨中</p>
+                        <!-- <p class="order_condition">上架中</p> -->
+                        <button type="button" class="btn-green order_edit">...</button>
                     </li>
                     <li>
                         <label class="check_container">
                             <input class="checkBox" type="checkbox">
                             <span class="checkmark"></span>
                         </label>
-                        <p class="prd_number">8600</p>
-                        <p class="prd_name">2022/03/15</p>
-                        <p class="prd_cost">25012</p>
-                        <p class="prd_price">$700</p>
-                        <p class="prd_inStock">出貨中</p>
-                        <button type="button" class="btn-green prd_edit">...</button>
+                        <p class="order_number">8600</p>
+                        <p class="order_name">2022/03/15</p>
+                        <p class="order_cost">25012</p>
+                        <p class="order_price">$700</p>
+                        <p class="order_inStock">出貨中</p>
+                        <button type="button" class="btn-green order_edit">...</button>
                     </li>
                     <li>
                         <label class="check_container">
                             <input class="checkBox" type="checkbox">
                             <span class="checkmark"></span>
                         </label>
-                        <p class="prd_number">8599</p>
-                        <p class="prd_name">2022/03/15</p>
-                        <p class="prd_cost">866513</p>
-                        <p class="prd_price">$390</p>
-                        <p class="prd_inStock">已送達</p>
-                        <button type="button" class="btn-green prd_edit">...</button>
-                    </li>
-                    <li>
-                        <label class="checkBox" class="check_container">
-                            <input type="checkbox">
-                            <span class="checkmark"></span>
-                        </label>
-                        <p class="prd_number">8598</p>
-                        <p class="prd_name">2022/03/14</p>
-                        <p class="prd_cost">74224</p>
-                        <p class="prd_price">$580</p>
-                        <p class="prd_inStock">已送達</p>
-                        <button type="button" class="btn-green prd_edit">...</button>
+                        <p class="order_number">8599</p>
+                        <p class="order_name">2022/03/15</p>
+                        <p class="order_cost">866513</p>
+                        <p class="order_price">$390</p>
+                        <p class="order_inStock">已送達</p>
+                        <button type="button" class="btn-green order_edit">...</button>
                     </li>
                     <li>
                         <label class="check_container">
                             <input class="checkBox" type="checkbox">
                             <span class="checkmark"></span>
                         </label>
-                        <p class="prd_number">8597</p>
-                        <p class="prd_name">2022/03/11</p>
-                        <p class="prd_cost">02416</p>
-                        <p class="prd_price">$290</p>
-                        <p class="prd_inStock">已送達</p>
-                        <button type="button" class="btn-green prd_edit">...</button>
+                        <p class="order_number">8598</p>
+                        <p class="order_name">2022/03/14</p>
+                        <p class="order_cost">74224</p>
+                        <p class="order_price">$580</p>
+                        <p class="order_inStock">已送達</p>
+                        <button type="button" class="btn-green order_edit">...</button>
                     </li>
                     <li>
                         <label class="check_container">
                             <input class="checkBox" type="checkbox">
                             <span class="checkmark"></span>
                         </label>
-                        <p class="prd_number">8596</p>
-                        <p class="prd_name">2022/03/01</p>
-                        <p class="prd_cost">65727</p>
-                        <p class="prd_price">$450</p>
-                        <p class="prd_inStock">已送達</p>
-                        <button type="button" class="btn-green prd_edit">...</button>
+                        <p class="order_number">8597</p>
+                        <p class="order_name">2022/03/11</p>
+                        <p class="order_cost">02416</p>
+                        <p class="order_price">$290</p>
+                        <p class="order_inStock">已送達</p>
+                        <button type="button" class="btn-green order_edit">...</button>
                     </li>
                     <li>
                         <label class="check_container">
                             <input class="checkBox" type="checkbox">
                             <span class="checkmark"></span>
                         </label>
-                        <p class="prd_number">8595</p>
-                        <p class="prd_name">2022/02/15</p>
-                        <p class="prd_cost">65727</p>
-                        <p class="prd_price">$590</p>
-                        <p class="prd_inStock">已送達</p>
-                        <button type="button" class="btn-green prd_edit">...</button>
+                        <p class="order_number">8596</p>
+                        <p class="order_name">2022/03/01</p>
+                        <p class="order_cost">65727</p>
+                        <p class="order_price">$450</p>
+                        <p class="order_inStock">已送達</p>
+                        <button type="button" class="btn-green order_edit">...</button>
                     </li>
                     <li>
                         <label class="check_container">
                             <input class="checkBox" type="checkbox">
                             <span class="checkmark"></span>
                         </label>
-                        <p class="prd_number">8594</p>
-                        <p class="prd_name">2022/02/10</p>
-                        <p class="prd_cost">75428</p>
-                        <p class="prd_price">$450</p>
-                        <p class="prd_inStock">已送達</p>
-                        <button type="button" class="btn-green prd_edit">...</button>
+                        <p class="order_number">8595</p>
+                        <p class="order_name">2022/02/15</p>
+                        <p class="order_cost">65727</p>
+                        <p class="order_price">$590</p>
+                        <p class="order_inStock">已送達</p>
+                        <button type="button" class="btn-green order_edit">...</button>
                     </li>
                     <li>
                         <label class="check_container">
                             <input class="checkBox" type="checkbox">
                             <span class="checkmark"></span>
                         </label>
-                        <p class="prd_number">8593</p>
-                        <p class="prd_name">2022/01/15</p>
-                        <p class="prd_cost">46728</p>
-                        <p class="prd_price">$1190</p>
-                        <p class="prd_inStock">已送達</p>
-                        <button type="button" class="btn-green prd_edit">...</button>
+                        <p class="order_number">8594</p>
+                        <p class="order_name">2022/02/10</p>
+                        <p class="order_cost">75428</p>
+                        <p class="order_price">$450</p>
+                        <p class="order_inStock">已送達</p>
+                        <button type="button" class="btn-green order_edit">...</button>
                     </li>
                     <li>
                         <label class="check_container">
                             <input class="checkBox" type="checkbox">
                             <span class="checkmark"></span>
                         </label>
-                        <p class="prd_number">8592</p>
-                        <p class="prd_name">2022/01/15</p>
-                        <p class="prd_cost">78908</p>
-                        <p class="prd_price">$290</p>
-                        <p class="prd_inStock">已送達</p>
-                        <button type="button" class="btn-green prd_edit">...</button>
+                        <p class="order_number">8593</p>
+                        <p class="order_name">2022/01/15</p>
+                        <p class="order_cost">46728</p>
+                        <p class="order_price">$1190</p>
+                        <p class="order_inStock">已送達</p>
+                        <button type="button" class="btn-green order_edit">...</button>
+                    </li>
+                    <li>
+                        <label class="check_container">
+                            <input class="checkBox" type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                        <p class="order_number">8592</p>
+                        <p class="order_name">2022/01/15</p>
+                        <p class="order_cost">78908</p>
+                        <p class="order_price">$290</p>
+                        <p class="order_inStock">已送達</p>
+                        <button type="button" class="btn-green order_edit">...</button>
                     </li>
                 </ul>
 
@@ -195,7 +191,6 @@
 
             </div>
         </div>
-    </main>
 
 </body>
 
