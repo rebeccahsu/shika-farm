@@ -64,7 +64,8 @@
 		}
 		.carTitle {
 			display: grid;
-			grid-template-columns: 35% 20% 10% 30% 10%;
+			align-items: center;
+			grid-template-columns: 42% 15% 18% 20% 5%;
 			padding: 20px;
 			@include textCenter();
 			border: 1px solid #c4c4c4;
@@ -75,15 +76,13 @@
 		.carInfo {
 			border-top: none;
 			display: grid;
-			grid-template-columns: 20% 15% 20% 10% 30% 5%;
+			align-items: center;
+			grid-template-columns: 22% 20% 15% 18% 20% 5%;
 			@include textCenter();
 			@include pad{
 				grid-template-columns: 35% 30% 35%;
 			}
 
-			p {
-				margin-top: 50px;
-			}
 			.infoImg {
 				width: 200px;
 				@include marginCenter();
@@ -94,7 +93,6 @@
 			.garbageCan {
 				width: 20px;
 				height: 20px;
-				margin: 70px 0 0 150px;
 				cursor: pointer;
 
 				@include pad{
@@ -128,8 +126,9 @@
 		.productInfo {
 			display: grid;
 			grid-template-columns: 50% 50%;
+			grid-row-gap: 15px;
 			@include textCenter();
-			padding: 20px 200px;
+			padding: 30px 200px;
 			border: 1px solid #c4c4c4;
 		}
 	}
@@ -183,7 +182,7 @@
 		// *********** 欄位標題 ***********
 		.carTitle {
 			display: grid;
-			grid-template-columns: 40% 20% 15% 25%;
+			grid-template-columns: 42% 18% 15% 25%;
 			padding: 20px;
 			@include textCenter();
 			border: 1px solid #c4c4c4;
@@ -191,12 +190,9 @@
 		// *********** 購買商品列 ***********
 		.carInfo {
 			display: grid;
-			grid-template-columns: 20% 20% 20% 15% 25%;
+			grid-template-columns: 22% 20% 18% 15% 25%;
+			align-items: center;
 			@include textCenter();
-
-			p {
-				margin-top: 70px;
-			}
 			.infoImg {
 				width: 200px;
 				@include marginCenter();
