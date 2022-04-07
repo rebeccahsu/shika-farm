@@ -50,4 +50,13 @@ $(function() {
     });
 
 
+    // ==== 訂單搜尋 ====
+    $("#search_order").on("keyup", function() {
+        let target = $(this).val();
+        $(".order-li").filter(function() {
+          $(this).toggle($(this).text().indexOf(target) > -1)
+        });
+    });
+
+
 });

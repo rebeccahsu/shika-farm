@@ -92,7 +92,7 @@ new Vue({
 			let products = [
 				{
 					id: "0001",
-					img: "../img/products/blanket_g.jpg",
+					img: "./img/porducts/blanket_g.jpg",
 					info: "羊毛毯(綠)",
 					price: 499,
 					quantity: 1,

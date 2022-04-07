@@ -1,5 +1,7 @@
 AOS.init();
 
+// ==== 漢堡選單 ====
+
 $(".ham_btn").on("click", function () {
     if ($(".hamSel").hasClass("-on")) {
         $(".ham_line").removeClass("-on");
@@ -35,9 +37,6 @@ $(".hamMask").on("click", function () {
     $(".hamMask").removeClass("-on");
 });
 
-
-
-
 new Vue({
     el: '#appMenu',
     data: {
@@ -52,6 +51,9 @@ new Vue({
     },
 });
 
+// ==== 漢堡選單結束 ====
+
+// ==== footer 插圖動畫 ====
 gsap.to(['.tree1', '.tree2'], {
     repeat: -1,
     keyframes: [
@@ -69,8 +71,9 @@ gsap.to(['.cow1', '.cow2'], {
         { duration: 1, rotation: 10},
     ]
 });
+// ==== footer 插圖動畫結束 ====
 
-
+// ==== 購物車 ====
 new Vue({
     el: '.blackBg',
     data:{
@@ -103,7 +106,7 @@ new Vue({
 			},
 			{
 				id: "0002",
-				img: "./img/products/animal_cookies.jpg",
+				img: "../img/products/animal_cookies.jpg",
 				info: "動物餅乾",
 				price: 200,
 				quantity: 1,
