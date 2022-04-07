@@ -93,24 +93,24 @@ new Vue({
     },
     created() {
 		//  先假裝購物車有資料
-		// let products = [
-		// 	{
-		// 		id: 0001,
-		// 		img: "../img/porducts/blanket_g.jpg",
-		// 		info: "羊毛毯(綠)",
-		// 		price: 499,
-		// 		quantity: 1,
-		// 	},
-		// 	{
-		// 		id: 0002,
-		// 		img: "./img/porducts/animal_cookies.jpg",
-		// 		info: "動物餅乾",
-		// 		price: 200,
-		// 		quantity: 1,
-		// 	},
-		// ];
+		let products = [
+			{
+				id: 0001,
+				img: "../img/porducts/blanket_g.jpg",
+				info: "羊毛毯(綠)",
+				price: 499,
+				quantity: 1,
+			},
+			{
+				id: 0002,
+				img: "./img/porducts/animal_cookies.jpg",
+				info: "動物餅乾",
+				price: 200,
+				quantity: 1,
+			},
+		];
 
-		// localStorage.setItem("products", JSON.stringify(products));
+		localStorage.setItem("products", JSON.stringify(products));
 		
 
 		// 1.取出localStorage的資料, 字串轉成物件 // ??判斷是否為null如果是就用空陣列
