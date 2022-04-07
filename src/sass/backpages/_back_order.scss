@@ -55,12 +55,7 @@
 		.-off {
 		background-color: #ccc;
 		}
-
-		.order_price::before,
-		.order_cost::before {
-			content: "NT$";
-		}
-		}
+	}
 	
 
 	
@@ -69,31 +64,31 @@
 		width: 1000px;
 		margin: 0 auto;
 		ul {
-		display: flex;
-		float: right;
-	
-		li {
-			margin: 5px;
-			background-color: $color_Y;
-			border-radius: 50%;
-			width: 30px;
-			height: 30px;
-			color: $color_B;
-	
-			&:first-child,
-			&:last-child {
-			background-color: $color_G;
+			display: flex;
+			float: right;
+		
+			li {
+				margin: 5px;
+				background-color: $color_Y;
+				border-radius: 50%;
+				width: 30px;
+				height: 30px;
+				color: $color_B;
+		
+				&:first-child,
+				&:last-child {
+				background-color: $color_G;
+				}
 			}
-		}
-	
-		p {
-			text-align: center;
-			transform: translateY(3px);
-		}
-	
-		.page_hear {
-			background-color: $color_R;
-		}
+		
+			p {
+				text-align: center;
+				transform: translateY(3px);
+			}
+		
+			.page_hear {
+				background-color: $color_R;
+			}
 		}
 	}
 }
