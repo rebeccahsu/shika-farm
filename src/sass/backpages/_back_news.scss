@@ -1,8 +1,20 @@
+.bk_in{
+    margin-left: auto;
+    margin-right: 0;
+    padding-top: 0;
+}
+
+.bk_title{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
 
 .bi_top{
     display: flex;
     margin-left: 150px;
 }
+
 
 .bk_in .yellor{
     height: 40px;
@@ -75,8 +87,8 @@ margin-left: 80px;
     height: 100px;
 }
 
+
 .list .list_in{
-    width: 935px;
     height: 160px;
     display: flex;
     border: 1px solid $color_G;
@@ -126,3 +138,6 @@ margin-left: 80px;
     width: 35px;
     height: 35px;
 }
+
+
+
