@@ -73,6 +73,16 @@ function putin_intro(d) {
     let el_text;
     for (i = 0; i < 5; i++) {
         if (d[i] != null) {
+            if(i>1){
+                let ul_el = document.querySelector('#introduce_area');
+                let li_html = `<li class="prd_introduce">
+                <input type="file" name="" class="select_introPic">
+                <div class="select_image"><img src"" class="preview_img"/><span>上傳圖片</span></div>
+                <textarea type="text" class="prd_introduce_input" row="1" cols="2" maxlength="30"></textarea>
+                <i class="bi bi-x"></i>
+            </li>`
+                ul_el.insertAdjacentHTML("beforeend",li_html);
+            }
             switch (i) {
                 case 0:
                     // console.log('bb');
@@ -357,20 +367,20 @@ var preview_intro = function (file) {
 };
 
 var select_image;
-document.addEventListener("click",function(e){
-    if(e.target.closest(".prd_introduce")){
+document.addEventListener("click", function (e) {
+    if (e.target.closest(".prd_introduce")) {
         // console.log('sp1');
         let select_introPic = e.target.closest(".prd_introduce").firstElementChild;
         // console.log(select_introPic);
         let intro_img = e.target.closest(".prd_introduce").querySelector('img');
         // let intro_span = e.target.closest(".prd_introduce").querySelector('span');
         select_image = e.target.closest(".prd_introduce").querySelector('.select_image');
-        
+
         // 利用泡泡機制點input
-        if(e.target.classList.contains("select_image") || e.target==intro_img){
-            console.log("img+span+div");
+        if (e.target.classList.contains("select_image") || e.target == intro_img) {
+            // console.log("img+span+div");
             select_introPic.click();
-            select_introPic.addEventListener('change',()=>{
+            select_introPic.addEventListener('change', () => {
                 if (select_introPic.files.length > 0) {
                     preview_intro(select_introPic.files[0]);
                 } else {
@@ -384,7 +394,7 @@ document.addEventListener("click",function(e){
 // 圖片上傳end
 // =================================================
 /*
-// 資料格式
+// 資料格式  //前台時用innerHTML
 var product = {
     //prd_number: `${$('.prd_number')[i].innerText}`,
     prd_name: `${$('#prd_name')[i].innerText}`, // <-> "varchar"
@@ -396,7 +406,12 @@ var product = {
     prd_topImage: [`${$('.prd_topImage')[i].getAttribute("src")}`], // (網址) ["./img/producds/${品號}_top01"] max=4
     prd_intro: [{scr:`${$('.pd_intro_pic')[i].getAttribute("src")}`,text:`${$('.prd_introduce_input')[i].innerText}`}], //商品介紹,"varchar" [{"src","text"}]  (網址)[{"./img/producds/${品號}_01"},{}] max=5
     
-    //讀出
+    prd_kind: `${$('#prd_kind').val()}`, //和資料庫關聯
+    prd_slog: [`${$('#prd_slog1').val()}`, `${$('#prd_slog2').val()}`], //促銷標語 max=2
+    prd_ingredient: `${$('#prd_ingredient').val()}`, //innerHtml 商品規格
+
+
+    //前台讀出intro
     // var prd_intro = 
     //         `<div class="pd_intro">
     //             <div class="pd_intro_pic"><img src="`${$('.pd_intro_pic')[i].getAttribute("src")}`" alt="">
@@ -404,9 +419,16 @@ var product = {
     //             <p>${$('.prd_introduce_input')[i].innerText}</p>
     //         </div>`;
     
-    prd_kind: `${$('#prd_kind').val()}`, //和資料庫關聯
-    prd_slog: [`${$('#prd_slog1').val()}`, `${$('#prd_slog2').val()}`], //促銷標語 max=2
-    prd_ingredient: `${$('#prd_ingredient').val()}`, //innerHtml 商品規格
+
+    // 後台讀出intro
+var prd_introduce =
+`<li class="prd_introduce">
+        <input type="file" name="" class="select_introPic">
+        <div class="select_image"><img src"" class="preview_img"/><span>選擇圖片</span></div>
+        <textarea type="text" class="prd_introduce_input" row="1" cols="2" maxlength="30"></textarea>
+        <i class="bi bi-x"></i>
+    </li>`
+
 }
 */
 
@@ -426,7 +448,7 @@ $('#submit').on('click', (e) => {
         alert('有欄位沒寫');
     } else { //有資料庫時要改寫存入地點
         console.log('還沒寫好');
-        /*
+/*
         let intro = $('.prd_introduce');
         $('.prd_introduce').each((i, v) => {
             console.log(i, v);
@@ -455,6 +477,10 @@ $('#submit').on('click', (e) => {
     }
 })
 
+// 存入前取資料
+
+
+
 // 取消
 $('#cancel').on('click', (e) => {
     e.preventDefault;
@@ -464,7 +490,6 @@ $('#cancel').on('click', (e) => {
 })
 
 // =================================================
-
 
 
 
