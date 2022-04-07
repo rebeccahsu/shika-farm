@@ -451,7 +451,7 @@ input .slider [type=radio]:checked {
     position: relative;
     animation: ball3 6s linear infinite ;
     width: 10vw;
-    min-width: 120px;
+    min-width: 95px;
 }
 
 .game.show {
@@ -520,6 +520,23 @@ input .slider [type=radio]:checked {
     .modal_img{
         width: 100px;
     }
+}
+
+@media screen and (max-width: 480px) {
+    .item_img{
+        width: 360px;
+        height: 360px;
+    }
+
+    .item_imgcover{
+        width: 360px;
+        height: 360px;
+    }
+    
+    .item_p{
+       width: 300px;
+    }
+
 }
 
 
