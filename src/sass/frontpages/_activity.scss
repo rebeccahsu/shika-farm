@@ -354,11 +354,12 @@ input .slider [type=radio]:checked {
     object-position: left 50%;
     /* width: 100%;
     height: auto; */
-    height: 400px; 
+    height: 450px; 
     top:50%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
+
 
 
 .item_img_icon{
@@ -368,7 +369,10 @@ input .slider [type=radio]:checked {
     bottom: 0;
     animation: shake 2s infinite;
     transform-origin: bottom;
+    width: 13vw;
+    min-width: 140px;
 }
+
 
 .reserve{
     width: 100px;
@@ -422,18 +426,26 @@ input .slider [type=radio]:checked {
     }
 }
 
+@keyframes ball3 {
+    0%{border-radius: 65% 35% 68% 32% / 39% 50% 50% 61%    ;}
+    25%{border-radius: 47% 53% 34% 66% / 36% 50% 50% 64%   ;}
+    50%{border-radius: 57% 43% 52% 48% / 41% 49% 51% 59%  ;}
+    75%{border-radius: 66% 34% 36% 64% / 40% 70% 30% 60%    ;}
+    100%{border-radius: 65% 35% 68% 32% / 39% 50% 50% 61%    ;}
+}
+
 .game{
     position: fixed;
     // opacity: 0;
     // visibility: hidden;
     right: 10px;
-    top: 90px;
+    bottom: 40px;
     z-index: 13;
 }
 
 .game img{
     position: relative;
-    animation: shift 4s infinite ;
+    animation: ball3 3s infinite ;
     width: 10vw;
     min-width: 120px;
 }
@@ -462,7 +474,7 @@ input .slider [type=radio]:checked {
 
 //---------------------------RWD-----------------------------------
 
-@media screen and (max-width: 915px) {
+@media screen and (max-width: 899px) {
 
     .odd_item:nth-child(odd) {
         .item{  
@@ -479,7 +491,7 @@ input .slider [type=radio]:checked {
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 550px) {
     .item_img{
         width: 400px;
         height: 400px;
@@ -492,6 +504,7 @@ input .slider [type=radio]:checked {
     .item_p{
        width: 300px;
     }
+
 }
 
 
