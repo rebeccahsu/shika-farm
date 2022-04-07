@@ -281,18 +281,30 @@
                
                p{
                    margin-top: 50px;
+                   
+                   @include pad{
+                    margin-top: 30px;
+                    }
                 }
                img{
                    width: 150px;
                    margin: 0 auto;
+                   @include pad{
+                    width: 100px;
+                }
                 }
                .quantity {
-				width: 30px;
-				height: 30px;
-				@include textCenter();
-				border: 1px solid $color_Y;
-				margin: 0;
-				display: inline-block;
+				    width: 30px;
+				    height: 30px;
+				    @include textCenter();
+				    border: 1px solid $color_Y;
+				    margin: 0;
+				    display: inline-block;
+
+                    @include pad{
+                        width: 20px;
+                        height: 20px;
+                    }
 			    }
 
                .spBtn {
@@ -304,12 +316,19 @@
 				color: $color_W;
 				outline-style: inherit;
 				cursor: pointer;
+                @include pad{
+                    width: 20px;
+                    height: 20px;
+                }
 			    }
                 .garbageCan {
                     width: 20px;
                     height: 20px;
                     margin-top: 50px;
                     cursor: pointer;
+                    @include pad{
+                        margin-top: 35px;
+                    }
                 }
             }
             .carBottom{
@@ -362,5 +381,4 @@
             }
         }
     }
-                
 }
