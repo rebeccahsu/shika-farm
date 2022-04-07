@@ -1,8 +1,10 @@
 .pd_main {
   margin-bottom: 30px;
+  padding-bottom: 10px;
 
   @media (max-width: 992px) {
-    max-width: 80%;
+    max-width: 100%;
+    overflow: hidden;
   }
   
   // *{@include borderTest(blue);}
@@ -266,7 +268,7 @@
     margin: 20px auto;
     // border: 2px solid #ccc;
     border-radius: 8px;
-    padding: 25px;
+    // padding: 25px;
 
     &:nth-child(even)  P{
       order:-1;
@@ -324,7 +326,7 @@
   }
   @include pad {
     .pd_intro {
-      width: 90%;
+      width: 100%;
       flex-direction: column;
       justify-content: center;
 
@@ -527,10 +529,10 @@
      font-size: $fs-xs;
   }
   .pd_recommend_name {
-    margin-left: 5px;
+    margin-left: 10px;
   }
   .pd_recommend_price {
-    margin-right: 5px;
+    margin-right: 10px;
   }
   .pd_recommend_text{
     padding: 20px 0;
