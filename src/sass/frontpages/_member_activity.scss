@@ -7,33 +7,6 @@
 
 
 
-//btn
-
-// .mem_btn{
-//     color: white;
-//     background-color:$color_G;
-//     width: 350px;
-//     height: 72px;
-//     border-radius: 8px;
-//     font-size: 24px;
-//     border: none;
-//     margin: 0 auto;
-//     cursor: pointer;
-    
-    
-// }
-
-// .mem_act{
-//     color: white;
-//     background-color:$color_Y;
-//     width: 350px;
-//     height: 72px;
-//     border-radius: 8px;
-//     font-size: 24px;
-//     border: none;
-//     margin: 0 auto;
-// }
-
 
 
 
@@ -42,12 +15,18 @@
     
     display: flex;
     margin: 0 auto;
-    width: 1200px;
+    // width: 1200px;
+    width: 100%;
     height: 160px;
     border: 2px solid $color_G ;
     border-radius: 8px;
     line-height: 160px;
     margin-top: 40px;
+    @include mobile{
+        width: 350px;
+        overflow-x: auto;
+    }
+    
     
     
 }
@@ -61,12 +40,25 @@
     line-height: 160px;
     height: 160px;
     padding-right: 80px;
+    @include mobile{
+        padding-right: 20px;
+        font-size: 20px;
+
+        // overflow-x: auto;
+    }
+    
     
 }
 
 .act_title{
     display:inline;
     padding-right: 20px;
+    @include mobile{
+        display:block;
+        font-size: 16px;
+
+        // overflow-x: auto;
+    }
     
 }
 
@@ -79,7 +71,7 @@
 
 .cancel_btn{
     margin-top: 45px;
-    // line-height: 160px;
+   
     font-size: $fs-s;
     border-radius: 8px;
     text-align: center;

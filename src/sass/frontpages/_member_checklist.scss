@@ -1,10 +1,10 @@
 .mb_cl_wrp{
     margin: 0 auto;
-    width: 1200px;
+    width: 100%;
     
     @include mobile{
-        width: 350px;
-        overflow-x: auto;
+        width: 360px;
+    //  overflow-x: auto;
     }
     
 
@@ -18,6 +18,11 @@
     line-height: 60px;
     display: grid;
     grid-template-columns: 100%;
+    @include mobile{
+        width: 360px;
+     overflow-x: auto;
+    }
+    
     
     
 }
@@ -62,7 +67,7 @@
     border-radius: 4px;
     
     @include mobile {
-        width: 40px;
+        width: 20px;
         font-size: 14px;
     }
 
