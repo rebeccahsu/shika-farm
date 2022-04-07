@@ -5,160 +5,6 @@
     @@include('./layout/head.html', {
     "title" : "Sìkha 牧場 | Sìkha 動物"
     })
-    <style>
-        .black_bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgb(0, 0, 0, 0.5);
-            height: 100%;
-            z-index: 10;
-        }
-
-        .modal {
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            margin: auto;
-            width: 400px;
-            height: 470px;
-            background-color: #FECC55;
-            border-radius: 10px;
-            z-index: 13;
-
-            padding-top: 50px;
-            text-align: center;
-            line-height: 1.6;
-        }
-
-        @keyframes swing {
-            15% {
-                transform: rotate(10deg);
-            }
-
-            40% {
-                transform: rotate(-10deg);
-            }
-
-            65% {
-                transform: rotate(5deg);
-            }
-
-            85% {
-                transform: rotate(-5deg);
-            }
-
-            100% {
-                transform: rotate(0deg);
-            }
-        }
-
-        @keyframes shake {
-            15% {
-                transform: rotate(2deg);
-            }
-
-            40% {
-                transform: rotate(-2deg);
-            }
-
-            65% {
-                transform: rotate(3deg);
-            }
-
-            85% {
-                transform: rotate(-3deg);
-            }
-
-            100% {
-                transform: rotate(0deg);
-            }
-        }
-
-        .modal_img {
-            width: 140px;
-        }
-
-
-        .modal_button {
-            height: 25px;
-            width: 90px;
-            background-color: #16B1AA;
-            border: none;
-            border-radius: 10px;
-            letter-spacing: 3px;
-
-        }
-
-        .modal_date {
-            height: 50px;
-            width: 150px;
-        }
-
-
-
-        .x_icon_position {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-        }
-
-
-        button.hamburger_icon {
-            width: 40px;
-            height: 40px;
-            position: relative;
-            cursor: pointer;
-            border-style: none;
-            background: none;
-        }
-
-
-
-        button.hamburger_icon span.-hr {
-            height: 1px;
-            width: 50%;
-            background-color: #16B1AA;
-            display: inline-block;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-
-
-        /* 上方的線 */
-        button.hamburger_icon span.-hr.-top {
-            transform-origin: top left;
-            top: 5px;
-            left: 6px;
-            width: 102%;
-            transform: rotate(45deg);
-        }
-
-
-        /* 下方的線 */
-        button.hamburger_icon span.-hr.-bottom {
-            transform-origin: top left;
-            bottom: 5px;
-            left: 6px;
-            width: 102%;
-            transform: rotate(-45deg);
-            top: auto;
-        }
-
-        .reserve {
-            cursor: pointer;
-        }
-
-        .item_img_icon {
-            cursor: pointer;
-        }
-    </style>
 </head>
 
 <body>
@@ -195,7 +41,6 @@
         <!-- 預約彈窗 -->
         <div class="black_bg" v-if="modal_open !== null" @click="close()"></div>
         <div class="modal" v-if="modal_open !== null">
-            <!-- {{modal_open}}<br><br><br> -->
             <div class="x_icon_position">
                 <button type="button" class="hamburger_icon" @click="close()">
                     <span class="-hr -top"></span>
@@ -203,17 +48,12 @@
                 </button>
             </div>
             <input class="modal_date" id="date" type="date"><br><br>
-            <!--取值測試-->
-            <!-- <h5>取值測試一：{{modal_open}}</h5>
-            <h5>取值測試二：{{}}</h5> -->
-            <!---->
-            <!-- <input type="radio" v-model="period" value="period1"> {{modal_open.title}}<br> -->
             <template v-for="(item2,key) in modal_open.time_period">
                 <input type="radio" :id="period+key" name="period"><label :for="period+key"> {{item2}}</label><br>
             </template>
 
             預約人數： <input type="number" name="quantity" min="1" max="10"> 人</br>
-            剩餘人數： {{剩餘人數}} 人</br><br>
+            剩餘人數： {{modal_open.remain}} 人</br><br>
             <button class="modal_button">我要預約</button><br><br>
             <img class="modal_img" src="./img/activity/horse1.png" alt="">
         </div>
@@ -226,12 +66,6 @@
                     <img class="item_img" :src="aaa.image" alt="">
                     <div class="item_r_cover">
                         <img @click="open(aaa)" class="item_img_icon" :src="aaa.icon_img" alt="">
-
-
-                        <!-- <button v-if="activeIndex == aaa.name"
-                            :id="activeIndex == aaa.name ? 'ep_' + aaa.name  : 'not_ep_' + key + '_' +aaa.title "
-                            class="reserve" @click="open(aaa)">{{aaa.reserve}}</button> -->
-
                         <button v-if='aaa.time_period' class="reserve" :class="'-index'+ activeIndex"
                             :style="{'background': all_data[activeIndex].button_bg}" @click="open(aaa)">點我預約</button>
                     </div>
@@ -240,18 +74,6 @@
                     <h5 class="item_title">{{aaa.title}}</h5>
                     <p class="item_desc">{{aaa.desc}}</p>
                     <br>
-                    <!--<h5 class="item_desc">{{item.data}}</h5>-->
-                    <!-- <input type="radio" value="periodChoise1" id="periodChoise1" name="period" v-model="period">
-                    <label for="periodChoise1">{{aaa.p1}}</label><br>
-                    <input type="radio" value="periodChoise2" id="periodChoise2" name="period" v-model="period">
-                    <label for="periodChoise2">{{aaa.p2}}</label><br>
-                    <input type="radio" value="periodChoise3" id="periodChoise3" name="period" v-model="period">
-                    <label for="periodChoise3">{{aaa.p3}}</label><br><br> -->
-
-                    <!-- <template v-for="item2 in aaa.time_period">
-                        <input type="radio"> {{item2}}<br>
-                    </template> -->
-
                 </div>
             </div>
         </section>
@@ -259,242 +81,7 @@
 
     <!-- footer -->
     @@include('./layout/footer.html')
-
-    <script>
-        new Vue({
-            el: '#app',
-            data() {
-                return {
-                    modal_open: null,
-                    activeIndex: 0,
-                    period: null,
-                    all_data:
-
-                        [
-                            {
-                                title: 'sheep',
-                                button_bg: '#FF8671',
-                                list: [
-                                    {
-                                        name: '0',
-                                        title: '餵羊喝ㄋㄟㄋㄟ',
-                                        image: './img/activity/drink.jpg',
-                                        icon_img: '',
-                                        desc: '每日限量100罐營養好喝的ㄋㄟㄋㄟ，憑門票可兌換一罐，每張門票限兌換一罐，喜歡綿羊的大朋友小朋友請把握機會，跟綿羊更親近。',
-                                        data: ['3/11', '3/13'],
-
-                                    },
-                                    {
-                                        name: '0',
-                                        title: '剃羊毛秀',
-                                        image: './img/activity/fur.jpg',
-                                        icon_img: './img/activity/sheep1.png',
-                                        desc: '想知道服裝織品中常見的羊毛，最開始的原型是什麼樣子嗎？讓我們專業的剃羊毛技師為你們揭開這層面紗，攜手一探究竟吧。',
-                                        data: ['3/11', '3/13'],
-                                        time_period: ["09:00-10:00", "14:00-15:00"],
-                                        reserve: '點我預約'
-                                    },
-                                    {
-                                        name: '0',
-                                        title: 'DIY ㄋㄟㄋㄟ 肥皂 ',
-                                        image: './img/activity/soap.jpg',
-                                        icon_img: './img/activity/soap_icon.png',
-                                        desc: '喜歡洗澡嗎 ? 簡單三步驟就能讓你完成屬於自己的肥皂 ，讓Sìkha肥皂滲透你的肌膚，享受肌膚絲緞般的觸感，自用送禮兩相宜，還不快來體驗！ ',
-                                        data: ['3/11', '3/13'],
-                                        time_period: ["9:00-10:30", "13:00-14:30", "15:00-16:30"],
-                                        p1: '9:00-10:30',
-                                        p2: '13:00-14:30',
-                                        p3: '15:00-16:30',
-                                        reserve: '點我預約'
-                                    }
-                                ]
-                            },
-                            {
-                                title: 'deer',
-                                button_bg: '#16B1AA',
-                                list: [
-                                    {
-                                        name: '1',
-                                        title: '餵食吃仙貝',
-                                        image: './img/activity/deercookie.jpg',
-                                        icon_img: '',
-                                        desc: '到Sìkha牧場憑門票即可兌換鹿仙貝一包，請可愛的小鹿們吃仙貝小點心，留下美好的回憶！',
-                                        data: ['3/11', '3/13'],
-                                        p1: '',
-                                        p2: '',
-                                        p3: '',
-                                        reserve: ''
-                                    },
-                                    {
-                                        name: '1',
-                                        title: '小鹿相見歡',
-                                        image: './img/activity/playwithdeer.jpg',
-                                        icon_img: '',
-                                        desc: '大朋友小朋友趕快來Sìkha牧場與可愛親人的梅花鹿近距離互動，並拍照留下紀念吧!',
-                                        data: ['3/11', '3/13'],
-                                    },
-
-                                ]
-                            },
-                            {
-                                title: 'alpaca',
-                                button_bg: '#FECC55',
-                                list: [
-                                    {
-                                        name: '2',
-                                        title: '草泥馬散步秀',
-                                        image: './img/activity/alpacawalk.jpg',
-                                        icon_img: './img/activity/alpaca1.png',
-                                        desc: '跟著草泥馬在遼闊的草原，與和煦陽光的陪伴下，踏著慵懶的步伐，一同遠離塵囂，享受著屬於你我間的怡然時光吧。',
-                                        data: ['3/11', '3/13'],
-                                        time_period: ["9:00-10:00", "11:00-12:00", "14:00-15:00"],
-                                        p1: '9:00-10:00',
-                                        p2: '11:00-12:00',
-                                        p3: '14:00-15:00',
-                                        reserve: '點我預約'
-                                    },
-                                    {
-                                        name: '2',
-                                        title: '餵草泥馬',
-                                        image: './img/activity/alpacaeat.jpg',
-                                        icon_img: '',
-                                        desc: '想與草泥馬近距離接觸嗎？這就是你最好的機會，趕快一起來Sìkha牧場餵可愛的草泥馬吃草吧！',
-                                        data: ['3/11', '3/13'],
-                                        p1: '',
-                                        p2: '',
-                                        p3: '',
-                                        reserve: ''
-                                    }
-
-                                ]
-                            },
-                            {
-                                title: 'cow',
-                                button_bg: '#FF8671',
-                                icon_image: '',
-                                list: [
-                                    {
-                                        name: '3',
-                                        title: '乳牛吃飽飽',
-                                        image: './img/activity/eatfresh.jpg',
-                                        icon_img: '',
-                                        desc: '來到Sìkha牧場，就可以憑門票兌換一把草，可以更近一步的跟可愛的乳牛互動餵牠吃草吃到飽！！',
-                                        data: ['3/11', '3/13'],
-                                        p1: '',
-                                        p2: '',
-                                        p3: '',
-                                        reserve: ''
-                                    },
-                                    {
-                                        name: '3',
-                                        title: '擠ㄋㄟㄋㄟ',
-                                        image: './img/activity/milkmaker.jpg',
-                                        icon_img: './img/activity/cow1.png',
-                                        desc: '和動物近距離的體驗，幫乳牛媽媽擠ㄋㄟㄋㄟ，讓小朋友們知道，原來牛奶是從這裡來的呢！。透過工作人員教學說明後，我們可以親手擠出白色的牛奶，配合乳牛媽媽的生理時間，提供每日３個場次可以體驗喔！',
-                                        data: ['3/11', '3/13'],
-                                        time_period: ["9:00-9:30", "10:00-10:30", "11:00-11:30", "14:00-14:30"],
-                                        p1: '9:00-9:30',
-                                        p2: '10:00-10:30',
-                                        p3: '11:00-11:30',
-                                        reserve: '點我預約'
-                                    },
-                                    {
-                                        name: '3',
-                                        title: 'DIY ㄋㄟㄋㄟ 餅乾',
-                                        image: './img/activity/makecookie.jpg',
-                                        icon_img: './img/activity/cookie_icon.png',
-                                        desc: '奶味香濃的餅乾大人小孩都喜歡！但有親手做過餅乾嗎？Sìkha牧場提供新鮮牛奶讓各位大朋友小朋友來這親手製作出香濃可口的ㄋㄟㄋㄟ餅乾 ! ? 簡單三步驟就能讓你完成屬於自己的肥皂 ，讓Sìkha肥皂滲透你的肌膚，享受肌膚絲緞般的觸感，自用送禮兩相宜，還不快來體驗！ ',
-                                        data: ['3/11', '3/13'],
-                                        time_period: ["9:00-10:30", "13:00-14:30", "15:00-16:30"],
-                                        p1: '9:00-10:30',
-                                        p2: '13:00-14:30',
-                                        p3: '15:00-16:30',
-                                        reserve: '點我預約'
-                                    }
-                                ]
-                            },
-                            {
-                                title: 'pig',
-                                button_bg: '#16B1AA',
-                                icon_image: '',
-                                list: [
-                                    {
-                                        name: '4',
-                                        title: '小豬賽跑',
-                                        image: './img/activity/pigrun.jpg',
-                                        icon_img: './img/activity/pig1.png',
-                                        desc: '看穿著號碼衣的小豬們，翹著屁股碰碰跳跳的向前賽跑，觀賽前可以先將自己神聖的一票投給喜歡的小豬，比賽結束後，若您投的小豬是冠軍，就可獲得牧場的驚喜小禮物呦！',
-                                        data: ['3/11', '3/13'],
-                                        time_period: ["9:00-9:30", "10:00-10:30", "11:00-11:30"],
-                                        p1: '9:00-9:30',
-                                        p2: '10:00-10:30',
-                                        p3: '11:00-11:30',
-                                        reserve: '按我預約'
-                                    },
-                                    {
-                                        name: '4',
-                                        title: '小豬相見歡',
-                                        image: './img/activity/playwithpig.jpg',
-                                        icon_img: '',
-                                        desc: '想和可愛的小豬們成為朋友嗎？快來和牠們一起無憂無慮地拍照玩耍，感受小豬們歡樂的氣氛吧！',
-                                        data: ['3/11', '3/13'],
-                                        p1: '',
-                                        p2: '',
-                                        p3: '',
-                                        reserve: ''
-                                    },
-                                ]
-                            },
-                            {
-                                title: 'horse',
-                                button_bg: '#FECC55',
-                                icon_image: '',
-                                list: [
-                                    {
-                                        name: '5',
-                                        title: '我要當牛仔',
-                                        image: './img/activity/riding.jpg',
-                                        icon_img: './img/activity/horse1.png',
-                                        desc: '無論你是大朋友小朋友、初學者，都可以安心做牛仔！* 身高 90 公分以下且與陪同成人體重相加總重不超過 80 公斤的兒童可以與成人一起乘坐。',
-                                        data: ['3/11', '3/13'],
-                                        time_period: ["9:00-10:00", "13:00-14:00", "15:00-16:00"],
-                                        p1: '9:00-10:00',
-                                        p2: '13:00-14:00',
-                                        p3: '15:00-16:00',
-                                        reserve: '按我預約'
-                                    },
-                                    {
-                                        name: '5',
-                                        title: '馬術秀',
-                                        image: './img/activity/horseshow.jpg',
-                                        icon_img: './img/activity/horse1.png',
-                                        desc: '由專業的騎士親自演出，在駿馬馬背上站立、翻騰、跳躍，甚至是高難度的射箭。精彩的馬術秀絕對不容錯過，快來一睹馬兒們的神勇風采吧。',
-                                        data: ['3/11', '3/13'],
-                                        time_period: ["9:00-10:00", "13:00-14:00", "15:00-16:00"],
-                                        p1: '9:00-10:00',
-                                        p2: '13:00-14:00',
-                                        p3: '15:00-16:00',
-                                        reserve: '按我預約'
-                                    },
-                                ]
-                            },
-                        ]
-                }
-            },
-            mounted() {
-                //ajax
-            },
-            methods: {
-                open(data) {
-                    //console.log(data);
-                    this.modal_open = data
-                },
-                close() {
-                    this.modal_open = null
-                }
-            }
-        });
-    </script>
+    <script src="js/activity.js"></script>
 </body>
 
 </html>
