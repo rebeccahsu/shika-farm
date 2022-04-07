@@ -46,14 +46,14 @@ new Vue({
 		//  先假裝購物車有資料
 		let products = [
 			{
-				id: 0001,
+				id: "0001",
 				img: "../img/porducts/blanket_g.jpg",
 				info: "羊毛毯(綠)",
 				price: 499,
 				quantity: 1,
 			},
 			{
-				id: 0002,
+				id: "0002",
 				img: "./img/porducts/animal_cookies.jpg",
 				info: "動物餅乾",
 				price: 200,

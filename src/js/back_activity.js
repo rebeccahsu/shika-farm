@@ -2,11 +2,11 @@ new Vue({
     el: '.actLists',
     data: {
         activities: [
-            { img: './img/activity/riding.jpg', name:'我要當牛仔', timeI: '09:30~11:00', timeII: '13:00~14:30', timeIII: '16:30~18:00', state: '上架中', stateClass: ''},
-            { img: './img/activity/pigrun.jpg', name:'小豬賽跑', timeI: '10:00~10:30', timeII: '13:00~13:30', timeIII: '15:00~15:30', state: '上架中' },
-            { img: './img/activity/fur.jpg', name:'剃羊毛秀', timeI: '09:30~10:30', timeII: '14:00~15:00', timeIII: '17:00~18:00', state: '上架中' },
-            { img: './img/activity/horseshow.jpg', name:'馬術秀', timeI: '11:00~12:00', timeII: '13:00~14:00', timeIII: '16:00~17:00', state: '已下架', stateClass: '-off' },
-            { img: './img/activity/alpacawalk.jpg', name:'草泥馬散步秀', timeI: '10:30~11:30', timeII: '13:30~14:30', timeIII: '15:30~16:30', state: '上架中' },
+            { img: './img/activity/riding.png', name:'我要當牛仔', timeI: '09:30~11:00', timeII: '13:00~14:30', timeIII: '16:30~18:00', state: '上架中', stateClass: ''},
+            { img: './img/activity/pigrun.png', name:'小豬賽跑', timeI: '10:00~10:30', timeII: '13:00~13:30', timeIII: '15:00~15:30', state: '上架中' },
+            { img: './img/activity/fur.png', name:'剃羊毛秀', timeI: '09:30~10:30', timeII: '14:00~15:00', timeIII: '17:00~18:00', state: '上架中' },
+            { img: './img/activity/horseshow.png', name:'馬術秀', timeI: '11:00~12:00', timeII: '13:00~14:00', timeIII: '16:00~17:00', state: '已下架', stateClass: '-off' },
+            { img: './img/activity/alpacawalk.png', name:'草泥馬散步秀', timeI: '10:30~11:30', timeII: '13:30~14:30', timeIII: '15:30~16:30', state: '上架中' },
         ],
     },
 });
