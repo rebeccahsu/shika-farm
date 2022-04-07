@@ -3,22 +3,22 @@
 
 // 關閉按鈕和範圍==============
 
-$('#back_bg').on('click', function (e) {
-    closebg();
-})
+// $('#back_bg').on('click', function (e) {
+//     closebg();
+// })
 
-$('.bi-x').on('click', function (e) {
-    closebg();
-});
+// $('.bi-x').on('click', function (e) {
+//     closebg();
+// });
 
-$('#login_box').on('click', function (e) {
-    e.stopPropagation();
-})
+// $('#login_box').on('click', function (e) {
+//     e.stopPropagation();
+// })
 
-function closebg(t) {
-    // console.log(t);
-    $('#back_bg').remove();
-}
+// function closebg(t) {
+//     // console.log(t);
+//     $('#back_bg').remove();
+// }
 
 // 關閉按鈕和範圍end
 // ============================

@@ -40,7 +40,7 @@
     margin: 40px auto;
 
     // 登入表單,重設密碼表單
-    #login_form {
+    .login_form {
       width: 325px;
       margin: 20px;
       display: flex;
@@ -330,8 +330,8 @@ div#back_bg {
   }
 }
 
-.register_form.form-off{
-  display: none;
+.login_form.form-off, .register_form.form-off, .forget-password.form-off{
+  display: none !important;
 }
 
 #login_box.-off{
