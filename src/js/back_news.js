@@ -2,6 +2,13 @@
 // 沒有DB，檢查LC資料
 
 $(function () {
+    //目前頁面
+    let pages = document.querySelector(".aside_ul").querySelectorAll("h5");
+    pages.forEach(function(page){
+        if ( page.innerHTML == "最新消息管理"){
+            page.closest("a").classList.add("-on");
+        }
+    });
     // console.log('object');
     if (sessionStorage.news_list == undefined) {
         let task = [];
