@@ -25,13 +25,13 @@ function minicss() {
 
 exports.c = minicss;
 
-//  js minify ckeck
+//  js minify check
 const uglify = require("gulp-uglify");
 
 function minijs() {
 	return (
 		src(["src/js/*.js", "src/js/**/*.js"])
-			// .pipe(uglify())
+			.pipe(uglify())
 			// .pipe(rename({
 			//     extname: '.min.js' // 修改附檔名
 			//     //prefix : 'web-' // 前綴字
@@ -66,7 +66,7 @@ function sassstyle() {
 		src("./src/sass/*.scss")
 			.pipe(sourcemaps.init())
 			.pipe(sass.sync().on("error", sass.logError))
-			//.pipe(cleanCSS()) // minify css
+			.pipe(cleanCSS()) // minify css
 			.pipe(
 				autoprefixer({
 					cascade: false,
@@ -132,7 +132,7 @@ const imagemin = require("gulp-imagemin");
 
 function min_images() {
 	return src(["src/img/*.*", "src/img/**/*.*"])
-		.pipe(imagemin())
+		.pipe(imagemin({quality: 70, progressive: true}))
 		.pipe(dest("dist/img"));
 }
 

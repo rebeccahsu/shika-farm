@@ -76,3 +76,11 @@ new Vue({
 		],
 	},
 });
+
+// ==== 會員搜尋 ====
+$("#member_search").on("keyup", function() {
+	let target = $(this).val();
+	$(".mb_content").filter(function() {
+	  $(this).toggle($(this).find('p').text().indexOf(target) > -1)
+	});
+});

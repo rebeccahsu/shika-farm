@@ -13,9 +13,9 @@ new Vue ({
     el: '#indexActivity',
     data: {
         activities: [
-            {img: 'img/activity/alpacawalk.png', title: '陪草泥馬散步'},
-            {img: 'img/activity/pigrun.png', title: '小豬賽跑'},
-            {img: 'img/activity/riding.png', title: '我要當牛仔'},
+            {img: './img/activity/alpacawalk.jpg', title: '陪草泥馬散步'},
+            {img: './img/activity/pigrun.jpg', title: '小豬賽跑'},
+            {img: './img/activity/riding.jpg', title: '我要當牛仔'},
         ],
     }  
 })
