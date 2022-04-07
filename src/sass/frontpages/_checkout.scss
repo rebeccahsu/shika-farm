@@ -97,7 +97,6 @@
 				grid-template-columns: 35% 30% 35%;
 			}
 
-<<<<<<< HEAD
 			p {
 				margin-top: 70px;
 				@include pad{
@@ -107,8 +106,6 @@
 					margin-top: 40px;
 				}
 			}
-=======
->>>>>>> 4e74c472281536b90e0c9ef7e189736c292ff8ef
 			.infoImg {
 				width: 200px;
 				@include marginCenter();
@@ -119,10 +116,7 @@
 			.garbageCan {
 				width: 20px;
 				height: 20px;
-<<<<<<< HEAD
 				margin-top: 70px;
-=======
->>>>>>> 4e74c472281536b90e0c9ef7e189736c292ff8ef
 				cursor: pointer;
 
 				@include pad{
