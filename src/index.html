@@ -17,136 +17,130 @@
 
     @@include('./layout/login_register.html')
 
-    <!-- 首圖 -->
     <div class="outer-wrapper">
-        <img src="img/index/sun.png" alt="sun" class="sun">
-        <img src="img/index/cloud.png" alt="cloud" class="top-cloud top-cloud1">
-        <img src="img/index/cloud.png" alt="cloud" class="top-cloud top-cloud2">
-        <img src="img/index/cloud.png" alt="cloud" class="top-cloud top-cloud3">
-        <img src="img/index/cloud.png" alt="cloud" class="top-cloud top-cloud4">
-
-    <div class="indexTop container-fluid p_scene">
-       <img data-depth="0.2" src="img/index/horse.png" alt="horse" class="top-horse">
-       <img data-depth="0.1" src="img/index/deer.png" alt="deer" class="top-deer">
-       <img data-depth="0.3" src="img/index/sheep.png" alt="sheep" class="top-sheep">
-       <img data-depth="0.4" src="img/index/pig.png" alt="pig" class="top-pig">
-       <img data-depth="0.2" src="img/index/alpaca.png" alt="alpaca" class="top-alpaca">
-       <img data-depth="0.3" src="img/index/cow.png" alt="cow" class="top-cow">
-    </div>
-
-    <!-- Section 1: 介紹 -->
-    <div class="welcome-wrapper">
-        <img data-depth="0.2" src="img/index/cloud.png" alt="cloud" class="side-cloud cloud5">
-        <img data-depth="0.3" src="img/index/cloud.png" alt="cloud" class="side-cloud cloud6">
-        <section class="indexWelcome container-lg p_scene" id="index-welcome">
-            <h3 data-depth="0.1" class="welcomeTitle">歡迎來到Sìkha牧場</h3>
-            <img data-depth="0.4" src="img/material/circle_yellow_800.png" class="decYellow" alt="decoration_circle">
-            <img data-depth="0" src="img/index/welcometo.png" class="mainImg" alt="cow_eating_grass">
-            <div data-depth="0.3" class="nameIntroContainer layer">
-                <h5 class="nameIntro">Sìkha源自閩南語「四腳」拼音，可愛的四腳夥伴們住在南投山林的牧場，期待著兩腳朋友來臨喔！</h5>
+            <!-- 首圖 -->
+            <img src="img/index/sun.png" alt="sun" class="sun">
+            <img src="img/index/cloud.png" alt="cloud" class="top-cloud top-cloud1">
+            <img src="img/index/cloud.png" alt="cloud" class="top-cloud top-cloud2">
+            <img src="img/index/cloud.png" alt="cloud" class="top-cloud top-cloud3">
+            <img src="img/index/cloud.png" alt="cloud" class="top-cloud top-cloud4">
+        
+            <div class="indexTop container-fluid p_scene">
+                <img data-depth="0.2" src="img/index/horse.png" alt="horse" class="top-horse">
+                <img data-depth="0.1" src="img/index/deer.png" alt="deer" class="top-deer">
+                <img data-depth="0.3" src="img/index/sheep.png" alt="sheep" class="top-sheep">
+                <img data-depth="0.4" src="img/index/pig.png" alt="pig" class="top-pig">
+                <img data-depth="0.2" src="img/index/alpaca.png" alt="alpaca" class="top-alpaca">
+                <img data-depth="0.3" src="img/index/cow.png" alt="cow" class="top-cow">
             </div>
-        </section>
-    </div>
+        
 
-
-    <!-- Section 2: 最新消息 -->
-    <section class="indexNews container-lg">
-        <img src="img/index/cloud.png" alt="cloud" class="side-cloud cloud7">
-        <div class="indexNewsTitle">
-            <h3 data-aos="fade-right" data-aos-duration="1500">最新消息</h3>
-            <h6 data-aos="fade-right" data-aos-duration="2500">NEWS</h6>
+        <!-- Section 1: 介紹 -->
+        <div class="welcome-wrapper">
+            <img data-depth="0.2" src="img/index/cloud.png" alt="cloud" class="side-cloud cloud5">
+            <img data-depth="0.3" src="img/index/cloud.png" alt="cloud" class="side-cloud cloud6">
+            <section class="indexWelcome container-lg p_scene" id="index-welcome">
+                <h3 data-depth="0.1" class="welcomeTitle">歡迎來到Sìkha牧場</h3>
+                <img data-depth="0.4" src="img/material/circle_yellow_800.png" class="decYellow" alt="decoration_circle">
+                <img data-depth="0" src="img/index/welcometo.jpg" class="mainImg" alt="cow_eating_grass">
+                <div data-depth="0.3" class="nameIntroContainer layer">
+                    <h5 class="nameIntro">Sìkha源自閩南語「四腳」拼音，可愛的四腳夥伴們住在南投山林的牧場，期待著兩腳朋友來臨喔！</h5>
+                </div>
+            </section>
         </div>
-        <ul id="indexNewsApp" class="indexNewsList">
-            <li v-for="news in newslist">
-                <p>{{news.date}}</p>
-                <h5>{{news.title}}</h5>
+
+
+        <!-- Section 2: 最新消息 -->
+        <section class="indexNews container-lg">
+            <img src="img/index/cloud.png" alt="cloud" class="side-cloud cloud7">
+            <div class="indexNewsTitle">
+                <h3 data-aos="fade-right" data-aos-duration="1500">最新消息</h3>
+                <h6 data-aos="fade-right" data-aos-duration="2500">NEWS</h6>
+            </div>
+            <ul id="indexNewsApp" class="indexNewsList">
+                <li v-for="news in newslist">
+                    <p>{{news.date}}</p>
+                    <h5>{{news.title}}</h5>
+                </li>
+            </ul>
+            <a href="news.html" class="viewMore" data-aos="zoom-in" data-aos-duration="1500">
+                <h5 class="viewText">瀏覽更多</h5>
+            </a>
+        </section>
+
+        <!-- Section 3: 照片回憶 -->
+        <ul class="indexMemory container-fluid p_scene" id="memory">
+            <li data-depth="0.1" class="layer">
+                <img src="img/index/makememory_1200.jpg" alt="" class="layer">
+            </li>
+            <li data-depth="0.6" class="layer">
+                <div class="memoryText layer">
+                    <div class="container-lg">
+                        <h4>在Sìkha留下<br>屬於你的特別回憶</h4>
+                        <p class="margintop_15">回憶能有很多形式，期望往後你眼見和煦的日光、嗅到青草的輕甜、拂過午後的微風，都能憶起曾在Sìkha留下的美好。</p>
+                    </div>
+                </div>
             </li>
         </ul>
-        <a href="news.html" class="viewMore" data-aos="zoom-in" data-aos-duration="1500">
-            <h5 class="viewText">瀏覽更多</h5>
-        </a>
-    </section>
 
-    <!-- Section 3: 照片回憶 -->
-    <!-- <section class="indexMemory container-fluid" id="memory">
-        <img data-depth="0.3" src="img/index/makememory_1200.jpg" alt="" class="layer">
-        <div data-depth="0.3" class="memoryText layer">
-            <h4>在Sìkha留下<br>屬於你的特別回憶</h4>
-            <p class="margintop_15">回憶能有很多形式，期望往後你眼見和煦的日光、嗅到青草的輕甜、拂過午後的微風，都能憶起曾在Sìkha留下的美好。</p>
-        </div>
-    </section> -->
-    <ul class="indexMemory container-fluid p_scene" id="memory">
-        <li data-depth="0.1" class="layer">
-            <img src="img/index/makememory_1200.jpg" alt="" class="layer">
-        </li>
-        <li data-depth="0.6" class="layer">
-            <div class="memoryText layer">
-                <div class="container-lg">
-                    <h4>在Sìkha留下<br>屬於你的特別回憶</h4>
-                    <p class="margintop_15">回憶能有很多形式，期望往後你眼見和煦的日光、嗅到青草的輕甜、拂過午後的微風，都能憶起曾在Sìkha留下的美好。</p>
+        <!-- Section 4: 熱門活動 -->
+        <section class="indexActivity container-lg">
+            <h3 data-aos="fade-right" data-aos-duration="1500">熱門活動</h3>
+            <h6 data-aos="fade-right" data-aos-duration="2500">ACTIVITY</h6>
+            <div class="activity owl-carousel owl-theme" id="indexActivity" data-aos="fade-right" data-aos-duration="2000">
+                <div class="activityCard" v-for="activity in activities">
+                    <div class="actPhotoContainer">
+                        <img :src="activity.img" alt="activity_photo">
+                    </div>
+                    <h5>{{activity.title}}</h5>
                 </div>
             </div>
-        </li>
-    </ul>
+            <a href="activity.html" class="viewMore" data-aos="zoom-in" data-aos-duration="1500">
+                <h5 class="viewText">瀏覽更多</h5>
+            </a>
+        </section>
 
-    <!-- Section 4: 熱門活動 -->
-    <section class="indexActivity container-lg">
-        <h3 data-aos="fade-right" data-aos-duration="1500">熱門活動</h3>
-        <h6 data-aos="fade-right" data-aos-duration="2500">ACTIVITY</h6>
-        <div class="activity owl-carousel owl-theme" id="indexActivity" data-aos="fade-right" data-aos-duration="2000">
-            <div class="activityCard" v-for="activity in activities">
-                <div class="actPhotoContainer">
-                    <img :src="activity.img" alt="activity_photo">
+        <!-- Section 5: 地圖票價 -->
+        <section class="indexInfo container-lg margintop_100">
+            <h6 data-aos="fade-right" data-aos-duration="2500">ACCESS · PRICE</h6>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3640.9839445313764!2d121.27365901421894!3d24.13720197980821!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34689338f46799ed%3A0xb62a5cb50d5871f5!2zNTQ25Y2X5oqV57ij5LuB5oSb6YSJ5LuB5ZKM6LevMTY26Jmf!5e0!3m2!1szh-TW!2stw!4v1648535811253!5m2!1szh-TW!2stw" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="indexMap"></iframe>
+            <div class="infoCards">
+                <div class="infoCard location" data-aos="zoom-in-up" data-aos-duration="1500">
+                    <div class="mainIconBg">
+                        <img src="img/icon/map.png" alt="map_icon">
+                    </div>
+                    <div class="carRoute route">
+                        <img src="img/icon/car.png" alt="car" class="transportationIcon carIcon">
+                        <p>國道三號 → 國道六號 → 埔里端出口 → 台14甲線 → Sìkha牧場</p>
+                    </div>
+                    <div class="busRoute route">
+                        <img src="img/icon/bus.png" alt="bus" class="transportationIcon busIcon">
+                        <p>搭乘【6676】、【6089】或【6002】公車至【牧場站】下車。</p>
+                    </div>
                 </div>
-                <h5>{{activity.title}}</h5>
+                <div class="infoCard tickets" data-aos="zoom-in-up" data-aos-duration="2100">
+                    <div class="mainIconBg">
+                        <img src="img/icon/tickets.png" alt="tickets_icon">
+                    </div>
+                    <ul class="ticketPrice">
+                        <li><p>全票</p><p class="tp">NT$200</p></li>
+                        <li><p>學生票</p><p class="tp">NT$160</p></li>
+                        <li><p>優待票</p><p class="tp">NT$100</p></li>
+                    </ul>
+                </div>
+                <div class="infoCard businessHours" data-aos="zoom-in-up" data-aos-duration="2400">
+                    <div class="mainIconBg">
+                        <img src="img/icon/clock.png" alt="clock_icon">
+                    </div>
+                    <p class="startTime">09:00</p>
+                    <p>18:00</p>
+                </div>
             </div>
-        </div>
-        <a href="activity.html" class="viewMore" data-aos="zoom-in" data-aos-duration="1500">
-            <h5 class="viewText">瀏覽更多</h5>
-        </a>
-    </section>
-
-    <!-- Section 5: 地圖票價 -->
-    <section class="indexInfo container-lg margintop_100">
-        <h6 data-aos="fade-right" data-aos-duration="2500">ACCESS · PRICE</h6>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3640.9839445313764!2d121.27365901421894!3d24.13720197980821!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34689338f46799ed%3A0xb62a5cb50d5871f5!2zNTQ25Y2X5oqV57ij5LuB5oSb6YSJ5LuB5ZKM6LevMTY26Jmf!5e0!3m2!1szh-TW!2stw!4v1648535811253!5m2!1szh-TW!2stw" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="indexMap"></iframe>
-        <div class="infoCards">
-            <div class="infoCard location" data-aos="zoom-in-up" data-aos-duration="1500">
-                <div class="mainIconBg">
-                    <img src="img/icon/map.png" alt="map_icon">
-                </div>
-                <div class="carRoute route">
-                    <img src="img/icon/car.png" alt="car" class="transportationIcon carIcon">
-                    <p>國道三號 → 國道六號 → 埔里端出口 → 台14甲線 → Sìkha牧場</p>
-                </div>
-                <div class="busRoute route">
-                    <img src="img/icon/bus.png" alt="bus" class="transportationIcon busIcon">
-                    <p>搭乘【6676】、【6089】或【6002】公車至【牧場站】下車。</p>
-                </div>
-            </div>
-            <div class="infoCard tickets" data-aos="zoom-in-up" data-aos-duration="2100">
-                <div class="mainIconBg">
-                    <img src="img/icon/tickets.png" alt="tickets_icon">
-                </div>
-                <ul class="ticketPrice">
-                    <li><p>全票</p><p class="tp">NT$200</p></li>
-                    <li><p>學生票</p><p class="tp">NT$160</p></li>
-                    <li><p>優待票</p><p class="tp">NT$100</p></li>
-                </ul>
-            </div>
-            <div class="infoCard businessHours" data-aos="zoom-in-up" data-aos-duration="2400">
-                <div class="mainIconBg">
-                    <img src="img/icon/clock.png" alt="clock_icon">
-                </div>
-                <p class="startTime">09:00</p>
-                <p>18:00</p>
-            </div>
-        </div>
-        <a href="info.html" class="viewMore" data-aos="zoom-in" data-aos-duration="1500">
-            <h5 class="viewText">瀏覽詳情</h5>
-        </a>
-    </section>
-    
+            <a href="info.html" class="viewMore" data-aos="zoom-in" data-aos-duration="1500">
+                <h5 class="viewText">瀏覽詳情</h5>
+            </a>
+        </section>
+        
     </div>
 
     <!-- footer -->

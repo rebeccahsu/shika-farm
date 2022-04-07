@@ -1,5 +1,5 @@
 .newsTop.container-fluid{
-    @include top_block("../img/news/newstop.png");
+    @include top_block("../img/news/newstop.jpg");
 }
 
 .main_out{
@@ -14,12 +14,11 @@
     height: 220px;
 }
 
-.maintop h3{
+.maintop h4{
     position: absolute;
     z-index: -1;
     padding-top: 100px;
     margin: 0;
-    font-size: 48px;
     margin-left: 40px;
 }
 

@@ -41,12 +41,11 @@
             transition: opacity 1s;
 
             .actImgCon{
-                width: 200px;
+                width: 150px;
                 height: 150px;
-                display: flex;
-                align-items: center;
                 position: relative;
                 overflow: hidden;
+                margin-left: 10px;
                 img{
                     width: 100%;
                     @include positionCenter();

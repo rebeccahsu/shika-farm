@@ -93,7 +93,7 @@ $(function() {
                 box.checked = false;
             }
         });
-        console.log(checked_arr[0]);
+        // console.log(checked_arr[0]);
         alert("已成功上架 " + checked_arr.length + " 個活動！");
     };
 

@@ -128,6 +128,7 @@
         text-align: center;
         line-height: 520px;
         color: $color_W;
+        letter-spacing: 10px;
         @include pad{
             font-size: $fs-m;
             line-height: 370px;
@@ -135,6 +136,7 @@
         @include mobile{
             font-size: $fs-m;
             line-height: 320px;
+            letter-spacing: 7px;
         }
         @include desktop-s{
             line-height: 450px;
