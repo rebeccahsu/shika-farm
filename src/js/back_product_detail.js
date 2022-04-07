@@ -235,8 +235,9 @@ function closebg(t) {
     // console.log(t);
     $('#back_bg').removeClass("-on");
 }
-// 關閉按鈕和範圍==============
-// 圖片上傳
+// 關閉按鈕和範圍end==============
+
+// 圖片上傳============================================
 $('#topImages').on('click', (e) => {
     e.preventDefault;
     $('#back_bg').addClass("-on");
@@ -269,19 +270,6 @@ $('.select_topImage').on("drop", (e) => {
 
 
 // 抓檔案
-var preview_img = function (file) {
-    var reader = new FileReader(); // 用來讀取檔案
-    reader.readAsDataURL(file); // 讀取檔案
-    reader.addEventListener("load", function () {
-        console.log(reader.result);
-        // console.log(preview_area);
-        // let img_str = '<img src="' + reader.result + '>';
-        // preview_area.innerHTML = img_str;
-        // console.log(img_str);
-        return reader.result;
-    });
-};
-
 // 呼叫FileReader轉base64
 var preview_el;
 var preview_img = function (file) {
@@ -355,30 +343,45 @@ $(".upload").on('click', (e) => {
     closebg();
 })
 
-// intro區塊
-$(document).on('click',function(e){
-    console.log(e.target);
-    let select_introPic1 = document.querySelectorAll('.select_introPic')[0];
-    let select_introPic2 = document.querySelectorAll('.select_introPic')[1];
-    let select_introPic3 = document.querySelectorAll('.select_introPic')[2];
-    let select_introPic4 = document.querySelectorAll('.select_introPic')[3];
-    let select_introPic5 = document.querySelectorAll('.select_introPic')[4];
 
-    
+// intro區塊 上傳圖片
+var preview_intro = function (file) {
+    var reader = new FileReader(); // 用來讀取檔案
+    reader.readAsDataURL(file); // 讀取檔案
+    reader.addEventListener("load", function () {
+        // console.log(reader.result);
+        // console.log(select_image);
+        let img_str = '<img src="' + reader.result + '" class="preview_img"><span>更換圖片</span>';
+        select_image.innerHTML = img_str;
+    });
+};
+
+var select_image;
+document.addEventListener("click",function(e){
+    if(e.target.closest(".prd_introduce")){
+        // console.log('sp1');
+        let select_introPic = e.target.closest(".prd_introduce").firstElementChild;
+        // console.log(select_introPic);
+        let intro_img = e.target.closest(".prd_introduce").querySelector('img');
+        // let intro_span = e.target.closest(".prd_introduce").querySelector('span');
+        select_image = e.target.closest(".prd_introduce").querySelector('.select_image');
+        
+        // 利用泡泡機制點input
+        if(e.target.classList.contains("select_image") || e.target==intro_img){
+            console.log("img+span+div");
+            select_introPic.click();
+            select_introPic.addEventListener('change',()=>{
+                if (select_introPic.files.length > 0) {
+                    preview_intro(select_introPic.files[0]);
+                } else {
+                    select_image.innerHTML = '<span>上傳圖片</span>';
+                }
+            })
+        }
+    }
 
 })
-
-
-
-
-
-
-
-
-
-
-
-
+// 圖片上傳end
 // =================================================
 /*
 // 資料格式
