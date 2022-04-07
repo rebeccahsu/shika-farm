@@ -208,8 +208,8 @@
             <h5>取值測試二：{{}}</h5> -->
             <!---->
             <!-- <input type="radio" v-model="period" value="period1"> {{modal_open.title}}<br> -->
-            <template v-for="item2 in modal_open.time_period">
-                <input type="radio" id="period" name="period"><label for="period"> {{item2}}</label><br>
+            <template v-for="(item2,key) in modal_open.time_period">
+                <input type="radio" :id="period+key" name="period"><label :for="period+key"> {{item2}}</label><br>
             </template>
 
             預約人數： <input type="number" name="quantity" min="1" max="10"> 人</br>
@@ -226,9 +226,14 @@
                     <img class="item_img" :src="aaa.image" alt="">
                     <div class="item_r_cover">
                         <img @click="open(aaa)" class="item_img_icon" :src="aaa.icon_img" alt="">
-                        <button v-if="activeIndex == aaa.name"
+
+
+                        <!-- <button v-if="activeIndex == aaa.name"
                             :id="activeIndex == aaa.name ? 'ep_' + aaa.name  : 'not_ep_' + key + '_' +aaa.title "
-                            class="reserve" @click="open(aaa)">{{aaa.reserve}}</button>
+                            class="reserve" @click="open(aaa)">{{aaa.reserve}}</button> -->
+
+                        <button v-if='aaa.time_period' class="reserve" :class="'-index'+ activeIndex"
+                            :style="{'background': all_data[activeIndex].button_bg}" @click="open(aaa)">點我預約</button>
                     </div>
                 </div>
                 <div class="item_p">
@@ -277,7 +282,7 @@
                                         icon_img: '',
                                         desc: '每日限量100罐營養好喝的ㄋㄟㄋㄟ，憑門票可兌換一罐，每張門票限兌換一罐，喜歡綿羊的大朋友小朋友請把握機會，跟綿羊更親近。',
                                         data: ['3/11', '3/13'],
-                                        time_period: [],
+
                                     },
                                     {
                                         name: '0',
@@ -327,15 +332,6 @@
                                         icon_img: '',
                                         desc: '大朋友小朋友趕快來Sìkha牧場與可愛親人的梅花鹿近距離互動，並拍照留下紀念吧!',
                                         data: ['3/11', '3/13'],
-                                    },
-                                    {
-                                        name: '4',
-                                        title: '小鹿相見歡',
-                                        image: './img/activity/playwithdeer.png',
-                                        icon_img: '',
-                                        desc: '快來Sìkha牧場和可愛的小鹿一起享受個歡樂的午後吧！',
-                                        data: ['3/11', '3/13'],
-                                        time_period: [],
                                     },
 
                                 ]
