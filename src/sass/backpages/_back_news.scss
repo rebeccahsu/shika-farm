@@ -41,7 +41,7 @@
 .bi_top .right{
     margin-top: 60px;
     display: flex;
-    margin-left: 300px;
+    margin-left: 100px;
 }
 
 .bi_top .right p{
@@ -138,6 +138,28 @@ margin-left: 80px;
     width: 35px;
     height: 35px;
 }
+
+@media screen and (max-width:1200px){
+    .list .list_in{
+        margin-left: 200px;
+    }
+    .main{
+        margin-left: 370px;
+    }
+}
+
+@media screen and (min-width:1500px){
+    .main{
+        margin-left: 590px;
+    }
+    .main p:nth-child(2){
+        margin-left: 300px;
+    }
+    .main p:nth-child(3){
+        margin-left: 300px;
+    }
+}
+
 
 
 
