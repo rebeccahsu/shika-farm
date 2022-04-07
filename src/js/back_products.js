@@ -43,7 +43,7 @@ $(function () {
                 prd_pic: `${$('.prd_pic')[i].getAttribute("src")}`, //(主圖網址) "./img/producds/${品號}_top01"  <-> "varchar"
                 prd_condition: `${$('.prd_condition')[i].innerText}`,
                 prd_topImage: [`${$('.prd_pic')[i].getAttribute("src")}`], // (網址) ["./img/producds/${品號}_top01"] max=4
-                prd_intro: [{src:"/img/products/papaya2_1200",text:"木瓜瓜"},{src:"/img/products/cow_1200.jpg",text:"本農場牛牛採天然放牧"},{src:"/img/products/cow_1200.jpg",text:"本農場牛牛採天然放牧"}], //商品介紹,"varchar" [{"src","text"}]  (網址)[{"./img/producds/${品號}_01"},{}] max=5
+                prd_intro: [{src:"./img/products/papaya2_1200.jpg",text:"木瓜瓜"},{src:"./img/products/cow_1200.jpg",text:"本農場牛牛採天然放牧"},{src:"./img/products/cow_1200.jpg",text:"本農場牛牛採天然放牧"}], //商品介紹,"varchar" [{"src","text"}]  (網址)[{"./img/producds/${品號}_01"},{}] max=5
                 prd_kind: "食品", //和資料庫關聯
                 prd_slog: ["六入組品嚐新鮮", "這是一段測試文字"], //促銷標語 max=2
                 prd_ingredient: "糖、香料、美好的事物和小女孩", //innerHtml 商品規格

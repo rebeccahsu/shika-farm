@@ -92,14 +92,14 @@ new Vue({
 			let products = [
 				{
 					id: "0001",
-					img: "../img/porducts/blanket_g.jpg",
+					img: "../img/products/blanket_g.jpg",
 					info: "羊毛毯(綠)",
 					price: 499,
 					quantity: 1,
 				},
 				{
 					id: "0002",
-					img: "./img/porducts/animal_cookies.jpg",
+					img: "./img/products/animal_cookies.jpg",
 					info: "動物餅乾",
 					price: 200,
 					quantity: 1,
