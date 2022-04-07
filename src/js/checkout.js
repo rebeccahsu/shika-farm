@@ -65,6 +65,7 @@ new Vue({
 		},
 		creditup() {
 			let cards = document.getElementsByClassName('payId')
+			console.log("aaa")
 				for (let i = 0; i < cards.length; i++) {					
 
 					// ----- 跨欄位輸入 & 中文字不能輸入 ------------//
