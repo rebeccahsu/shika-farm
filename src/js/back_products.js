@@ -1,3 +1,11 @@
+//目前頁面亮燈
+let pages = document.querySelector(".aside_ul").querySelectorAll("h5");
+pages.forEach(function(page){
+    if ( page.innerHTML == "商品管理"){
+        page.closest("a").classList.add("-on");
+    }
+});
+
 // 取得資料
 /* //資料格式
 var product = {

@@ -1,3 +1,11 @@
+//目前頁面亮燈
+let pages = document.querySelector(".aside_ul").querySelectorAll("h5");
+pages.forEach(function(page){
+    if ( page.innerHTML == "會員查詢"){
+        page.closest("a").classList.add("-on");
+    }
+});
+
 new Vue({
 	el: "#mb_table",
 	data: {
