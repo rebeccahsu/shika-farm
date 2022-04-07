@@ -24,11 +24,11 @@ $(function () {
         let ul_el = document.querySelector('.list');
         let li_el = document.querySelectorAll('.list_in');
 
-            // 箭頭函式 = function(){}
+        // 箭頭函式 = function(){}
         li_el.forEach((v, i) => { v.remove() });
         task.forEach((v, i) => {
-            let li_html = 
-            `<li class="list_in" data-news_number="${task[i].news_number}">
+            let li_html =
+                `<li class="list_in" data-news_number="${task[i].news_number}">
                 <label class="check_container">
                 <input type="checkbox">
                 <span class="checkmark"></span>
@@ -36,11 +36,11 @@ $(function () {
             <img src="${task[i].news_img}" alt="">
             <p>${task[i].news_title}</p>
             <p>${task[i].news_time}</p>
-            <button><a href="./back_additem.html">編輯</a></button>
+            <button>編輯</button>
             </li>`
             // console.log(v);
             // console.log(i);
-            ul_el.insertAdjacentHTML("beforeend",li_html);
+            ul_el.insertAdjacentHTML("beforeend", li_html);
         })
         // console.log(task);
     }
@@ -67,8 +67,8 @@ $(function () {
             let news_list = $('.list_in');
             let task = [];
             $(news_list).each((i, v) => {
-                console.log(i);
-                console.log(v);
+                // console.log(i);
+                // console.log(v);
                 var news_artc = {
                     news_number: `${i + 1}`,
                     news_title: `${$('.list_in')[i].querySelectorAll('p')[0].innerText}`, // <-> "varchar"
@@ -89,10 +89,99 @@ $(function () {
 
 
 // 編輯按鈕
- $('.list_in').find('button').on('click',(e)=>{
-    e.preventDefault;
-    
-    let target_li = $(e.target).closest('li').data('news_number');
-    console.log(target_li);
-    // location.href = `./back_product_detail.html?news_number=${target_prd}`;
+$(document).on('click', (e) => {
+     console.log(e.target);
+    if ($('.list_in').find('button').text() == '編輯') {
+        e.preventDefault;
+        let target_li = $(e.target).closest('li').data('news_number');
+        //  console.log(target_li);
+        location.href = `./back_additem.html?news_number=${target_li}`;
+    }
 })
+
+
+// 排序
+$('.select_right').on('change', function (e) {
+    let task = JSON.parse(sessionStorage.getItem('news_list'));
+    let ul_el = document.querySelector('.list');
+    let li_el = document.querySelectorAll('.list_in');
+    switch ($('.select_right')[0].value) {
+        case '最新消息':
+            task.sort(function (a, b) {
+                return -(a.news_number - b.news_number);
+            })
+            li_el.forEach((v, i) => { v.remove() });
+            task.forEach((v, i) => {
+                let li_html =
+                    `<li class="list_in" data-news_number="${task[i].news_number}">
+                    <label class="check_container">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    </label>
+                <img src="${task[i].news_img}" alt="">
+                <p>${task[i].news_title}</p>
+                <p>${task[i].news_time}</p>
+                <button>編輯</button>
+                </li>`
+                // console.log(v);
+                // console.log(i);
+                ul_el.insertAdjacentHTML("beforeend", li_html);
+            })
+            break;
+        case '活動消息':
+            task.sort(function (a, b) {
+                return (a.news_number - b.news_number);
+            })
+            li_el.forEach((v, i) => { v.remove() });
+            task.forEach((v, i) => {
+                let li_html =
+                    `<li class="list_in" data-news_number="${task[i].news_number}">
+                    <label class="check_container">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    </label>
+                <img src="${task[i].news_img}" alt="">
+                <p>${task[i].news_title}</p>
+                <p>${task[i].news_time}</p>
+                <button>編輯</button>
+                </li>`
+                // console.log(v);
+                // console.log(i);
+                ul_el.insertAdjacentHTML("beforeend", li_html);
+            })
+            break;
+        default:
+            console.log('沒有資料庫');
+    }
+
+})
+
+
+// 搜尋
+
+$('.select_left').on('keydown', (e) => {
+    if(e.which == 13){
+        console.log(13);
+    
+    let search_target = $('.select_left').val();
+    console.log(search_target);
+    let list_item_el = $('.list_in');
+    $('.list_in').each((index, value) => {
+        console.log(value);
+        if (value.querySelectorAll('p')[0].innerText.search(search_target) == -1) {
+            console.log(value);
+            value.setAttribute("style", "display:none;");
+        }
+        else if (search_target == "") {
+            value.removeAttribute("style");
+            
+        }if (value.querySelectorAll('p')[0].innerText.search(search_target) > 0) {
+                console.log('X');
+                value.removeAttribute("style");
+            }
+    })
+}
+})
+
+
+// 搜尋end
