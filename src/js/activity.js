@@ -17,7 +17,6 @@ new Vue({
                                 name: '0',
                                 title: '餵羊喝ㄋㄟㄋㄟ',
                                 image: './img/activity/drink.jpg',
-                                icon_img: '',
                                 desc: '每日限量100罐營養好喝的ㄋㄟㄋㄟ，憑門票可兌換一罐，每張門票限兌換一罐，喜歡綿羊的大朋友小朋友請把握機會，跟綿羊更親近。',
                                 data: ['3/11', '3/13'],
 
@@ -53,7 +52,6 @@ new Vue({
                                 name: '1',
                                 title: '餵食吃仙貝',
                                 image: './img/activity/deercookie.jpg',
-                                icon_img: '',
                                 desc: '到Sìkha牧場憑門票即可兌換鹿仙貝一包，請可愛的小鹿們吃仙貝小點心，留下美好的回憶！',
                                 data: ['3/11', '3/13']
                             },
@@ -61,7 +59,6 @@ new Vue({
                                 name: '1',
                                 title: '小鹿相見歡',
                                 image: './img/activity/playwithdeer.jpg',
-                                icon_img: '',
                                 desc: '大朋友小朋友趕快來Sìkha牧場與可愛親人的梅花鹿近距離互動，並拍照留下紀念吧!',
                                 data: ['3/11', '3/13'],
                             },

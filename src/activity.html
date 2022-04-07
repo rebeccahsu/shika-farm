@@ -73,7 +73,8 @@
                     <div class="icon_positiveCover">
                         <img class="item_img" :src="aaa.image" alt="">
                         <div class="item_r_cover">
-                            <img @click="open(aaa)" class="item_img_icon" :src="aaa.icon_img" alt="">
+                            <img v-if='aaa.icon_img' @click="open(aaa)" class="item_img_icon" :src="aaa.icon_img"
+                                alt="">
                             <button v-if='aaa.time_period' class="reserve" :class="'-index'+ activeIndex"
                                 :style="{'background': all_data[activeIndex].button_bg}"
                                 @click="open(aaa)">點我預約</button>
