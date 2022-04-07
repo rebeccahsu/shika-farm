@@ -42,11 +42,11 @@ new Vue({
     el: '#appMenu',
     data: {
         menus: [
-            { title: 'Sìkha動物', link: '../animal.html', icon: './img/icon/animal_icon.png' },
-            { title: '園區資訊', link: '../info.html', icon: './img/icon/info_icon.png' },
-            { title: '最新消息', link: '../news.html', icon: './img/icon/news_icon.png' },
-            { title: '牧場節目', link: '../activity.html', icon: './img/icon/activity_icon.png' },
-            { title: '周邊商品', link: '../products.html', icon: './img/icon/products_icon.png' },
+            { title: 'Sìkha動物', link: './animal.html', icon: './img/icon/animal_icon.png' },
+            { title: '園區資訊', link: './info.html', icon: './img/icon/info_icon.png' },
+            { title: '最新消息', link: './news.html', icon: './img/icon/news_icon.png' },
+            { title: '牧場節目', link: './activity.html', icon: './img/icon/activity_icon.png' },
+            { title: '周邊商品', link: './products.html', icon: './img/icon/products_icon.png' },
 
         ],
     },
