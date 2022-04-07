@@ -1,7 +1,12 @@
 .mb_cl_wrp{
     margin: 0 auto;
     width: 1200px;
-    border: 1px solid red;
+    
+    @include mobile{
+        width: 350px;
+        overflow-x: auto;
+    }
+    
 
 }
 
@@ -56,7 +61,10 @@
     cursor: pointer;
     border-radius: 4px;
     
-    // margin-left: 20px;
+    @include mobile {
+        width: 40px;
+        font-size: 14px;
+    }
 
 
 }
@@ -66,9 +74,9 @@
     grid-template-columns:  33% 33% 33%;
     padding: 16px;
     border: 1px solid $color_G;
-    // color: $color_G;
-    // height: 80px;
+
     text-align: center;
+    
     
 
 }
