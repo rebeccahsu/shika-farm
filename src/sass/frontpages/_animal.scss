@@ -102,69 +102,7 @@
     cursor: pointer;
 }
 
-//---------------item-------------------
-
-.animalItem{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    position: relative;
-    margin-bottom: 20px;
-}
-
-
-.animalItemImg_cover{
-    width: 600px;
-    display: flex;
-    justify-content: center;
-}
-
-.animalItem_img{
-    width: 500px;
-}
-
-.animalItem_p{
-    width: 400px;
-    margin-top: 100px;
-    border: 1px red solid;
-}
-
-.animal-container{
-    @media screen and (max-width: 575.98px){
-        section:not(._on){
-            display: none;
-        }
-        
-    }  
-}
-
-section:nth-child(odd){
-    .animalItem{  
-            .animalItem_cover{
-                order: 2;
-            }
-            .animalItem_p{
-                order: 1;
-                // margin-right: 50px;
-                background-color: rgb(218, 213, 157);
-            }
-    }
-}
-
-section:nth-child(even){
-    .animalItem{  
-            .animalItem_cover{
-            }
-            .animalItem_p{
-                // margin-left: 50px;
-            }
-    }
-}
-
-
-
-
-
+//--------------button-----------------
 .buttonList {
     list-style: none;
     position: fixed;
@@ -198,33 +136,114 @@ section:nth-child(even){
 }
 
 
-//---------------------------RWD-----------------------------------
+//---------------item-------------------
 
-@media screen and (max-width: 915px) {
+.animalItem{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 20px;
+}
 
-    .odd_item:nth-child(odd) {
-        .item{  
-            .animalItemImg_cover{
-                order: 1;
-            }
-            .animalItem_p{
+
+.animalImg_cover{
+    width: 600px;
+    display: flex;
+    justify-content: center;
+}
+
+.animalItem_img{
+    width: 500px;
+}
+
+.animalItem_p{
+    width: 400px;
+    padding-top: 100px;
+}
+
+
+
+
+.animal-container{
+    @media screen and (max-width: 575.98px){
+        section:not(._on){
+            display: none;
+        }
+        
+    }  
+}
+
+section:nth-child(odd){
+    .animalItem{  
+            .animalImg_cover{
                 order: 2;
             }
+            .animalItem_p{
+                order: 1;
+                // margin-right: 50px;
             }
+    }
+}
+
+section:nth-child(even){
+    .animalItem{  
+            .animalItem_cover{
+            }
+            .animalItem_p{
+                // margin-left: 50px;
+            }
+    }
+}
+
+
+
+//---------------------------RWD-----------------------------------
+
+@media screen and (max-width: 999px) {
+
+    section:nth-child(odd){
+        .animalItem{  
+                .animalImg_cover{
+                    order: 1;
+                }
+                .animalItem_p{
+                    order: 2;
+                }
+        }
     }
     .animalItem_p{
         padding-top: 20px;
+        padding-bottom: 10px;
     }
 }
 
 @media screen and (max-width: 500px) {
-    .animalItem_img{
+    .animalImg_cover{
         width: 400px;
-        height: 400px;
+        height: 380px;
     }
 
-    .animalItemImg_cover{
+    .animalItem_img{
         width: 400px;
+        height: 380px;
+    }
+    
+    .animalItem_p{
+       width: 400px;
+    }
+}
+
+
+@media screen and (max-width: 420px) {
+    .animalImg_cover{
+        width: 350px;
+        height: 300px;
+    }
+
+    .animalItem_img{
+        width: 300px;
+        height: 280px;
     }
     
     .animalItem_p{
@@ -233,60 +252,8 @@ section:nth-child(even){
 }
 
 
-@media screen and (max-width: 380px) {
-    .animalItem_img{
-        width: 300px;
-        height: 300px;
-    }
-
-    .animalitem_imgcover{
-        width: 300px;
-    }
-    
-    .animalItem_p{
-       width: 250px;
-    }
-}
 
 
-.animalItem_cover{
-    width: 600px;
-    display: flex;
-    justify-content: center;
-}
-
-.animalItem_cover img{
-    width: 500px;
-}
-
-.animalItem_p{
-    width: 400px;
-    padding-top: 60px;
-}
-
-.animal-container{
-    @media screen and (max-width: 900px){
-        .animalItem_p{
-            padding-top: 0px;
-            margin-left: 0px;
-            margin-right: 0px;
-            background-color: rgb(129, 158, 212);
-        }
-            
-        section:nth-child(odd){
-            .animalItem{  
-                background-color: rgb(226, 180, 180);
-                    .animalItem_cover{
-                        order: 1;
-                        background-color: rgb(228, 90, 90);
-                    }
-                    .animalItem_p{
-                        order: 2;
-                    }
-            }
-        }
-    } 
-}
 
 
 
