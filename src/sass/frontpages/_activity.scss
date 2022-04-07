@@ -4,6 +4,15 @@
 
 .checkList {
     display: flex;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    @include pad{
+        margin-top: 50px;
+        margin-bottom: 0;
+    }
+    @include mobile{
+        margin-top: 30px;
+    }
 }
 
 .checkList img {
@@ -87,7 +96,7 @@
     z-index: 1;
     right: 0;
     bottom: 0;
-    animation: shake 1s infinite;
+    animation: shake 2s infinite;
     transform-origin: bottom;
 }
 
@@ -128,9 +137,12 @@
     width: 30%;
     height: 10vw;
     /* height: 32vw; */
-    margin: 30px auto 130px auto;
+    margin: 30px auto 100px auto;
     perspective: 1400px; 
     transform-style: preserve-3d;
+    @include mobile{
+        margin: 30px auto 20px;
+    }
 }
 
 .slider{
