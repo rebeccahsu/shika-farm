@@ -384,6 +384,8 @@ input .slider [type=radio]:checked {
 
 
 
+
+
 .odd_item:nth-child(odd) {
 
     // background-color: rgb(223, 223, 223);
@@ -396,6 +398,66 @@ input .slider [type=radio]:checked {
         }
 }
 }
+
+//---------------------------game entrance-----------------------------------
+@keyframes shift {
+    15% {
+        transform: translateY(5px);
+    }
+
+    40% {
+        transform: translateY(-5px);
+    }
+
+    65% {
+        transform: translateY(10px);
+    }
+
+    85% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.game{
+    position: fixed;
+    // opacity: 0;
+    // visibility: hidden;
+    right: 10px;
+    top: 90px;
+    z-index: 13;
+}
+
+.game img{
+    position: relative;
+    animation: shift 4s infinite ;
+    width: 10vw;
+    min-width: 120px;
+}
+
+.game.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.game h5{
+    font-size: 18px;
+    color: black;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 80px;
+}
+
+.game h5:hover{
+    color: #16B1AA;
+}
+
+
 
 
 //---------------------------RWD-----------------------------------

@@ -199,6 +199,19 @@ new Vue({
         },
         close() {
             this.modal_open = null
+        },
+
+        //game
+        gameEntrance() {
+            if ($(window).scrollTop() > 50) {
+                $(".game").addClass('show');
+            } else {
+                $(".game").removeClass('show');
+            }
         }
     }
+});
+
+window.addEventListener("scroll", function () {
+    app.gameEntrance();
 });
