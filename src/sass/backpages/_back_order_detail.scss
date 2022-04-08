@@ -1,7 +1,9 @@
 .order-detail{
     .order-info{
+        width: 900px;
+        margin: 0 auto 20px;
         border: 1px solid $color_G;
-        margin-bottom: 20px;
+        // margin-bottom: 20px;
         .title{
             background-color: $color_G;
             color: $color_W;

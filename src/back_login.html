@@ -25,10 +25,19 @@
             <label for="password" class="user">密碼：</label>
             <input type="password" value="" placeholder="請輸入密碼" id="password">
         </div>
-        <button type="submit" class="bl_btn">登入</button>
+        <!-- type 暫時改成 button -->
+        <button type="button" class="bl_btn">登入</button>
     </form>
 </div>
 <p class="b_p">本網站為緯育TibaMe前端設計工程師班第72期第二組學員專題成果作品，<br>本平台僅供學習、展示之用。參考資源：六甲山牧場、清境農場。</p>
+
+<script>
+    // 登入按鈕目前直接跳轉後台首頁
+    // TODO: 驗證管理員帳密
+    $('.bl_btn').on("click", function(){
+        window.location.href = "./back_index.html";
+    });
+</script>
 
 </body>
 </html>
