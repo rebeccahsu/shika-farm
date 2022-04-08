@@ -171,3 +171,15 @@ $('#pd_info_buy').on('click',(e)=>{
 
 // 放入購物車、直接購買end
 // ==========================================
+// 庫存0時，停用按鈕、加入購物車和購買
+// 沒有庫存時
+$(function(){
+    if($('#pd_inStock').text() == 0){
+        $('#pd_info_cart').attr("style","background-color: #fff;  color: #ccc;  border: 1px dotted #ccc;");
+        $('#pd_info_buy').attr("style","background-color: #fff;  color: #ccc;  border: 1px dotted #ccc;");
+        $('.pd_stockCount_btn').attr('disabled')
+        $('.pd_stockCount_btn').attr("style","background-color: #fff;  color: #ccc;  border: 1px dotted #ccc;");
+        $("#pd_stockCount_input").attr("style","background-color: #fff;  color: #ccc;  border: 1px dotted #ccc;");
+    }
+})
+// 
