@@ -2,6 +2,10 @@
     padding: 0 40px;
     margin-left: 20%;
     @include back_title();
+    .act-content-container{
+        width: 900px;
+        margin: 0 auto;
+    }
     .buttonsnNumber{
         display: flex;
         justify-content: space-between;
