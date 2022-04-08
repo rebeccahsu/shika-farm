@@ -367,7 +367,7 @@ input .slider [type=radio]:checked {
     position: absolute;
     z-index: 1;
     right: 0;
-    bottom: 0;
+    bottom: 0px;
     animation: shake 2s infinite;
     transform-origin: bottom;
     width: 13vw;
@@ -477,6 +477,12 @@ input .slider [type=radio]:checked {
 
 
 //---------------------------RWD-----------------------------------
+
+@media screen and (max-width: 1200px) {
+    .item_img_icon{
+        bottom:8px
+    }
+}
 
 @media screen and (max-width: 899px) {
 
