@@ -96,12 +96,12 @@ $(function () {
 
 
 // 編輯按鈕
-$(document).on('click', (e) => {
-     console.log(e.target);
-    if ($('.list_in').find('button').text() == '編輯') {
+document.addEventListener('click',function(e){
+    //  console.log(e.target);
+    if(e.target.innerText == '編輯'){
         e.preventDefault;
         let target_li = $(e.target).closest('li').data('news_number');
-        //  console.log(target_li);
+         console.log(target_li);
         location.href = `./back_additem.html?news_number=${target_li}`;
     }
 })
