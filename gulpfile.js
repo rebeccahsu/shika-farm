@@ -31,7 +31,7 @@ const uglify = require("gulp-uglify");
 function minijs() {
 	return (
 		src(["src/js/*.js", "src/js/**/*.js"])
-			.pipe(uglify())
+			// .pipe(uglify())
 			// .pipe(rename({
 			//     extname: '.min.js' // 修改附檔名
 			//     //prefix : 'web-' // 前綴字
@@ -43,6 +43,15 @@ function minijs() {
 }
 
 exports.ugjs = minijs;
+
+function minijs_online(){
+	return(
+		src(["src/js/*.js", "src/js/**/*.js"])
+		.pipe(uglify())
+		.pipe(dest("dist/js"))
+	)
+}
+
 
 // 整合所有檔案
 const concat = require("gulp-concat");
