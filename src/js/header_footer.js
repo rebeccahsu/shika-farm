@@ -13,7 +13,7 @@ $(".ham_btn").on("click", function () {
         }, 300);
         $(".hamMask").removeClass("-on");
     } else {
-        console.log(0);
+        // console.log(0);
         $(".ham_line").addClass("-on");
         $(".hamSel").addClass("-on");
         $(".hamMask").addClass("-on");

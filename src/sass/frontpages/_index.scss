@@ -68,10 +68,11 @@
         position: relative;
 
         @include pad{
-            background-image: url("../img/index/768_indexbg.jpg");
-            background-size: cover;
+            
         }
         @include mobile{
+            background-image: url("../img/index/768_indexbg.jpg");
+            background-size: cover;
             height: 670px;
         }
 
@@ -88,13 +89,14 @@
             animation: 'left-right' 2s ease;
             @include pad{
                 width: 160px;
-                top: 27%;
+                top: 33%;
                 left: 0%;
             }
             @include mobile{
                 width: 130px;   
-                left: -2%;
-                top: 25%;
+                left: -3%;
+                top: 38%;
+                z-index: 2;
             }
             @include desktop-s{
                 width: 190px;
@@ -108,12 +110,13 @@
             animation: 'left-right' 2s ease;
             @include pad{
                 width: 130px;
-                left: 13%;
+                top: 50%;
+                left: 11%;
             }
             @include mobile{
                 width: 110px;
-                left: 27%;
-                top: 30%;
+                left: 20%;
+                top: 41%;
                 z-index: 1;
             }
             @include desktop-s{
@@ -127,12 +130,14 @@
             animation: 'left-right' 2s ease;
             @include pad{
                 width: 150px;
-                top: 35%;
+                top: 45%;
+                left: 27%
             }
             @include mobile{
                 width: 120px;
-                left: 9%;
-                top: 47%;
+                left: 21%;
+                top: 53%;
+                z-index: 2;
             }
             @include desktop-s{
                 width: 200px;
@@ -151,7 +156,8 @@
             }
             @include mobile{
                 width: 100px;
-                top: 61%;
+                top: 62%;
+                left: 50%;
             }
             @include desktop-s{
                 width: 160px;
@@ -168,8 +174,8 @@
             }
             @include mobile{
                 width: 100px;
-                top: 28%;
-                left: 68%;
+                top: 40%;
+                left: 59%;
             }
             @include desktop-s{
                 width: 160px;
@@ -183,11 +189,12 @@
             @include pad{
                 width: 230px;
                 left: 70%;
+                top: 40%;
             }
             @include mobile{
                 width: 190px;
-                top: 42%;
-                left: 57%;
+                top: 46%;
+                left: 70%;
             }
             @include desktop-s{
                 width: 290px;
