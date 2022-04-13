@@ -2,11 +2,20 @@ new Vue ({
     el: '#indexNewsApp',
     data: {
         newslist: [
-            {date: '2022.03.15', title: '4.2 - 4.5 歡慶兒童節 帶小孩來牧場放電囉'},
-            {date: '2022.03.12', title: '你我一起防疫大作戰'},
-            {date: '2022.01.27', title: '2022春節營運時間及票價優惠'},
+            {DATE: '2022.03.15', TITLE: '4.2 - 4.5 歡慶兒童節 帶小孩來牧場放電囉'},
+            {DATE: '2022.03.12', TITLE: '你我一起防疫大作戰'},
+            {DATE: '2022.01.27', TITLE: '2022春節營運時間及票價優惠'},
         ],
-    }  
+    },
+    // data: {
+    //     newslist: [],
+    // },
+    // mounted() {
+    // fetch('./php/index_news.php')
+    // .then(res => res.json())
+    // .then(res => this.newslist = res)
+    // // .then(res => console.log(res))
+    // }, 
 })
 
 new Vue ({

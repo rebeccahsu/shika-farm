@@ -1,6 +1,6 @@
 <?php
 
-// include("Connection.php");
+// include("connection.php");
 
 //取得資料
 //透過php取得前端資料並解譯
