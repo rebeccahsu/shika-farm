@@ -12,27 +12,40 @@
 
 .btn_area {
   width: 950px;
-  margin: 0 auto;
+  margin: 5px auto 0;
   .btn1 {
     margin: 0 auto 20px;
     display: flex;
     justify-content: space-between;
     button {
-      font-size: $fs-s;
-      width: 88px;
-      height: 44px;
-      margin: 0 15px;
+      margin-right: 10px;
     }
 
     .NDS {
+      position: relative;
+      margin-top: 5px;
+      margin-right: 20px;
       #search {
-        width: 157px;
-        height: 44px;
-        padding: 3px;
-        margin: 0;
+        // width: 157px;
+        // height: 44px;
+        // padding: 3px;
+        // margin: 0;
+        width: 250px;
+				height: 40px;
+				border-radius: 8px;
+				border: 2px solid #ccc;
+				padding: 3px 10px;
+				margin-right: 10px;
       }
       #search_pd {
         margin-left: 0;
+      }
+
+      .search_icon{
+        width: 20px;
+				position: absolute;
+				right: 23px;
+        top: 10px;
       }
     }
   }
@@ -41,7 +54,7 @@
     align-items: center;
 
     .shoow_off {
-      font-size: $fs-s;
+      font-size: $fs-xs;
       margin-left: 10px;
     }
   }

@@ -33,19 +33,21 @@
     }
     .search{
         padding-top: 10px;
-        margin: 2% 0 0 5%;
+        // margin: 2% 0 0 5%;
         position: relative;
+        float: right;
+        margin-right: 5%;
     }
     .search_icon{
         position: absolute;
         width: 20px;
-        top: 50px;
-        left: 250px;
+        top: 35px;
+        left: 335px;
         cursor: pointer;
     }
     .mbId_text{
-        display: block;
-        margin: 15px 0 15px 0;
+        // display: block;
+        margin: 15px 0 15px 15px;
         height: 40px;
         width: 285px;
         border-radius: 8px;
