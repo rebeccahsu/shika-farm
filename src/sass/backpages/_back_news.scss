@@ -1,7 +1,6 @@
 .bk_in{
-    margin-left: auto;
-    margin-right: 0;
-    padding-top: 0;
+    margin-left: 20%;
+    @include back_title();
 }
 
 .bk_title{
@@ -12,104 +11,90 @@
 
 .bi_top{
     display: flex;
-    margin-left: 150px;
+    // margin-left: 150px;
+    width: 900px;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+
+    .left{
+        button{
+            margin-right: 10px;
+        }
+    }
+
+    .right{
+        display: flex;
+        select{
+            margin-left: 10px;
+            margin-right: 30px;
+        }
+    }
 }
 
-
-.bk_in .yellor{
-    height: 40px;
-    width: 80px;
-    @include button($color_Y);
-    border: 0px;
-    font-size: 24px;
-}
-
-.bk_in .orange{
-    height: 40px;
-    width: 80px;
-    @include button($color_R);
-    border: 0px;
-    margin-left: 24px;
-    font-size: 24px;
-}
-
-.bi_top .left{
-    margin-top: 60px;
-    margin-left: 100px;
-}
-
-.bi_top .right{
-    margin-top: 60px;
-    display: flex;
-    margin-left: 100px;
-}
-
-.bi_top .right p{
-    font-size: 24px;
-    margin-left: 15px;
-    margin-top: 5px;
-}
 
 .select_left{
-    width: 160px;
+    width: 200px;
     height: 40px;
-    border: 1px solid $color_G;
-    border-radius: 5px;
+    border-radius: 8px;
+	border: 2px solid #ccc;
     font-size: 15px;
 }
 
 .select_right{
     width: 160px;
     height: 40px;
-    border: 1px solid $color_G;
-    border-radius: 5px;
+    border-radius: 8px;
+	border: 2px solid #ccc;
     font-size: 15px;
 }
 
-.main{
-    display: flex;
-    margin-left: 490px;
-}
-
-.main p:nth-child(2){
-    margin-left: 150px;
-}
-.main p:nth-child(3){
-    margin-left: 200px;
-}
-
-.list{
-margin-left: 80px;
-}
-
-.list img{
-    width: 140px;
-    height: 100px;
-}
-
-
-.list .list_in{
-    height: 160px;
-    display: flex;
-    border: 1px solid $color_G;
-    border-radius: 5px;
-    justify-content:space-around;
-    align-items: center;
-    margin-left: 300px;
-    margin-top: 25px;
-}
-
-.list_in p{
-    font-size: 15px;
-    width: 259px;
-}
-
-.list_in button{
-    @include button($color_G);
-    border: 0;
-    width: 68px;
-    height: 38px;
-    font-size: 15px;
+.news-list{
+    width: 900px;
+    margin: 25px auto 0;
+    .main{
+        display: flex;
+        margin-left: 60px;
+    }
+    
+    .main p:nth-child(2){
+        margin-left: 150px;
+    }
+    .main p:nth-child(3){
+        margin-left: 200px;
+    }
+    
+    .list{
+    }
+    
+    .list img{
+        width: 140px;
+        height: 100px;
+    }
+    
+    
+    .list .list_in{
+        height: 160px;
+        display: flex;
+        border: 1px solid $color_G;
+        border-radius: 5px;
+        justify-content:space-around;
+        align-items: center;
+        margin-top: 25px;
+    }
+    
+    .list_in p{
+        font-size: 15px;
+        width: 259px;
+    }
+    
+    .list_in button{
+        @include button($color_G);
+        border: 0;
+        width: 68px;
+        height: 38px;
+        font-size: 15px;
+    }
 }
 
 .down{

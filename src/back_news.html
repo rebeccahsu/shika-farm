@@ -13,95 +13,98 @@
 
     <article class="bk_in">
 
-        <div class="bk_title">
-            <img src="./img/backpages/title_cow_left.png" alt="" class="mb_cow">
-            <h4>最新消息</h4>
-            <img src="./img/backpages/title_cow_right.png" alt="" class="mb_cow">
-        </div>
+        @@include('./layout/back_title.html', {
+            "back_title" : "最新消息管理"
+        })
 
-        <ul class="bi_fuc">
 
-            <div class="bi_top">
+        <div class="bi_top">
 
-                <div class="left">
-                    <button class="yellor" id="add_news"><a href="./back_additem.html">新增</a></button>
-                    <button class="orange" id="remove_news">刪除</a></button>
-                </div>
+            <div class="left">
+                <button class="btn-yellow" id="add_news"><a href="./back_additem.html">新增</a></button>
+                <button class="btn-red" id="remove_news">刪除</a></button>
+            </div>
 
-                <div class="right">
-                    <input type="search" placeholder="搜尋..." class="select_left">
-                    <p>
-                        排序:
-                    </p>
-                    <select class="select_right">
-                        <option>最新消息</option>
-                        <option>活動消息</option>
-                        <option>綜合</option>
-                    </select>
-                </div>
+            <div class="right">
+                
+                <span>排序:</span>
+                <select class="select_right">
+                    <option>最新消息</option>
+                    <option>活動消息</option>
+                    <option>全部</option>
+                </select>
+
+                <input type="search" placeholder="搜尋..." class="select_left">
+                <!-- <div class="search-area">
+                    <input type="text" name="search" id="search_news">
+                    <img src="./img/icon/search.png" alt="" class="search_icon">
+                </div> -->
 
             </div>
 
-        </ul>
-
-        <div class="main">
-            <p>封面標題</p>
-            <p>文章標題</p>
-            <p>發布時間</p>
         </div>
 
-        <ul class="list">
-            <li class="list_in">
-                <label class="check_container">
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                </label>
-                <img src="./img/news/Rectangle 196.png" alt="">
-                <p>【歡慶兒童節 帶小孩來牧場放電囉】</p>
-                <p>2022/3/15 00:00</p>
-                <button>編輯</button>
-            </li>
-            <li class="list_in">
-                <label class="check_container">
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                </label>
-                <img src="./img/news/Rectangle 1964.png" alt="">
-                <p>你我一起防疫大作戰</p>
-                <p>2022/3/15 00:00</p>
-                <button>編輯</button>
-            </li>
-            <li class="list_in">
-                <label class="check_container">
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                </label>
-                <img src="./img/news/Rectangle 1966.png" alt="">
-                <p>新冠狀病毒防疫一起來</p>
-                <p>2022/3/15 00:00</p>
-                <button>編輯</button>
-            </li>
-            <li class="list_in">
-                <label class="check_container">
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                </label>
-                <img src="./img/news/Rectangle 1968.png" alt="">
-                <p>【公告】2022春節營運時間及票價優惠</p>
-                <p>2022/3/15 00:00</p>
-                <button>編輯</button>
-            </li>
-            <li class="list_in">
-                <label class="check_container">
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                </label>
-                <img src="./img/news/Rectangle 1969.png" alt="">
-                <p>【粉萌春日祭】3月周末例假日門票優惠開始啦!</p>
-                <p>2022/2/28 00:00</p>
-                <button>編輯</button>
-            </li>
-        </ul>
+        <main class="news-list">
+            <div class="main">
+                <p>封面標題</p>
+                <p>文章標題</p>
+                <p>發布時間</p>
+            </div>
+    
+            <ul class="list">
+                <li class="list_in">
+                    <label class="check_container">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                    <img src="./img/news/Rectangle 196.png" alt="">
+                    <p>【歡慶兒童節 帶小孩來牧場放電囉】</p>
+                    <p>2022/3/15 00:00</p>
+                    <button>編輯</button>
+                </li>
+                <li class="list_in">
+                    <label class="check_container">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                    <img src="./img/news/Rectangle 1964.png" alt="">
+                    <p>你我一起防疫大作戰</p>
+                    <p>2022/3/15 00:00</p>
+                    <button>編輯</button>
+                </li>
+                <li class="list_in">
+                    <label class="check_container">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                    <img src="./img/news/Rectangle 1966.png" alt="">
+                    <p>新冠狀病毒防疫一起來</p>
+                    <p>2022/3/15 00:00</p>
+                    <button>編輯</button>
+                </li>
+                <li class="list_in">
+                    <label class="check_container">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                    <img src="./img/news/Rectangle 1968.png" alt="">
+                    <p>【公告】2022春節營運時間及票價優惠</p>
+                    <p>2022/3/15 00:00</p>
+                    <button>編輯</button>
+                </li>
+                <li class="list_in">
+                    <label class="check_container">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                    <img src="./img/news/Rectangle 1969.png" alt="">
+                    <p>【粉萌春日祭】3月周末例假日門票優惠開始啦!</p>
+                    <p>2022/2/28 00:00</p>
+                    <button>編輯</button>
+                </li>
+            </ul>
+            
+        </main>
         <div class="down">
             <span><a href="">1</a></span>
             <span><a href="">2</a></span>
