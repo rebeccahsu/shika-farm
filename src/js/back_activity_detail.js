@@ -98,30 +98,30 @@ for( let i = 0; i < time_start.length; i++){
 
 
 //上下架時間限制
-let today = new Date();
-// let current_time = today.toLocaleTimeString();
+// let today = new Date();
+// // let current_time = today.toLocaleTimeString();
 
-function formatDate(date) {
-    var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
+// function formatDate(date) {
+//     var d = new Date(date),
+//         month = '' + (d.getMonth() + 1),
+//         day = '' + d.getDate(),
+//         year = d.getFullYear();
 
-    if (month.length < 2) 
-        month = '0' + month;
-    if (day.length < 2) 
-        day = '0' + day;
+//     if (month.length < 2) 
+//         month = '0' + month;
+//     if (day.length < 2) 
+//         day = '0' + day;
 
-    return [year, month, day].join('-');
-}
+//     return [year, month, day].join('-');
+// }
  
-today = formatDate(today);
-let on_date = document.getElementById('on_date');
-let off_date = document.getElementById('off_date');
-on_date.min = today;
-on_date.addEventListener("change", function(){
-    off_date.min = on_date.value;
-});
+// today = formatDate(today);
+// let on_date = document.getElementById('on_date');
+// let off_date = document.getElementById('off_date');
+// on_date.min = today;
+// on_date.addEventListener("change", function(){
+//     off_date.min = on_date.value;
+// });
 // let on_time = document.getElementById('on_time');
 // on_time.min = current_time;
 

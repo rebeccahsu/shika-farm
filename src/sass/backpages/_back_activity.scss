@@ -202,7 +202,9 @@
 
 .act-mask{
     position: fixed;
-    z-index: 700;
+    top: 0;
+    left: 0;
+    z-index: 900;
     background-color: rgba(51, 51, 51, 0.4);
     width: 100%;
     height: 100vh;

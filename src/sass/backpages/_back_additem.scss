@@ -54,19 +54,20 @@
 
 .buttonArea{
     display: flex;
+    margin-bottom: 80px;
 }
 
 
 .buttonArea .btn_o{
     width: 203px;
-    height: 62px;
+    // height: 62px;
     @include button($color_G);
-    margin-left: 270px;
+    margin-left: 200px;
 }
 
 .buttonArea .btn_d{
     width: 203px;
-    height: 62px;
+    // height: 62px;
     @include button($color_R);
     margin-left: 20px;
 }
