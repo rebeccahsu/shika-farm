@@ -163,16 +163,21 @@ button.hamburger_icon span.-hr.-bottom {
 
 //----------------------------3D slider------------------------------
 
+
+.title{
+margin-top: 30px;
+text-align: center;
+}
+
 .checkList {
     display: flex;
-    margin-top: 50px;
     margin-bottom: 50px;
     @include pad{
-        margin-top: 50px;
+        // margin-top: 50px;
         // margin-bottom: 0;
     }
     @include mobile{
-        margin-top: 30px;
+        // margin-top: 30px;
     }
 }
 
@@ -376,15 +381,23 @@ input .slider [type=radio]:checked {
 
 
 .reserve{
-    width: 100px;
-    position: absolute;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    width: 180px;
+    // position: absolute;
     border-style: none;
     z-index: 2;
-    right: 0;
-    bottom: 0;
+    // right: 0;
+    // bottom: 0;
     color: black;
-    height: 25px;
-    width: 90px;
+    height: 40px;
+    float:right;
+}
+
+.reserve:hover{
+    // animation: shake 3s infinite;
+    transform: scale(1.3);
 }
 
 
@@ -563,6 +576,10 @@ input .slider [type=radio]:checked {
 
     .item{
         margin-top: 5px;
+    }
+
+    .title{
+        font-size: 15px;
     }
 }
 
