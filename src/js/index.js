@@ -12,12 +12,21 @@ new Vue ({
 new Vue ({
     el: '#indexActivity',
     data: {
-        activities: [
-            {img: './img/activity/alpacawalk.jpg', title: '陪草泥馬散步'},
-            {img: './img/activity/pigrun.jpg', title: '小豬賽跑'},
-            {img: './img/activity/riding.jpg', title: '我要當牛仔'},
-        ],
-    }  
+            activities: [
+                    {IMG: './img/activity/alpacawalk.jpg', NAME: '陪草泥馬散步'},
+                    {IMG: './img/activity/pigrun.jpg', NAME: '小豬賽跑'},
+                    {IMG: './img/activity/riding.jpg', NAME: '我要當牛仔'},
+                ],
+    },
+    // data: {
+    //     activities: [], //準備一個陣列來抓資料 (如果資料是物件這裡就寫物件)
+    // },
+    // mounted() {
+    //     fetch('./php/index.php')
+    //     .then(res => res.json())
+    //     .then(res => this.activities = res)
+    //     //   .then(res => console.log(res))
+    // },  
 })
 
 gsap.to('.sun', {
@@ -61,23 +70,28 @@ gsap.to( ['.top-cloud2', '.top-cloud4', '.cloud6'], {
 // gsap.to('.top-pig', { x: '-5%', });
 
 // --------- Carousel ------------
-$(".owl-carousel").owlCarousel({
-    loop: true,
-    margin: 20,
-    // nav: true,
-    responsiveClass: true,
-    responsive: {
-      0: {
-        items: 1
-      },
+var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    spaceBetween: 10,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    breakpoints: {
       576: {
-        items: 2
+        slidesPerView: 2,
+        spaceBetween: 20,
       },
       768: {
-        items: 3
-      }
-    }
-});
+        slidesPerView: 3,
+        spaceBetween: 40,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 50,
+      },
+    },
+  });
 
 //==== parrallax.js ====
 
