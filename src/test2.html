@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@@title</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&family=Oswald:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- <script src="./js/vendors/twzipcode.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
+    <!-- <script src="./js/vue.min.js"></script> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/css/splide.min.css">
+    <style>
+        .btn {
+            width: 100px;
+            height: 50px;
+            color: #000;
+            background-color: aquamarine;
+        }
+
+        #serch {
+            width: 100px;
+            height: 50px;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- <form action="./php/Select.php" method="POST"> -->
+    <input type="text" id="serch">
+    <button class="btn">送出</button>
+    <!-- </form> -->
+    <br>
+    <br>
+    <br>
+    <div>
+        <ul id="inner"></ul>
+    </div>
+    <br>
+    <br>
+    <br>
+
+
+    <script>
+        /*
+            var list_html = `<li data-prd_number="${prd_list[i].prd_number}" data-prd_name="${prd_list[i].prd_name}" data-prd_condition="${condition}" class="list_item -${condition}" ${inner_style}>
+            <label class="check_container">
+            <input type="checkbox"  class="select_item">
+            <span class="checkmark"></span>
+            </label>
+            <img src="${prd_list[i].prd_pic}" alt="" class="prd_pic">
+            <p class="prd_number">${prd_list[i].prd_number}</p>
+            <p class="prd_name">${prd_list[i].prd_name}</p>
+            <p class="prd_cost">${prd_list[i].prd_cost}</p>
+            <p class="prd_price">${prd_list[i].prd_price}</p>
+            <p class="prd_inStock">${prd_list[i].prd_inStock}</p>
+            <p class="prd_condition">${prd_list[i].prd_condition}</p>
+            <button type="button" class="btn-green prd_edit">修改</button>
+            </li>`;
+        */
+        let send = document.querySelector(".btn");
+        let input = document.querySelector("#serch").value;
+        var ul = document.querySelector("#inner");
+
+
+        send.addEventListener("click", function (e) {
+            // console.log('btn');
+            let url = './php/Select2.php'
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                // 送出內容轉成JSON送出
+                body: JSON.stringify({
+                    input_value: input,
+                }),
+            })
+                // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+                // .then(resp =>  resp.json())   // console.log(resp.js)
+                .then(resp => {
+                    return resp.json();
+                })
+
+
+                .then(body => {
+                    //body也不可以console
+                    const { successful, message, prd } = body;
+                    if (successful) {
+                        // console.log(prd[0]);
+                        for (let i = 0; i < prd.length; i++) {
+                            //因為PHP回傳的資料，MAIN_PIC是JSON字串，所以要先轉js物件
+                            let topPic = JSON.parse(prd[i].MAIN_PIC);
+                            console.log(topPic);
+                            var list_html = `<li data-prd_number="${prd[i].ID}" data-prd_name="${prd[i].NAME}" data-prd_condition="${prd[i].STATE}" class="list_item -on" >
+                                        <label class="check_container">
+                                            <input type="checkbox"  class="select_item">
+                                            <span class="checkmark"></span>
+                                            </label>
+                                            <img src="${topPic[0]}" alt="" class="prd_pic">
+                                            <p class="prd_number">id= ${prd[i].ID}</p>
+                                            <p class="prd_name">${prd[i].NAME}</p>
+                                            <p class="prd_cost">${prd[i].COST}</p>
+                                            <p class="prd_price">${prd[i].PRICE}</p>
+                                            <p class="prd_inStock">${prd[i].STOCK}</p>
+                                            <p class="prd_condition">${prd[i].STATE}</p>
+                                            <button type="button" class="btn-green prd_edit">修改</button>
+                                            </li>`;
+                            ul.insertAdjacentHTML("beforeend", list_html);
+                        }
+                    } else {
+                        ul.innerHTML = `<li>${message}</li>`;
+                    }
+                })
+
+
+        })
+
+    </script>
+</body>
+
+</html>
