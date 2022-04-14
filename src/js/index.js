@@ -2,22 +2,40 @@ new Vue ({
     el: '#indexNewsApp',
     data: {
         newslist: [
-            {date: '2022.03.15', title: '4.2 - 4.5 歡慶兒童節 帶小孩來牧場放電囉'},
-            {date: '2022.03.12', title: '你我一起防疫大作戰'},
-            {date: '2022.01.27', title: '2022春節營運時間及票價優惠'},
+            {DATE: '2022.03.15', TITLE: '4.2 - 4.5 歡慶兒童節 帶小孩來牧場放電囉'},
+            {DATE: '2022.03.12', TITLE: '你我一起防疫大作戰'},
+            {DATE: '2022.01.27', TITLE: '2022春節營運時間及票價優惠'},
         ],
-    }  
+    },
+    // data: {
+    //     newslist: [],
+    // },
+    // mounted() {
+    // fetch('./php/index_news.php')
+    // .then(res => res.json())
+    // .then(res => this.newslist = res)
+    // // .then(res => console.log(res))
+    // }, 
 })
 
 new Vue ({
     el: '#indexActivity',
     data: {
-        activities: [
-            {img: './img/activity/alpacawalk.jpg', title: '陪草泥馬散步'},
-            {img: './img/activity/pigrun.jpg', title: '小豬賽跑'},
-            {img: './img/activity/riding.jpg', title: '我要當牛仔'},
-        ],
-    }  
+            activities: [
+                    {IMG: './img/activity/alpacawalk.jpg', NAME: '陪草泥馬散步'},
+                    {IMG: './img/activity/pigrun.jpg', NAME: '小豬賽跑'},
+                    {IMG: './img/activity/riding.jpg', NAME: '我要當牛仔'},
+                ],
+    },
+    // data: {
+    //     activities: [], //準備一個陣列來抓資料 (如果資料是物件這裡就寫物件)
+    // },
+    // mounted() {
+    //     fetch('./php/index.php')
+    //     .then(res => res.json())
+    //     .then(res => this.activities = res)
+    //     //   .then(res => console.log(res))
+    // },  
 })
 
 gsap.to('.sun', {
@@ -61,23 +79,28 @@ gsap.to( ['.top-cloud2', '.top-cloud4', '.cloud6'], {
 // gsap.to('.top-pig', { x: '-5%', });
 
 // --------- Carousel ------------
-$(".owl-carousel").owlCarousel({
-    loop: true,
-    margin: 20,
-    // nav: true,
-    responsiveClass: true,
-    responsive: {
-      0: {
-        items: 1
-      },
+var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    spaceBetween: 10,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    breakpoints: {
       576: {
-        items: 2
+        slidesPerView: 2,
+        spaceBetween: 20,
       },
       768: {
-        items: 3
-      }
-    }
-});
+        slidesPerView: 3,
+        spaceBetween: 40,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 50,
+      },
+    },
+  });
 
 //==== parrallax.js ====
 

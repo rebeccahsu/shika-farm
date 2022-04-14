@@ -61,7 +61,7 @@ $(function() {
         //顯示預覽圖                
         if(e.dataTransfer.files.length > 0){
             previewImg(e.dataTransfer.files[0]);
-            console.log(e.dataTransfer.files[0].name);
+            console.log(e.dataTransfer.files[0]);
         }else{
             preview.innerHTML = `<span class="text">圖片拖曳至此處</span>`;
         }

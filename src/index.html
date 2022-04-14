@@ -5,9 +5,8 @@
     @@include('./layout/head.html', {
     "title" : "Sìkha 牧場"
     })
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="js/vendors/parallax.js"></script>
 </head>
 
@@ -59,8 +58,8 @@
             </div>
             <ul id="indexNewsApp" class="indexNewsList">
                 <li v-for="news in newslist">
-                    <p>{{news.date}}</p>
-                    <h5>{{news.title}}</h5>
+                    <p>{{news.DATE}}</p>
+                    <h5>{{news.TITLE}}</h5>
                 </li>
             </ul>
             <a href="news.html" class="viewMore" data-aos="zoom-in" data-aos-duration="1500">
@@ -87,13 +86,16 @@
         <section class="indexActivity container-lg">
             <h3 data-aos="fade-right" data-aos-duration="1500">熱門活動</h3>
             <h6 data-aos="fade-right" data-aos-duration="2500">ACTIVITY</h6>
-            <div class="activity owl-carousel owl-theme" id="indexActivity" data-aos="fade-right" data-aos-duration="2000">
-                <div class="activityCard" v-for="activity in activities">
-                    <div class="actPhotoContainer">
-                        <img :src="activity.img" alt="activity_photo">
+            <div class="activity swiper mySwiper" id="indexActivity" data-aos="fade-right" data-aos-duration="2000">
+                <div class="swiper-wrapper">
+                    <div class="activityCard swiper-slide" v-for="activity in activities">
+                        <div class="actPhotoContainer">
+                            <img :src="activity.IMG" alt="activity_photo">
+                        </div>
+                        <h5>{{activity.NAME}}</h5>
                     </div>
-                    <h5>{{activity.title}}</h5>
                 </div>
+                <div class="swiper-pagination"></div>
             </div>
             <a href="activity.html" class="viewMore" data-aos="zoom-in" data-aos-duration="1500">
                 <h5 class="viewText">瀏覽更多</h5>

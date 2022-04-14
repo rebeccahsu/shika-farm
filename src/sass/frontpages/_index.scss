@@ -575,8 +575,12 @@
             h5{
                 text-align: center;
                 margin-top: 20px;
-                margin-bottom: 10px;
+                margin-bottom: 35px;
             }
+        }
+
+        .swiper-pagination-bullet-active{
+            background: $color_G;
         }
     }
 

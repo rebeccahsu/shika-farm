@@ -7,6 +7,10 @@ function package() {
 function jsonmove() {
 	return src(["src/JSON/*.json", "src/JSON/**/*.json"]).pipe(dest("dist/JSON"));
 }
+function phpmove() {
+	return src(["src/php/*.*", "src/php/**/*.*"]).pipe(dest("dist/php"));
+}
+
 const rename = require("gulp-rename");
 
 // css minify
@@ -174,7 +178,7 @@ exports.cls = clear;
 
 //dev
 exports.default = series(
-	parallel(includeHTML, sassstyle, minijs, package, jsonmove),
+	parallel(includeHTML, sassstyle, minijs, package, jsonmove, phpmove),
 	browser
 );
 
