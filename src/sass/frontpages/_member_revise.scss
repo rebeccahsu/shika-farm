@@ -9,12 +9,10 @@
 }
 
 .mb_re_wrp{
-    width: 600px;
-    height: 400px;
-    border-radius: 8px;
-    margin: 0 auto;
+    width: 100%;
+    display: flex;
     @include mobile{
-        width: 370px;
+        width: 100%;
     
     }
     
@@ -40,16 +38,20 @@
 }
 
 
-
+//地址
 .mb_adr{
     display: flex;
     margin: 20px auto;
+  
 }
 
 .mb_adr select #city #area{
     border: 1px solid green;
     height: 460px;
     width: 100px;
+    @include mobile {
+        display: flex;
+    }
 }
 
 
@@ -127,3 +129,9 @@
 
 //RWD
 
+.t123{
+    padding-left: 30%;
+    @include mobile {
+       padding-left: 10%;
+    }
+}

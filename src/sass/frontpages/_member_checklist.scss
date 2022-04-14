@@ -1,3 +1,12 @@
+.mb_container1{
+    @include mobile{
+        width: 360px;
+    overflow-x:auto ;
+    }
+}
+
+
+
 .mb_cl_wrp{
     margin: 0 auto;
     width: 100%;
@@ -19,8 +28,8 @@
     display: grid;
     grid-template-columns: 100%;
     @include mobile{
-        width: 360px;
-     overflow-x: auto;
+    
+   width: 800px;
     }
     
     
@@ -35,13 +44,14 @@
     border: 1px solid green;
     height: 60px;
     background-color: $color_G;
+    color: white;
     
 }
 
 .cl_list2{
     background-color: $color_W;
     color: $color_G;
-    line-height: 60px;
+    
     border: 1px solid $color_G;
     display: grid;
     grid-template-columns: 15% 15% 10% 15% 15% 15% 10% 5%;
@@ -60,7 +70,7 @@
 
 .cel_list_btn{
     background-color: $color_R;
-    width: 100px;
+    // width: 100px;
     border: none;
     color: $color_W;
     cursor: pointer;
@@ -84,4 +94,9 @@
     
     
 
+}
+
+#op_btn{
+    border: none;
+    background-color: none;
 }
