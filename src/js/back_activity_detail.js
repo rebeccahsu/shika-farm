@@ -133,3 +133,120 @@ pages.forEach(function(page){
         page.closest("a").classList.add("-on");
     }
 });
+
+//新增活動
+new Vue({
+    el: '#activity-add-app',
+    data(){
+        return {
+            name: '',
+            opacity: '',
+            state: '',
+            time: '',
+            s1_start: '',
+            s1_end: '',
+            s2_start: '',
+            s2_end: '',
+            s3_start: '',
+            s3_end: '',
+            desc: '',
+
+        }
+    },
+    mounted() {
+        function auto_time (el, p){
+            let time = $(el).val().split(":");
+            let newHr;
+            let newMin;
+            switch(p) {
+                case 30:
+                    newMin = parseInt(time[1]) + 30;
+                    newHr = parseInt(time[0]);
+                    if (newMin >= 60){
+                        newMin = newMin - 60;
+                        newHr += 1;
+                    }
+                    time.splice(1, 1, newMin);
+                    time.splice(0, 1, newHr);
+                    break;
+                case 60:
+                    newHr = parseInt(time[0]) + 1;
+                    time.splice(0, 1, newHr);
+                    break;
+                case 90:
+                    newHr = parseInt(time[0]) + 1;
+                    newMin = parseInt(time[1]) + 30;
+                    if (newMin > 60){
+                        newMin = newMin - 60;
+                        newHr += 1;
+                    }
+                    time.splice(1, 1, newMin);
+                    time.splice(0, 1, newHr);
+                    break;
+            }
+            time.splice(1, 0, ":")
+            console.log(time.toString());
+            let time_str = time.toString().replace(/,/g, "");
+            if (newHr < 10){
+                time_str = "0" + time_str;
+            }
+            if (newMin < 10){
+                time_str = time_str.slice(0, 3) + "0" + time_str.slice(3);
+            }
+            return time_str;
+        }
+        
+        let time_start = document.querySelectorAll('.time-start');
+        let time_end = document.querySelectorAll('.time-end');
+        
+        for( let i = 0; i < time_start.length; i++){
+            time_start[i].addEventListener("change", function(){
+                let periodChecked = document.querySelector('input[type="radio"]:checked');
+                let period = parseInt(periodChecked.id);
+                time_end[i].value = auto_time(this, period);
+            })
+        }
+    },
+    methods: {
+        //  && this.state != '' && this.time != '' && this.s1_start != '' && this.s2_start != '' && this.s3_start != '' 
+        addActivity(){
+            if (this.name != '' && this.opacity != '' && this.desc != ''){
+                fetch("./php/add_activity.php", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        // "Accept": 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: this.name,
+                        opacity: this.opacity,
+                        time: this.time,
+                        s1_start: this.s1_start,
+                        s1_end: this.s1_end,
+                        s2_start: this.s2_start,
+                        s2_end: this.s2_end,
+                        s3_start: this.s3_start,
+                        s3_end: this.s3_end,
+                        desc: this.desc, 
+                        }),
+
+                })
+                // .then(res => res => json())
+                .then((resp) => resp.json())
+                .then((body) => {
+                    const { successful } = body;
+                    if (successful) {
+                        msg.className = 'info';
+                        msg.textContent = '註冊成功';
+                    } else {
+                        msg.className = 'error';
+                        msg.textContent = '註冊失敗';
+                    }
+                });
+
+            }else{
+                alert('請填寫完所有欄位');
+            }
+        },
+    },
+})

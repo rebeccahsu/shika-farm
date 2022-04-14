@@ -1,5 +1,5 @@
 <?php
-    @include ("./connection.php");
+    include ("./connection.php");
 
     $sql = "select * from NEWS limit 3";
     $stm = $pdo->prepare($sql);

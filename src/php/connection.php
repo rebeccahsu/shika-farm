@@ -11,4 +11,16 @@
     //建立PDO物件，並放入指定的相關資料
     $pdo = new PDO($dsn, $db_user, $db_pass);
             
+    // //上傳檔案的放置位置(路徑)
+    // function getFilePath(){        
+
+    //     //Apache實際的根目錄路徑
+    //     $ServerRoot = $_SERVER["DOCUMENT_ROOT"];
+
+    //     //Apache根目錄之下的檔案存放路徑
+    //     $filePath = "/img/upload/";
+        
+    //     return $ServerRoot.$filePath;
+
+    // }
 ?>
