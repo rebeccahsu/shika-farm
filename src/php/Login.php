@@ -1,6 +1,14 @@
 <?php
 
-// include("Connection.php");
+// include("connection.php");    //connection.php 記得return $PDO
+
+$db_host = "127.0.0.1";
+$db_user = "root";
+$db_pass = "password";
+$db_select = "TFD105_G6";
+$dsn = "mysql:host=".$db_host.";dbname=".$db_select;
+$pdo = new PDO($dsn, $db_user, $db_pass);
+// ============================================
 
 //取得資料
 //透過php取得前端資料並解譯
