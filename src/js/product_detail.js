@@ -144,9 +144,20 @@ function stockChack(el) {
 // ==========================================
 
 $("#pd_info_cart").on("click", (e) => {
+	// let img = $("#pd_info_cart").closest(".pd_area").find(".splide__list li");
+	let img = document.querySelector(".splide__list li img");
+    let name = document.querySelector('#pd_info_name');
+    let price = document.querySelector('.pd_info_pricr'); 
+    let count = document.querySelector('#pd_stockCount_input').value
+	console.log(count);
 	e.preventDefault();
-	console.log("add cart");
-	localStorage.setItem("products", JSON.stringify("products"));
+    let products = {
+                        img: img,
+                        name: name,
+                        price: price,
+                        count: count,
+                    };
+	sessionStorage.setItem("products", JSON.stringify(products));
 });
 
 $("#pd_info_buy").on("click", (e) => {
@@ -158,13 +169,25 @@ $("#pd_info_buy").on("click", (e) => {
 // ==========================================
 // 庫存0時，停用按鈕、加入購物車和購買
 // 沒有庫存時
-$(function(){
-    if($('#pd_inStock').text() == 0){
-        $('#pd_info_cart').attr("style","background-color: #fff;  color: #ccc;  border: 1px dotted #ccc;");
-        $('#pd_info_buy').attr("style","background-color: #fff;  color: #ccc;  border: 1px dotted #ccc;");
-        $('.pd_stockCount_btn').attr('disabled')
-        $('.pd_stockCount_btn').attr("style","background-color: #fff;  color: #ccc;  border: 1px dotted #ccc;");
-        $("#pd_stockCount_input").attr("style","background-color: #fff;  color: #ccc;  border: 1px dotted #ccc;");
-    }
-})
-// 
+$(function () {
+	if ($("#pd_inStock").text() == 0) {
+		$("#pd_info_cart").attr(
+			"style",
+			"background-color: #fff;  color: #ccc;  border: 1px dotted #ccc;"
+		);
+		$("#pd_info_buy").attr(
+			"style",
+			"background-color: #fff;  color: #ccc;  border: 1px dotted #ccc;"
+		);
+		$(".pd_stockCount_btn").attr("disabled");
+		$(".pd_stockCount_btn").attr(
+			"style",
+			"background-color: #fff;  color: #ccc;  border: 1px dotted #ccc;"
+		);
+		$("#pd_stockCount_input").attr(
+			"style",
+			"background-color: #fff;  color: #ccc;  border: 1px dotted #ccc;"
+		);
+	}
+});
+//

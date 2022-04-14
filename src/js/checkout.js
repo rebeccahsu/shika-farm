@@ -105,6 +105,7 @@ new Vue({
 					price: 200,
 					quantity: 1,
 				},
+				
 		];
 
 		localStorage.setItem("products", JSON.stringify(products));
