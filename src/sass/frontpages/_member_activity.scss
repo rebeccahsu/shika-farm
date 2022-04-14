@@ -24,7 +24,8 @@
     margin-top: 40px;
     @include mobile{
         width: 350px;
-        overflow-x: auto;
+        line-height: 40px;
+        // overflow-x: auto;
     }
     
     
@@ -41,9 +42,8 @@
     height: 160px;
     padding-right: 80px;
     @include mobile{
-        padding-right: 20px;
-        font-size: 20px;
-
+        padding-left: 8px;
+        padding-right: 8px;
         // overflow-x: auto;
     }
     
@@ -51,11 +51,13 @@
 }
 
 .act_title{
-    display:inline;
+    // display:inline;
     padding-right: 20px;
     @include mobile{
-        display:block;
-        font-size: 16px;
+    padding-right: 4px;
+    flex: none;
+    padding-top: 20px;
+        
 
         // overflow-x: auto;
     }
@@ -66,12 +68,20 @@
     display:inline;
     line-height: 160px;
     padding-right: 100px;
+    @include mobile{
+    flex: none;
+    padding-top: 3px;
+    margin-left: -138px;
+    }
 
 }
+
+
+//取消按鈕
 
 .cancel_btn{
     margin-top: 45px;
-   
+    line-height: 0;
     font-size: $fs-s;
     border-radius: 8px;
     text-align: center;
@@ -83,23 +93,14 @@
     border: 1px solid $color_R;
     cursor: pointer;
     margin-left:20px;
+    @include mobile{
+        height: 48px;
+        width: 100px;
+        font-size: 16px;
+        flex: none;
+        margin-left: -312px;
+        margin-top: 100px;
+        }
 
 }
 
-.cancel_btn:hover{
-    margin-top: 45px;
-    
-    font-size: $fs-s;
-    border-radius: 8px;
-    text-align: center;
-    width: 200px;
-    height: 60px;
-    display: inline-block;
-    color:$color_W;
-    background-color:$color_R;
-    border: 1px solid $color_R;
-    cursor: pointer;
-    margin-left:20px;
-
-}
-    

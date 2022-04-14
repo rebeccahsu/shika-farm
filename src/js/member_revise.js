@@ -77,9 +77,9 @@ console.log('test');
 
 
 
-$('#cancel_btn').on('click',function(){
+$('.cancel_btn').on('click',function(){
   if(confirm("確定取消預約?")){
-   $('#act_list').hide()
+   $('.act_list').remove()
   }
 })
 
