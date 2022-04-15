@@ -15,6 +15,7 @@
     
     display: flex;
     margin: 0 auto;
+    justify-content: space-around;
     // width: 1200px;
     width: 100%;
     height: 160px;
@@ -23,9 +24,11 @@
     line-height: 160px;
     margin-top: 40px;
     @include mobile{
+        display: inline-block;
         width: 350px;
-        line-height: 40px;
-        // overflow-x: auto;
+        height: 400px;
+        line-height: 0px;
+        text-align: center;
     }
     
     
@@ -40,7 +43,7 @@
     display:inline;
     line-height: 160px;
     height: 160px;
-    padding-right: 80px;
+    // padding-right: 80px;
     @include mobile{
         padding-left: 8px;
         padding-right: 8px;
@@ -54,7 +57,7 @@
     // display:inline;
     padding-right: 20px;
     @include mobile{
-    padding-right: 4px;
+    // padding-right: 4px;
     flex: none;
     padding-top: 20px;
         
@@ -67,11 +70,10 @@
 .act_time{
     display:inline;
     line-height: 160px;
-    padding-right: 100px;
+    // padding-right: 100px;
     @include mobile{
-    flex: none;
-    padding-top: 3px;
-    margin-left: -138px;
+        padding-right: 0;
+        text-align: center;
     }
 
 }
@@ -80,7 +82,7 @@
 //取消按鈕
 
 .cancel_btn{
-    margin-top: 45px;
+    margin-top: 50px;
     line-height: 0;
     font-size: $fs-s;
     border-radius: 8px;
@@ -92,14 +94,15 @@
     background-color:$color_R;
     border: 1px solid $color_R;
     cursor: pointer;
-    margin-left:20px;
+    // margin-left:20px;
     @include mobile{
+        display: block;
         height: 48px;
         width: 100px;
         font-size: 16px;
-        flex: none;
-        margin-left: -312px;
-        margin-top: 100px;
+        margin: 0 auto;
+        // margin-left: -312px;
+        // margin-top: 100px;
         }
 
 }
