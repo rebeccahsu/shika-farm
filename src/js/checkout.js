@@ -12,15 +12,15 @@ new Vue({
 		// 執行add這個function, index->陣列裡的第幾個物件 n->加1減1的值
 		add(index, n) {
 			// 如果按下加減後等於0
-			if (this.products[index].quantity + n == 0) {
+			if (this.products[index].count + n == 0) {
 				return; // 就結束顯示預設數字 1
 			}
-			this.products[index].quantity += n; // 不然就可以做加減
+			this.products[index].count += n; // 不然就可以做加減
 		},
 		//點擊垃圾桶 刪除
 		del(index) {
 			this.products.splice(index, 1);
-			localStorage.setItem("products", JSON.stringify(this.products));
+			sessionStorage.setItem("products", JSON.stringify(this.products));
 		},
 		// 提交訂單
 		sendOrder() {
@@ -89,29 +89,8 @@ new Vue({
 		},
 	// 進入頁面就要有初始值就要用created
 		created() {
-		//  先假裝購物車有資料
-			let products = [
-				{
-					id: "0001",
-					img: "./img/products/blanket_g.jpg",
-					info: "羊毛毯(綠)",
-					price: 499,
-					quantity: 1,
-				},
-				{
-					id: "0002",
-					img: "./img/products/animal_cookies.jpg",
-					info: "動物餅乾",
-					price: 200,
-					quantity: 1,
-				},
-				
-		];
-
-		localStorage.setItem("products", JSON.stringify(products));
-
 		// 1.取出localStorage的資料, 字串轉成物件 // ??判斷是否為null如果是就用空陣列
-		let cart = JSON.parse(localStorage.getItem("products")) ?? [];
+		let cart = JSON.parse(sessionStorage.getItem("products")) ?? [];
 		// 2.把資料放入data裡的products
 		this.products = cart;
 	},
@@ -126,7 +105,7 @@ new Vue({
 			this.products.forEach((el) => {
 				//陣列裡的物件執行這個涵式
 				// 總計 = (物件的價格 * 物件的數量) + 運費  + el.freight
-				total += el.price * el.quantity;
+				total += el.price * el.count;
 			});
 			//把值傳回sumTotal這個變數
 			return total + this.freight;
@@ -134,7 +113,7 @@ new Vue({
 		sumCount: function () {
 			let count = 0;
 			this.products.forEach((el) => {
-				count = count + el.quantity;
+				count = count + el.count;
 			});
 			return count;
 		},
