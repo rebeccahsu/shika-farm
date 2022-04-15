@@ -7,7 +7,7 @@
 $input_value = json_decode(file_get_contents("php://input"), true);
 // 另新變數=資料內文
 $serch_value = $input_value['input_value'];
-$serch_value2 = $input_value['input_value'];
+$serch_value2 = $input_value['input_value'];//多寫的
 
 
 
@@ -27,9 +27,6 @@ $pdo = new PDO($dsn, $db_user, $db_pass);
 
        //執行並查詢，會回傳查詢結果的物件，必須使用fetch、fetchAll...等方式取得資料
        $statement = $pdo->query($sql);
-
-       //抓出全部且依照順序封裝成一個二維陣列
-       $data = $statement->fetchAll();
 
         //查詢執行結果筆數
        $resultCount = $statement -> rowCount();
