@@ -97,7 +97,7 @@ $('#op_btn').on('click',function(){
 
 $('.cel_list_btn').on('click',function(){
   if(confirm("確定取消訂單?")){
-   $('#cl_d').hide()
+   $('.cl_d').hide()
   }
 })
 

@@ -243,7 +243,7 @@
         }
 
         .shoppingCar{
-           width: 950px;
+           width: 90%;
            position: absolute;
            top: 10%;
            left: 50%;
@@ -251,7 +251,7 @@
            
 
            @include mobile{
-               top: 5%;
+                top: 5%;
                 width: 350px;
             }
            

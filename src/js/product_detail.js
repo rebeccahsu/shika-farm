@@ -145,10 +145,13 @@ function stockChack(el) {
 
 $("#pd_info_cart").on("click", (e) => {
 	// let img = $("#pd_info_cart").closest(".pd_area").find(".splide__list li");
-	let img = document.querySelector(".splide__list li img");
-    let name = document.querySelector('#pd_info_name');
-    let price = document.querySelector('.pd_info_pricr'); 
-    let count = document.querySelector('#pd_stockCount_input').value
+	let img = document.querySelector(".splide__list li img").getAttribute('src');
+    let name = document.querySelector('#pd_info_name').innerText;
+    let price = document.querySelector('#pd_info_pricr').innerText; 
+    let count = document.querySelector('#pd_stockCount_input').value;
+	console.log(img);
+	console.log(name);
+	console.log(price);
 	console.log(count);
 	e.preventDefault();
     let products = {
