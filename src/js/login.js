@@ -203,12 +203,40 @@ $('#send_mail').on('click', (e) => {
         // }else if(){ //送後端預留，如果沒有email，顯示email沒有註冊過
     } else {
         $('label[for="userMail"]').html("<h5>電子郵件</h5>");
-        // 當畫面上沒有紅P時，插入紅P，按鈕不可按
-        if ($('#password_reset').has($('#cdTime')).length == 0) {
-            $('label[for="userMail"]').before(`<p style="color:red;" id="cdTime">系統已將信件寄出，若沒有收到信件，請等待<span id="sss"></span>秒後再試，謝謝。 </p>`)
-            $('#send_mail').disabled = true;
-            mail_cd();
+
+        // AJAX 驗證EMAIL是否註冊過
+        let userMail = document.querySelector("#userMail");
+        fetch('./php/forget.php', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            // 送出內容轉成JSON送出
+            body: JSON.stringify({
+                EMAIL: userMail.value,
+            }),
+        })
+       
+            // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+            .then(resp =>  resp.json())   
+            .then(body => {
+                //body也不可以console
+                const { successful, NAME, TOKEN } = body;
+                if (successful) {
+                    // 當畫面上沒有紅P時，插入紅P，按鈕不可按
+                    if ($('#password_reset').has($('#cdTime')).length == 0) {
+                        $('label[for="userMail"]').before(`<p style="color:red;" id="cdTime">系統已將信件寄出，若沒有收到信件，請等待<span id="sss"></span>秒後再試，謝謝。 </p>`)
+                        $('#send_mail').disabled = true;
+                        mail_cd();
+                        send_forgetEmail(userMail.value, NAME, TOKEN)
         }
+                } else {
+                    $('label[for="userMail"]').html("<h5>電子郵件<span>*e-mail未註冊過</span></h5>");
+                }
+            })
+
+
+
     }
 })
 
@@ -225,6 +253,31 @@ function mail_cd() {
         $('#send_mail').disabled = false;
         cd = 10;
     }
+}
+
+// EmailJS
+function send_forgetEmail(forgetEmail, forgetName, TOKEN){
+    emailjs.init('abHautzLicXP7SnzL');
+
+    const serviceID = 'shikaservice105';
+    const templateID = 'template_9cu1gex';
+    var templateParams = {
+        to_email:forgetEmail.value,
+        from_name: "shika牧場",
+        to_name: `${forgetName}`,
+        url_forget: `https://tibamef2e.com/tfd105/g6/password_reset_2.html?${TOKEN}`,
+    }
+
+    emailjs.send(serviceID, templateID,templateParams ,"abHautzLicXP7SnzL")
+    
+        .then(() => {
+            testBtn.value = '送出';
+            alert('Sent!');
+        }, (err) => {
+            testBtn.value = '送出';
+            alert(JSON.stringify(err));
+        });
+
 }
 
 
