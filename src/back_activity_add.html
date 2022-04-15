@@ -16,8 +16,8 @@
             
                 <form class="activity-detail" id="activity-add-app">
                     <div class="img-area">
-                        <input type="file" id="p_file">
-                        <div class="preview" id="drop_zone"><span class="text">圖片拖曳至此處</span></div>
+                        <input type="file" id="p_file" @change="fileSelected">
+                        <div class="preview" id="drop_zone"><img v-if="img" :src="img" class="preview-img"><span class="text">圖片拖曳至此處</span></div>
                     </div>
                     <div class="margintop_30">
                         <h5>活動名稱</h5>
@@ -29,28 +29,28 @@
                     </div>
                     <div class="oneline margintop_25">
                         <label>時間長度</label>
-                        <input type="radio" id="30" name="time" value="30" class="time" v-model="time" checked>
+                        <input type="radio" id="30" name="time" value="30" v-model="time" checked>
                         <label for="30">30分鐘</label>
-                        <input type="radio" id="60" name="time" value="60" class="time" v-model="time">
+                        <input type="radio" id="60" name="time" value="60" v-model="time">
                         <label for="60">60分鐘</label>
-                        <input type="radio" id="90" name="time" value="90" class="time" v-model="time">
+                        <input type="radio" id="90" name="time" value="90" v-model="time">
                         <label for="90">90分鐘</label>
                     </div>
                     <div class="oneline margintop_30">
                         <label for="">場次一時間</label>
-                        <input type="time" class="time-start" required name="s1_start" v-model="s1_start">
+                        <input type="time" class="time-start" required name="s1_start" v-model="s1_start" v-on:input="getEndTime">
                         <h5 class="tilde">~</h5>
                         <input type="time" class="time-end" readonly name="s1_end" v-model="s1_end">
                     </div>
                     <div class="oneline margintop_25">
                         <label for="">場次二時間</label>
-                        <input type="time" class="time-start" required name="s2_start" v-model="s2_start">
+                        <input type="time" class="time-start" required name="s2_start" v-model="s2_start" v-on:input="getEndTime">
                         <h5 class="tilde">~</h5>
                         <input type="time" class="time-end" readonly name="s2_end" v-model="s2_end">
                     </div>
                     <div class="oneline margintop_25">
                         <label for="">場次三時間</label>
-                        <input type="time" class="time-start" required name="s3_start" v-model="s3_start">
+                        <input type="time" class="time-start" required name="s3_start" v-model="s3_start" v-on:input="getEndTime">
                         <h5 class="tilde">~</h5>
                         <input type="time" class="time-end" readonly name="s3_end" v-model="s3_end">
                     </div>
@@ -72,7 +72,7 @@
                     <div class="onoroff">
                         <span class="state">上架</span>
                         <label class="switch">
-                            <input type="checkbox" checked class="show-switch-btn">
+                            <input type="checkbox" checked class="show-switch-btn" v-model="state">
                             <span class="slider round"></span>
                         </label>
                         

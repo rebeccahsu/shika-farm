@@ -1,3 +1,11 @@
+//目前頁面
+let pages = document.querySelector(".aside_ul").querySelectorAll("h5");
+pages.forEach(function(page){
+    if ( page.innerHTML == "活動管理"){
+        page.closest("a").classList.add("-on");
+    }
+});
+
 // ==== 圖片預覽 ====
 let preview = document.querySelector(".preview");
 let p_file = document.getElementById("p_file");
@@ -126,23 +134,18 @@ for( let i = 0; i < time_start.length; i++){
 // on_time.min = current_time;
 
 
-//目前頁面
-let pages = document.querySelector(".aside_ul").querySelectorAll("h5");
-pages.forEach(function(page){
-    if ( page.innerHTML == "活動管理"){
-        page.closest("a").classList.add("-on");
-    }
-});
 
-//新增活動
+//TODO: 連到資料庫之後再使用這邊
+//確認新增
 new Vue({
     el: '#activity-add-app',
     data(){
         return {
             name: '',
+            img: '',
             opacity: '',
-            state: '',
-            time: '',
+            state: 'true',
+            time: '30',
             s1_start: '',
             s1_end: '',
             s2_start: '',
@@ -151,60 +154,6 @@ new Vue({
             s3_end: '',
             desc: '',
 
-        }
-    },
-    mounted() {
-        function auto_time (el, p){
-            let time = $(el).val().split(":");
-            let newHr;
-            let newMin;
-            switch(p) {
-                case 30:
-                    newMin = parseInt(time[1]) + 30;
-                    newHr = parseInt(time[0]);
-                    if (newMin >= 60){
-                        newMin = newMin - 60;
-                        newHr += 1;
-                    }
-                    time.splice(1, 1, newMin);
-                    time.splice(0, 1, newHr);
-                    break;
-                case 60:
-                    newHr = parseInt(time[0]) + 1;
-                    time.splice(0, 1, newHr);
-                    break;
-                case 90:
-                    newHr = parseInt(time[0]) + 1;
-                    newMin = parseInt(time[1]) + 30;
-                    if (newMin > 60){
-                        newMin = newMin - 60;
-                        newHr += 1;
-                    }
-                    time.splice(1, 1, newMin);
-                    time.splice(0, 1, newHr);
-                    break;
-            }
-            time.splice(1, 0, ":")
-            console.log(time.toString());
-            let time_str = time.toString().replace(/,/g, "");
-            if (newHr < 10){
-                time_str = "0" + time_str;
-            }
-            if (newMin < 10){
-                time_str = time_str.slice(0, 3) + "0" + time_str.slice(3);
-            }
-            return time_str;
-        }
-        
-        let time_start = document.querySelectorAll('.time-start');
-        let time_end = document.querySelectorAll('.time-end');
-        
-        for( let i = 0; i < time_start.length; i++){
-            time_start[i].addEventListener("change", function(){
-                let periodChecked = document.querySelector('input[type="radio"]:checked');
-                let period = parseInt(periodChecked.id);
-                time_end[i].value = auto_time(this, period);
-            })
         }
     },
     methods: {
@@ -219,7 +168,9 @@ new Vue({
                     },
                     body: JSON.stringify({
                         name: this.name,
+                        img: this.img,
                         opacity: this.opacity,
+                        state: this.state ? "上架中" : "已下架",
                         time: this.time,
                         s1_start: this.s1_start,
                         s1_end: this.s1_end,
@@ -235,12 +186,16 @@ new Vue({
                 .then((resp) => resp.json())
                 .then((body) => {
                     const { successful } = body;
+                    console.log(body);
+                    console.log(body.successful);
                     if (successful) {
-                        msg.className = 'info';
-                        msg.textContent = '註冊成功';
-                    } else {
-                        msg.className = 'error';
-                        msg.textContent = '註冊失敗';
+                        alert('已成功新增');
+                        let from = document.querySelector('form.activity-detail');
+                        from.reset();
+                        window.location.href = "./back_activity.html";
+                    } 
+                    else {
+                        alert('新增失敗');
                     }
                 });
 
@@ -248,5 +203,73 @@ new Vue({
                 alert('請填寫完所有欄位');
             }
         },
+
+        getEndTime(){
+            // console.log(this.s1_start);
+            function auto_time (el, p){
+                let time = el.split(":");
+                let newHr;
+                let newMin;
+                switch(p) {
+                    case 30:
+                        newMin = parseInt(time[1]) + 30;
+                        newHr = parseInt(time[0]);
+                        if (newMin >= 60){
+                            newMin = newMin - 60;
+                            newHr += 1;
+                        }
+                        time.splice(1, 1, newMin);
+                        time.splice(0, 1, newHr);
+                        break;
+                    case 60:
+                        newHr = parseInt(time[0]) + 1;
+                        time.splice(0, 1, newHr);
+                        break;
+                    case 90:
+                        newHr = parseInt(time[0]) + 1;
+                        newMin = parseInt(time[1]) + 30;
+                        if (newMin >= 60){
+                            newMin = newMin - 60;
+                            newHr += 1;
+                        }
+                        time.splice(1, 1, newMin);
+                        time.splice(0, 1, newHr);
+                        break;
+                }
+                time.splice(1, 0, ":")
+                console.log(time.toString());
+                let time_str = time.toString().replace(/,/g, "");
+                if (newHr < 10){
+                    time_str = "0" + time_str;
+                }
+                if (newMin < 10){
+                    time_str = time_str.slice(0, 3) + "0" + time_str.slice(3);
+                }
+                return time_str;
+            }
+            let time_arr = [this.s1_start, this.s2_start, this.s3_start];
+            let end_arr = [];
+            for (let i = 0; i < time_arr.length; i++){
+                if (this.time == 30){
+                    end_arr.push(auto_time(time_arr[i], 30));
+                }else if(this.time == 60){
+                    end_arr.push(auto_time(time_arr[i], 60));
+                }else if(this.time == 90){
+                    end_arr.push(auto_time(time_arr[i], 90));
+                }
+            }
+            this.s1_end = end_arr[0];
+            this.s2_end = end_arr[1];
+            this.s3_end = end_arr[2];
+        },
+
+        fileSelected(event){
+            let file = event.target.files.item(0); //取得File物件
+            let reader = new FileReader(); //建立FileReader 監聽 Load 事件
+            reader.addEventListener('load',this.imageLoader);
+            reader.readAsDataURL(file);
+            this.img = `./img/activity/${file.name}`;
+            $('span.text').remove();
+       },
     },
 })
