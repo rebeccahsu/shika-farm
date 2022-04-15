@@ -76,25 +76,26 @@ CREATE TABLE `MEMBER` (
   `PASSWORD` varchar(16) NOT NULL,
   `NAME` varchar(100) NOT NULL,
   `PHONE` varchar(10) NOT NULL,
+  `ZIPCODE` varchar(6) NOT NULL,
   `COUNTRY` varchar(6) NOT NULL,
   `DISTRICT` varchar(6) NOT NULL,
-  `ZIPCODE` varchar(6) NOT NULL,
   `STREET` varchar(100) NOT NULL,
+  `TOKEN` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb3;
 
 /*Data for the table `MEMBER` */
 
-insert  into `MEMBER`(`ID`,`EMAIL`,`PASSWORD`,`NAME`,`PHONE`,`COUNTRY`,`DISTRICT`,`ZIPCODE`,`STREET`) values 
-(19,'wang_mien@gmail.com','mm00122','王大明','0910993300','台中市','北屯區','406','祥順十街25號'),
-(20,'da_tou@gmail.com','datou123','蔡大頭','0988991457','臺北市','南港區','115','永吉路23號'),
-(21,'yellow@gmail.com','yellow5566','黃綠紅','0953677159','臺南市','中西區','700','健康路34號'),
-(22,'3quuuu@gmail.com','3quuu','謝蟹倪','0988173664','桃園市','中壢區','320','嘉善街35號'),
-(23,'white111@gmail.com','a_white','陳阿白','0931122566','宜蘭縣','羅東鎮','265','羅莊街5號'),
-(24,'flower666@gmail.com','flower66','林阿花','0927554880','雲林縣','東勢鄉','635','嘉芳南路30號'),
-(25,'cc1122356@gmail.com','cc1122','蕭西西','0927554880','苗栗縣','後龍鎮','356','豐富七街25號'),
-(26,'angry777@gmail.com','angry777','沈戚戚','0987487487','基隆市','七堵區','206','綠葉街33號'),
-(27,'good007@gmail.com','good007','高波羅','0954874874','高雄市','路竹區','821','延平路28號');
+insert  into `MEMBER`(`ID`,`EMAIL`,`PASSWORD`,`NAME`,`PHONE`,`ZIPCODE`,`COUNTRY`,`DISTRICT`,`STREET`,`TOKEN`) values 
+(19,'wang_mien@gmail.com','mm00122','王大明','0910993300','406','台中市','北屯區','祥順十街25號',NULL),
+(20,'da_tou@gmail.com','datou123','蔡大頭','0988991457','115','臺北市','南港區','永吉路23號',NULL),
+(21,'yellow@gmail.com','yellow5566','黃綠紅','0953677159','700','臺南市','中西區','健康路34號',NULL),
+(22,'3quuuu@gmail.com','3quuu','謝蟹倪','0988173664','320','桃園市','中壢區','嘉善街35號',NULL),
+(23,'white111@gmail.com','a_white','陳阿白','0931122566','265','宜蘭縣','羅東鎮','羅莊街5號',NULL),
+(24,'flower666@gmail.com','flower66','林阿花','0927554880','635','雲林縣','東勢鄉','嘉芳南路30號',NULL),
+(25,'cc1122356@gmail.com','cc1122','蕭西西','0927554880','356','苗栗縣','後龍鎮','豐富七街25號',NULL),
+(26,'angry777@gmail.com','angry777','沈戚戚','0987487487','206','基隆市','七堵區','綠葉街33號',NULL),
+(27,'good007@gmail.com','good007','高波羅','0954874874','821','高雄市','路竹區','延平路28號',NULL);
 
 /*Table structure for table `NEWS` */
 
@@ -180,9 +181,15 @@ CREATE TABLE `PRODUCT` (
   PRIMARY KEY (`ID`),
   KEY `FK_PRODUCT_PRODUCT_CATEGORY_ID_idx` (`PRODUCT_CATEGORY_ID`),
   CONSTRAINT `FK_PRODUCT_PRODUCT_CATEGORY_ID` FOREIGN KEY (`PRODUCT_CATEGORY_ID`) REFERENCES `PRODUCT_CATEGORY` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 
 /*Data for the table `PRODUCT` */
+
+insert  into `PRODUCT`(`ID`,`NAME`,`COST`,`UNIT_PRICE`,`STOCK`,`PRODUCT_CATEGORY_ID`,`STATE`,`UPDATE`,`MAIN_PIC`,`SLOGAN`,`DETAIL`,`DESCRIPTION`) values 
+(7,'草莓牛奶(六入組)',100,299,30,1,'未上架','2022-04-14 10:07:41','[\"./img/products/strawberry_1200.jpg\",\"./img/products/berry2_1200.jpg\",\"./img/products/berry2_1200.jpg\"]','[原果新鮮草莓牛奶,全部手工現做果汁現煮]','．成分：生乳、水、糖、草莓汁\n．保存期限：冷藏14天','[{\"src\": \"./img/products/cow_1200.jpg\", \"text\": \"放牧牛\"}, {\"src\": \"./img/products/cow_1200.jpg\", \"text\": \"不受拘束\"}]'),
+(8,'草莓牛奶(十入組)',100,499,20,1,'未上架','2022-04-14 10:07:41','[\"./img/products/strawberry_1200.jpg\",\"./img/products/berry2_1200.jpg\",\"./img/products/berry2_1200.jpg\"]','[原果新鮮草莓牛奶,全部手工現做果汁現煮]','．成分：生乳、水、糖、草莓汁\n．保存期限：冷藏14天','[{\"src\": \"./img/products/cow_1200.jpg\", \"text\": \"放牧牛\"}, {\"src\": \"./img/products/cow_1200.jpg\", \"text\": \"不受拘束\"}]'),
+(9,'鮮奶酪',120,399,30,1,'未上架','2022-04-14 10:07:41','[\"./img/products/panna_cotta.jpg\"]','[\"香濃不甜膩\",\"配新鮮水果好好吃\"]','．成分：生乳、水、糖、海藻抽取物．保存期限：冷藏14天','[{\"src\": \"./img/products/panna_cotta.jpg\", \"text\": \"小朋友與大朋友的最愛\"}, {\"src\": \"./img/products/berry_1200.jpg\", \"text\": \"當季限定！新鮮草莓在裡面！\"}]'),
+(10,'羊毛毯（黃）',200,549,10,2,'未上架','2022-04-14 10:07:54','[\"./img/products/blanket_y.jpg\"]','[\"天然羊毛製成\",\"MIT染色最安心\"]','．成分：羊毛100%\n．保存期限：10年','[{\"src\": \"./img/products/blanket_y2.jpg\", \"text\": \"追劇耍廢神器\"}, {\"src\": \"./img/products/sheep2_1200.jpg\", \"text\": \"原料來自本牧場的快樂羊咩咩\"}]');
 
 /*Table structure for table `PRODUCT_CATEGORY` */
 
