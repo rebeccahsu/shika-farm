@@ -1,0 +1,10 @@
+.main_top .maintop_a:nth-child(2){
+    background-color: $color_Y;
+}
+.main_top .maintop_a:first-child{
+    background-color: white;
+}
+
+.main_top .maintop_a:hover{
+    background-color: $color_G;
+}

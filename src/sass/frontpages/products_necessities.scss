@@ -1,0 +1,11 @@
+.main_top .nece_a:first-child{
+    background-color: white;
+}
+
+.main_top .nece_a:first-child:hover{
+    background-color: $color_G;
+}
+
+.main_top .nece_a:nth-child(3){
+    background-color: $color_Y;
+}

@@ -46,6 +46,10 @@
     color: white;
 }
 
+.main_top a:first-child{
+    background-color: $color_Y;
+}
+
 .main_in .list{
     display: flex;
     justify-content: flex-end;
