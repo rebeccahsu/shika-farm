@@ -222,10 +222,10 @@ $('#send_mail').on('click', (e) => {
             .then(body => {
                 //body也不可以console
                 const { successful, NAME, TOKEN } = body;
-                if (successful) {
+                if (successful == true) {
                     // 當畫面上沒有紅P時，插入紅P，按鈕不可按
                     if ($('#password_reset').has($('#cdTime')).length == 0) {
-                        $('label[for="userMail"]').before(`<p style="color:red;" id="cdTime">系統已將信件寄出，若沒有收到信件，請等待<span id="sss"></span>秒後再試，謝謝。 </p>`)
+                        $('#hint').after(`<p style="color:red;" id="cdTime">系統已將信件寄出，若沒有收到信件，請等待<span id="sss"></span>秒後再試，謝謝。 </p>`)
                         $('#send_mail').disabled = true;
                         mail_cd();
                         send_forgetEmail(userMail.value, NAME, TOKEN)
@@ -245,7 +245,7 @@ var cd = 10;
 function mail_cd() {
     if (cd > 0) {
         $('#sss').text(cd);
-        console.log(cd);
+        // console.log(cd);
         setTimeout(mail_cd, 1000);
         cd -= 1;
     } else {
@@ -351,9 +351,9 @@ login_btn.addEventListener('click', function (e) {
             .then(resp =>  resp.json())   
             .then(body => {
                 //body也不可以console
-                const { successful, message, ID, NAME, member } = body;
+                const { successful, message, ID, NAME } = body;
                 if (successful) {
-                    msg_box.innerHTML = `<p>${ID}</p><p>${NAME}</p><p>${message}</p><p>${member}</p>`;
+                    msg_box.innerHTML = `<p>${ID}</p><p>${NAME}</p><p>${message}</p>`;
                     
                 } else {
                     alert(message);
