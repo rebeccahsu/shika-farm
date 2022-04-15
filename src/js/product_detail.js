@@ -144,23 +144,63 @@ function stockChack(el) {
 // ==========================================
 
 $("#pd_info_cart").on("click", (e) => {
-	// let img = $("#pd_info_cart").closest(".pd_area").find(".splide__list li");
-	let img = document.querySelector(".splide__list li img").getAttribute('src');
-    let name = document.querySelector('#pd_info_name').innerText;
-    let price = document.querySelector('#pd_info_pricr').innerText; 
-    let count = document.querySelector('#pd_stockCount_input').value;
-	console.log(img);
-	console.log(name);
-	console.log(price);
-	console.log(count);
 	e.preventDefault();
-    let products = {
-                        img: img,
-                        name: name,
-                        price: price,
-                        count: count,
-                    };
-	sessionStorage.setItem("products", JSON.stringify(products));
+
+	let cart_data = JSON.parse(sessionStorage.getItem("products"));
+	if (cart_data != "") {
+		let img = document
+			.querySelector(".splide__list li img")
+			.getAttribute("src");
+		let name = document.querySelector("#pd_info_name").innerText;
+		let price = document.querySelector("#pd_info_pricr").innerText;
+		let count = document.querySelector("#pd_stockCount_input").value;
+		let overlayCount = parseInt(count) + parseInt(cart_data[0].count);
+
+		let products = [
+			{
+				img: img,
+				name: name,
+				price: price,
+				count: overlayCount,
+			},
+		];
+		sessionStorage.setItem("products", JSON.stringify(products));
+		let cart_count = document.querySelector(".quantity");
+		cart_count.value = overlayCount;
+	} else {
+		let img = document
+			.querySelector(".splide__list li img")
+			.getAttribute("src");
+		let name = document.querySelector("#pd_info_name").innerText;
+		let price = document.querySelector("#pd_info_pricr").innerText;
+		let count = document.querySelector("#pd_stockCount_input").value;
+		let products = [
+			{
+				img: img,
+				name: name,
+				price: price,
+				count: Number(count),
+			},
+		];
+		sessionStorage.setItem("products", JSON.stringify(products));
+		// let cart_count = document.querySelector(".quantity");
+		// // console.log(cart_count);
+		// cart_count.value = count;
+	}
+
+	// let img = document.querySelector(".splide__list li img").getAttribute("src");
+	// let name = document.querySelector("#pd_info_name").innerText;
+	// let price = document.querySelector("#pd_info_pricr").innerText;
+	// let count = document.querySelector("#pd_stockCount_input").value;
+	// let products = [
+	// 	{
+	// 		img: img,
+	// 		name: name,
+	// 		price: price,
+	// 		count: Number(count),
+	// 	},
+	// ];
+	// sessionStorage.setItem("products", JSON.stringify(products));
 });
 
 $("#pd_info_buy").on("click", (e) => {

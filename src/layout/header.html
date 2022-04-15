@@ -48,7 +48,7 @@
 							<div class="car_one">
                             	<img :src="product.img" alt="">
 								<div class="carMain">
-									<p>{{product.info}}</p>
+									<p>{{product.name}}</p>
                             		<p class="carPrice">NT$ {{product.price}}</p>
                             		<p>
                             			<input
@@ -59,7 +59,7 @@
 										/><input
 											type="text"
 											class="quantity"
-											v-model="product.quantity"
+											v-model="product.count"
 										/><input
 											type="button"
 											class="subBtn spBtn"
@@ -67,7 +67,7 @@
 											@click="add(index, 1)"
 										/>
                             		</p>
-                            		<p>	NT$ {{product.price * product.quantity}}</p>
+                            		<p>	NT$ {{product.price * product.count}}</p>
 								</div>
 							</div>
 							
