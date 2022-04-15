@@ -31,6 +31,9 @@
 .mb_name{
     margin: 40px auto 10px;
    
+    label{
+        display: block;
+    }
 }
 
 .mb_name label p{
@@ -85,7 +88,7 @@
 
 .lbt{
     display: inline-block;
-    width: 80px;
+    width: 64px;
 }
 
 .mb_btn{
