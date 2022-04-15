@@ -16,6 +16,7 @@
 			<h3 class="pageTitle">會員中心</h3>
 		</div>
 
+<<<<<<< HEAD
 		<div class="mb_container">
 			<!-- 切換btn -->
 			<div class="mem_tab">
@@ -23,12 +24,24 @@
 				<input class="mem_btn" id="btn2" type="button" value="我的活動" />
 				<input class="mem_btn" id="btn3" type="button" value="訂單查詢" />
 			</div>
+=======
+    <div class="mb_container">
+        <!-- 切換btn -->
+        <div class="mem_tab">
+            <input class="mem_btn " id="btn1" type="button" value="會員資料">
+            <input class="mem_btn " id="btn2" type="button" value="我的活動">
+            <input class="mem_btn" id="btn3" type="button" value="訂單查詢">
+               
+        </div>
+        </div>
+>>>>>>> dev
 
 			<!-- 第一區 會員資料修改 -->
 
 			<div class="mb_re_wrp container-lg tab" data-id="btn1">
 				<p class="tit1">編輯會員資料</p>
 
+<<<<<<< HEAD
 				<div class="mb_name">
 					<label for="">
 						<p>姓名:王小明</p>
@@ -37,6 +50,11 @@
 						<p>信箱:marz840917@gmail.com</p>
 					</label>
 				</div>
+=======
+        <div class="mb_re_wrp container-lg tab" data-id="btn1">
+            <div class="t123">
+            <p class="tit1">編輯會員資料</p>
+>>>>>>> dev
 
 				<div class="mb_adr">
 					<label for="" class="lbt">
@@ -102,6 +120,17 @@
 				<h3 class="act_date">5/20(六)</h3>
 				<h4 class="act_title">乳牛吃飽飽</h4>
 				<p class="act_time">預約時間:下午:2:00 預約人數:4人</p>
+            <div class="mb_pw">
+                <label for="" class="lbt">
+                    <p>輸入舊密碼:</p>
+                </label>
+                <input type="text" name="tel" class="mb_input">
+                <label for="" class="lbt">
+                    <p>輸入新密碼:</p>
+                </label>
+                <input type="text" name="tel" class="mb_input">
+            </div>
+        
 
 				<button class="cancel_btn" id="cancel_btn">取消行程</button>
 			</div>
@@ -141,8 +170,66 @@
 			</div>
 		</div>
 
+<<<<<<< HEAD
 		<script src="./js/member_revise.js"></script>
 		<!-- footer -->
 		@@include('./layout/footer.html')
 	</body>
 </html>
+=======
+
+    <!-- 第二區  活動預約-->
+   <div class="mb_container">
+
+    <div class="act_list tab" id="act_list" data-id="btn2">
+        <h3 class="act_date">5/20(六)</h3>
+        <h4 class="act_title">乳牛吃飽飽 </h4>
+        <p class="act_time">預約時間:下午:2:00 預約人數:4人 </p>
+
+        <button class="cancel_btn" id="cancel_btn">取消行程</button>
+    </div>
+</div>
+
+
+
+    <!-- 第三區  訂單查詢 -->
+    <div class="mb_container1">
+    <div class="mb_cl_wrp tab" data-id="btn3">
+        <ul class=".cl_list">
+            <li class="cl_t accordion-header" id="headingOne">
+                <p>訂單日期</p>
+                <p>訂單編號</p>
+                <p>品項數量</p>
+                <p>訂購總額</p>
+                <p>付款方式</p>
+                <p>訂單狀態</p>
+            </li>
+            <div class="cl_d" id="cl_d">
+                <li class="cl_t cl_list2">
+                    <p>2022/03/20</p>
+                    <p>1000224</p>
+                    <p>1</p>
+                    <p>$690</p>
+                    <p>信用卡付款</p>
+                    <p>檢貨中</p>
+                    <button class="cel_list_btn">取消訂單</button>
+                    <button id="op_btn">+</button>
+                </li>
+                <div class="list_dt" id="list_dt" style="display:none">
+                    <p>羊毛毯(綠)</p>
+                    <p>1件</p>
+                    <p>NTS.499</p>
+                </div>
+            </div>
+        </ul>
+    </div>
+</div>
+
+
+    <script src="./js/member_revise.js"></script>
+    <!-- footer -->
+    @@include('./layout/footer.html')
+</body>
+
+</html>
+>>>>>>> dev

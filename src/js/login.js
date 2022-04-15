@@ -1,5 +1,3 @@
-// import * as is from 'is_js'
-// import { char } from './vendors/is';
 
 // 關閉按鈕和範圍==============
 
@@ -79,11 +77,12 @@ $('.forget').on('click', (e) => {
     console.log(e.target);
 })
 
+/*
 $('#login_btn').on('click', (e) => {
     e.preventDefault();
     console.log(e.target);
 })
-
+*/
 
 $('#FBlogin_btn').on('click', (e) => {
     e.preventDefault();
@@ -114,18 +113,18 @@ $('#send_psd').on('click', (e) => {
     // console.log(e.target);
     // 驗證密碼
     let psd = $('#password').val();
-    let repsd =  $('#repassword').val()
+    let repsd = $('#repassword').val()
     // console.log(psd);
-    if (psd == "" ){
+    if (psd == "") {
         $('label[for="password"]').html("<h5>密碼<span>*密碼須為4~16字以內</span></h5>");
-    }else if(psd.search(passwordRule) == -1){
+    } else if (psd.search(passwordRule) == -1) {
         $('label[for="password"]').html("<h5>密碼<span>*請輸入半形的英文和數字</span></h5>");
-    }else if(repsd == "") { 
+    } else if (repsd == "") {
         console.log('object');
         $('label[for="repassword"]').html("<h5>密碼確認<span>*和密碼不一致</span></h5>");
-    }else if(psd != repsd){
+    } else if (psd != repsd) {
         $('label[for="repassword"]').html("<h5>密碼確認<span>*和密碼不一致</span></h5>");
-    }else{
+    } else {
         location.href = `./password_reset_3.html`;
     }
 })
@@ -201,7 +200,7 @@ $('#send_mail').on('click', (e) => {
         $('label[for="userMail"]').html("<h5>電子郵件<span>*未輸入e-mail</span></h5>");
     } else if ($('#userMail').val().search(emailRule) == -1) {
         $('label[for="userMail"]').html("<h5>電子郵件<span>*e-mail格式不正確</span></h5>");
-    // }else if(){ //送後端預留，如果沒有email，顯示email沒有註冊過
+        // }else if(){ //送後端預留，如果沒有email，顯示email沒有註冊過
     } else {
         $('label[for="userMail"]').html("<h5>電子郵件</h5>");
         // 當畫面上沒有紅P時，插入紅P，按鈕不可按
@@ -224,7 +223,7 @@ function mail_cd() {
     } else {
         $('#cdTime').remove();
         $('#send_mail').disabled = false;
-        cd=10;
+        cd = 10;
     }
 }
 
@@ -272,3 +271,45 @@ $(document).ready(function () {
 */
 
 // ==========郵遞區號END============
+// AJAX 登入=========================
+
+let login_btn = document.querySelector("#login_btn");
+let msg_box = document.querySelector("#msg_box");
+login_btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    let userMail = document.querySelectorAll('.userMail')[0];
+    let PWD = document.querySelector('#password');
+    console.log(userMail.value +' / '+ PWD.value);  //上線之前一定要刪掉
+    if(userMail != "" && PWD != ""){
+        let url = './php/Login.php';
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            // 送出內容轉成JSON送出
+            body: JSON.stringify({
+                Mail: userMail.value,
+                Password:PWD.value,
+            }),
+        })
+       
+            // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+            .then(resp =>  resp.json())   
+            .then(body => {
+                //body也不可以console
+                const { successful, message, ID, NAME, member } = body;
+                if (successful) {
+                    msg_box.innerHTML = `<p>${ID}</p><p>${NAME}</p><p>${message}</p><p>${member}</p>`;
+                    
+                } else {
+                    alert(message);
+                }
+            })
+    }
+    
+})
+
+
+// AJAX 登入 END========================
+

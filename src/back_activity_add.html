@@ -14,81 +14,82 @@
                 "back_title" : "活動內容"
                 })
             
-            <form class="activity-detail">
-                <div class="img-area">
-                    <input type="file" id="p_file">
-                    <div class="preview" id="drop_zone"><span class="text">圖片拖曳至此處</span></div>
-                </div>
-                <div class="margintop_30">
-                    <h5>活動名稱</h5>
-                    <input type="text" name="name" required>
-                </div>
-                <div class="oneline margintop_25">
-                    <label>人數上限</label>
-                    <input type="number" required oninput="if(value<1)value=1">
-                </div>
-                <div class="oneline margintop_25">
-                    <label>時間長度</label>
-                    <input type="radio" id="30" name="time" checked>
-                    <label for="30">30分鐘</label>
-                    <input type="radio" id="60" name="time">
-                    <label for="60">60分鐘</label>
-                    <input type="radio" id="90" name="time">
-                    <label for="90">90分鐘</label>
-                </div>
-                <div class="oneline margintop_30">
-                    <label for="">場次一時間</label>
-                    <input type="time" class="time-start" required>
-                    <h5 class="tilde">~</h5>
-                    <input type="time" class="time-end" readonly>
-                </div>
-                <div class="oneline margintop_25">
-                    <label for="">場次二時間</label>
-                    <input type="time" class="time-start" required>
-                    <h5 class="tilde">~</h5>
-                    <input type="time" class="time-end" readonly>
-                </div>
-                <div class="oneline margintop_25">
-                    <label for="">場次三時間</label>
-                    <input type="time" class="time-start" required>
-                    <h5 class="tilde">~</h5>
-                    <input type="time" class="time-end" readonly>
-                </div>
-                <div class="margintop_25">
-                    <h5>活動介紹</h5>
-                    <textarea rows="10" cols="50" required></textarea>
-                </div>
-                <!-- <div class="oneline margintop_30">
-                    <label for="">上架時間</label>
-                    <input type="date" id="on_date" required>
-                    <input type="time" value="23:59" id="on_time">
-                </div>
-                <div class="oneline margintop_25">
-                    <label for="">下架時間</label>
-                    <input type="date" id="off_date">
-                    <input type="time" value="23:59" id="off_time">
-                </div> -->
-
-                <div class="onoroff">
-                    <span class="state">上架</span>
-                    <label class="switch">
-                        <input type="checkbox" checked class="show-switch-btn">
-                        <span class="slider round"></span>
-                    </label>
+                <form class="activity-detail" id="activity-add-app">
+                    <div class="img-area">
+                        <input type="file" id="p_file">
+                        <div class="preview" id="drop_zone"><span class="text">圖片拖曳至此處</span></div>
+                    </div>
+                    <div class="margintop_30">
+                        <h5>活動名稱</h5>
+                        <input type="text" name="name" id="name" v-model="name" required>
+                    </div>
+                    <div class="oneline margintop_25">
+                        <label>人數上限</label>
+                        <input type="number" required oninput="if(value<1)value=1" name="opacity" id="opacity" v-model="opacity">
+                    </div>
+                    <div class="oneline margintop_25">
+                        <label>時間長度</label>
+                        <input type="radio" id="30" name="time" value="30" class="time" v-model="time" checked>
+                        <label for="30">30分鐘</label>
+                        <input type="radio" id="60" name="time" value="60" class="time" v-model="time">
+                        <label for="60">60分鐘</label>
+                        <input type="radio" id="90" name="time" value="90" class="time" v-model="time">
+                        <label for="90">90分鐘</label>
+                    </div>
+                    <div class="oneline margintop_30">
+                        <label for="">場次一時間</label>
+                        <input type="time" class="time-start" required name="s1_start" v-model="s1_start">
+                        <h5 class="tilde">~</h5>
+                        <input type="time" class="time-end" readonly name="s1_end" v-model="s1_end">
+                    </div>
+                    <div class="oneline margintop_25">
+                        <label for="">場次二時間</label>
+                        <input type="time" class="time-start" required name="s2_start" v-model="s2_start">
+                        <h5 class="tilde">~</h5>
+                        <input type="time" class="time-end" readonly name="s2_end" v-model="s2_end">
+                    </div>
+                    <div class="oneline margintop_25">
+                        <label for="">場次三時間</label>
+                        <input type="time" class="time-start" required name="s3_start" v-model="s3_start">
+                        <h5 class="tilde">~</h5>
+                        <input type="time" class="time-end" readonly name="s3_end" v-model="s3_end">
+                    </div>
+                    <div class="margintop_25">
+                        <h5>活動介紹</h5>
+                        <textarea rows="10" cols="50" v-model="desc" required></textarea>
+                    </div>
+                    <!-- <div class="oneline margintop_30">
+                        <label for="">上架時間</label>
+                        <input type="date" id="on_date" required>
+                        <input type="time" value="23:59" id="on_time">
+                    </div>
+                    <div class="oneline margintop_25">
+                        <label for="">下架時間</label>
+                        <input type="date" id="off_date">
+                        <input type="time" value="23:59" id="off_time">
+                    </div> -->
+    
+                    <div class="onoroff">
+                        <span class="state">上架</span>
+                        <label class="switch">
+                            <input type="checkbox" checked class="show-switch-btn">
+                            <span class="slider round"></span>
+                        </label>
+                        
+                    </div>
+    
+                    <div class="buttons">
+                        <button type="button" class="btn-green" id="add_activity" @click="addActivity">確認</button>
+                        <a href="back_activity.html"><button type="button" class="btn-border">取消</button></a>
+                    </div>
+                    <div id="msg" class="error"></div>
                     
-                </div>
-
-                <div class="buttons">
-                    <button type="submit" class="btn-green">確認</button>
-                    <a href="back_activity.html"><button type="button" class="btn-border">取消</button></a>
-                </div>
-                
-
-            </form>
+    
+                </form>
 
         
 
-            <p class="tibameMessage margintop_50">本網站為緯育TibaMe前端設計工程師班第72期第二組學員專題成果作品，本平台僅供學習、展示之用。</p>
+            <p class="tibameMessage margintop_50">本網站為緯育TibaMe前端設計工程師班第74期第六組學員專題成果作品，本平台僅供學習、展示之用。</p>
         </main>
     </div>
 
