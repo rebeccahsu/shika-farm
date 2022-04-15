@@ -1,13 +1,153 @@
+//目前頁面
+let pages = document.querySelector(".aside_ul").querySelectorAll("h5");
+pages.forEach(function(page){
+    if ( page.innerHTML == "活動管理"){
+        page.closest("a").classList.add("-on");
+    }
+});
+
+// sweetalert
+function actAlert(msg, icon) {
+    Swal.fire({
+        title: msg,
+        icon: icon,
+        showConfirmButton: false, // 確認按鈕（預設會顯示不用設定)
+        // 使用同確認按鈕
+        // showDenyButton: true, // 否定按鈕
+        showCancelButton: false, // 取消按鈕
+        buttonsStyling: false, // 是否使用sweetalert按鈕樣式（預設為true）
+    })
+}
+
 new Vue({
-    el: '.actLists',
+    el: '#back_activity',
     data: {
         activities: [
-            { img: './img/activity/riding.jpg', name:'我要當牛仔', timeI: '09:30~11:00', timeII: '13:00~14:30', timeIII: '16:30~18:00', state: '上架中', stateClass: ''},
-            { img: './img/activity/pigrun.jpg', name:'小豬賽跑', timeI: '10:00~10:30', timeII: '13:00~13:30', timeIII: '15:00~15:30', state: '上架中' },
-            { img: './img/activity/fur.jpg', name:'剃羊毛秀', timeI: '09:30~10:30', timeII: '14:00~15:00', timeIII: '17:00~18:00', state: '上架中' },
-            { img: './img/activity/horseshow.jpg', name:'馬術秀', timeI: '11:00~12:00', timeII: '13:00~14:00', timeIII: '16:00~17:00', state: '已下架', stateClass: '-off' },
-            { img: './img/activity/alpacawalk.jpg', name:'草泥馬散步秀', timeI: '10:30~11:30', timeII: '13:30~14:30', timeIII: '15:30~16:30', state: '上架中' },
+            { IMG: './img/activity/riding.jpg', NAME:'我要當牛仔', S1_START: '09:30', S1_END: '11:00', S2_START: '13:00~14:30', S3_START: '16:30~18:00', STATE: '上架中'},
+            { IMG: './img/activity/pigrun.jpg', NAME:'小豬賽跑', S1_START: '10:00~10:30', S2_START: '13:00~13:30', S3_START: '15:00~15:30', STATE: '上架中' },
+            { IMG: './img/activity/fur.jpg', NAME:'剃羊毛秀', S1_START: '09:30~10:30', S2_START: '14:00~15:00', S3_START: '17:00~18:00', STATE: '上架中' },
+            { IMG: './img/activity/horseshow.jpg', NAME:'馬術秀', S1_START: '11:00~12:00', S2_START: '13:00~14:00', S3_START: '16:00~17:00', STATE: '已下架'},
+            { IMG: './img/activity/alpacawalk.jpg', NAME:'草泥馬散步秀', S1_START: '10:30~11:30', S2_START: '13:30~14:30', S3_START: '15:30~16:30', STATE: '上架中' },
         ],
+    },
+    // data: {
+    //     activities: [],
+    // },
+    data() {
+        return {
+            activities: [],
+            stateClass: '',
+        }
+    },
+    created() {
+        fetch('./php/back_activity.php')
+        .then(res => res.json())
+        .then(res => this.activities = res)
+        .then(res => {
+            let on_arr = [];
+            res.forEach(function(act){
+                if (act.STATE == "已下架"){
+                    let i = res.indexOf(act);
+                    // console.log(i);
+                    let offAct = document.querySelectorAll('.actList');
+                    offAct[i].classList.add("-off");
+                }else{
+                    on_arr.push(act);
+                }
+            })
+            let on_activity_count = document.querySelector(".actAvailable");
+            on_activity_count.innerHTML = on_arr.length;
+
+        })
+    },
+    methods: {
+        // ==== 上架按鈕 ====
+        onAct(){
+            let checkbox = document.querySelectorAll(".check-act");
+            let checked_arr  = [];
+            checkbox.forEach(function(box){
+                if (box.checked){
+                    let on_li = box.closest(".actList");
+                    checked_arr.push(on_li);
+                    $(on_li).removeClass("-off");
+                    $(on_li).find(".state-text").html("上架中");
+                    box.checked = false;
+                }
+            });
+            // console.log(checked_arr[0]);
+            actAlert(`<strong>已成功上架 ${checked_arr.length} 個活動！</strong>`, 'success');
+            function checkAvailability (){
+                let activity_li = document.querySelectorAll(".actList");
+                let on_activity = [];
+                activity_li.forEach(function(li){
+                    if ( ! li.classList.contains("-off")){
+                        on_activity.push(li);
+                    }
+                })
+                // console.log(on_activity.length);
+                let on_activity_count = document.querySelector(".actAvailable");
+                on_activity_count.innerHTML = on_activity.length;
+            }
+            checkAvailability();
+        },
+        // ==== 下架按鈕 ====
+        offAct(){
+            let checkbox = document.querySelectorAll(".check-act");
+            let checked_arr  = [];
+            checkbox.forEach(function(box){
+                if (box.checked){
+                    let off_li = box.closest(".actList");
+                    checked_arr.push(off_li);
+                    $(off_li).addClass("-off");
+                    $(off_li).find(".state-text").html("已下架");
+                    box.checked = false;
+                }
+            });
+            actAlert(`<strong>已成功下架 ${checked_arr.length} 個活動！</strong>`, 'success');
+            function checkAvailability (){
+                let activity_li = document.querySelectorAll(".actList");
+                let on_activity = [];
+                activity_li.forEach(function(li){
+                    if ( ! li.classList.contains("-off")){
+                        on_activity.push(li);
+                    }
+                })
+                // console.log(on_activity.length);
+                let on_activity_count = document.querySelector(".actAvailable");
+                on_activity_count.innerHTML = on_activity.length;
+            }
+            checkAvailability();
+        },
+        // ==== 刪除按鈕 ====
+        deleteAct(){
+            let checkbox = document.querySelectorAll(".check-act");
+            checkbox.forEach(function(box){
+                if (box.checked){
+                    let del_li = box.closest(".actList");
+                    $(del_li).addClass("fade_out");
+    
+                    setTimeout(function(){
+                        del_li.remove();
+                    }, 1000);
+                }
+            });
+        },
+        // ==== 顯示已上架按鈕 ====
+        switchShow(){
+            let activity_li = document.querySelectorAll(".actList");
+            let switch_button = document.querySelector(".show-switch-btn");
+            if ( switch_button.checked ){
+                activity_li.forEach(function(li){
+                    li.style.display = 'flex';
+                })
+            }else{
+                activity_li.forEach(function(li){
+                    if (li.classList.contains("-off")){
+                        li.style.display = 'none';
+                    }
+                })
+            }
+        }
     },
 });
 
@@ -26,14 +166,8 @@ new Vue({
 
 
 $(function() {
-    checkAvailability();
-    //目前頁面
-    let pages = document.querySelector(".aside_ul").querySelectorAll("h5");
-    pages.forEach(function(page){
-        if ( page.innerHTML == "活動管理"){
-            page.closest("a").classList.add("-on");
-        }
-    });
+    // checkAvailability();
+    
     
     //overlay
     document.addEventListener("click", function(e){
@@ -69,78 +203,78 @@ $(function() {
 
     //===== 新刪修 =========
     let checkbox = document.querySelectorAll(".check-act");
-    function deleteChecked (){
-        checkbox.forEach(function(box){
-            if (box.checked){
-                let del_li = box.closest(".actList");
-                $(del_li).addClass("fade_out");
+    // function deleteChecked (){
+    //     checkbox.forEach(function(box){
+    //         if (box.checked){
+    //             let del_li = box.closest(".actList");
+    //             $(del_li).addClass("fade_out");
 
-                setTimeout(function(){
-                    del_li.remove();
-                }, 1000);
-            }
-        });
-    };
+    //             setTimeout(function(){
+    //                 del_li.remove();
+    //             }, 1000);
+    //         }
+    //     });
+    // };
 
-    function onChecked (){
-        let checked_arr  = [];
-        checkbox.forEach(function(box){
-            if (box.checked){
-                let on_li = box.closest(".actList");
-                checked_arr.push(on_li);
-                $(on_li).removeClass("-off");
-                $(on_li).find(".state-text").html("上架中");
-                box.checked = false;
-            }
-        });
-        // console.log(checked_arr[0]);
-        alert("已成功上架 " + checked_arr.length + " 個活動！");
-    };
+    // function onChecked (){
+    //     let checked_arr  = [];
+    //     checkbox.forEach(function(box){
+    //         if (box.checked){
+    //             let on_li = box.closest(".actList");
+    //             checked_arr.push(on_li);
+    //             $(on_li).removeClass("-off");
+    //             $(on_li).find(".state-text").html("上架中");
+    //             box.checked = false;
+    //         }
+    //     });
+    //     // console.log(checked_arr[0]);
+    //     alert("已成功上架 " + checked_arr.length + " 個活動！");
+    // };
 
-    function offChecked (){
-        let checked_arr  = [];
-        checkbox.forEach(function(box){
-            if (box.checked){
-                let off_li = box.closest(".actList");
-                checked_arr.push(off_li);
-                $(off_li).addClass("-off");
-                $(off_li).find(".state-text").html("已下架");
-                box.checked = false;
-            }
-        });
-        alert("已成功下架 " + checked_arr.length + " 個活動！");
-    };
+    // function offChecked (){
+    //     let checked_arr  = [];
+    //     checkbox.forEach(function(box){
+    //         if (box.checked){
+    //             let off_li = box.closest(".actList");
+    //             checked_arr.push(off_li);
+    //             $(off_li).addClass("-off");
+    //             $(off_li).find(".state-text").html("已下架");
+    //             box.checked = false;
+    //         }
+    //     });
+    //     alert("已成功下架 " + checked_arr.length + " 個活動！");
+    // };
 
     
     //上架中的活動
-    function checkAvailability (){
-        let activity_li = document.querySelectorAll(".actList");
-        let on_activity = [];
-        activity_li.forEach(function(li){
-            if ( ! li.classList.contains("-off")){
-                on_activity.push(li);
-            }
-        })
-        // console.log(on_activity.length);
-        let on_activity_count = document.querySelector(".actAvailable");
-        on_activity_count.innerHTML = on_activity.length;
-    }
+    // function checkAvailability (){
+    //     let activity_li = document.querySelectorAll(".actList");
+    //     let on_activity = [];
+    //     activity_li.forEach(function(li){
+    //         if ( ! li.classList.contains("-off")){
+    //             on_activity.push(li);
+    //         }
+    //     })
+    //     // console.log(on_activity.length);
+    //     let on_activity_count = document.querySelector(".actAvailable");
+    //     on_activity_count.innerHTML = on_activity.length;
+    // }
 
-    function checkShowActivity (){
-        let activity_li = document.querySelectorAll(".actList");
-        let switch_button = document.querySelector(".show-switch-btn");
-        if ( switch_button.checked ){
-            activity_li.forEach(function(li){
-                li.style.display = 'flex';
-            })
-        }else{
-            activity_li.forEach(function(li){
-                if (li.classList.contains("-off")){
-                    li.style.display = 'none';
-                }
-            })
-        }
-    }
+    // function checkShowActivity (){
+    //     let activity_li = document.querySelectorAll(".actList");
+    //     let switch_button = document.querySelector(".show-switch-btn");
+    //     if ( switch_button.checked ){
+    //         activity_li.forEach(function(li){
+    //             li.style.display = 'flex';
+    //         })
+    //     }else{
+    //         activity_li.forEach(function(li){
+    //             if (li.classList.contains("-off")){
+    //                 li.style.display = 'none';
+    //             }
+    //         })
+    //     }
+    // }
 
 
 
@@ -160,26 +294,25 @@ $(function() {
     });
 
     //刪除按鈕
-    $(".delete-activity").on("click", function(e){
-        deleteChecked();
-        checkAvailability();
-    });
+    // $(".delete-activity").on("click", function(e){
+    //     deleteChecked();
+    //     // checkAvailability();
+    // });
 
     //上架按鈕
-    $(".on-activity").on("click", function(){
-        onChecked();
-        checkAvailability();
-    });
+    // $(".on-activity").on("click", function(){
+    //     onChecked();
+    //     checkAvailability();
+    // });
 
     //下架按鈕
-    $(".off-activity").on("click", function(){
-        offChecked();
-        checkAvailability();
-    });
+    // $(".off-activity").on("click", function(){
+    //     offChecked();
+    //     checkAvailability();
+    // });
 
-    $(".show-switch-btn").on("click", function(){
-        checkShowActivity();
-    })
+    // $(".show-switch-btn").on("click", function(){
+    //     checkShowActivity();
+    // })
     
 });
-

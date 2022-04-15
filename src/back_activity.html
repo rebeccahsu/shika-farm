@@ -8,56 +8,56 @@
 <body>
     <!-- 側邊導覽列 -->  
     @@include('./layout/back_aside.html')
-    <div class="backcontainer">
+    <div class="backcontainer" id="back_activity">
         <main class="act-content-container">
             @@include('./layout/back_title.html', {
                 "back_title" : "活動管理"
                 })
         
-            <section class="buttonsnNumber">
-                <div class="buttons">
-                    <button type="button" class="btn-yellow add-activity">新增</button>
-                    <button type="button" class="btn-green on-activity">上架</button>
-                    <button type="button" class="btn-green off-activity">下架</button>
-                    <button type="button" class="btn-red delete-activity">刪除</button>
+                <section class="buttonsnNumber">
+                    <div class="buttons">
+                        <button type="button" class="btn-yellow add-activity">新增</button>
+                        <button type="button" class="btn-green on-activity" @click="onAct">上架</button>
+                        <button type="button" class="btn-green off-activity" @click="offAct">下架</button>
+                        <button type="button" class="btn-red delete-activity" @click="deleteAct">刪除</button>
+                    </div>
+                    <h5 class="actAvailableTitle">上架中的活動：<span class="actAvailable">5</span></h5>
+                </section>
+    
+                <div class="showUnavailable">
+                    <label class="switch">
+                        <input type="checkbox" checked class="show-switch-btn" @change="switchShow">
+                        <span class="slider round"></span>
+                    </label>
+                    <p class="showTitle">顯示已下架活動</p>
                 </div>
-                <h5 class="actAvailableTitle">上架中的活動：<span class="actAvailable">5</span></h5>
-            </section>
-
-            <div class="showUnavailable">
-                <label class="switch">
-                    <input type="checkbox" checked class="show-switch-btn">
-                    <span class="slider round"></span>
-                </label>
-                <p class="showTitle">顯示已下架活動</p>
-            </div>
-
-            <ul class="actLists">
-                <li class="actList" v-for="activity in activities" :class="activity.stateClass">
-                    <div class="actImgCon">
-                        <img :src="activity.img" alt="activity_img" class="activityImg">
-                    </div>
-                    
-                    <div class="act-content">
-                        <label class="check_container actCheck">
-                            <input type="checkbox" class="check-act">
-                            <span class="checkmark"></span>
-                        </label>
-
-                        <h5 class="name">{{activity.name}}</h5>
-                        <div class="activity-time-list">
-                            <p>場次一</p><span class="activity-time">{{activity.timeI}}</span>
-                            <p>場次二</p><span class="activity-time">{{activity.timeII}}</span>
-                            <p>場次三</p><span class="activity-time">{{activity.timeIII}}</span>
+    
+                <ul class="actLists">
+                    <li class="actList" v-for="activity in activities" :class="stateClass">
+                        <div class="actImgCon">
+                            <img :src="activity.IMG" alt="activity_img" class="activityImg">
                         </div>
-                        <p class="state">狀態<span class="state-text">{{activity.state}}</span></p>
-                        <div class="actButtons">
-                            <button class="btn-yellow member_btn">已報名會員</button>
-                            <button class="btn-green modify_btn">修改</button>
+                        
+                        <div class="act-content">
+                            <label class="check_container actCheck">
+                                <input type="checkbox" class="check-act">
+                                <span class="checkmark"></span>
+                            </label>
+    
+                            <h5 class="name">{{activity.NAME}}</h5>
+                            <div class="activity-time-list">
+                                <p>場次一</p><span class="activity-time">{{activity.S1_START}}~{{activity.S1_END}}</span>
+                                <p>場次二</p><span class="activity-time">{{activity.S2_START}}~{{activity.S2_END}}</span>
+                                <p>場次三</p><span class="activity-time">{{activity.S3_START}}~{{activity.S3_END}}</span>
+                            </div>
+                            <p class="state">狀態<span class="state-text">{{activity.STATE}}</span></p>
+                            <div class="actButtons">
+                                <button class="btn-yellow member_btn">已報名會員</button>
+                                <button class="btn-green modify_btn">修改</button>
+                            </div>
                         </div>
-                    </div>
-                </li>
-            </ul>
+                    </li>
+                </ul>
         
 
             <p class="tibameMessage">本網站為緯育TibaMe前端設計工程師班第74期第六組學員專題成果作品，本平台僅供學習、展示之用。</p>

@@ -134,7 +134,17 @@ for( let i = 0; i < time_start.length; i++){
 // on_time.min = current_time;
 
 
-
+function alertAddAct(msg, icon) {
+    Swal.fire({
+        title: msg,
+        icon: icon,
+        showConfirmButton: false, // 確認按鈕（預設會顯示不用設定)
+        // 使用同確認按鈕
+        showDenyButton: true, // 否定按鈕
+        showCancelButton: false, // 取消按鈕
+        buttonsStyling: false, // 是否使用sweetalert按鈕樣式（預設為true）
+    })
+}
 //TODO: 連到資料庫之後再使用這邊
 //確認新增
 new Vue({
@@ -189,18 +199,21 @@ new Vue({
                     console.log(body);
                     console.log(body.successful);
                     if (successful) {
-                        alert('已成功新增');
-                        let from = document.querySelector('form.activity-detail');
-                        from.reset();
+                        alertAddAct('<strong>已成功新增活動！</strong>', 'success');
+                        let form = document.querySelector('form.activity-detail');
+                        form.reset();
                         window.location.href = "./back_activity.html";
                     } 
                     else {
-                        alert('新增失敗');
+                        alertAddAct('<strong>新增失敗，請再試一次</strong>', 'error');
                     }
+                })
+                .catch(function(err) {
+                    alertAddAct('<strong>新增失敗，請再試一次</strong>', 'error');
                 });
 
             }else{
-                alert('請填寫完所有欄位');
+                alertAddAct('<strong>請填寫完所有欄位再送出</strong>', 'error');
             }
         },
 
@@ -272,4 +285,5 @@ new Vue({
             $('span.text').remove();
        },
     },
+
 })
