@@ -1,14 +1,7 @@
 <?php
 
-// include("connection.php");    //connection.php 記得return $PDO
+ include("connection.php");   
 
-$db_host = "127.0.0.1";
-$db_user = "root";
-$db_pass = "password";
-$db_select = "TFD105_G6";
-$dsn = "mysql:host=".$db_host.";dbname=".$db_select;
-$pdo = new PDO($dsn, $db_user, $db_pass);
-// ============================================
 
 //取得資料
 //透過php取得前端資料並解譯
@@ -17,24 +10,8 @@ $_POST = json_decode(file_get_contents("php://input"), true);
 $Mail = $_POST["Mail"];
 $PWD = $_POST["Password"];
 
-$db_host = "127.0.0.1";
-$db_user = "root";
-$db_pass = "password";
-$db_select = "TFD105_G6";
-
-$dsn = "mysql:host=".$db_host.";dbname=".$db_select;
-
-$pdo = new PDO($dsn, $db_user, $db_pass);
 
 //---------------------------------------------------
-
-
-
-
-       //建立SQL
-       // PDO執行的事情
-    //    將原本的王曉明和密碼改為變數即可
-      //  $sql = "INSERT INTO member(Name, PWD, CreateDate) VALUES ('$Name', '$PWD', NOW())";
 // select 資料 where name=輸入的帳號  and 串接條件  PWD=輸入的密碼
 $sql = "SELECT * FROM member where EMAIL= ? and PASSWORD = ? " ;
        //執行 -> 就是PHP 的.       exec執行鍵入$sql內的文字
@@ -62,7 +39,7 @@ if(count($data) > 0){
   }
    $_SESSION['ID'] = $data[0]["ID"];
    $_SESSION['NAME'] = $data[0]["NAME"];
-   $_SESSION['member'] = (array) $data;
+   // $_SESSION['member'] = (array) $data;
    $_SESSION['successful'] = true;
    $_SESSION['message'] = '登入成功，歡迎回來';
    echo json_encode($_SESSION);  
@@ -70,7 +47,7 @@ if(count($data) > 0){
 }else{
    $_SESSION['ID'] = "";
    $_SESSION['NAME'] = "";
-   $_SESSION['member'] = "";
+   // $_SESSION['member'] = "";
    $_SESSION['successful'] = false;
    $_SESSION['message'] = "帳號或密碼錯誤！";
    echo json_encode($_SESSION);
