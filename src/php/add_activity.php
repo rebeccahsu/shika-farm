@@ -4,15 +4,14 @@
     $activity = json_decode(file_get_contents("php://input"), true);
     // echo json_encode($activity);
 
-    $SQL = '
+    $sql = '
         INSERT INTO `TFD105_G6`.`ACTIVITY`
-        (`NAME`, `IMG`, `ATTENDANCE`, `OPACITY`, `STATE`, `TIME`, `S1_START`, `S1_END`, `S2_START`, `S2_END`, `S3_START`, `S3_END`, `DESC`)
+        (`NAME`, `IMG`, `ATTENDANCE`, `OPACITY`, `STATE`, `TIME`, `S1_START`, `S1_END`, `S2_START`, `S2_END`, `S3_START`, `S3_END`, `DESC`, `CATEGORY`)
         VALUES
-        (:name, :img, 0,  :opacity, :state, :time, :s1_start, :s1_end, :s2_start, :s2_end, :s3_start, :s3_end, :desc)
+        (:name, :img, 0,  :opacity, :state, :time, :s1_start, :s1_end, :s2_start, :s2_end, :s3_start, :s3_end, :desc, :category)
     ';
-    $stmt = $pdo->prepare($SQL);
+    $stmt = $pdo->prepare($sql);
     $stmt->bindValue(":name", $activity["name"]);
-    $stmt->bindValue(":img", $activity["img"]);
     $stmt->bindValue(":opacity", $activity["opacity"]);
     $stmt->bindValue(":state", $activity["state"]);
     $stmt->bindValue(":time", $activity["time"]);
@@ -23,6 +22,7 @@
     $stmt->bindValue(":s3_start", $activity["s3_start"]);
     $stmt->bindValue(":s3_end", $activity["s3_end"]);
     $stmt->bindValue(":desc", $activity["desc"]);
+    $stmt->bindValue(":category", $activity["category"]);
     $stmt->execute();
     
     $resultCount = $stmt->rowCount();
@@ -32,6 +32,6 @@
     } else {
         $respBody["successful"] = false;
     }
-
+    
     echo json_encode($respBody);
 ?>
