@@ -10,13 +10,21 @@
 // });
 
 // $('#login_box').on('click', function (e) {
-//     e.stopPropagation();
+//     e.stopPropagation(e);
 // })
 
 // function closebg(t) {
 //     // console.log(t);
 //     $('#back_bg').remove();
 // }
+
+// 註冊完成、重設密碼完成
+// $('#register_complete').on('click', (e) => {
+//     e.preventDefault();
+    // console.log(e.target);
+    // {前一步送出成功之後，維持登入狀態?}}
+//     closebg();
+// })
 
 // 關閉按鈕和範圍end
 // ============================
@@ -68,7 +76,7 @@ $('#repassword').on('blur', () => {
     }
 })
 
-// 密碼驗證end
+// 驗證end
 // ============================================
 
 // 停止預設行為，切換內容
@@ -98,7 +106,35 @@ $('.register').on('click', (e) => {
 // 註冊送出帳密
 $('#next').on('click', (e) => {
     e.preventDefault();
-    console.log(e.target);
+    let newPassword = document.querySelector("#register_password");
+    let userMail = document.querySelector("#register_mail");
+    
+    fetch('./php/register_email.php', {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        // 送出內容轉成JSON送出
+        body: JSON.stringify({
+            EMAIL:userMail.value,
+            PASSWORD: newPassword.value,
+        }),
+    })
+        // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+        .then(resp => resp.json())
+        .then(body => {
+            //body也不可以console
+            const { successful, message } = body;
+            if (successful == true) {
+                console.log(successful +' 訊息' + message);
+                sessionStorage.setItem("register",JSON.stringify({mail:userMail,password:newPassword}))
+
+                // location.href = `./password_reset_3.html`;
+            } else {
+                $('label[for="register_mail"]').html("<h5>電子郵件<span>*e-mail已註冊過</span></h5>");
+                console.log(successful + ' 訊息' + message);
+            }
+        })
 })
 
 // 註冊送出詳細資料
@@ -154,17 +190,6 @@ $('#send_psd').on('click', (e) => {
     }
 })
 
-
-
-
-
-// 註冊完成、重設密碼完成
-$('#register_complete').on('click', (e) => {
-    e.preventDefault();
-    // console.log(e.target);
-    // {前一步送出成功之後，維持登入狀態?}}
-    closebg();
-})
 
 // 重設密碼完成
 $('#psdReset_complete').on('click', (e) => {
@@ -351,7 +376,7 @@ $(document).ready(function () {
 let login_btn = document.querySelector("#login_btn");
 let msg_box = document.querySelector("#msg_box");
 login_btn.addEventListener('click', function (e) {
-    e.preventDefault(e);
+    e.preventDefault();
     let userMail = document.querySelectorAll('.userMail')[0];
     let PWD = document.querySelector('#password');
     console.log(userMail.value +' / '+ PWD.value);  //上線之前一定要刪掉
