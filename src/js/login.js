@@ -76,8 +76,45 @@ $('#repassword').on('blur', () => {
     }
 })
 
-// 驗證end
-// ============================================
+// 註冊詳細資料驗證  ====================================
+// 驗證手機號碼格式  /  正規表達式的內容{最少字元，最多字元}  /
+const phoneRule = /\d{9,10}/;
+$('#phoneNumber').on('blur', () => {
+    if ($('#phoneNumber').val().search(phoneRule) == -1) {
+        $('label[for="phoneNumber"]').html("<h5>聯絡電話<span>*電話格式不正確</span></h5>");
+    } else {
+        $('label[for="phoneNumber"]').html("<h5>聯絡電話</h5>");
+    }
+})
+
+$('#userName').on('blur', () => {
+    if ($('#userName').val() == "") {
+        $('label[for="userName"]').html("<h5>姓名<span>*必填欄位</span></h5>");
+    } else {
+        $('label[for="userName"]').html("<h5>姓名</h5>");
+    }
+});
+
+
+$('#birthday').on('blur', () => {
+    if ($('#birthday').val() == "") {
+        $('label[for="birthday"]').html("<h5>生日<span>*必填欄位</span></h5>");
+    } else {
+        $('label[for="birthday"]').html("<h5>生日</h5>");
+    }
+})
+
+$('#Street').on('blur', () => {
+    if ($('#Street').val() == "") {
+        $('label[for="address"]').html("<h5>聯絡地址<span>*請輸入地址</span></h5>");
+    } else {
+        $('label[for="address"]').html("<h5>聯絡地址</h5>");
+    }
+})
+
+// 詳細資料驗證end ======================================
+// 驗證end ============================================
+
 
 // 停止預設行為，切換內容
 $('.forget').on('click', (e) => {
@@ -103,7 +140,7 @@ $('.register').on('click', (e) => {
     console.log(e.target);
 })
 
-// 註冊送出帳密
+// 註冊送出帳密=================================================================
 $('#next').on('click', (e) => {
     e.preventDefault();
     let newPassword = document.querySelector("#register_password");
@@ -136,14 +173,61 @@ $('#next').on('click', (e) => {
             }
         })
 })
-
-// 註冊送出詳細資料
+// 註冊送出帳密end=================================================================
+// 註冊送出詳細資料===================================================
 $('#send').on('click', (e) => {
     e.preventDefault();
-    console.log(e.target);
+    let obj = JSON.parse(sessionStorage.getItem("register"));
+    let twcode = document.querySelector("#twzipcode").querySelector('input[name="zipcode"]');
+    let country = document.querySelector("#twzipcode").querySelector('select[name="county"]');
+    let district = document.querySelector("#twzipcode").querySelector('select[name="district"]');
+    let userName = document.querySelector("#userName");
+    let userBirthday = document.querySelector("#birthday");
+    let street = document.querySelector("#Street");
+    let phone = document.querySelector("#phoneNumber");
+
+    if($('#phoneNumber').val().search(phoneRule) != -1 && $('#userName').val() != "" && $('#birthday').val() != "" && $('#Street').val() != "" && twcode.value!='' ){
+        // AJAX
+        fetch('./php/register_order.php', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            // 送出內容轉成JSON送出
+            body: JSON.stringify({
+                EMAIL: obj.mail,
+                PASSWORD: obj.password,
+                NAME:userName.value,
+                BIRTHDAY: userBirthday.value,
+                ZIPCODE: twcode.value,
+                COUNTRY: country.value,
+                DISTRICT: district.value,
+                STREET: street.value,
+                PHONE:phone.value,
+
+            }),
+        })
+            // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+            .then(resp => resp.json())
+            .then(body => {
+                //body也不可以console
+                const { successful, message , ID , NAME} = body;
+                if (successful == true) {
+                    console.log(successful +' 訊息' + message);
+                    sessionStorage.removeItem("register");
+
+                } else {
+                    console.log(successful + ' 訊息' + message);
+                }
+            })
+        }else{
+        alert("還有欄位沒有寫唷！")
+        console.log('有資料沒有寫');
+    }
 })
 
-// 重設密碼
+// 註冊送出詳細資料end=================================================
+// 重設密碼==========================================================================
 $('#send_psd').on('click', (e) => {
     e.preventDefault();
     // console.log(e.target);
@@ -189,7 +273,7 @@ $('#send_psd').on('click', (e) => {
             })
     }
 })
-
+// 重設密碼end==========================================================================
 
 // 重設密碼完成
 $('#psdReset_complete').on('click', (e) => {
@@ -199,50 +283,7 @@ $('#psdReset_complete').on('click', (e) => {
     location.href = "./index.html";
 })
 
-
-
-// ====================================
-
-// 註冊詳細資料
-// 驗證手機號碼格式  /  正規表達式的內容{最少字元，最多字元}  /
-const phoneRule = /\d{9,10}/;
-$('#phoneNumber').on('blur', () => {
-    if ($('#phoneNumber').val().search(phoneRule) == -1) {
-        $('label[for="phoneNumber"]').html("<h5>聯絡電話<span>*電話格式不正確</span></h5>");
-    } else {
-        $('label[for="phoneNumber"]').html("<h5>聯絡電話</h5>");
-    }
-})
-
-$('#userName').on('blur', () => {
-    if ($('#userName').val() == "") {
-        $('label[for="userName"]').html("<h5>姓名<span>*必填欄位</span></h5>");
-    } else {
-        $('label[for="userName"]').html("<h5>姓名</h5>");
-    }
-});
-
-
-$('#birthday').on('blur', () => {
-    if ($('#birthday').val() == "") {
-        $('label[for="birthday"]').html("<h5>生日<span>*必填欄位</span></h5>");
-    } else {
-        $('label[for="birthday"]').html("<h5>生日</h5>");
-    }
-})
-
-$('#Street').on('blur', () => {
-    if ($('#Street').val() == "") {
-        $('label[for="address"]').html("<h5>聯絡地址<span>*請輸入地址</span></h5>");
-    } else {
-        $('label[for="address"]').html("<h5>聯絡地址</h5>");
-    }
-})
-
-// 詳細資料end
-// ======================================
-//
-// 忘記密碼時，送出驗證信
+// 忘記密碼時，送出驗證信 ==========================================================
 $('#send_mail').on('click', (e) => {
     e.preventDefault();
     // console.log(e.target);
@@ -265,7 +306,6 @@ $('#send_mail').on('click', (e) => {
                 EMAIL: userMail.value,
             }),
         })
-       
             // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
             .then(resp =>  resp.json())   
             .then(body => {
@@ -283,7 +323,6 @@ $('#send_mail').on('click', (e) => {
                     $('label[for="userMail"]').html("<h5>電子郵件<span>*e-mail未註冊過</span></h5>");
                 }
             })
-
     }
 })
 
@@ -324,11 +363,10 @@ function send_forgetEmail(forgetEmail, forgetName, TOKEN){
             testBtn.value = '送出';
             alert(JSON.stringify(err));
         });
-
 }
 
+// 忘記密碼時，送出驗證信end ==========================================================
 
-// ============================
 // ============郵遞區號============
 // const twzipcode = new TWzipcode(".twzipcode");
 // twzipcode.destroy();
