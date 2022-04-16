@@ -1,45 +1,55 @@
-
 <?php
+
 include("./connection.php");
 
 $_POST = json_decode(file_get_contents("php://input"), true);
 $mail = $_POST["EMAIL"];
 
+// 檢查email存在
+$sql2 = "SELECT * FROM member where EMAIL= '$mail' ";
+$stm = $pdo->query($sql2);
+$stm->execute();
+// query回傳成功找到的資料筆數
+$res = $stm->rowCount();
+$data = $stm->fetchAll();
 
-// 找出會員
-$sql = "SELECT * FROM member where EMAIL= ? ";
-$statement = $pdo->prepare($sql);
-$statement->bindValue( 1 ,$mail);
-$statement->execute();
+if($res >0 ){
+    // echo "pwq";
+    // 產生45字的亂碼
+    $Strings = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $TOKEN_str = substr(str_shuffle($Strings), 0, 45);
+    $sql = "UPDATE MEMBER set TOKEN=:TOKEN_str where EMAIL=:EMAIL";
+    
+    $statement = $pdo->prepare($sql);
+    $statement->bindValue(":TOKEN_str","$TOKEN_str");
+    $statement->bindValue(":EMAIL","$mail");
 
-$data = $statement->fetchAll();
-
-if(count($data) > 0){
-    $resp["TOKEN"] = creatTOKEN();
-    $resp["successful"] = true;
-    $resp["NAME"] = $data[0]["NAME"];
+    $statement->execute();
+    $resultCount = $statement->rowCount();
+    
+    
+    // echo json_encode($TOKEN_str);
+    
+    if(($resultCount) > 0){
+        $resp["TOKEN_str"] = $TOKEN_str;
+        $resp["successful"] = true;
+        $resp["NAME"] = $data[0]["NAME"];
+        echo json_encode($resp);
+    
+    }else{
+        $resp["TOKEN_str"] = $TOKEN_str;
+        $resp["successful"] = false;
+        echo json_encode($resp);
+    }
 
 }else{
-    $resp["successful"] = true;
+    $resp["successful"] = false;
+    $resp["message"] = "此e-mail未註冊";
+    echo json_encode($resp);
 }
 
-echo json_encode($resp);
 
 
-// 產生token
-function creatTOKEN(){
-    $Strings = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $TOKEN = substr(str_shuffle($Strings), 0, 45);
-    $sql2 = "UPDATE set MEMBER TOKEN='?' where EMAIL='?'";
-
-    $statement2 = $pdo->prepare($sql2);
-    $statement2->bindValue( 1 ,$TOKEN);
-    $statement2->bindValue( 2 ,$mail);
-    $statement2->execute();
-
-    return $TOKEN;
-
-}
-
-?>
     
+
+    ?>

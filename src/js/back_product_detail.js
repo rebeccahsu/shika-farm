@@ -7,7 +7,7 @@ pages.forEach(function(page){
 });
 
 // 進入頁面是否讀資料
-var editRule = /[prd_number=]\d{8}$/
+const editRule = /[prd_number=]\d{8}$/
 document.addEventListener("DOMContentLoaded", function (e) {
     if (editRule.test(location.search)) {
         let task = JSON.parse(localStorage.getItem("prd_list"));
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         // console.log(task);
         task.forEach(function (value, i) {
             if (task[i].prd_number == number0) {
-                console.log(task[i]);
+                // console.log(task[i]);
                 let pdata = task[i];
                 // 帶入資料
                 showData(pdata);
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 });
 
 function showData(pdata) {
-    console.log(pdata);
+    // console.log(pdata);
     // console.log(pdata.prd_slog[0]);
     $('#prd_slog1').val(pdata.prd_slog[0]);
     $('#prd_slog2').val(pdata.prd_slog[1]);
@@ -42,13 +42,13 @@ function showData(pdata) {
 }
 
 function putin_topimg(d) {
-    console.log(d);
+    // console.log(d);
     let el;
     for (var i = 0; i < 4; i++) {
-        console.log(i + "資料" + d[i]);
+        // console.log(i + "資料" + d[i]);
         let img_src = d[i];
         if (d[i] != undefined) {
-            console.log(img_src);
+            // console.log(img_src);
             switch (i) {
                 case 0:
                     el = document.querySelector('.select_topImage1');
@@ -75,7 +75,7 @@ function putin_topimg(d) {
 
 
 function putin_intro(d) {
-    console.log(d);
+    // console.log(d);
     let el;
     let el_img;
     let el_text;
