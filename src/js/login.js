@@ -125,7 +125,32 @@ $('#send_psd').on('click', (e) => {
     } else if (psd != repsd) {
         $('label[for="repassword"]').html("<h5>密碼確認<span>*和密碼不一致</span></h5>");
     } else {
-        location.href = `./password_reset_3.html`;
+        // AJAX
+        let newPassword = document.querySelector("#repassword");
+        let TOKEN_str = location.search.slice(1, 46);
+        fetch('./php/password_reset.php', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            // 送出內容轉成JSON送出
+            body: JSON.stringify({
+                PASSWORD: newPassword.value,
+                TOKEN_str:TOKEN_str,
+            }),
+        })
+            // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+            .then(resp =>  resp.json())   
+            .then(body => {
+                //body也不可以console
+                const { successful, NAME, message } = body;
+                if (successful == true) {
+                    console.log(successful +'會員'+NAME +' 訊息'+message);
+                    // location.href = `./password_reset_3.html`;
+                } else {
+                    console.log(successful+' 訊息'+message);
+                }
+            })
     }
 })
 
@@ -200,7 +225,6 @@ $('#send_mail').on('click', (e) => {
         $('label[for="userMail"]').html("<h5>電子郵件<span>*未輸入e-mail</span></h5>");
     } else if ($('#userMail').val().search(emailRule) == -1) {
         $('label[for="userMail"]').html("<h5>電子郵件<span>*e-mail格式不正確</span></h5>");
-        // }else if(){ //送後端預留，如果沒有email，顯示email沒有註冊過
     } else {
         $('label[for="userMail"]').html("<h5>電子郵件</h5>");
 
@@ -229,19 +253,17 @@ $('#send_mail').on('click', (e) => {
                         $('#send_mail').disabled = true;
                         mail_cd();
                         send_forgetEmail(userMail.value, NAME, TOKEN_str)
-        }
+                    }
                 } else {
                     $('label[for="userMail"]').html("<h5>電子郵件<span>*e-mail未註冊過</span></h5>");
                 }
             })
 
-
-
     }
 })
 
 // 設定秒數，倒數
-var cd = 10;
+var cd = 300;
 function mail_cd() {
     if (cd > 0) {
         $('#sss').text(cd);
@@ -251,7 +273,7 @@ function mail_cd() {
     } else {
         $('#cdTime').remove();
         $('#send_mail').disabled = false;
-        cd = 10;
+        cd = 300;
     }
 }
 
@@ -329,7 +351,7 @@ $(document).ready(function () {
 let login_btn = document.querySelector("#login_btn");
 let msg_box = document.querySelector("#msg_box");
 login_btn.addEventListener('click', function (e) {
-    e.preventDefault();
+    e.preventDefault(e);
     let userMail = document.querySelectorAll('.userMail')[0];
     let PWD = document.querySelector('#password');
     console.log(userMail.value +' / '+ PWD.value);  //上線之前一定要刪掉
