@@ -6,50 +6,6 @@ pages.forEach(function(page){
     }
 });
 
-// ==== 圖片預覽 ====
-let preview = document.querySelector(".preview");
-let p_file = document.getElementById("p_file");
-let previewImg = function(file){
-        let reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.addEventListener("load", function () {
-            let img_preview = `<img src="${reader.result}" alt="" class="preview-img">`;
-            preview.innerHTML = img_preview;
-        });
-};
-
-let drop_div = document.getElementById("drop_zone");
-drop_div.addEventListener("dragover", function (e) {
-    e.preventDefault();
-    drop_div.classList.add("-on");
-});
-drop_div.addEventListener("dragleave", function(e){
-    drop_div.classList.remove("-on");
-});
-
-drop_div.addEventListener("drop", function (e) {
-    e.preventDefault();
-    // console.log(e.dataTransfer.files);
-    drop_div.classList.remove("-on");
-
-    //顯示預覽圖                
-    if(e.dataTransfer.files.length > 0){
-        previewImg(e.dataTransfer.files[0]);
-        console.log(e.dataTransfer.files[0].name);
-    }else{
-        preview.innerHTML = `<span class="text">圖片拖曳至此處</span>`;
-    }
-});
-
-p_file.addEventListener("change", function () {
-    if(this.files.length > 0){
-        previewImg(this.files[0]);
-    }else{
-        preview.innerHTML = `<span class="text">圖片拖曳至此處</span>`;
-    }
-});
-
-
 //==== 場次時間自動填入 ====
 function auto_time (el, p){
     let time = $(el).val().split(":");
@@ -140,7 +96,7 @@ function alertAddAct(msg, icon) {
         icon: icon,
         showConfirmButton: false, // 確認按鈕（預設會顯示不用設定)
         // 使用同確認按鈕
-        showDenyButton: true, // 否定按鈕
+        // showDenyButton: true, // 否定按鈕
         showCancelButton: false, // 取消按鈕
         buttonsStyling: false, // 是否使用sweetalert按鈕樣式（預設為true）
     })
@@ -163,13 +119,13 @@ new Vue({
             s3_start: '',
             s3_end: '',
             desc: '',
+            category: 'cow',
 
         }
     },
     methods: {
-        //  && this.state != '' && this.time != '' && this.s1_start != '' && this.s2_start != '' && this.s3_start != '' 
         addActivity(){
-            if (this.name != '' && this.opacity != '' && this.desc != ''){
+            if (this.img != '' && this.name != '' && this.opacity != '' && this.desc != '' && this.s1_start != '' && this.s2_start != '' && this.s3_start != ''){
                 fetch("./php/add_activity.php", {
                     method: "POST",
                     headers: {
@@ -180,7 +136,7 @@ new Vue({
                         name: this.name,
                         img: this.img,
                         opacity: this.opacity,
-                        state: this.state ? "上架中" : "已下架",
+                        state: this.state ? "上架中" : "未上架",
                         time: this.time,
                         s1_start: this.s1_start,
                         s1_end: this.s1_end,
@@ -189,10 +145,10 @@ new Vue({
                         s3_start: this.s3_start,
                         s3_end: this.s3_end,
                         desc: this.desc, 
+                        category: this.category,
                         }),
 
                 })
-                // .then(res => res => json())
                 .then((resp) => resp.json())
                 .then((body) => {
                     const { successful } = body;
@@ -200,9 +156,13 @@ new Vue({
                     console.log(body.successful);
                     if (successful) {
                         alertAddAct('<strong>已成功新增活動！</strong>', 'success');
-                        let form = document.querySelector('form.activity-detail');
-                        form.reset();
-                        window.location.href = "./back_activity.html";
+                        this.name = '';
+                        this.opacity = '';
+                        this.img = '';
+                        this.s1_start = '';
+                        this.s2_start = '';
+                        this.s3_start = '';
+                        this.desc = '';
                     } 
                     else {
                         alertAddAct('<strong>新增失敗，請再試一次</strong>', 'error');
@@ -250,7 +210,7 @@ new Vue({
                         break;
                 }
                 time.splice(1, 0, ":")
-                console.log(time.toString());
+                // console.log(time.toString());
                 let time_str = time.toString().replace(/,/g, "");
                 if (newHr < 10){
                     time_str = "0" + time_str;
@@ -276,14 +236,37 @@ new Vue({
             this.s3_end = end_arr[2];
         },
 
-        fileSelected(event){
-            let file = event.target.files.item(0); //取得File物件
+        fileSelected(e){
+            let file = e.target.files.item(0); //取得File物件
             let reader = new FileReader(); //建立FileReader 監聽 Load 事件
             reader.addEventListener('load',this.imageLoader);
             reader.readAsDataURL(file);
             this.img = `./img/activity/${file.name}`;
             $('span.text').remove();
        },
+
+       dragover(e){
+            let drop_div = document.getElementById("drop_zone");
+            e.preventDefault();
+            drop_div.classList.add("-on");
+       },
+       dragleave(){
+            let drop_div = document.getElementById("drop_zone");
+            drop_div.classList.remove("-on");
+       },
+       drop(e){
+            e.preventDefault();
+            let preview = document.querySelector(".preview");
+            $("#drop_zone").removeClass("-on");
+            //顯示預覽圖                
+            if(e.dataTransfer.files.length > 0){
+                previewImg(e.dataTransfer.files[0]);
+                this.img = `./img/activity/${e.dataTransfer.files[0].name}`;
+                $('span.text').remove();
+            }else{
+                preview.innerHTML = `<span class="text">圖片拖曳至此處</span>`;
+            }
+       }
     },
 
 })
