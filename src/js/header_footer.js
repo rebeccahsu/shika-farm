@@ -117,13 +117,18 @@ const black_bg = new Vue({
 			// 2.把資料放入data裡的products
 			this.products = cart;
 		},
+        end_cart(){
+            sessionStorage.setItem("products", JSON.stringify(this.products));
+        },
 	},
+
+    //因為created()在網頁渲染完成後只會執行一次，所以1.2步驟拉出來放在一個函式裡，後續才可再使用
 	created() {
 		// 1.取出localStorage的資料, 字串轉成物件 // ??判斷是否為null如果是就用空陣列
 		// let cart = JSON.parse(sessionStorage.getItem("products")) ?? [];
 		// 2.把資料放入data裡的products
 		// this.products = cart;
-		this.start_cart();
+		this.start_cart(); //執行這個vue裡的start_cart()函式
 	},
 	computed: {
 		// 總計 執行function
@@ -149,26 +154,32 @@ const black_bg = new Vue({
 	},
 });
 
-//點擊購物車 icon 彈出
-let cart = document.getElementById("cart");
-let spcart = document.getElementById("blackBg");
-let gosp = document.getElementById("gosp");
+// 購物車彈窗
+let cart = document.getElementById("cart"); // 購物車按鈕
+let spcart = document.getElementById("blackBg"); // 彈窗黑色遮罩
+let gosp = document.getElementById("gosp"); // 繼續購物按鈕
+let co = document.getElementsByClassName("Co")[0]; //結帳按鈕
 
+// 點擊購物車icon讓購物車彈出
 cart.addEventListener("click", function (e) {
-	e.preventDefault();
+	e.preventDefault(); //停止a連結預設行為
 	spcart.classList.toggle("active");
-	black_bg.start_cart(); //在點擊後，在執行一次這個vue裡面的start_cart()函式
+	black_bg.start_cart(); //在點擊後，在強制執行一次這個vue裡面的start_cart()函式
 });
 
+// 點擊黑色遮罩讓購物車隱藏
 spcart.addEventListener("click", function (e) {
-	if (e.target == spcart) {
-		spcart.classList.toggle("active");
+	if (e.target == spcart) { //如果點擊到的是黑色遮罩 
+		spcart.classList.toggle("active"); //就讓購物車隱藏
 	}
 });
 
+// 點擊繼續購物按鈕讓購物車隱藏
 gosp.addEventListener("click", function (e) {
 	spcart.classList.toggle("active");
 });
 
-// this.isShow = !this.isShow;
-// console.log(this.isShow);
+//點擊結帳按鈕執行end_cart()讓購物車裡的資料放入sessionStorage裡，讓結帳流程能抓到最新資料
+co.addEventListener("click",function(){
+    black_bg.end_cart();
+});
