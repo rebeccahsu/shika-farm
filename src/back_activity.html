@@ -16,7 +16,7 @@
         
                 <section class="buttonsnNumber">
                     <div class="buttons">
-                        <button type="button" class="btn-yellow add-activity">新增</button>
+                        <a href="./back_activity_add.html"><button type="button" class="btn-yellow add-activity">新增</button></a>
                         <button type="button" class="btn-green on-activity" @click="onAct">上架</button>
                         <button type="button" class="btn-green off-activity" @click="offAct">下架</button>
                         <button type="button" class="btn-red delete-activity" @click="deleteAct">刪除</button>
@@ -29,11 +29,11 @@
                         <input type="checkbox" checked class="show-switch-btn" @change="switchShow">
                         <span class="slider round"></span>
                     </label>
-                    <p class="showTitle">顯示已下架活動</p>
+                    <p class="showTitle">顯示未上架活動</p>
                 </div>
     
                 <ul class="actLists">
-                    <li class="actList" v-for="activity in activities" :class="stateClass">
+                    <li class="actList" v-for="activity in activities" :data-actid="activity.ID">
                         <div class="actImgCon">
                             <img :src="activity.IMG" alt="activity_img" class="activityImg">
                         </div>
@@ -53,12 +53,11 @@
                             <p class="state">狀態<span class="state-text">{{activity.STATE}}</span></p>
                             <div class="actButtons">
                                 <button class="btn-yellow member_btn">已報名會員</button>
-                                <button class="btn-green modify_btn">修改</button>
+                                <button class="btn-green modify_btn" @click="modifyActivity">修改</button>
                             </div>
                         </div>
                     </li>
                 </ul>
-        
 
             <p class="tibameMessage">本網站為緯育TibaMe前端設計工程師班第74期第六組學員專題成果作品，本平台僅供學習、展示之用。</p>
         </main>

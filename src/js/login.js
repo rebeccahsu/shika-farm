@@ -10,13 +10,21 @@
 // });
 
 // $('#login_box').on('click', function (e) {
-//     e.stopPropagation();
+//     e.stopPropagation(e);
 // })
 
 // function closebg(t) {
 //     // console.log(t);
 //     $('#back_bg').remove();
 // }
+
+// 註冊完成、重設密碼完成
+// $('#register_complete').on('click', (e) => {
+//     e.preventDefault();
+    // console.log(e.target);
+    // {前一步送出成功之後，維持登入狀態?}}
+//     closebg();
+// })
 
 // 關閉按鈕和範圍end
 // ============================
@@ -68,92 +76,7 @@ $('#repassword').on('blur', () => {
     }
 })
 
-// 密碼驗證end
-// ============================================
-
-// 停止預設行為，切換內容
-$('.forget').on('click', (e) => {
-    e.preventDefault();
-    console.log(e.target);
-})
-
-/*
-$('#login_btn').on('click', (e) => {
-    e.preventDefault();
-    console.log(e.target);
-})
-*/
-
-$('#FBlogin_btn').on('click', (e) => {
-    e.preventDefault();
-    console.log(e.target);
-})
-
-// 註冊會員連結
-$('.register').on('click', (e) => {
-    e.preventDefault();
-    console.log(e.target);
-})
-
-// 註冊送出帳密
-$('#next').on('click', (e) => {
-    e.preventDefault();
-    console.log(e.target);
-})
-
-// 註冊送出詳細資料
-$('#send').on('click', (e) => {
-    e.preventDefault();
-    console.log(e.target);
-})
-
-// 重設密碼
-$('#send_psd').on('click', (e) => {
-    e.preventDefault();
-    // console.log(e.target);
-    // 驗證密碼
-    let psd = $('#password').val();
-    let repsd = $('#repassword').val()
-    // console.log(psd);
-    if (psd == "") {
-        $('label[for="password"]').html("<h5>密碼<span>*密碼須為4~16字以內</span></h5>");
-    } else if (psd.search(passwordRule) == -1) {
-        $('label[for="password"]').html("<h5>密碼<span>*請輸入半形的英文和數字</span></h5>");
-    } else if (repsd == "") {
-        console.log('object');
-        $('label[for="repassword"]').html("<h5>密碼確認<span>*和密碼不一致</span></h5>");
-    } else if (psd != repsd) {
-        $('label[for="repassword"]').html("<h5>密碼確認<span>*和密碼不一致</span></h5>");
-    } else {
-        location.href = `./password_reset_3.html`;
-    }
-})
-
-
-
-
-
-// 註冊完成、重設密碼完成
-$('#register_complete').on('click', (e) => {
-    e.preventDefault();
-    // console.log(e.target);
-    // {前一步送出成功之後，維持登入狀態?}}
-    closebg();
-})
-
-// 重設密碼完成
-$('#psdReset_complete').on('click', (e) => {
-    e.preventDefault();
-    // console.log(e.target);
-    // {前一步送出成功之後，維持登入狀態?}}
-    location.href = "./index.html";
-})
-
-
-
-// ====================================
-
-// 註冊詳細資料
+// 註冊詳細資料驗證  ====================================
 // 驗證手機號碼格式  /  正規表達式的內容{最少字元，最多字元}  /
 const phoneRule = /\d{9,10}/;
 $('#phoneNumber').on('blur', () => {
@@ -189,10 +112,178 @@ $('#Street').on('blur', () => {
     }
 })
 
-// 詳細資料end
-// ======================================
-//
-// 忘記密碼時，送出驗證信
+// 詳細資料驗證end ======================================
+// 驗證end ============================================
+
+
+// 停止預設行為，切換內容
+$('.forget').on('click', (e) => {
+    e.preventDefault();
+    console.log(e.target);
+})
+
+/*
+$('#login_btn').on('click', (e) => {
+    e.preventDefault();
+    console.log(e.target);
+})
+*/
+
+$('#FBlogin_btn').on('click', (e) => {
+    e.preventDefault();
+    console.log(e.target);
+})
+
+// 註冊會員連結
+$('.register').on('click', (e) => {
+    e.preventDefault();
+    console.log(e.target);
+})
+
+// 註冊送出帳密=================================================================
+$('#next').on('click', (e) => {
+    e.preventDefault();
+    let newPassword = document.querySelector("#register_password");
+    let userMail = document.querySelector("#register_mail");
+    
+    fetch('./php/register_email.php', {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        // 送出內容轉成JSON送出
+        body: JSON.stringify({
+            EMAIL:userMail.value,
+            PASSWORD: newPassword.value,
+        }),
+    })
+        // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+        .then(resp => resp.json())
+        .then(body => {
+            //body也不可以console
+            const { successful, message } = body;
+            if (successful == true) {
+                console.log(successful +' 訊息' + message);
+                sessionStorage.setItem("register",JSON.stringify({mail:userMail,password:newPassword}))
+
+                // location.href = `./password_reset_3.html`;
+            } else {
+                $('label[for="register_mail"]').html("<h5>電子郵件<span>*e-mail已註冊過</span></h5>");
+                console.log(successful + ' 訊息' + message);
+            }
+        })
+})
+// 註冊送出帳密end=================================================================
+// 註冊送出詳細資料===================================================
+$('#send').on('click', (e) => {
+    e.preventDefault();
+    let obj = JSON.parse(sessionStorage.getItem("register"));
+    let twcode = document.querySelector("#twzipcode").querySelector('input[name="zipcode"]');
+    let country = document.querySelector("#twzipcode").querySelector('select[name="county"]');
+    let district = document.querySelector("#twzipcode").querySelector('select[name="district"]');
+    let userName = document.querySelector("#userName");
+    let userBirthday = document.querySelector("#birthday");
+    let street = document.querySelector("#Street");
+    let phone = document.querySelector("#phoneNumber");
+
+    if($('#phoneNumber').val().search(phoneRule) != -1 && $('#userName').val() != "" && $('#birthday').val() != "" && $('#Street').val() != "" && twcode.value!='' ){
+        // AJAX
+        fetch('./php/register_order.php', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            // 送出內容轉成JSON送出
+            body: JSON.stringify({
+                EMAIL: obj.mail,
+                PASSWORD: obj.password,
+                NAME:userName.value,
+                BIRTHDAY: userBirthday.value,
+                ZIPCODE: twcode.value,
+                COUNTRY: country.value,
+                DISTRICT: district.value,
+                STREET: street.value,
+                PHONE:phone.value,
+
+            }),
+        })
+            // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+            .then(resp => resp.json())
+            .then(body => {
+                //body也不可以console
+                const { successful, message , ID , NAME} = body;
+                if (successful == true) {
+                    console.log(successful +' 訊息' + message);
+                    sessionStorage.removeItem("register");
+
+                } else {
+                    console.log(successful + ' 訊息' + message);
+                }
+            })
+        }else{
+        alert("還有欄位沒有寫唷！")
+        console.log('有資料沒有寫');
+    }
+})
+
+// 註冊送出詳細資料end=================================================
+// 重設密碼==========================================================================
+$('#send_psd').on('click', (e) => {
+    e.preventDefault();
+    // console.log(e.target);
+    // 驗證密碼
+    let psd = $('#password').val();
+    let repsd = $('#repassword').val()
+    // console.log(psd);
+    if (psd == "") {
+        $('label[for="password"]').html("<h5>密碼<span>*密碼須為4~16字以內</span></h5>");
+    } else if (psd.search(passwordRule) == -1) {
+        $('label[for="password"]').html("<h5>密碼<span>*請輸入半形的英文和數字</span></h5>");
+    } else if (repsd == "") {
+        console.log('object');
+        $('label[for="repassword"]').html("<h5>密碼確認<span>*和密碼不一致</span></h5>");
+    } else if (psd != repsd) {
+        $('label[for="repassword"]').html("<h5>密碼確認<span>*和密碼不一致</span></h5>");
+    } else {
+        // AJAX
+        let newPassword = document.querySelector("#repassword");
+        let TOKEN_str = location.search.slice(1, 46);
+        fetch('./php/password_reset.php', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            // 送出內容轉成JSON送出
+            body: JSON.stringify({
+                PASSWORD: newPassword.value,
+                TOKEN_str:TOKEN_str,
+            }),
+        })
+            // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+            .then(resp =>  resp.json())   
+            .then(body => {
+                //body也不可以console
+                const { successful, NAME, message } = body;
+                if (successful == true) {
+                    console.log(successful +'會員'+NAME +' 訊息'+message);
+                    // location.href = `./password_reset_3.html`;
+                } else {
+                    console.log(successful+' 訊息'+message);
+                }
+            })
+    }
+})
+// 重設密碼end==========================================================================
+
+// 重設密碼完成
+$('#psdReset_complete').on('click', (e) => {
+    e.preventDefault();
+    // console.log(e.target);
+    // {前一步送出成功之後，維持登入狀態?}}
+    location.href = "./index.html";
+})
+
+// 忘記密碼時，送出驗證信 ==========================================================
 $('#send_mail').on('click', (e) => {
     e.preventDefault();
     // console.log(e.target);
@@ -200,7 +291,6 @@ $('#send_mail').on('click', (e) => {
         $('label[for="userMail"]').html("<h5>電子郵件<span>*未輸入e-mail</span></h5>");
     } else if ($('#userMail').val().search(emailRule) == -1) {
         $('label[for="userMail"]').html("<h5>電子郵件<span>*e-mail格式不正確</span></h5>");
-        // }else if(){ //送後端預留，如果沒有email，顯示email沒有註冊過
     } else {
         $('label[for="userMail"]').html("<h5>電子郵件</h5>");
 
@@ -216,42 +306,38 @@ $('#send_mail').on('click', (e) => {
                 EMAIL: userMail.value,
             }),
         })
-       
             // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
             .then(resp =>  resp.json())   
             .then(body => {
                 //body也不可以console
-                const { successful, NAME, TOKEN } = body;
-                if (successful) {
+                const { successful, NAME, TOKEN_str } = body;
+                if (successful == true) {
                     // 當畫面上沒有紅P時，插入紅P，按鈕不可按
                     if ($('#password_reset').has($('#cdTime')).length == 0) {
-                        $('label[for="userMail"]').before(`<p style="color:red;" id="cdTime">系統已將信件寄出，若沒有收到信件，請等待<span id="sss"></span>秒後再試，謝謝。 </p>`)
+                        $('#hint').after(`<p style="color:red;" id="cdTime">系統已將信件寄出，若沒有收到信件，請等待<span id="sss"></span>秒後再試，謝謝。 </p>`)
                         $('#send_mail').disabled = true;
                         mail_cd();
-                        send_forgetEmail(userMail.value, NAME, TOKEN)
-        }
+                        send_forgetEmail(userMail.value, NAME, TOKEN_str)
+                    }
                 } else {
                     $('label[for="userMail"]').html("<h5>電子郵件<span>*e-mail未註冊過</span></h5>");
                 }
             })
-
-
-
     }
 })
 
 // 設定秒數，倒數
-var cd = 10;
+var cd = 300;
 function mail_cd() {
     if (cd > 0) {
         $('#sss').text(cd);
-        console.log(cd);
+        // console.log(cd);
         setTimeout(mail_cd, 1000);
         cd -= 1;
     } else {
         $('#cdTime').remove();
         $('#send_mail').disabled = false;
-        cd = 10;
+        cd = 300;
     }
 }
 
@@ -262,7 +348,7 @@ function send_forgetEmail(forgetEmail, forgetName, TOKEN){
     const serviceID = 'shikaservice105';
     const templateID = 'template_9cu1gex';
     var templateParams = {
-        to_email:forgetEmail.value,
+        to_email: forgetEmail,
         from_name: "shika牧場",
         to_name: `${forgetName}`,
         url_forget: `https://tibamef2e.com/tfd105/g6/password_reset_2.html?${TOKEN}`,
@@ -277,11 +363,10 @@ function send_forgetEmail(forgetEmail, forgetName, TOKEN){
             testBtn.value = '送出';
             alert(JSON.stringify(err));
         });
-
 }
 
+// 忘記密碼時，送出驗證信end ==========================================================
 
-// ============================
 // ============郵遞區號============
 // const twzipcode = new TWzipcode(".twzipcode");
 // twzipcode.destroy();
@@ -351,9 +436,9 @@ login_btn.addEventListener('click', function (e) {
             .then(resp =>  resp.json())   
             .then(body => {
                 //body也不可以console
-                const { successful, message, ID, NAME, member } = body;
+                const { successful, message, ID, NAME } = body;
                 if (successful) {
-                    msg_box.innerHTML = `<p>${ID}</p><p>${NAME}</p><p>${message}</p><p>${member}</p>`;
+                    msg_box.innerHTML = `<p>${ID}</p><p>${NAME}</p><p>${message}</p>`;
                     
                 } else {
                     alert(message);

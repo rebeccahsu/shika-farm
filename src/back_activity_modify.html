@@ -14,79 +14,84 @@
                 "back_title" : "修改活動"
                 })
             
-            <form class="activity-detail" id="a_detail">
-                <div class="img-area">
-                    <input type="file" id="p_file">
-                    <div class="preview" id="drop_zone">
-                        <img :src="activity.img" alt="">
+                <form class="activity-detail" id="a_detail">
+                    <div class="img-area">
+                        <input type="file" id="p_file">
+                        <div class="preview" id="drop_zone">
+                            <img :src="activity[0].IMG" alt="">
+                        </div>
                     </div>
-                </div>
-                <div class="margintop_30">
-                    <h5>活動名稱</h5>
-                    <input type="text" name="name" required :value="activity.name">
-                </div>
-                <div class="oneline margintop_25">
-                    <label>人數上限</label>
-                    <input type="number" required oninput="if(value<1)value=1" v-model="activity.capacity">
-                </div>
-                <div class="oneline margintop_25">
-                    <label>時間長度</label>
-                    <input type="radio" id="30" name="time" v-model="selected" value="30">
-                    <label for="30">30分鐘</label>
-                    <input type="radio" id="60" name="time" v-model="selected" value="60">
-                    <label for="60">60分鐘</label>
-                    <input type="radio" id="90" name="time" v-model="selected" value="90">
-                    <label for="90">90分鐘</label>
-                </div>
-                <div class="oneline margintop_30">
-                    <label for="">場次一時間</label>
-                    <input type="time" class="time-start" required v-model="activity.s1_start">
-                    <h5 class="tilde">~</h5>
-                    <input type="time" class="time-end" readonly v-model="activity.s1_end">
-                </div>
-                <div class="oneline margintop_25">
-                    <label for="">場次二時間</label>
-                    <input type="time" class="time-start" required v-model="activity.s2_start">
-                    <h5 class="tilde">~</h5>
-                    <input type="time" class="time-end" readonly v-model="activity.s2_end">
-                </div>
-                <div class="oneline margintop_25">
-                    <label for="">場次三時間</label>
-                    <input type="time" class="time-start" required v-model="activity.s3_start">
-                    <h5 class="tilde">~</h5>
-                    <input type="time" class="time-end" readonly v-model="activity.s3_end">
-                </div>
-                <div class="margintop_25">
-                    <h5>活動介紹</h5>
-                    <textarea rows="10" cols="50" required v-model="activity.description"></textarea>
-                </div>
-                <!-- <div class="oneline margintop_30">
-                    <label for="">上架時間</label>
-                    <input type="date" id="on_date" required v-model="activity.on_date" readonly>
-                    <input type="time" value="23:59" id="on_time" v-model="activity.on_time" readonly>
-                </div>
-                <div class="oneline margintop_25">
-                    <label for="">下架時間</label>
-                    <input type="date" id="off_date" v-model="activity.off_date">
-                    <input type="time" value="23:59" id="off_time"  v-model="activity.off_time">
-                </div> -->
-
-                <div class="onoroff">
-                    <span class="state">上架</span>
-                    <label class="switch">
-                        <input type="checkbox" checked class="show-switch-btn">
-                        <span class="slider round"></span>
-                    </label>
+                    <div class="margintop_30">
+                        <h5>活動名稱</h5>
+                        <input type="text" name="name" required v-model="activity[0].NAME">
+                    </div>
+                    <div class="oneline margintop_25">
+                        <label>人數上限</label>
+                        <input type="number" required oninput="if(value<1)value=1" v-model="activity[0].OPACITY">
+                    </div>
+                    <div class="oneline margintop_25">
+                        <label>時間長度</label>
+                        <input type="radio" id="30" name="time" value="30" v-model="activity[0].TIME">
+                        <label for="30">30分鐘</label>
+                        <input type="radio" id="60" name="time" value="60" v-model="activity[0].TIME">
+                        <label for="60">60分鐘</label>
+                        <input type="radio" id="90" name="time" value="90" v-model="activity[0].TIME">
+                        <label for="90">90分鐘</label>
+                    </div>
+                    <div class="oneline margintop_30">
+                        <label for="">場次一時間</label>
+                        <input type="time" class="time-start" required v-model="activity[0].S1_START">
+                        <h5 class="tilde">~</h5>
+                        <input type="time" class="time-end" readonly v-model="activity[0].S1_END">
+                    </div>
+                    <div class="oneline margintop_25">
+                        <label for="">場次二時間</label>
+                        <input type="time" class="time-start" required v-model="activity[0].S2_START">
+                        <h5 class="tilde">~</h5>
+                        <input type="time" class="time-end" readonly v-model="activity[0].S2_END">
+                    </div>
+                    <div class="oneline margintop_25">
+                        <label for="">場次三時間</label>
+                        <input type="time" class="time-start" required v-model="activity[0].S3_START">
+                        <h5 class="tilde">~</h5>
+                        <input type="time" class="time-end" readonly v-model="activity[0].S3_END">
+                    </div>
+                    <div class="margintop_25">
+                        <h5>活動介紹</h5>
+                        <textarea rows="10" cols="50" required v-model="activity[0].DESC"></textarea>
+                    </div>
+                    <div class="margintop_25">
+                        <label>動物分類</label>
+                        <input type="radio" name="catergory" id="cow" value="cow" v-model="activity[0].CATEGORY">
+                        <label for="cow">牛</label>
+                        <input type="radio" name="catergory" id="sheep" value="sheep" v-model="activity[0].CATEGORY">
+                        <label for="sheep">羊</label>
+                        <input type="radio" name="catergory" id="deer" value="deer" v-model="activity[0].CATEGORY">
+                        <label for="deer">鹿</label>
+                        <input type="radio" name="catergory" id="pig" value="pig" v-model="activity[0].CATEGORY">
+                        <label for="pig">豬</label>
+                        <input type="radio" name="catergory" id="horse" value="horse" v-model="activity[0].CATEGORY">
+                        <label for="horse">馬</label>
+                        <input type="radio" name="catergory" id="alpaca" value="alpaca" v-model="activity[0].CATEGORY">
+                        <label for="alpaca">草泥馬</label>
+                    </div>
+    
+                    <div class="onoroff">
+                        <span class="state">上架</span>
+                        <label class="switch">
+                            <input type="checkbox" checked class="show-switch-btn" v-model="stateCheck">
+                            <span class="slider round"></span>
+                        </label>
+                        
+                    </div>
+    
+                    <div class="buttons">
+                        <button type="submit" class="btn-green">確認</button>
+                        <a href="back_activity.html"><button type="button" class="btn-border">取消</button></a>
+                    </div>
                     
-                </div>
-
-                <div class="buttons">
-                    <button type="submit" class="btn-green">確認</button>
-                    <a href="back_activity.html"><button type="button" class="btn-border">取消</button></a>
-                </div>
-                
-
-            </form>
+    
+                </form>
 
         
 

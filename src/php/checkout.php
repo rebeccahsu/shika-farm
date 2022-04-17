@@ -1,7 +1,7 @@
 <?php
     include ("./connection.php");
     
-
+    $checkout = json_decode(file_get_contents("php://input"), true);
 
     //建立SQL語法                             
     $SQL = '
