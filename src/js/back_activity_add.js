@@ -6,90 +6,6 @@ pages.forEach(function(page){
     }
 });
 
-//==== 場次時間自動填入 ====
-function auto_time (el, p){
-    let time = $(el).val().split(":");
-    let newHr;
-    let newMin;
-    switch(p) {
-        case 30:
-            newMin = parseInt(time[1]) + 30;
-            newHr = parseInt(time[0]);
-            if (newMin >= 60){
-                newMin = newMin - 60;
-                newHr += 1;
-            }
-            time.splice(1, 1, newMin);
-            time.splice(0, 1, newHr);
-            break;
-        case 60:
-            newHr = parseInt(time[0]) + 1;
-            time.splice(0, 1, newHr);
-            break;
-        case 90:
-            newHr = parseInt(time[0]) + 1;
-            newMin = parseInt(time[1]) + 30;
-            if (newMin > 60){
-                newMin = newMin - 60;
-                newHr += 1;
-            }
-            time.splice(1, 1, newMin);
-            time.splice(0, 1, newHr);
-            break;
-    }
-    time.splice(1, 0, ":")
-    console.log(time.toString());
-    let time_str = time.toString().replace(/,/g, "");
-    if (newHr < 10){
-        time_str = "0" + time_str;
-    }
-    if (newMin < 10){
-        time_str = time_str.slice(0, 3) + "0" + time_str.slice(3);
-    }
-    return time_str;
-}
-
-let time_start = document.querySelectorAll('.time-start');
-let time_end = document.querySelectorAll('.time-end');
-
-for( let i = 0; i < time_start.length; i++){
-    time_start[i].addEventListener("change", function(){
-        let periodChecked = document.querySelector('input[type="radio"]:checked');
-        let period = parseInt(periodChecked.id);
-        time_end[i].value = auto_time(this, period);
-    })
-}
-
-
-//上下架時間限制
-// let today = new Date();
-// // let current_time = today.toLocaleTimeString();
-
-// function formatDate(date) {
-//     var d = new Date(date),
-//         month = '' + (d.getMonth() + 1),
-//         day = '' + d.getDate(),
-//         year = d.getFullYear();
-
-//     if (month.length < 2) 
-//         month = '0' + month;
-//     if (day.length < 2) 
-//         day = '0' + day;
-
-//     return [year, month, day].join('-');
-// }
- 
-// today = formatDate(today);
-// let on_date = document.getElementById('on_date');
-// let off_date = document.getElementById('off_date');
-// on_date.min = today;
-// on_date.addEventListener("change", function(){
-//     off_date.min = on_date.value;
-// });
-// let on_time = document.getElementById('on_time');
-// on_time.min = current_time;
-
-
 function alertAddAct(msg, icon) {
     Swal.fire({
         title: msg,
@@ -101,7 +17,7 @@ function alertAddAct(msg, icon) {
         buttonsStyling: false, // 是否使用sweetalert按鈕樣式（預設為true）
     })
 }
-//TODO: 連到資料庫之後再使用這邊
+
 //確認新增
 new Vue({
     el: '#activity-add-app',

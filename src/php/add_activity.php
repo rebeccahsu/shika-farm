@@ -4,14 +4,15 @@
     $activity = json_decode(file_get_contents("php://input"), true);
     // echo json_encode($activity);
 
-    $sql = '
+    $SQL = '
         INSERT INTO `TFD105_G6`.`ACTIVITY`
         (`NAME`, `IMG`, `ATTENDANCE`, `OPACITY`, `STATE`, `TIME`, `S1_START`, `S1_END`, `S2_START`, `S2_END`, `S3_START`, `S3_END`, `DESC`, `CATEGORY`)
         VALUES
         (:name, :img, 0,  :opacity, :state, :time, :s1_start, :s1_end, :s2_start, :s2_end, :s3_start, :s3_end, :desc, :category)
     ';
-    $stmt = $pdo->prepare($sql);
+    $stmt = $pdo->prepare($SQL);
     $stmt->bindValue(":name", $activity["name"]);
+    $stmt->bindValue(":img", $activity["img"]);
     $stmt->bindValue(":opacity", $activity["opacity"]);
     $stmt->bindValue(":state", $activity["state"]);
     $stmt->bindValue(":time", $activity["time"]);

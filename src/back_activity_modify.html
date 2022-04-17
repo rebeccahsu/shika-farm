@@ -16,8 +16,8 @@
             
                 <form class="activity-detail" id="a_detail">
                     <div class="img-area">
-                        <input type="file" id="p_file">
-                        <div class="preview" id="drop_zone">
+                        <input type="file" id="p_file" @change="fileSelected">
+                        <div class="preview" id="drop_zone" @dragover="dragover" @dragleave="dragleave" @drop="drop">
                             <img :src="activity[0].IMG" alt="">
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                     </div>
     
                     <div class="buttons">
-                        <button type="submit" class="btn-green">確認</button>
+                        <button type="button" class="btn-green" @click="confirmModify">儲存</button>
                         <a href="back_activity.html"><button type="button" class="btn-border">取消</button></a>
                     </div>
                     
