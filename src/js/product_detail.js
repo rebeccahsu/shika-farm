@@ -85,12 +85,11 @@ function removeSplide() {
 }
 
 $(window).on("resize", function () {
-	console.log(innerWidth);
+	// console.log(innerWidth);
 	if (window.innerWidth > 992.98) {
 		if ($(".pd_recommend").has("#splide02")) {
 			removeSplide();
-
-			console.log("object");
+			// console.log("object");
 		}
 	} else {
 		addSplide();
@@ -98,7 +97,43 @@ $(window).on("resize", function () {
 });
 
 // ===========================
+// 讀取資料==========================================
+// const editRule = /[prd_number=]\d{8}$/
 
+document.addEventListener("DOMContentLoaded", function (e) {
+    let urlParams = new URLSearchParams (window.location.search); 
+	let id = urlParams.get('prd_number');
+	console.log(id);
+        // AJAX
+        fetch('./php/product_load.php', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            // 送出內容轉成JSON送出
+            body: JSON.stringify({
+                ID:id,
+            }),
+        })
+            // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+            .then(resp =>  resp.json())   
+            .then(body => {
+                //body也不可以console
+                const { successful, message ,data} = body;
+                if (successful == true) {
+                    console.log(successful + "訊息" +message+"資料"+data);
+
+                    // location.href = `./password_reset_3.html`;
+                } else {
+                    console.log(successful+' 訊息'+message);
+                }
+            })
+            
+    
+});
+
+
+// 讀取資料end========================================
 // 數量調整按鍵
 var stockCount = document.querySelector("#pd_stockCount_input");
 var inStock = document.querySelector("#pd_inStock");
