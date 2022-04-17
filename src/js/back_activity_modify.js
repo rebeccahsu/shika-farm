@@ -35,7 +35,7 @@ new Vue({
             DESC: '無論你是大朋友小朋友、初學者，都可以安心做牛仔！* 身高 90 公分以下且與陪同成人體重相加總重不超過 80 公斤的兒童可以與成人一起乘坐。', 
             CATEGORY: 'horse'
             },
-        stateCheck: '',
+            stateCheck: '',
     },
     // data: {
     //     activity: {},
@@ -66,7 +66,6 @@ new Vue({
     },
     methods: {
         confirmModify(){
-            console.log(111);
             const params = new URLSearchParams(location.search);
             let id = params.get('activity_id');
             if (this.img != '' && this.name != '' && this.opacity != '' && this.desc != '' && this.s1_start != '' && this.s2_start != '' && this.s3_start != ''){
@@ -96,32 +95,19 @@ new Vue({
                 })
                 .then(res => res.json())
                 .then(res => {
-                    console.log(res.successful);
                     if (res.successful) {
-                        alertmodify('<strong>已成功儲存！</strong>', 'success');
+                        alertmodify('<strong>已成功儲存修改內容！</strong>', 'success');
                     } 
                     else {
-                        alertmodify('<strong>儲存失敗，請再試一次</strong>', 'error');
+                        alertmodify('<strong>您沒有需儲存的變更內容</strong>', 'info');
                     }
                 })
-                // .then((res) => {
-                //     // const { successful } = body;
-                //     // console.log(body);
-                //     // console.log(body.successful);
-                //     // console.log(res.successful);
-                //     // if (res.successful) {
-                //     //     alertmodify('<strong>已成功儲存！</strong>', 'success');
-                //     // } 
-                //     // else {
-                //     //     alertmodify('<strong>儲存失敗，請再試一次</strong>', 'error');
-                //     // }
-                // })
                 .catch(function(err) {
                     alertmodify('<strong>儲存失敗，請再試一次</strong>', 'error');
                 });
 
             }else{
-                alertmodify('<strong>請填寫完所有欄位再按下儲存</strong>', 'error');
+                alertmodify('<strong>請填寫完所有欄位再按下儲存</strong>', 'warning');
             }
             
         },

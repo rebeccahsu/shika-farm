@@ -18,7 +18,8 @@ function actAlert(msg, icon) {
         buttonsStyling: false, // 是否使用sweetalert按鈕樣式（預設為true）
     })
 }
-// TODO: 連到資料庫後DATA要打開
+
+// TODO: 連資料庫時改DATA
 new Vue({
     el: '#back_activity',
     data: {
@@ -157,9 +158,10 @@ new Vue({
         //     { name:'我要當牛仔', timeI: '09:30~11:00', timeII: '13:00~14:30', timeIII: '16:30~18:00'},  
         // ],
         dates: ["2022/05/01", "2022/05/02", "2022/05/03"],
-        // time: [
-        //     {timeI: '09:30~11:00', timeII: '13:00~14:30', timeIII: '16:30~18:00'},
-        // ],
+        members: [
+            {id: '20', people: '3', time: '2022/03/15 18:22'},
+            {id: '3', people: '5', time: '2022/03/12 09:32'},
+        ],
     },
 });
 
