@@ -19,9 +19,9 @@ function alertmodify(msg, icon) {
     })
 }
 
+//TODO: 連上資料庫時改DATA
 new Vue({
     el: '#a_detail',
-    // TODO: 連資料庫這裡要改
     data: {
         activity: 
             { IMG: './img/activity/riding.jpg', 
@@ -125,6 +125,63 @@ new Vue({
             }
             
         },
+        getEndTime(){
+            function auto_time (el, p){
+                let time = el.split(":");
+                let newHr;
+                let newMin;
+                switch(p) {
+                    case 30:
+                        newMin = parseInt(time[1]) + 30;
+                        newHr = parseInt(time[0]);
+                        if (newMin >= 60){
+                            newMin = newMin - 60;
+                            newHr += 1;
+                        }
+                        time.splice(1, 1, newMin);
+                        time.splice(0, 1, newHr);
+                        break;
+                    case 60:
+                        newHr = parseInt(time[0]) + 1;
+                        time.splice(0, 1, newHr);
+                        break;
+                    case 90:
+                        newHr = parseInt(time[0]) + 1;
+                        newMin = parseInt(time[1]) + 30;
+                        if (newMin >= 60){
+                            newMin = newMin - 60;
+                            newHr += 1;
+                        }
+                        time.splice(1, 1, newMin);
+                        time.splice(0, 1, newHr);
+                        break;
+                }
+                time.splice(1, 0, ":")
+                // console.log(time.toString());
+                let time_str = time.toString().replace(/,/g, "");
+                if (newHr < 10){
+                    time_str = "0" + time_str;
+                }
+                if (newMin < 10){
+                    time_str = time_str.slice(0, 3) + "0" + time_str.slice(3);
+                }
+                return time_str;
+            }
+            let time_arr = [this.activity[0].S1_START, this.activity[0].S2_START, this.activity[0].S3_START];
+            let end_arr = [];
+            for (let i = 0; i < time_arr.length; i++){
+                if (this.activity[0].TIME == 30){
+                    end_arr.push(auto_time(time_arr[i], 30));
+                }else if(this.activity[0].TIME == 60){
+                    end_arr.push(auto_time(time_arr[i], 60));
+                }else if(this.activity[0].TIME == 90){
+                    end_arr.push(auto_time(time_arr[i], 90));
+                }
+            }
+            this.activity[0].S1_END = end_arr[0];
+            this.activity[0].S2_END = end_arr[1];
+            this.activity[0].S3_END = end_arr[2];
+        },
         fileSelected(e){
             let file = e.target.files.item(0); //取得File物件
             let reader = new FileReader(); //建立FileReader 監聽 Load 事件
@@ -132,29 +189,29 @@ new Vue({
             reader.readAsDataURL(file);
             this.activity[0].IMG = `./img/activity/${file.name}`;
             $('span.text').remove();
-       },
-       dragover(e){
-            let drop_div = document.getElementById("drop_zone");
-            e.preventDefault();
-            drop_div.classList.add("-on");
-       },
-       dragleave(){
-            let drop_div = document.getElementById("drop_zone");
-            drop_div.classList.remove("-on");
-       },
-       drop(e){
-            e.preventDefault();
-            let preview = document.querySelector(".preview");
-            $("#drop_zone").removeClass("-on");
-            //顯示預覽圖                
-            if(e.dataTransfer.files.length > 0){
-                // previewImg(e.dataTransfer.files[0]);
-                this.activity[0].IMG = `./img/activity/${e.dataTransfer.files[0].name}`;
-                $('span.text').remove();
-            }else{
-                preview.innerHTML = `<span class="text">圖片拖曳至此處</span>`;
-            }
-       }
+        },
+        dragover(e){
+                let drop_div = document.getElementById("drop_zone");
+                e.preventDefault();
+                drop_div.classList.add("-on");
+        },
+        dragleave(){
+                let drop_div = document.getElementById("drop_zone");
+                drop_div.classList.remove("-on");
+        },
+        drop(e){
+                e.preventDefault();
+                let preview = document.querySelector(".preview");
+                $("#drop_zone").removeClass("-on");
+                //顯示預覽圖                
+                if(e.dataTransfer.files.length > 0){
+                    // previewImg(e.dataTransfer.files[0]);
+                    this.activity[0].IMG = `./img/activity/${e.dataTransfer.files[0].name}`;
+                    $('span.text').remove();
+                }else{
+                    preview.innerHTML = `<span class="text">圖片拖曳至此處</span>`;
+                }
+        }
     },
 });
 
