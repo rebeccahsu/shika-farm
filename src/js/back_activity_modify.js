@@ -6,10 +6,24 @@ pages.forEach(function(page){
     }
 });
 
+// sweetalert
+function alertmodify(msg, icon) {
+    Swal.fire({
+        title: msg,
+        icon: icon,
+        showConfirmButton: false, // 確認按鈕（預設會顯示不用設定)
+        // 使用同確認按鈕
+        // showDenyButton: true, // 否定按鈕
+        showCancelButton: false, // 取消按鈕
+        buttonsStyling: false, // 是否使用sweetalert按鈕樣式（預設為true）
+    })
+}
+
+//TODO: 連上資料庫時改DATA
 new Vue({
     el: '#a_detail',
     data: {
-        activity: [
+        activity: 
             { IMG: './img/activity/riding.jpg', 
             NAME:'我要當牛仔', 
             OPACITY: '10', 
@@ -19,37 +33,186 @@ new Vue({
             S3_START: '16:30', S3_END: '18:00', 
             STATE: '上架中', 
             DESC: '無論你是大朋友小朋友、初學者，都可以安心做牛仔！* 身高 90 公分以下且與陪同成人體重相加總重不超過 80 公斤的兒童可以與成人一起乘坐。', 
-            }],
-        stateCheck: 'true',
+            CATEGORY: 'horse'
+            },
+        stateCheck: '',
     },
-    // TODO: 連資料庫時改用這裡
     // data: {
     //     activity: {},
     //     stateCheck: '',
     // },
-//     created(){
-//         const params = new URLSearchParams(location.search);
-//         let id = params.get('activity_id');
-//         // console.log(id);
-//         fetch('./php/modify_activity.php', {
-//             method: "POST",
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//             body: JSON.stringify(
-//                 {id: id}
-//             ),
-//         })
-//         .then(res => res.json())
-//         .then(res => this.activity = res)
-//         .then(() => {
-//             if(this.activity[0].STATE == "上架中"){
-//                 this.stateCheck = true;
-//             }else{
-//                 this.stateCheck = false;
-//             }
-//         })
-//     },
+    created(){
+        const params = new URLSearchParams(location.search);
+        let id = params.get('activity_id');
+        // console.log(id);
+        fetch('./php/modify_activity_select.php', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(
+                {id: id}
+            ),
+        })
+        .then(res => res.json())
+        .then(res => this.activity = res)
+        .then(() => {
+            if(this.activity[0].STATE == "上架中"){
+                this.stateCheck = true;
+            }else{
+                this.stateCheck = false;
+            }
+        })
+    },
+    methods: {
+        confirmModify(){
+            console.log(111);
+            const params = new URLSearchParams(location.search);
+            let id = params.get('activity_id');
+            if (this.img != '' && this.name != '' && this.opacity != '' && this.desc != '' && this.s1_start != '' && this.s2_start != '' && this.s3_start != ''){
+                // console.log(id);
+                fetch('./php/modify_activity_update.php', {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        id: id,
+                        name: this.activity[0].NAME,
+                        img: this.activity[0].IMG,
+                        opacity: this.activity[0].OPACITY,
+                        state: this.stateCheck ? "上架中" : "未上架",
+                        time: this.activity[0].TIME,
+                        s1_start: this.activity[0].S1_START,
+                        s1_end: this.activity[0].S1_END,
+                        s2_start: this.activity[0].S2_START,
+                        s2_end: this.activity[0].S2_END,
+                        s3_start: this.activity[0].S3_START,
+                        s3_end: this.activity[0].S3_END,
+                        desc: this.activity[0].DESC, 
+                        category: this.activity[0].CATEGORY,
+                        
+                    }),
+                })
+                .then(res => res.json())
+                .then(res => {
+                    console.log(res.successful);
+                    if (res.successful) {
+                        alertmodify('<strong>已成功儲存！</strong>', 'success');
+                    } 
+                    else {
+                        alertmodify('<strong>儲存失敗，請再試一次</strong>', 'error');
+                    }
+                })
+                // .then((res) => {
+                //     // const { successful } = body;
+                //     // console.log(body);
+                //     // console.log(body.successful);
+                //     // console.log(res.successful);
+                //     // if (res.successful) {
+                //     //     alertmodify('<strong>已成功儲存！</strong>', 'success');
+                //     // } 
+                //     // else {
+                //     //     alertmodify('<strong>儲存失敗，請再試一次</strong>', 'error');
+                //     // }
+                // })
+                .catch(function(err) {
+                    alertmodify('<strong>儲存失敗，請再試一次</strong>', 'error');
+                });
+
+            }else{
+                alertmodify('<strong>請填寫完所有欄位再按下儲存</strong>', 'error');
+            }
+            
+        },
+        getEndTime(){
+            function auto_time (el, p){
+                let time = el.split(":");
+                let newHr;
+                let newMin;
+                switch(p) {
+                    case 30:
+                        newMin = parseInt(time[1]) + 30;
+                        newHr = parseInt(time[0]);
+                        if (newMin >= 60){
+                            newMin = newMin - 60;
+                            newHr += 1;
+                        }
+                        time.splice(1, 1, newMin);
+                        time.splice(0, 1, newHr);
+                        break;
+                    case 60:
+                        newHr = parseInt(time[0]) + 1;
+                        time.splice(0, 1, newHr);
+                        break;
+                    case 90:
+                        newHr = parseInt(time[0]) + 1;
+                        newMin = parseInt(time[1]) + 30;
+                        if (newMin >= 60){
+                            newMin = newMin - 60;
+                            newHr += 1;
+                        }
+                        time.splice(1, 1, newMin);
+                        time.splice(0, 1, newHr);
+                        break;
+                }
+                time.splice(1, 0, ":")
+                // console.log(time.toString());
+                let time_str = time.toString().replace(/,/g, "");
+                if (newHr < 10){
+                    time_str = "0" + time_str;
+                }
+                if (newMin < 10){
+                    time_str = time_str.slice(0, 3) + "0" + time_str.slice(3);
+                }
+                return time_str;
+            }
+            let time_arr = [this.activity[0].S1_START, this.activity[0].S2_START, this.activity[0].S3_START];
+            let end_arr = [];
+            for (let i = 0; i < time_arr.length; i++){
+                if (this.activity[0].TIME == 30){
+                    end_arr.push(auto_time(time_arr[i], 30));
+                }else if(this.activity[0].TIME == 60){
+                    end_arr.push(auto_time(time_arr[i], 60));
+                }else if(this.activity[0].TIME == 90){
+                    end_arr.push(auto_time(time_arr[i], 90));
+                }
+            }
+            this.activity[0].S1_END = end_arr[0];
+            this.activity[0].S2_END = end_arr[1];
+            this.activity[0].S3_END = end_arr[2];
+        },
+        fileSelected(e){
+            let file = e.target.files.item(0); //取得File物件
+            let reader = new FileReader(); //建立FileReader 監聽 Load 事件
+            reader.addEventListener('load',this.imageLoader);
+            reader.readAsDataURL(file);
+            this.activity[0].IMG = `./img/activity/${file.name}`;
+            $('span.text').remove();
+        },
+        dragover(e){
+                let drop_div = document.getElementById("drop_zone");
+                e.preventDefault();
+                drop_div.classList.add("-on");
+        },
+        dragleave(){
+                let drop_div = document.getElementById("drop_zone");
+                drop_div.classList.remove("-on");
+        },
+        drop(e){
+                e.preventDefault();
+                let preview = document.querySelector(".preview");
+                $("#drop_zone").removeClass("-on");
+                //顯示預覽圖                
+                if(e.dataTransfer.files.length > 0){
+                    // previewImg(e.dataTransfer.files[0]);
+                    this.activity[0].IMG = `./img/activity/${e.dataTransfer.files[0].name}`;
+                    $('span.text').remove();
+                }else{
+                    preview.innerHTML = `<span class="text">圖片拖曳至此處</span>`;
+                }
+        }
+    },
 });
 
 
@@ -145,13 +308,13 @@ $(function() {
     // }
 
     // let time_start = document.querySelectorAll('.time-start');
-    // let tiS1_END = document.querySelectorAll('.time-end');
+    // let time_end = document.querySelectorAll('.time-end');
 
     // for( let i = 0; i < time_start.length; i++){
     //     time_start[i].addEventListener("change", function(){
     //         let periodChecked = document.querySelector('input[type="radio"]:checked');
     //         let period = parseInt(periodChecked.id);
-    //         tiS1_END[i].value = auto_time(this, period);
+    //         time_end[i].value = auto_time(this, period);
     //     })
     // }
 

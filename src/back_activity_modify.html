@@ -16,8 +16,8 @@
             
                 <form class="activity-detail" id="a_detail">
                     <div class="img-area">
-                        <input type="file" id="p_file">
-                        <div class="preview" id="drop_zone">
+                        <input type="file" id="p_file" @change="fileSelected">
+                        <div class="preview" id="drop_zone" @dragover="dragover" @dragleave="dragleave" @drop="drop">
                             <img :src="activity[0].IMG" alt="">
                         </div>
                     </div>
@@ -40,19 +40,19 @@
                     </div>
                     <div class="oneline margintop_30">
                         <label for="">場次一時間</label>
-                        <input type="time" class="time-start" required v-model="activity[0].S1_START">
+                        <input type="time" class="time-start" required v-model="activity[0].S1_START" v-on:input="getEndTime">
                         <h5 class="tilde">~</h5>
                         <input type="time" class="time-end" readonly v-model="activity[0].S1_END">
                     </div>
                     <div class="oneline margintop_25">
                         <label for="">場次二時間</label>
-                        <input type="time" class="time-start" required v-model="activity[0].S2_START">
+                        <input type="time" class="time-start" required v-model="activity[0].S2_START" v-on:input="getEndTime">
                         <h5 class="tilde">~</h5>
                         <input type="time" class="time-end" readonly v-model="activity[0].S2_END">
                     </div>
                     <div class="oneline margintop_25">
                         <label for="">場次三時間</label>
-                        <input type="time" class="time-start" required v-model="activity[0].S3_START">
+                        <input type="time" class="time-start" required v-model="activity[0].S3_START" v-on:input="getEndTime">
                         <h5 class="tilde">~</h5>
                         <input type="time" class="time-end" readonly v-model="activity[0].S3_END">
                     </div>
@@ -86,7 +86,7 @@
                     </div>
     
                     <div class="buttons">
-                        <button type="submit" class="btn-green">確認</button>
+                        <button type="button" class="btn-green" @click="confirmModify">儲存</button>
                         <a href="back_activity.html"><button type="button" class="btn-border">取消</button></a>
                     </div>
                     

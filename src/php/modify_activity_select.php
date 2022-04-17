@@ -10,13 +10,5 @@
     $stmt->execute();
     $activity = $stmt->fetchAll();
     
-    // $resultCount = $stmt->rowCount();
-    
-    // if ($resultCount > 0) {
-    //     $respBody["successful"] = true;
-    // } else {
-    //     $respBody["successful"] = false;
-    // }
-    
     echo json_encode($activity);
 ?>
