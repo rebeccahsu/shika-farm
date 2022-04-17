@@ -1,4 +1,3 @@
-
 // 關閉按鈕和範圍==============
 
 // $('#back_bg').on('click', function (e) {
@@ -51,6 +50,13 @@ $('.userMail').on('blur', () => {
         $('label[for="userMail"]').html("<h5>電子郵件</h5>");
     }
 })
+$('#register_mail').on('blur', () => {
+    if ($('#register_mail').val().search(emailRule) == -1) {
+        $('label[for="register_mail"]').html("<h5>電子郵件<span>*e-mail格式不正確</span></h5>");
+    } else {
+        $('label[for="register_mail"]').html("<h5>電子郵件</h5>");
+    }
+})
 
 // 驗證密碼格式
 $('#password').on('keyup', () => {
@@ -66,6 +72,20 @@ $('#password').on('keyup', () => {
     }
 
 })
+$('#register_password').on('keyup', () => {
+    let psd = $('#register_password').val();
+    // console.log(psd);
+    if (psd.length < 4 || psd.length > 16) {
+        $('label[for="register_password"]').html("<h5>密碼<span>*密碼須為4~16字以內</span></h5>");
+    } else if (psd.search(passwordRule) == -1) {
+        $('label[for="register_password"]').html("<h5>密碼<span>*請輸入半形的英文和數字</span></h5>");
+    } else {
+        // console.log('c');
+        $('label[for="register_password"]').html("<h5>密碼</h5>");
+    }
+
+})
+
 
 // 二次確認密碼
 $('#repassword').on('blur', () => {
@@ -75,6 +95,7 @@ $('#repassword').on('blur', () => {
         $('label[for="repassword"]').html("<h5>密碼確認</h5>");
     }
 })
+
 
 // 註冊詳細資料驗證  ====================================
 // 驗證手機號碼格式  /  正規表達式的內容{最少字元，最多字元}  /
@@ -214,6 +235,7 @@ $('#send').on('click', (e) => {
                 const { successful, message , ID , NAME} = body;
                 if (successful == true) {
                     console.log(successful +' 訊息' + message);
+                    alert('註冊成功');
                     sessionStorage.removeItem("register");
 
                 } else {
@@ -227,62 +249,6 @@ $('#send').on('click', (e) => {
 })
 
 // 註冊送出詳細資料end=================================================
-// 重設密碼==========================================================================
-$('#send_psd').on('click', (e) => {
-    e.preventDefault();
-    // console.log(e.target);
-    // 驗證密碼
-    let psd = $('#password').val();
-    let repsd = $('#repassword').val()
-    // console.log(psd);
-    if (psd == "") {
-        $('label[for="password"]').html("<h5>密碼<span>*密碼須為4~16字以內</span></h5>");
-    } else if (psd.search(passwordRule) == -1) {
-        $('label[for="password"]').html("<h5>密碼<span>*請輸入半形的英文和數字</span></h5>");
-    } else if (repsd == "") {
-        console.log('object');
-        $('label[for="repassword"]').html("<h5>密碼確認<span>*和密碼不一致</span></h5>");
-    } else if (psd != repsd) {
-        $('label[for="repassword"]').html("<h5>密碼確認<span>*和密碼不一致</span></h5>");
-    } else {
-        // AJAX
-        let newPassword = document.querySelector("#repassword");
-        let TOKEN_str = location.search.slice(1, 46);
-        fetch('./php/password_reset.php', {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            // 送出內容轉成JSON送出
-            body: JSON.stringify({
-                PASSWORD: newPassword.value,
-                TOKEN_str:TOKEN_str,
-            }),
-        })
-            // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
-            .then(resp =>  resp.json())   
-            .then(body => {
-                //body也不可以console
-                const { successful, NAME, message } = body;
-                if (successful == true) {
-                    console.log(successful +'會員'+NAME +' 訊息'+message);
-                    // location.href = `./password_reset_3.html`;
-                } else {
-                    console.log(successful+' 訊息'+message);
-                }
-            })
-    }
-})
-// 重設密碼end==========================================================================
-
-// 重設密碼完成
-$('#psdReset_complete').on('click', (e) => {
-    e.preventDefault();
-    // console.log(e.target);
-    // {前一步送出成功之後，維持登入狀態?}}
-    location.href = "./index.html";
-})
-
 // 忘記密碼時，送出驗證信 ==========================================================
 $('#send_mail').on('click', (e) => {
     e.preventDefault();
@@ -313,7 +279,7 @@ $('#send_mail').on('click', (e) => {
                 const { successful, NAME, TOKEN_str } = body;
                 if (successful == true) {
                     // 當畫面上沒有紅P時，插入紅P，按鈕不可按
-                    if ($('#password_reset').has($('#cdTime')).length == 0) {
+                    if ($('.password_reset').has($('#cdTime')).length == 0) {
                         $('#hint').after(`<p style="color:red;" id="cdTime">系統已將信件寄出，若沒有收到信件，請等待<span id="sss"></span>秒後再試，謝謝。 </p>`)
                         $('#send_mail').disabled = true;
                         mail_cd();
@@ -366,7 +332,6 @@ function send_forgetEmail(forgetEmail, forgetName, TOKEN){
 }
 
 // 忘記密碼時，送出驗證信end ==========================================================
-
 // ============郵遞區號============
 // const twzipcode = new TWzipcode(".twzipcode");
 // twzipcode.destroy();

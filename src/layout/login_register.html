@@ -30,9 +30,9 @@
         <!-- 註冊第一步 -->
         <form action="" method="POST" id="register1" class="login_form form-off">
             <h4>註冊</h4>
-            <label for="userMail"><h5>電子郵件</h5></label>
-            <input type="email" name="userMail" class="userMail">
-            <label for="password"><h5>密碼</h5></label>
+            <label for="register_mail"><h5>電子郵件</h5></label>
+            <input type="email" name="userMail" id="register_mail">
+            <label for="register_password"><h5>密碼</h5></label>
             <input type="password" name="password" id="register_password">
             <label for="repassword"><h5>確認密碼</h5></label>
             <input type="password" name="repassword" id="repassword">
@@ -85,16 +85,14 @@
 
         <!-- 忘記密碼 -->
 
-        <form action="" method="POST" id="password_reset" class="forget-password form-off">
+        <form action="" method="POST" class="password_reset forget-password form-off">
             <h4>忘記密碼</h4>
             <p id="hint">請在下面輸入您的信箱或帳號。我們會寄一封信給您，裡面含有可以重新設定您的密碼的連結。</p>
             <label for="userMail"><h5>電子郵件</h5></label>
             <input type="email" name="userMail" id="userMail">
-            
             <button type="button" id="send_mail" class="send-reset-email">送出</button>
         </form>
         
-
         <i class="bi bi-x"></i>
     </div>
 </div>
@@ -134,7 +132,7 @@
 
     // Vue.component('forgetPwd', {
     //     template: `
-    //     <form action="" method="POST" id="password_reset">
+    //     <form action="" method="POST" class="password_reset">
     //         <h4>忘記密碼</h4>
     //         <p>請在下面輸入您的信箱或帳號。我們會寄一封信給您，裡面含有可以重新設定您的密碼的連結。</p>
     //         <label for="userMail"><h5>電子郵件</h5></label>
@@ -183,7 +181,7 @@
             $(".forget_link").remove();
             $(".register_link").remove();
             $('#login_form').addClass("form-off");
-            $("#password_reset").removeClass("form-off");
+            $(".password_reset").removeClass("form-off");
         }
 
         if (e.target.classList.contains("next")) {

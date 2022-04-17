@@ -36,7 +36,7 @@
       display: none;
     }
   }
-  .loginBlock {
+  .loginBlock,.resetBlock {
     margin: 40px auto;
 
     // 登入表單,重設密碼表單
@@ -178,7 +178,7 @@ div#back_bg {
 
 
 // 註冊填資料 表單
-.register_form {
+.register_form,.reset_comple_form {
   margin: 0 20px;
   width: 450px;
   display: flex;
@@ -281,7 +281,7 @@ div#back_bg {
 // ==================
 
 // 重設密碼表單
-#password_reset {
+.password_reset,.password_reset_sendPWD {
 	width: 325px;
 	margin: 20px;
 	display: flex;
@@ -330,7 +330,7 @@ div#back_bg {
   }
 }
 
-.login_form.form-off, .register_form.form-off, .forget-password.form-off{
+.login_form.form-off, .register_form.form-off, .forget-password.form-off, .password_reset_sendPWD.form-off, .reset_comple_form.form-off{
   display: none !important;
 }
 
