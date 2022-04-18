@@ -6,115 +6,104 @@ pages.forEach(function(page){
     }
 });
 
-// 取得資料
-/* //資料格式
-var product = {
-    prd_number:number,
-    prd_name:"string", // <-> "varchar"
-    prd_cost:number,
-    prd_price:number,
-    prd_inStock:number,
-    prd_pic:"string", //(主圖網址) "./img/producds/${品號}_top01"  <-> "varchar"
-    prd_condition:"string", //商品狀態 上架中、下架中
-    
-    // 詳細頁使用-----------------------
-    prd_topImage:[array "string"], // (網址) ["./img/producds/${品號}_top01"] max=4
-    prd_intro:[array {object}], //商品介紹,"varchar" [{"src","text"}]  (網址)[{"./img/producds/${品號}_01"},{}] max=5
-    prd_kind:"number?", //和資料庫關聯
-    prd_slog:["string","string"], //促銷標語 max=2
-    prd_ingredient:"string", //innerHtml
-}
-*/
-// 還沒有DB，先用LS
+// 取得資料 =========================================================================
+document.addEventListener("DOMContentLoaded",function(){
 
-// 沒有DB，檢查LC資料
-$(function () {
-    // console.log('object');
-    if (localStorage.prd_list == undefined) {
-        let task = [];
-        // localStorage.prd_list = '[]';
-        for (let i = 0; i < $('.list_item').length; i++) {
-            var product = {
-                prd_number: `${$('.prd_number')[i].innerText}`,
-                prd_name: `${$('.prd_name')[i].innerText}`, // <-> "varchar"
-                prd_cost: $('.prd_cost')[i].innerText,
-                prd_price: $('.prd_price')[i].innerText,
-                prd_inStock: $('.prd_inStock')[i].innerText,
-                prd_pic: `${$('.prd_pic')[i].getAttribute("src")}`, //(主圖網址) "./img/producds/${品號}_top01"  <-> "varchar"
-                prd_condition: `${$('.prd_condition')[i].innerText}`,
-                prd_topImage: [`${$('.prd_pic')[i].getAttribute("src")}`], // (網址) ["./img/producds/${品號}_top01"] max=4
-                prd_intro: [{src:"./img/products/papaya2_1200.jpg",text:"木瓜瓜"},{src:"./img/products/cow_1200.jpg",text:"本農場牛牛採天然放牧"},{src:"img/products/cow_1200.jpg",text:"本農場牛牛採天然放牧"}], //商品介紹,"varchar" [{"src","text"}]  (網址)[{"./img/producds/${品號}_01"},{}] max=5
-                prd_kind: "食品", //和資料庫關聯
-                prd_slog: ["六入組品嚐新鮮", "這是一段測試文字"], //促銷標語 max=2
-                prd_ingredient: "糖、香料、美好的事物和小女孩", //innerHtml 商品規格
-            }
+    // var product = {
+    //     prd_number: `${$('.prd_number')[i].innerText}`,
+    //     prd_name: `${$('.prd_name')[i].innerText}`, // <-> "varchar"
+    //     prd_cost: $('.prd_cost')[i].innerText,
+    //     prd_price: $('.prd_price')[i].innerText,
+    //     prd_inStock: $('.prd_inStock')[i].innerText,
+    //     prd_pic: `${$('.prd_pic')[i].getAttribute("src")}`, //(主圖網址) "./img/producds/${品號}_top01"  <-> "varchar"
+    //     prd_condition: `${$('.prd_condition')[i].innerText}`,
+    //     prd_topImage: [`${$('.prd_pic')[i].getAttribute("src")}`], // (網址) ["./img/producds/${品號}_top01"] max=4
+    //     prd_intro: [{src:"./img/products/papaya2_1200.jpg",text:"木瓜瓜"},{src:"./img/products/cow_1200.jpg",text:"本農場牛牛採天然放牧"},{src:"img/products/cow_1200.jpg",text:"本農場牛牛採天然放牧"}], //商品介紹,"varchar" [{"src","text"}]  (網址)[{"./img/producds/${品號}_01"},{}] max=5
+    //     prd_kind: "食品", //和資料庫關聯
+    //     prd_slog: ["六入組品嚐新鮮", "這是一段測試文字"], //促銷標語 max=2
+    //     prd_ingredient: "糖、香料、美好的事物和小女孩", //innerHtml 商品規格
+    // }
 
-            // console.log(product);
+            let url = './php/back_products_putin.php';
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                // 送出內容轉成JSON送出
+                body: JSON.stringify({
+                    ID:1,
+                }),
+            })
+           
+                // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+                .then(resp =>  resp.json())   
+                .then(body => {
+                    //body也不可以console
+                    const { successful, message, data } = body;
+                    if (successful) {
+                        // console.log(data);
+                        data.forEach(function(v){
+                            // console.log(v);
+                             // 判斷狀態，寫入class
+                            var condition = "";
+                            var inner_style = ""
 
-            task.push(product);
-            $('li[class$="-off"]').fadeOut()
-        }
-        localStorage.setItem('prd_list', JSON.stringify(task));
-    } else {
+                            if (v.STATE == '上架中') {
+                                condition = "on";
+                                inner_style = '';
+                                // console.log('list on');
+                            } else {
+                                condition = "off";
+                                inner_style = 'style="display:none;opacity:1;"'
+                                // console.log('list off');
+                            };
 
-        // 印出資料，之後串聯DB要從這改寫
-        $('.list_item').remove();
-        var prd_list = JSON.parse(localStorage.getItem("prd_list"));
+                            let MAIN_PIC=JSON.parse(v.MAIN_PIC);
 
-        for (let i = 0; i < prd_list.length; i++) {
+                            var list_html = `<li data-prd_number="${v.ID}" data-prd_name="${v.NAME}" data-prd_condition="${condition}" class="list_item -${condition}" ${inner_style}>
+                            <label class="check_container">
+                            <input type="checkbox"  class="select_item">
+                            <span class="checkmark"></span>
+                            </label>
+                            <img src="${MAIN_PIC[0]}" alt="" class="prd_pic">
+                            <p class="prd_number">${v.ID}</p>
+                            <p class="prd_name">${v.NAME}</p>
+                            <p class="prd_cost">${v.COST}</p>
+                            <p class="prd_price">${v.UNIT_PRICE}</p>
+                            <p class="prd_inStock">${v.STOCK}</p>
+                            <p class="prd_condition">${v.STATE}</p>
+                            <button type="button" class="btn-green prd_edit">修改</button>
+                            </li>`;
 
-            // 判斷狀態，寫入class
-            var condition = "";
-            var inner_style = ""
+                            $('#pds_list').append(list_html)
+                        })
 
-            if (prd_list[i].prd_condition == '上架中') {
-                condition = "on";
-                inner_style = '';
-                // console.log('list on');
-            } else {
-                condition = "off";
-                inner_style = 'style="display:none;opacity:1;"'
-                // console.log('list off');
+                    } else {
+                        alert(message);
+                    }
+                })
+        
+})
 
-            };
-            var list_html = `<li data-prd_number="${prd_list[i].prd_number}" data-prd_name="${prd_list[i].prd_name}" data-prd_condition="${condition}" class="list_item -${condition}" ${inner_style}>
-            <label class="check_container">
-            <input type="checkbox"  class="select_item">
-            <span class="checkmark"></span>
-            </label>
-            <img src="${prd_list[i].prd_pic}" alt="" class="prd_pic">
-            <p class="prd_number">${prd_list[i].prd_number}</p>
-            <p class="prd_name">${prd_list[i].prd_name}</p>
-            <p class="prd_cost">${prd_list[i].prd_cost}</p>
-            <p class="prd_price">${prd_list[i].prd_price}</p>
-            <p class="prd_inStock">${prd_list[i].prd_inStock}</p>
-            <p class="prd_condition">${prd_list[i].prd_condition}</p>
-            <button type="button" class="btn-green prd_edit">修改</button>
-            </li>`;
-
-            $("#pds_list").append(list_html);
-            $('li[class$="-off"]').fadeOut();
-        }
-
-    }
-});
-
-
+// 取得資料 end =========================================================================
 // 顯示未上架==========================================
 $('#show_off').on('click', (e) => {
-    for (let i = 0; i < $('.list_item').length; i++) {
+    let listt = document.querySelectorAll('.list_item');
+    // console.log(listt);
+    for (let i = 0; i < listt.length; i++) {
         if (e.target.checked == false) {
             // 隱藏未上架
-            if ($('.list_item')[i].getAttribute("data-prd_condition") == 'off') {
-                $('.list_item')[i].setAttribute("style", "display:none;");
+            if (listt[i].getAttribute("data-prd_condition") == 'off') {
+                listt[i].setAttribute("style", "display:none;");
                 // console.log(e.target.checked);
             }
         } else {
             // 顯示未上架
-            if ($('.list_item')[i].getAttribute("data-prd_condition") == 'off') {
-                $('.list_item')[i].removeAttribute("style");
+            if (listt[i].getAttribute("data-prd_condition") == 'off') {
+                listt[i].removeAttribute("style");
                 // console.log(e.target.checked);
-                // console.log($('.list_item'));
+                // console.log(listt);
             }
         }
     }
@@ -127,16 +116,42 @@ $(function () {
     $('#del_pd').on('click', () => {
         // console.log($(".list_item"));
         if (confirm("確定要刪除資料嗎？")) {
-            for (var i = 0; i < $('.select_item').length; i++) {
-                if ($(".select_item")[i].checked == true) {
-                    switch ($('.list_item')[i].getAttribute("data-prd_condition")) {
+                            // 打勾的項目數量 
+            for (var i = $('.select_item').length-1; i>0 ; i--) {
+                if ($(".select_item")[i].checked == true) { //checke box 有打勾時
+                    switch ($(".select_item")[i].closest("li").getAttribute("data-prd_condition")) {    //找出li的狀態
                         case "on":
                             alert("上架中的商品不能刪除");
                             break;
 
                         case "off":
-                            console.log($(".select_item")[i].checked);
-                            $('.list_item')[i].remove();
+                            // AJAX
+                            // console.log($(".select_item")[i].checked);
+                            let target_id = $(".select_item")[i].closest('li').getAttribute('data-prd_number');
+
+                            fetch('./php/back_products_delete.php', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-type': 'application/json'
+                                },
+                                // 送出內容轉成JSON送出
+                                body: JSON.stringify({
+                                    ID:target_id,
+                                }),
+                            })
+                           
+                                // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+                                .then(resp =>  resp.json())   
+                                .then(body => {
+                                    //body也不可以console
+                                    const { successful, message,end} = body;
+                                    if (successful) {
+                                        console.log(successful +'訊息'+message+'數'+end);
+                                    } else {
+                                        alert(message);
+                                    }
+                                })
+                                .then($(".select_item")[i].closest('li').remove())
                             break;
                         default:
                             console.log("default");
@@ -165,16 +180,27 @@ $("#on_pd").on('click', () => {
             $('.prd_condition')[i].innerText = '上架中';
             let item_nub = $('.list_item')[i].getAttribute("data-prd_number");
             // console.log(item_nub);
-            let task = JSON.parse(localStorage.getItem('prd_list'))
-            console.log(task);
-            // 對筆資料，並更新值
-            task.forEach(function (value, a) {
-                if (item_nub == task[a].prd_number) {
-                    console.log(task[a].prd_number);
-                    task[a].prd_condition = "上架中";
-                }
+            fetch('./php/back_products_STATEtoON.php', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                // 送出內容轉成JSON送出
+                body: JSON.stringify({
+                    ID:item_nub,
+                }),
             })
-            localStorage.setItem("prd_list", JSON.stringify(task));
+                // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+                .then(resp =>  resp.json())   
+                .then(body => {
+                    //body也不可以console
+                    const { successful, message,end,id} = body;
+                    if (successful) {
+                        console.log(successful +'訊息'+message+'數'+end);
+                    } else {
+                        console.log(id+' / '+message);
+                    }
+                })
 
         }
 
@@ -192,16 +218,27 @@ $("#off_pd").on('click', () => {
                 $('.prd_condition')[i].innerText = '未上架';
                 let item_nub = $('.list_item')[i].getAttribute("data-prd_number");
                 // console.log(item_nub);
-                let task = JSON.parse(localStorage.getItem('prd_list'))
-                console.log(task);
-                // 對筆資料，並更新值
-                task.forEach(function (value, a) {
-                    if (item_nub == task[a].prd_number) {
-                        console.log(task[a].prd_number);
-                        task[a].prd_condition = "未上架";
-                    }
+                fetch('./php/back_products_STATEtoOFF.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-type': 'application/json'
+                    },
+                    // 送出內容轉成JSON送出
+                    body: JSON.stringify({
+                        ID:item_nub,
+                    }),
                 })
-                localStorage.setItem("prd_list", JSON.stringify(task));
+                    // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+                    .then(resp =>  resp.json())   
+                    .then(body => {
+                        //body也不可以console
+                        const { successful, message,end,id} = body;
+                        if (successful) {
+                            console.log(successful +'訊息'+message+'數'+end);
+                        } else {
+                            console.log(id+' / '+message);
+                        }
+                    })
 
             }
 
