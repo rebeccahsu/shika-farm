@@ -52,7 +52,7 @@
                             </div>
                             <p class="state">狀態<span class="state-text">{{activity.STATE}}</span></p>
                             <div class="actButtons">
-                                <button class="btn-yellow member_btn">已報名會員</button>
+                                <button class="btn-yellow member_btn" @click="signedMembers">已報名會員</button>
                                 <button class="btn-green modify_btn" @click="modifyActivity">修改</button>
                             </div>
                         </div>
@@ -84,16 +84,16 @@
                 <td>報名人數</td>
                 <td>報名時間</td>
             </thead>
-            <tr class="data">
-                <td>19823</td>
-                <td>5</td>
-                <td>2022/03/14 18:22</td>
+            <tr class="data" v-for="member in members">
+                <td>{{member.id}}</td>
+                <td>{{member.people}}</td>
+                <td>{{member.time}}</td>
             </tr>
-            <tr class="data">
+            <!-- <tr class="data">
                 <td>19763</td>
                 <td>3</td>
                 <td>2022/03/10 10:34</td>
-            </tr>
+            </tr> -->
         </table>
         <div class="info-count">
             <p>人數上限：<span class="capacity">10</span></p>

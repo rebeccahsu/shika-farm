@@ -6,16 +6,44 @@ pages.forEach(function(page){
     }
 });
 
-function alertAddAct(msg, icon) {
+// sweetalert
+function sAlert(msg, icon, btn) {
     Swal.fire({
         title: msg,
         icon: icon,
-        showConfirmButton: false, // 確認按鈕（預設會顯示不用設定)
-        // 使用同確認按鈕
+        showConfirmButton: true, // 確認按鈕（預設會顯示不用設定)
+        confirmButtonText: btn, //　按鈕顯示文字
+        confirmButtonAriaLabel: btn, // 網頁無障礙用
         // showDenyButton: true, // 否定按鈕
         showCancelButton: false, // 取消按鈕
         buttonsStyling: false, // 是否使用sweetalert按鈕樣式（預設為true）
+        customClass: {
+                        confirmButton: 'btn-yellow margintop_15',
+                        cancelButton: 'btn-red margintop_15'
+                    },
     })
+}
+function sConfirm(title, text, url) {
+    Swal.fire({
+        title: title,
+        text: text,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: '確定',
+        cancelButtonText: '取消',
+        buttonsStyling: false,
+        customClass: {
+            confirmButton: 'btn-green',
+            cancelButton: 'btn-red'
+        },
+    }).then(function(result) {
+       if (result.value) {
+            location.href = url;
+       }
+       else {
+           
+       }
+    });
 }
 
 //確認新增
@@ -71,7 +99,7 @@ new Vue({
                     console.log(body);
                     console.log(body.successful);
                     if (successful) {
-                        alertAddAct('<strong>已成功新增活動！</strong>', 'success');
+                        sAlert('<h5>已成功新增活動！</h5>', 'success', 'OK');
                         this.name = '';
                         this.opacity = '';
                         this.img = '';
@@ -81,15 +109,15 @@ new Vue({
                         this.desc = '';
                     } 
                     else {
-                        alertAddAct('<strong>新增失敗，請再試一次</strong>', 'error');
+                        sAlert('<h5>新增失敗，請再試一次</h5>', 'error', 'OK');
                     }
                 })
                 .catch(function(err) {
-                    alertAddAct('<strong>新增失敗，請再試一次</strong>', 'error');
+                    sAlert('<h5>新增失敗，請再試一次</h5>', 'error', 'OK');
                 });
 
             }else{
-                alertAddAct('<strong>請填寫完所有欄位再送出</strong>', 'error');
+                sAlert('<h5>請填寫完所有欄位再送出</h5>', 'warning', 'OK');
             }
         },
 
@@ -161,16 +189,16 @@ new Vue({
             $('span.text').remove();
        },
 
-       dragover(e){
+        dragover(e){
             let drop_div = document.getElementById("drop_zone");
             e.preventDefault();
             drop_div.classList.add("-on");
-       },
-       dragleave(){
+        },
+        dragleave(){
             let drop_div = document.getElementById("drop_zone");
             drop_div.classList.remove("-on");
-       },
-       drop(e){
+        },
+        drop(e){
             e.preventDefault();
             let preview = document.querySelector(".preview");
             $("#drop_zone").removeClass("-on");
@@ -182,7 +210,10 @@ new Vue({
             }else{
                 preview.innerHTML = `<span class="text">圖片拖曳至此處</span>`;
             }
-       }
+        },
+        cancel(){
+            sConfirm('內容尚未儲存', '您確定要返回活動列表嗎？', "./back_activity.html");
+        },
     },
 
 })
