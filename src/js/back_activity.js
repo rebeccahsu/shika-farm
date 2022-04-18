@@ -18,8 +18,8 @@ function sAlert(msg, icon, btn) {
         showCancelButton: false, // 取消按鈕
         buttonsStyling: false, // 是否使用sweetalert按鈕樣式（預設為true）
         customClass: {
-                        confirmButton: 'btn-yellow margintop_15',
-                        cancelButton: 'btn-red margintop_15'
+                        confirmButton: 'btn-yellow margintop_15 marginleft_2 marginright_2',
+                        cancelButton: 'btn-red margintop_15 marginleft_2 marginright_2'
                     },
     })
 }
@@ -48,7 +48,7 @@ function sAlert(msg, icon, btn) {
 //     });
 // }
 
-new Vue({
+const activityList = new Vue({
     el: '#back_activity',
     // data: {
     //     activities: [
@@ -86,51 +86,17 @@ new Vue({
     methods: {
         // ==== 上架按鈕 ====
         onAct(){
-            let checkbox = document.querySelectorAll(".check-act");
-            let checked_arr  = [];
-            checkbox.forEach(function(box){
-                if (box.checked){
-                    let on_li = box.closest(".actList");
-                    checked_arr.push(on_li);
-                    $(on_li).removeClass("-off");
-                    $(on_li).find(".state-text").html("上架中");
-                    box.checked = false;
-                }
-            });
-            // console.log(checked_arr[0]);
-            sAlert(`<h5>已成功上架 ${checked_arr.length} 個活動！</h5>`, 'success', 'OK');
-            function checkAvailability (){
-                let activity_li = document.querySelectorAll(".actList");
-                let on_activity = [];
-                activity_li.forEach(function(li){
-                    if ( ! li.classList.contains("-off")){
-                        on_activity.push(li);
-                    }
-                })
-                // console.log(on_activity.length);
-                let on_activity_count = document.querySelector(".actAvailable");
-                on_activity_count.innerHTML = on_activity.length;
-            }
-            checkAvailability();
-        },
-        // ==== 下架按鈕 ====
-        offAct(){
-            let checkbox = document.querySelectorAll(".check-act");
-            let checked_arr  = [];
-            // checkbox.forEach(function(box){
-            //     if (box.checked){
-            //         let off_li = box.closest(".actList");
-            //         checked_arr.push(off_li);
-            //         $(off_li).addClass("-off");
-            //         $(off_li).find(".state-text").html("未上架");
-            //         box.checked = false;
-            //     }
-            // });
-            // onoffConfirm(`<h5>您確定要下架 ${checked_arr.length} 個活動嗎？</h5>`, '', `下架 ${checked_arr.length} `);
-            // sAlert(`<h5>已成功下架 ${checked_arr.length} 個活動！</h5>`, 'success', 'OK');
             function onoffConfirm() {
+                let checkbox = document.querySelectorAll(".check-act");
+                let checked_arr  = [];
+                checkbox.forEach(function(box){
+                    if (box.checked){
+                        let off_li = box.closest(".actList");
+                        checked_arr.push(off_li);
+                    }
+                });
                 Swal.fire({
-                    title: `<h5>您確定要下架 ${checked_arr.length} 個活動嗎？</h5>`,
+                    title: `<h5>您確定要上架這 ${checked_arr.length} 個活動嗎？</h5>`,
                     // text: text,
                     icon: 'warning',
                     showCancelButton: true,
@@ -138,7 +104,47 @@ new Vue({
                     cancelButtonText: '取消',
                     buttonsStyling: false,
                     customClass: {
-                        confirmButton: 'btn-green',
+                        confirmButton: 'btn-green marginright_20',
+                        cancelButton: 'btn-red'
+                    },
+                }).then(function(res) {
+                   if (res.value) {
+                       checkbox.forEach(function(box){
+                           if (box.checked){
+                                let on_li = box.closest(".actList");
+                                $(on_li).removeClass("-off");
+                                $(on_li).find(".state-text").html("上架中");
+                                box.checked = false;
+                            }
+                        });
+                        sAlert(`<h5>已成功上架 ${checked_arr.length} 個活動！</h5>`, 'success', 'OK');
+                        activityList.checkAvailability();
+                   };
+                });
+            };
+            onoffConfirm();
+        },
+        // ==== 下架按鈕 ====
+        offAct(){
+            function onoffConfirm() {
+                let checkbox = document.querySelectorAll(".check-act");
+                let checked_arr  = [];
+                checkbox.forEach(function(box){
+                    if (box.checked){
+                        let off_li = box.closest(".actList");
+                        checked_arr.push(off_li);
+                    }
+                });
+                Swal.fire({
+                    title: `<h5>您確定要下架這 ${checked_arr.length} 個活動嗎？</h5>`,
+                    // text: text,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: '確定',
+                    cancelButtonText: '取消',
+                    buttonsStyling: false,
+                    customClass: {
+                        confirmButton: 'btn-green marginright_20',
                         cancelButton: 'btn-red'
                     },
                 }).then(function(res) {
@@ -146,34 +152,32 @@ new Vue({
                        checkbox.forEach(function(box){
                            if (box.checked){
                                let off_li = box.closest(".actList");
-                               checked_arr.push(off_li);
                                $(off_li).addClass("-off");
                                $(off_li).find(".state-text").html("未上架");
                                box.checked = false;
                             }
                         });
-                        sAlert(`<h5>您已成功下架${checked_arr.length}個活動！</h5>`, 'success', 'OK');
-                        console.log(111);
-                   }
-                   else {
-                       
-                   }
+                        sAlert(`<h5>已成功下架 ${checked_arr.length} 個活動！</h5>`, 'success', 'OK');
+                        activityList.checkAvailability();
+                   };
                 });
             };
             onoffConfirm();
-            function checkAvailability (){
-                let activity_li = document.querySelectorAll(".actList");
-                let on_activity = [];
-                activity_li.forEach(function(li){
-                    if ( ! li.classList.contains("-off")){
-                        on_activity.push(li);
-                    }
-                })
-                // console.log(on_activity.length);
-                let on_activity_count = document.querySelector(".actAvailable");
-                on_activity_count.innerHTML = on_activity.length;
-            }
-            checkAvailability();
+
+            
+        },
+        // ==== 上架中活動數量 ====
+        checkAvailability (){
+            let activity_li = document.querySelectorAll(".actList");
+            let on_activity = [];
+            activity_li.forEach(function(li){
+                if (li.classList.contains("-off")){
+                }else{
+                    on_activity.push(li);
+                }
+            })
+            let on_activity_count = document.querySelector(".actAvailable");
+            on_activity_count.innerHTML = on_activity.length;
         },
         // ==== 刪除按鈕 ====
         deleteAct(){
@@ -239,7 +243,7 @@ new Vue({
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(
-                {id: id}
+                {id: 19}
             ),
         })
         .then(res => res.json())
