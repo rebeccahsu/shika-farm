@@ -35,19 +35,21 @@ CREATE TABLE `ACTIVITY` (
   `S3_START` varchar(45) NOT NULL,
   `S3_END` varchar(45) NOT NULL,
   `DESC` varchar(200) NOT NULL,
-  `CATERGORY` varchar(45) NOT NULL,
+  `CATEGORY` varchar(45) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb3;
 
 /*Data for the table `ACTIVITY` */
 
-insert  into `ACTIVITY`(`ID`,`NAME`,`IMG`,`ATTENDANCE`,`OPACITY`,`STATE`,`TIME`,`S1_START`,`S1_END`,`S2_START`,`S2_END`,`S3_START`,`S3_END`,`DESC`,`CATERGORY`) values 
-(1,'我要當牛仔','./img/activity/riding.jpg',5,10,'上架中',90,'9:30','11:00','13:00','14:30','16:30','18:00','','horse'),
-(2,'小豬賽跑','./img/activity/pigrun.jpg',8,15,'上架中',30,'10:00','10:30','13:00','13:30','15:00','15:30','','pig'),
-(3,'剃羊毛秀','./img/activity/fur.jpg',16,30,'上架中',30,'9:30','10:30','13:00','14:00','17:00','18:00','','sheep'),
-(4,'馬術秀','./img/activity/horseshow.jpg',20,30,'已下架',60,'11:00','12:00','13:00','14:00','16:00','17:00','','horse'),
-(5,'草泥馬散步秀','./img/activity/alpacawalk.jpg',6,20,'上架中',90,'10:30','11:30','13:30','14:30','15:30','16:30','','alpaca'),
-(11,'DIY ㄋㄟㄋㄟ 肥皂','./img/activity/soap.jpg',0,30,'上架中',90,'09:30','11:00','13:00','14:30','16:00','17:30','喜歡洗澡嗎 ? 簡單三步驟就能讓你完成屬於自己的肥皂 ，讓Sìkha肥皂滲透你的肌膚，享受肌膚絲緞般的觸感，自用送禮兩相宜，還不快來體驗！','sheep');
+insert  into `ACTIVITY`(`ID`,`NAME`,`IMG`,`ATTENDANCE`,`OPACITY`,`STATE`,`TIME`,`S1_START`,`S1_END`,`S2_START`,`S2_END`,`S3_START`,`S3_END`,`DESC`,`CATEGORY`) values 
+(1,'我要當牛仔','./img/activity/riding.jpg',5,10,'上架中',90,'09:30','11:00','13:00','14:30','16:30','18:00','無論你是大朋友小朋友、初學者，都可以安心做牛仔！* 身高 90 公分以下且與陪同成人體重相加總重不超過 80 公斤的兒童可以與成人一起乘坐。','horse'),
+(2,'小豬賽跑','./img/activity/pigrun.jpg',8,15,'上架中',30,'10:00','10:30','13:00','13:30','15:00','15:30','看穿著號碼衣的小豬們，翹著屁股碰碰跳跳的向前賽跑，觀賽前可以先將自己神聖的一票投給喜歡的小豬，比賽結束後，若您投的小豬是冠軍，就可獲得牧場的驚喜小禮物呦！','pig'),
+(3,'剃羊毛秀','./img/activity/fur.jpg',16,30,'上架中',30,'9:30','10:30','13:00','14:00','17:00','18:00','想知道服裝織品中常見的羊毛，最開始的原型是什麼樣子嗎？讓我們專業的剃羊毛技師為你們揭開這層面紗，攜手一探究竟吧。','sheep'),
+(4,'馬術秀','./img/activity/horseshow.jpg',20,30,'上架中',60,'11:00','12:00','13:00','14:00','16:00','17:00','由專業的騎士親自演出，在駿馬馬背上站立、翻騰、跳躍，甚至是高難度的射箭。精彩的馬術秀絕對不容錯過，快來一睹馬兒們的神勇風采吧。','horse'),
+(5,'草泥馬散步秀','./img/activity/alpacawalk.jpg',6,20,'上架中',90,'10:30','11:30','13:30','14:30','15:30','16:30','跟著草泥馬在遼闊的草原，與和煦陽光的陪伴下，踏著慵懶的步伐，一同遠離塵囂，享受著屬於你我間的怡然時光吧。','alpaca'),
+(11,'DIY ㄋㄟㄋㄟ 肥皂','./img/activity/soap.jpg',0,30,'上架中',90,'09:30','11:00','13:00','14:30','16:00','17:30','喜歡洗澡嗎 ? 簡單三步驟就能讓你完成屬於自己的肥皂 ，讓Sìkha肥皂滲透你的肌膚，享受肌膚絲緞般的觸感，自用送禮兩相宜，還不快來體驗！','sheep'),
+(21,'擠ㄋㄟㄋㄟ','./img/activity/milkmaker.jpg',0,20,'上架中',30,'09:00','09:30','10:00','10:30','14:00','14:30','幫乳牛媽媽擠ㄋㄟㄋㄟ，讓小朋友們知道，原來牛奶是從這裡來的呢！。透過工作人員教學說明後，我們可以親手擠出白色的牛奶，配合乳牛媽媽的生理時間，提供每日３個場次可以體驗喔！','cow'),
+(31,'DIY ㄋㄟㄋㄟ 餅乾','./img/activity/makecookie.jpg',0,30,'上架中',90,'9:30','11:00','13:00','14:30','16:30','18:00','奶味香濃的餅乾大人小孩都喜歡！但有親手做過餅乾嗎？Sìkha牧場提供新鮮牛奶讓各位大朋友小朋友來這親手製作出香濃可口的ㄋㄟㄋㄟ餅乾 ! ? 簡單三步驟就能讓你完成屬於自己的肥皂 ，讓Sìkha肥皂滲透你的肌膚，享受肌膚絲緞般的觸感，自用送禮兩相宜，還不快來體驗！','horse');
 
 /*Table structure for table `ADMIN` */
 
@@ -138,9 +140,16 @@ CREATE TABLE `ORDER` (
   PRIMARY KEY (`ID`),
   KEY `FK_ORDER_CUSTOMER_ID_idx` (`MEMBER_ID`),
   CONSTRAINT `FK_ORDER_MEMBER_ID` FOREIGN KEY (`MEMBER_ID`) REFERENCES `MEMBER` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 
 /*Data for the table `ORDER` */
+
+insert  into `ORDER`(`ID`,`MEMBER_ID`,`ORDER_DATE`,`TOTAL`,`PAYMENT`,`PAYMENT_STATE`,`RECEIVER_ADDRESS`,`RECEIVER_NAME`,`RECEIVER_PHONE`,`LOGISTICS_STATE`) values 
+(1,19,'2022-03-15',299,'信用卡','已付款','台中市北屯區祥順十街25號','王大明','910993300','未送達'),
+(2,20,'2022-03-15',1048,'信用卡','已付款','台北市南港區永吉路23號','蔡大頭','988991457','已送達'),
+(3,22,'2022-03-13',698,'信用卡','已付款','桃園市中壢區嘉善街35號','謝蟹倪','988173664','已送達'),
+(4,25,'2022-03-09',399,'信用卡','已付款','苗栗縣後龍鎮豐富七街25號','蕭西西','927554880','已送達'),
+(5,27,'2022-03-03',1347,'信用卡','已付款','高雄市路竹區延平路28號','高波羅','954874874','已送達');
 
 /*Table structure for table `ORDER_DETAIL` */
 
@@ -157,9 +166,19 @@ CREATE TABLE `ORDER_DETAIL` (
   KEY `FK_ORDER_DETAIL_PRODUCT_ID_idx` (`PRODUCT_ID`),
   CONSTRAINT `FK_ORDER_DETAIL_ORDER_ID` FOREIGN KEY (`ORDER_ID`) REFERENCES `ORDER` (`ID`),
   CONSTRAINT `FK_ORDER_DETAIL_PRODUCT_ID` FOREIGN KEY (`PRODUCT_ID`) REFERENCES `PRODUCT` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
 
 /*Data for the table `ORDER_DETAIL` */
+
+insert  into `ORDER_DETAIL`(`ID`,`PRODUCT_ID`,`ORDER_ID`,`QUANTITY`,`UNIT_PRICE`) values 
+(1,7,1,1,299),
+(2,10,2,1,549),
+(3,8,2,1,499),
+(4,7,3,1,299),
+(5,9,3,1,399),
+(6,9,4,1,399),
+(7,9,5,1,499),
+(8,10,5,2,549);
 
 /*Table structure for table `PRODUCT` */
 
@@ -216,16 +235,21 @@ CREATE TABLE `RESERVATION` (
   `ACTIVITY_ID` int NOT NULL,
   `MEMBER_ID` int NOT NULL,
   `DATE` date NOT NULL,
-  `TIME` varchar(45) NOT NULL,
+  `SESSION` varchar(45) NOT NULL,
   `ATTENDANCE` int NOT NULL,
+  `UPDATE_TIME` varchar(45) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `FK_RESERVATION_MEMBER_ID_idx` (`MEMBER_ID`),
   KEY `FK_RESERVATION_ACTIVITY_ID_idx` (`ACTIVITY_ID`),
   CONSTRAINT `FK_RESERVATION_ACTIVITY_ID` FOREIGN KEY (`ACTIVITY_ID`) REFERENCES `ACTIVITY` (`ID`),
   CONSTRAINT `FK_RESERVATION_MEMBER_ID` FOREIGN KEY (`MEMBER_ID`) REFERENCES `MEMBER` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 
 /*Data for the table `RESERVATION` */
+
+insert  into `RESERVATION`(`ID`,`ACTIVITY_ID`,`MEMBER_ID`,`DATE`,`SESSION`,`ATTENDANCE`,`UPDATE_TIME`) values 
+(1,1,19,'2022-05-01','9:30~11:00',3,'2022/04/17 18:22'),
+(2,1,22,'2022-05-01','9:30~11:00',2,'2022/04/17 18:22');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
