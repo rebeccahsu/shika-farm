@@ -1,8 +1,51 @@
 // 套件================================
 // import Splide from './vendors/splide.min.js';
+
 new Splide(".splide01").mount();
 
 document.addEventListener("DOMContentLoaded", function () {
+// 讀取資料==========================================
+// const editRule = /[prd_number=]\d{8}$/
+    let urlParams = new URLSearchParams (window.location.search); 
+	let id = urlParams.get('prd_number');
+	console.log(id);
+        // AJAX
+        fetch('./php/product_load.php', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            // 送出內容轉成JSON送出
+            body: JSON.stringify({
+                ID:id,
+            }),
+        })
+            // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+            .then(resp =>  resp.json())   
+            .then(body => {
+                //body也不可以console
+                const { successful, message ,data} = body;
+                if (successful == true) {
+                    console.log(successful + "訊息" +message+"資料"+data);
+					let bread = document.querySelector(".pd_bread");
+
+					
+					bread.innerText=`首頁 | 周邊產品 | ${data[0].NAME}`;
+					putin_top_pic(data[0].MAIN_PIC);
+
+                  
+                } else {
+                    console.log(successful+' 訊息'+message);
+                }
+            })
+            
+// 讀取資料end========================================
+
+let sp1= $("#splide01").find(".splide__list");
+sp1.on("change" ,function(){
+
+
+// 掛載套件=========
 	var main_1 = new Splide(".splide01", {
 		type: "splide",
 		rewind: true,
@@ -68,6 +111,7 @@ var main_2 = new Splide("#splide02", {
 if (window.innerWidth > 992) {
 	removeSplide();
 }
+})
 
 // for resize
 function addSplide() {
@@ -95,45 +139,23 @@ $(window).on("resize", function () {
 		addSplide();
 	}
 });
-
-// ===========================
-// 讀取資料==========================================
-// const editRule = /[prd_number=]\d{8}$/
-
-document.addEventListener("DOMContentLoaded", function (e) {
-    let urlParams = new URLSearchParams (window.location.search); 
-	let id = urlParams.get('prd_number');
-	console.log(id);
-        // AJAX
-        fetch('./php/product_load.php', {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            // 送出內容轉成JSON送出
-            body: JSON.stringify({
-                ID:id,
-            }),
-        })
-            // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
-            .then(resp =>  resp.json())   
-            .then(body => {
-                //body也不可以console
-                const { successful, message ,data} = body;
-                if (successful == true) {
-                    console.log(successful + "訊息" +message+"資料"+data);
-
-                    // location.href = `./password_reset_3.html`;
-                } else {
-                    console.log(successful+' 訊息'+message);
-                }
-            })
-            
-    
+// for resize end========================
+function putin_top_pic(top_pic){
+top_pic = JSON.parse(top_pic);
+console.log(top_pic);
+let sp1= $("#splide01").find(".splide__list");
+top_pic.forEach((v) => {
+	sp1.append(`<li class="splide__slide"><img src="${v}" alt=""></li>`);
 });
 
+let sp1_under=$("#thumbnail-slider1").find(".splide__list");
+$.each(top_pic,(i,v) => {
+	sp1_under.append(`<li class="splide__slide"><img src="${v}" alt=""></li>`)
+});
 
-// 讀取資料end========================================
+}
+// 套件與讀取資料end=========================================================
+
 // 數量調整按鍵
 var stockCount = document.querySelector("#pd_stockCount_input");
 var inStock = document.querySelector("#pd_inStock");
