@@ -137,6 +137,7 @@ function browser(done) {
 		"change",
 		reload
 	);
+	watch(["src/php/*.php", "src/php/**/*.php"], phpmove).on("change", reload);
 	done();
 }
 
