@@ -152,8 +152,6 @@ $(function () {
                                     }
                                 })
                                 .then($(".select_item")[i].closest('li').remove())
-
-
                             break;
                         default:
                             console.log("default");
@@ -182,16 +180,27 @@ $("#on_pd").on('click', () => {
             $('.prd_condition')[i].innerText = '上架中';
             let item_nub = $('.list_item')[i].getAttribute("data-prd_number");
             // console.log(item_nub);
-            let task = JSON.parse(localStorage.getItem('prd_list'))
-            console.log(task);
-            // 對筆資料，並更新值
-            task.forEach(function (value, a) {
-                if (item_nub == task[a].prd_number) {
-                    console.log(task[a].prd_number);
-                    task[a].prd_condition = "上架中";
-                }
+            fetch('./php/back_products_STATEtoON.php', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                // 送出內容轉成JSON送出
+                body: JSON.stringify({
+                    ID:item_nub,
+                }),
             })
-            localStorage.setItem("prd_list", JSON.stringify(task));
+                // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+                .then(resp =>  resp.json())   
+                .then(body => {
+                    //body也不可以console
+                    const { successful, message,end,id} = body;
+                    if (successful) {
+                        console.log(successful +'訊息'+message+'數'+end);
+                    } else {
+                        console.log(id+' / '+message);
+                    }
+                })
 
         }
 
@@ -209,16 +218,27 @@ $("#off_pd").on('click', () => {
                 $('.prd_condition')[i].innerText = '未上架';
                 let item_nub = $('.list_item')[i].getAttribute("data-prd_number");
                 // console.log(item_nub);
-                let task = JSON.parse(localStorage.getItem('prd_list'))
-                console.log(task);
-                // 對筆資料，並更新值
-                task.forEach(function (value, a) {
-                    if (item_nub == task[a].prd_number) {
-                        console.log(task[a].prd_number);
-                        task[a].prd_condition = "未上架";
-                    }
+                fetch('./php/back_products_STATEtoOFF.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-type': 'application/json'
+                    },
+                    // 送出內容轉成JSON送出
+                    body: JSON.stringify({
+                        ID:item_nub,
+                    }),
                 })
-                localStorage.setItem("prd_list", JSON.stringify(task));
+                    // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+                    .then(resp =>  resp.json())   
+                    .then(body => {
+                        //body也不可以console
+                        const { successful, message,end,id} = body;
+                        if (successful) {
+                            console.log(successful +'訊息'+message+'數'+end);
+                        } else {
+                            console.log(id+' / '+message);
+                        }
+                    })
 
             }
 
