@@ -85,13 +85,36 @@ new Vue({
 				});
 			}
 		},
-		// 進入頁面就要有初始值就要用created
-		created() {
-			// 1.取出localStorage的資料, 字串轉成物件 // ??判斷是否為null如果是就用空陣列
-			let cart = JSON.parse(sessionStorage.getItem("products")) ?? [];
-			// 2.把資料放入data裡的products
-			this.products = cart;
+		same() {
+			console.log(1);
+			fetch("./php/member.php", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ id: 19 }),
+			})
+				.then((res) => res.json())
+				.then((res) => {
+					console.log(res);
+					// console.log(country)
+					// console.log(district)
+
+					// name.value == res[0].NAME;
+					$('#name').val(res[0].NAME); //抓到資料庫的姓名塞進收件人輸入框
+					$('#phone').val(res[0].PHONE); //抓到資料庫的電話塞進電話輸入框
+					$('#address').val(res[0].COUNTRY + res[0].DISTRICT + res[0].STREET);//抓到資料庫的城市、區域、地址塞進地址輸入框
+					// $('#address').val(`${res[0].COUNTRY}${res[0].DISTRICT}${res[0].STREET}`);
+				});
 		},
+	},
+	// 進入頁面就要有初始值就要用created
+	created() {
+		// 1.取出localStorage的資料, 字串轉成物件 // ??判斷是否為null如果是就用空陣列
+		let cart = JSON.parse(sessionStorage.getItem("products")) ?? [];
+		// 2.把資料放入data裡的products
+		// console.log(cart);
+		this.products = cart;
 	},
 	computed: {
 		// 總計 執行function
