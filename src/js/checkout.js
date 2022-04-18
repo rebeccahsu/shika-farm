@@ -64,35 +64,34 @@ new Vue({
 			}
 		},
 		creditup() {
-			let cards = document.getElementsByClassName('payId')
-			console.log("aaa")
-				for (let i = 0; i < cards.length; i++) {					
-
-					// ----- 跨欄位輸入 & 中文字不能輸入 ------------//
-					cards[i].addEventListener("keyup", function (e) {
-						// 解決中文字可以輸入的情形
-						// 使用正規式：所有非數字字元\D，g所有
-						let str = e.target.value.replace(/\D/g, "");
-						console.log(str);
-						e.target.value = str; //將中文輸入值用空字串
-						// 希望使用者可以一直輸入下去
-						// console.log(str.length);a
-						if (str.length == 4) {
-							let next_el = this.nextElementSibling;
-							if (next_el != null) {
-								next_el.focus();
-							}
+			let cards = document.getElementsByClassName("payId");
+			console.log("aaa");
+			for (let i = 0; i < cards.length; i++) {
+				// ----- 跨欄位輸入 & 中文字不能輸入 ------------//
+				cards[i].addEventListener("keyup", function (e) {
+					// 解決中文字可以輸入的情形
+					// 使用正規式：所有非數字字元\D，g所有
+					let str = e.target.value.replace(/\D/g, "");
+					console.log(str);
+					e.target.value = str; //將中文輸入值用空字串
+					// 希望使用者可以一直輸入下去
+					// console.log(str.length);a
+					if (str.length == 4) {
+						let next_el = this.nextElementSibling;
+						if (next_el != null) {
+							next_el.focus();
 						}
-					});
-				}
+					}
+				});
 			}
 		},
-	// 進入頁面就要有初始值就要用created
+		// 進入頁面就要有初始值就要用created
 		created() {
-		// 1.取出localStorage的資料, 字串轉成物件 // ??判斷是否為null如果是就用空陣列
-		let cart = JSON.parse(sessionStorage.getItem("products")) ?? [];
-		// 2.把資料放入data裡的products
-		this.products = cart;
+			// 1.取出localStorage的資料, 字串轉成物件 // ??判斷是否為null如果是就用空陣列
+			let cart = JSON.parse(sessionStorage.getItem("products")) ?? [];
+			// 2.把資料放入data裡的products
+			this.products = cart;
+		},
 	},
 	computed: {
 		// 總計 執行function
@@ -119,4 +118,3 @@ new Vue({
 		},
 	},
 });
-

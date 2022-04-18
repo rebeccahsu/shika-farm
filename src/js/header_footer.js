@@ -105,6 +105,7 @@ const black_bg = new Vue({
 				return; // 就結束顯示預設數字 1
 			}
 			this.products[index].count += n; // 不然就可以做加減
+			sessionStorage.setItem("products", JSON.stringify(this.products));
 		},
 		//點擊垃圾桶 刪除
 		del(index) {

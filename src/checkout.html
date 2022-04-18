@@ -223,12 +223,13 @@
 				</ul>
 				<div class="payGoback">
 					<button class="goback" @click="step = 'A'">回上一步</button>
-					<button class="paysub" @click="step = 'C'">提交訂單</button>
+					<button class="paysub" @click="sendOrder">提交訂單</button>
 				</div>
 			</div>
 			<!---------- 結帳流程三 ---------->
 			<div v-else-if="step == 'C'" class="stepC container-lg">
 				<h3>訂單已完成，您的訂單編號為#20220311</h3>
+				<!-- <div id="msg" class="success"></div> -->
 				<h5>
 					您可以前往(<a href="member.html" class="myMB">我的會員</a
 					>)查詢訂單狀態
