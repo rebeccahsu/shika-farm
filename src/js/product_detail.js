@@ -145,37 +145,20 @@ function stockChack(el) {
 
 $("#pd_info_cart").on("click", (e) => {
 	e.preventDefault();
-
 	let cart_data = JSON.parse(sessionStorage.getItem("products"));
-	if (cart_data != "") {
+	// console.log(cart_data)
+	if (cart_data == null || cart_data == false) {
 		let img = document
 			.querySelector(".splide__list li img")
 			.getAttribute("src");
 		let name = document.querySelector("#pd_info_name").innerText;
 		let price = document.querySelector("#pd_info_pricr").innerText;
 		let count = document.querySelector("#pd_stockCount_input").value;
-		let overlayCount = parseInt(count) + parseInt(cart_data[0].count);
-
+		let urlParams = new URLSearchParams(window.location.search);
+		let id = urlParams.get('prd_number');
 		let products = [
 			{
-				img: img,
-				name: name,
-				price: price,
-				count: overlayCount,
-			},
-		];
-		sessionStorage.setItem("products", JSON.stringify(products));
-		let cart_count = document.querySelector(".quantity");
-		cart_count.value = overlayCount;
-	} else {
-		let img = document
-			.querySelector(".splide__list li img")
-			.getAttribute("src");
-		let name = document.querySelector("#pd_info_name").innerText;
-		let price = document.querySelector("#pd_info_pricr").innerText;
-		let count = document.querySelector("#pd_stockCount_input").value;
-		let products = [
-			{
+				id: id,
 				img: img,
 				name: name,
 				price: price,
@@ -186,6 +169,29 @@ $("#pd_info_cart").on("click", (e) => {
 		// let cart_count = document.querySelector(".quantity");
 		// // console.log(cart_count);
 		// cart_count.value = count;
+	} else {
+		let img = document
+			.querySelector(".splide__list li img")
+			.getAttribute("src");
+		let name = document.querySelector("#pd_info_name").innerText;
+		let price = document.querySelector("#pd_info_pricr").innerText;
+		let count = document.querySelector("#pd_stockCount_input").value;
+		let overlayCount = parseInt(count) + parseInt(cart_data[0].count);
+		let urlParams = new URLSearchParams(window.location.search);
+		let id = urlParams.get('prd_number');
+
+		let products = [
+			{
+				id: id,
+				img: img,
+				name: name,
+				price: price,
+				count: overlayCount,
+			},
+		];
+		sessionStorage.setItem("products", JSON.stringify(products));
+		let cart_count = document.querySelector(".quantity");
+		cart_count.value = overlayCount;
 	}
 
 	// let img = document.querySelector(".splide__list li img").getAttribute("src");
