@@ -112,17 +112,17 @@
 					<li class="send">
 						<div>
 							<label for="name" class="sendIn">收件人姓名</label>
-							<input type="text" id="name" class="np" />
+							<input type="text" id="name" class="np" v-model="userInfo.name"/>
 						</div>
 						<div>
 							<label for="phone" class="sendIn">連絡電話</label>
-							<input type="text" id="phone" class="np" />
+							<input type="text" id="phone" class="np" maxlength="10" v-model="userInfo.phone"/>
 						</div>
 					</li>
 					<li class="addressout">
 						<div class="addressin">
 							<label for="address" class="sendIn">送貨地址</label>
-							<input type="text" id="address" class="sendAddress" />
+							<input type="text" id="address" class="sendAddress" v-model="userInfo.address"/>
 							<input type="checkbox" name="" id="same" class="checkSame" @change="same"/>
 							<label for="same">同會員資料</label>
 						</div>
@@ -212,7 +212,7 @@
 						<div class="card_infoI">
 							<p class="cardname cardAll">
 								<label for="cardname">持卡人姓名</label>
-								<input type="text" id="cardname" class="payInput" />
+								<input type="text" id="cardname" class="payInput"/>
 							</p>
 							<p class="cardAll">
 								<label for="CSC">安全碼</label>
