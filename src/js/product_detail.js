@@ -208,11 +208,11 @@ $("#pd_info_cart").on("click", (e) => {
 		let img = document
 			.querySelector(".splide__list li img")
 			.getAttribute("src");
-		let name = document.querySelector("#pd_info_name").innerText;
-		let price = document.querySelector("#pd_info_pricr").innerText;
-		let count = document.querySelector("#pd_stockCount_input").value;
-		let urlParams = new URLSearchParams(window.location.search);
-		let id = urlParams.get('prd_number');
+		let name = document.querySelector("#pd_info_name").innerText; // 找到id = pd_info_name的標籤裡面的字 → 商品名稱
+		let price = document.querySelector("#pd_info_pricr").innerText; // 找到id = pd_info_pricr的標籤裡面的字 → 商品價格
+		let count = document.querySelector("#pd_stockCount_input").value; // 找到id = pd_stockCount_input的標籤裡面的值 → 商品數量
+		let urlParams = new URLSearchParams(window.location.search); // 找到商品在網址上的id
+		let id = urlParams.get('prd_number'); // 取得商品在網址上的id
 		let products = [
 			{
 				id: id,
@@ -230,12 +230,12 @@ $("#pd_info_cart").on("click", (e) => {
 		let img = document
 			.querySelector(".splide__list li img")
 			.getAttribute("src");
-		let name = document.querySelector("#pd_info_name").innerText;
-		let price = document.querySelector("#pd_info_pricr").innerText;
-		let count = document.querySelector("#pd_stockCount_input").value;
-		let overlayCount = parseInt(count) + parseInt(cart_data[0].count);
-		let urlParams = new URLSearchParams(window.location.search);
-		let id = urlParams.get('prd_number');
+		let name = document.querySelector("#pd_info_name").innerText; // 找到id = pd_info_name的標籤裡面的字 → 商品名稱
+		let price = document.querySelector("#pd_info_pricr").innerText; // 找到id = pd_info_pricr的標籤裡面的字 → 商品價格
+		let count = document.querySelector("#pd_stockCount_input").value; // 找到id = pd_stockCount_input的標籤裡面的值 → 商品數量
+		let overlayCount = parseInt(count) + parseInt(cart_data[0].count); // 把購物車內的數量累加
+		let urlParams = new URLSearchParams(window.location.search); // 找到商品在網址上的id
+		let id = urlParams.get('prd_number'); // 取得商品在網址上的id
 
 		let products = [
 			{

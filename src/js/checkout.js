@@ -1,12 +1,25 @@
 new Vue({
 	el: "#step",
-	data: {
-		products: [],
-		freight: 60,
-		//==== 信用卡&貨到付款選項 ====
-		payType: "card",
-		//===== 步驟 =====
-		step: "A",
+	data() {
+		return {
+			products: [],
+			freight: 60,
+			//==== 信用卡&貨到付款選項 ====
+			payType: "card",
+			//===== 步驟 =====
+			step: "A",
+			// ===== 付款 & 收件人資訊 =====
+			userInfo: {
+				name: "",
+				phone: "",
+				address: "",
+			},
+			cardInfo:{
+				cardNum: {},
+				cardName:"",
+				cadrDate:{},
+			},
+		};
 	},
 	methods: {
 		// 執行add這個function, index->陣列裡的第幾個物件 n->加1減1的值
@@ -25,6 +38,16 @@ new Vue({
 		// 提交訂單
 		sendOrder() {
 			// 0.檢查收款人資訊是否填寫完整
+			// console.log('aaa');
+			if(this.userInfo.name == ""){
+				alert('請輸入收件人姓名');
+			}
+			if(this.userInfo.phone.match(/^[0-9]{10}$/g) == null){
+				alert('請輸入正確收件人電話');
+			}
+			if(this.userInfo.address == ""){
+				alert('請輸入正確收件人地址');
+			}
 			// 1.傳送訂單詳細資訊給後台
 			//  - 商品詳細資訊
 			//  - 付款方式資訊
@@ -86,7 +109,6 @@ new Vue({
 			}
 		},
 		same() {
-			console.log(1);
 			fetch("./php/member.php", {
 				method: "POST",
 				headers: {
@@ -94,18 +116,28 @@ new Vue({
 				},
 				body: JSON.stringify({ id: 19 }),
 			})
-				.then((res) => res.json())
-				.then((res) => {
-					console.log(res);
-					// console.log(country)
-					// console.log(district)
-
-					// name.value == res[0].NAME;
-					$('#name').val(res[0].NAME); //抓到資料庫的姓名塞進收件人輸入框
-					$('#phone').val(res[0].PHONE); //抓到資料庫的電話塞進電話輸入框
-					$('#address').val(res[0].COUNTRY + res[0].DISTRICT + res[0].STREET);//抓到資料庫的城市、區域、地址塞進地址輸入框
-					// $('#address').val(`${res[0].COUNTRY}${res[0].DISTRICT}${res[0].STREET}`);
-				});
+			.then((res) => res.json())
+			.then((res) => {
+				// console.log(res);
+				// console.log(country)
+				// console.log(district)
+				
+				// name.value == res[0].NAME;
+				// $("#name").val(res[0].NAME); //抓到資料庫的姓名塞進收件人輸入框
+				// $("#phone").val(res[0].PHONE); //抓到資料庫的電話塞進電話輸入框
+				// $("#address").val(res[0].COUNTRY + res[0].DISTRICT + res[0].STREET); //抓到資料庫的城市、區域、地址塞進地址輸入框
+				// $('#address').val(`${res[0].COUNTRY}${res[0].DISTRICT}${res[0].STREET}`);
+				if(this.userInfo.name == "" ||this.userInfo.phone == "" || this.userInfo.address == ""){
+					this.userInfo.name = res[0].NAME;
+					this.userInfo.phone = res[0].PHONE;
+					this.userInfo.address = res[0].COUNTRY + res[0].DISTRICT + res[0].STREET;
+				}else{
+					this.userInfo.name = "";
+					this.userInfo.phone = "";
+					this.userInfo.address = "";
+				}
+				
+			});
 		},
 	},
 	// 進入頁面就要有初始值就要用created
