@@ -5,7 +5,7 @@
     // echo json_encode($activity);
 
     $SQL = '
-        INSERT INTO `TFD105_G6`.`ACTIVITY`
+        INSERT INTO `ACTIVITY`
         (`NAME`, `IMG`, `ATTENDANCE`, `OPACITY`, `STATE`, `TIME`, `S1_START`, `S1_END`, `S2_START`, `S2_END`, `S3_START`, `S3_END`, `DESC`, `CATEGORY`)
         VALUES
         (:name, :img, 0,  :opacity, :state, :time, :s1_start, :s1_end, :s2_start, :s2_end, :s3_start, :s3_end, :desc, :category)

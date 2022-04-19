@@ -110,19 +110,22 @@
 					<li class="carName2-1">送貨資訊</li>
 					<!-- 資訊欄位 -->
 					<li class="send">
-						<div>
+						<div class="sendbox">
 							<label for="name" class="sendIn">收件人姓名</label>
-							<input type="text" id="name" class="np" />
+							<input type="text" id="name" class="np" v-model="userInfo.name"/>
+							<span>{{userNameErrMsg}}</span>
 						</div>
-						<div>
+						<div class="sendbox">
 							<label for="phone" class="sendIn">連絡電話</label>
-							<input type="text" id="phone" class="np" />
+							<input type="text" id="phone" class="np" maxlength="10" v-model="userInfo.phone"/>
+							<span>{{phoneErrMsg}}</span>
 						</div>
 					</li>
 					<li class="addressout">
-						<div class="addressin">
+						<div class="addressin sendbox">
 							<label for="address" class="sendIn">送貨地址</label>
-							<input type="text" id="address" class="sendAddress" />
+							<input type="text" id="address" class="sendAddress" v-model="userInfo.address"/>
+							<span>{{addressErrMsg}}</span>
 							<input type="checkbox" name="" id="same" class="checkSame" @change="same"/>
 							<label for="same">同會員資料</label>
 						</div>
@@ -160,6 +163,7 @@
 									maxlength="4"
 									@keydown="creditdown"
 									@keyup="creditup"
+									v-model="cardInfo.cardNum.no1"
 								/>
 								-
 								<input
@@ -169,6 +173,7 @@
 									maxlength="4"
 									@keydown="creditdown"
 									@keyup="creditup"
+									v-model="cardInfo.cardNum.no2"
 								/>
 								-
 								<input
@@ -178,6 +183,7 @@
 									maxlength="4"
 									@keydown="creditdown"
 									@keyup="creditup"
+									v-model="cardInfo.cardNum.no3"
 								/>
 								-
 								<input
@@ -185,7 +191,10 @@
 									class="payId payInput"
 									placeholder="0000"
 									maxlength="4"
+									v-model="cardInfo.cardNum.no4"
 								/>
+								
+							<span>{{cardNumErrMsg}}</span>
 							</p>
 							<p class="cardAll">
 								<label for="date">到期日</label>
@@ -197,6 +206,7 @@
 									maxlength="2"
 									@keydown="creditdown"
 									@keyup="creditup"
+									v-model="cardInfo.cardDate.month"
 								/>
 								/
 								<input
@@ -206,17 +216,18 @@
 									maxlength="2"
 									@keydown="creditdown"
 									@keyup="creditup"
+									v-model="cardInfo.cardDate.year"
 								/>
 							</p>
 						</div>
 						<div class="card_infoI">
 							<p class="cardname cardAll">
 								<label for="cardname">持卡人姓名</label>
-								<input type="text" id="cardname" class="payInput" />
+								<input type="text" id="cardname" class="payInput" v-model="cardInfo.cardName"/>
 							</p>
 							<p class="cardAll">
 								<label for="CSC">安全碼</label>
-								<input type="text" id="CSC" class="payInput" maxlength="3" />
+								<input type="text" id="CSC" class="payInput" maxlength="3" v-model="cardInfo.cardcsc" />
 							</p>
 						</div>
 					</li>
