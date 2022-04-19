@@ -78,6 +78,7 @@ CREATE TABLE `MEMBER` (
   `PASSWORD` varchar(16) NOT NULL,
   `NAME` varchar(100) NOT NULL,
   `PHONE` varchar(10) NOT NULL,
+  `BIRTHDAY` date DEFAULT NULL,
   `ZIPCODE` varchar(6) NOT NULL,
   `COUNTRY` varchar(6) NOT NULL,
   `DISTRICT` varchar(6) NOT NULL,
@@ -88,16 +89,16 @@ CREATE TABLE `MEMBER` (
 
 /*Data for the table `MEMBER` */
 
-insert  into `MEMBER`(`ID`,`EMAIL`,`PASSWORD`,`NAME`,`PHONE`,`ZIPCODE`,`COUNTRY`,`DISTRICT`,`STREET`,`TOKEN`) values 
-(19,'wang_mien@gmail.com','mm00122','王大明','0910993300','406','台中市','北屯區','祥順十街25號',NULL),
-(20,'da_tou@gmail.com','datou123','蔡大頭','0988991457','115','臺北市','南港區','永吉路23號',NULL),
-(21,'yellow@gmail.com','yellow5566','黃綠紅','0953677159','700','臺南市','中西區','健康路34號',NULL),
-(22,'3quuuu@gmail.com','3quuu','謝蟹倪','0988173664','320','桃園市','中壢區','嘉善街35號',NULL),
-(23,'white111@gmail.com','a_white','陳阿白','0931122566','265','宜蘭縣','羅東鎮','羅莊街5號',NULL),
-(24,'flower666@gmail.com','flower66','林阿花','0927554880','635','雲林縣','東勢鄉','嘉芳南路30號',NULL),
-(25,'cc1122356@gmail.com','cc1122','蕭西西','0927554880','356','苗栗縣','後龍鎮','豐富七街25號',NULL),
-(26,'angry777@gmail.com','angry777','沈戚戚','0987487487','206','基隆市','七堵區','綠葉街33號',NULL),
-(27,'good007@gmail.com','good007','高波羅','0954874874','821','高雄市','路竹區','延平路28號',NULL);
+insert  into `MEMBER`(`ID`,`EMAIL`,`PASSWORD`,`NAME`,`PHONE`,`BIRTHDAY`,`ZIPCODE`,`COUNTRY`,`DISTRICT`,`STREET`,`TOKEN`) values 
+(19,'wang_mien@gmail.com','mm00122','王大明','0910993300','1988-05-29','406','台中市','北屯區','祥順十街25號',NULL),
+(20,'da_tou@gmail.com','datou123','蔡大頭','0988991457','2000-07-03','115','臺北市','南港區','永吉路23號',NULL),
+(21,'yellow@gmail.com','yellow5566','黃綠紅','0953677159','2003-04-05','700','臺南市','中西區','健康路34號',NULL),
+(22,'3quuuu@gmail.com','3quuu','謝蟹倪','0988173664','1980-02-04','320','桃園市','中壢區','嘉善街35號',NULL),
+(23,'white111@gmail.com','a_white','陳阿白','0931122566','1954-12-31','265','宜蘭縣','羅東鎮','羅莊街5號',NULL),
+(24,'flower666@gmail.com','flower66','林阿花','0927554880','1978-10-22','635','雲林縣','東勢鄉','嘉芳南路30號',NULL),
+(25,'cc1122356@gmail.com','cc1122','蕭西西','0927554880','1995-02-08','356','苗栗縣','後龍鎮','豐富七街25號',NULL),
+(26,'angry777@gmail.com','angry777','沈戚戚','0987487487','2008-11-13','206','基隆市','七堵區','綠葉街33號',NULL),
+(27,'good007@gmail.com','good007','高波羅','0954874874','1967-06-09','821','高雄市','路竹區','延平路28號',NULL);
 
 /*Table structure for table `NEWS` */
 
@@ -120,7 +121,12 @@ CREATE TABLE `NEWS` (
 insert  into `NEWS`(`ID`,`ADMIN_ID`,`TITLE`,`DESCRIPTION`,`DATE`,`IMG`) values 
 (1,1,'歡慶兒童節 帶小孩來牧場放電囉','text','2022-03-15','./img/news/Rectangle 196.png'),
 (2,1,'你我一起防疫大作戰','text','2022-03-12','./img/news/Rectangle 1964.png'),
-(3,1,'2022春節營運時間及票價優惠','text','2022-01-27','./img/news/Rectangle 1966.png');
+(3,1,'2022春節營運時間及票價優惠','text','2022-01-27','./img/news/Rectangle 1966.png'),
+(4,1,'【公告】2022春節營運時間及票價優惠','在春節活動期間所有票價都給9折優惠，由於春節人手不足，一部份活動將不開放，敬請見諒','2022-01-15','[{\"src\": \"./img/news/pexels-angela-roma-7364208.jpg\", \"text\" : \"香火\"}]'),
+(5,1,'【粉萌春日祭】3月周末例假日門票優惠開始啦!','粉紅春日祭將票價給到最優惠每張票價只要原本的9折，活動只到3月底，錯過這次又要等到明年囉～～。','2022-02-28','[{\"src\": \"./img/news/Rectangle 1969.png\", \"text\" : \"櫻花\"}]'),
+(6,1,'【聖誕節限時門票優惠】門票優惠只要200元','在聖誕節來本牧場每張票只要200元的優惠，每個人都還會有聖誕小禮物可以拿，只有聖誕節當天可以獲得，錯過的話就要再等到明年了。','2022-12-15','[{\"src\": \"./img/news/Mask group.png\", \"text\" : \"聖誕節\"}]'),
+(7,1,'【聖誕節限時門票優惠】門票優惠只要200元','在聖誕節來本牧場每張票只要200元的優惠，每個人都還會有聖誕小禮物可以拿，只有聖誕節當天可以獲得，錯過的話就要再等到明年了。','2022-12-15','[{\"src\": \"./img/news/Mask group.png\", \"text\" : \"聖誕節\"}]'),
+(8,1,'【聖誕節限時門票優惠】門票優惠只要200元','在聖誕節來本牧場每張票只要200元的優惠，每個人都還會有聖誕小禮物可以拿，只有聖誕節當天可以獲得，錯過的話就要再等到明年了。','2022-12-15','[{\"src\": \"./img/news/Mask group.png\", \"text\" : \"聖誕節\"}]');
 
 /*Table structure for table `ORDER` */
 
@@ -192,23 +198,32 @@ CREATE TABLE `PRODUCT` (
   `STOCK` int NOT NULL,
   `PRODUCT_CATEGORY_ID` int NOT NULL,
   `STATE` varchar(5) NOT NULL,
-  `UPDATE` datetime NOT NULL,
-  `MAIN_PIC` varbinary(1000) NOT NULL,
+  `UPDATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `MAIN_PIC` varchar(1000) NOT NULL,
   `SLOGAN` varchar(60) NOT NULL,
   `DETAIL` varchar(300) NOT NULL,
   `DESCRIPTION` json NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `FK_PRODUCT_PRODUCT_CATEGORY_ID_idx` (`PRODUCT_CATEGORY_ID`),
   CONSTRAINT `FK_PRODUCT_PRODUCT_CATEGORY_ID` FOREIGN KEY (`PRODUCT_CATEGORY_ID`) REFERENCES `PRODUCT_CATEGORY` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3;
 
 /*Data for the table `PRODUCT` */
 
 insert  into `PRODUCT`(`ID`,`NAME`,`COST`,`UNIT_PRICE`,`STOCK`,`PRODUCT_CATEGORY_ID`,`STATE`,`UPDATE`,`MAIN_PIC`,`SLOGAN`,`DETAIL`,`DESCRIPTION`) values 
+(1,'羊毛毯(紅)',200,549,20,2,'上架中','2022-04-18 20:05:54','[\"./img/products/blanket_r.jpg\"]','[\"天然羊毛製成\",\"MIT染色最安心\"]','．成分：羊毛、紅色染料\n．保存期限：10年','[{\"src\": \"./img/products/sheep2_1200.jpg\", \"text\": \"原料皆來自本牧場的綿羊\"}, {\"src\": \"./img/products/blanket_r2.jpg\", \"text\": \"羊毛毯染色均勻，水洗不掉色\"}]'),
+(2,'羊毛毯（綠）',200,549,20,2,'上架中','2022-04-18 20:07:13','[\"./img/products/blanket_g.jpg\"]','[\"天然羊毛製成\",\"MIT染色最安心\"]','．成分：羊毛、紅色染料\n．保存期限：10年','[{\"src\": \"./img/products/sheep2_1200.jpg\", \"text\": \"原料皆來自本牧場的綿羊\"}, {\"src\": \"./img/products/blanket_g2.jpg\", \"text\": \"羊毛毯染色均勻，水洗不掉色\"}]'),
+(3,'羊毛毯（綠）（兩件組）',400,1050,20,2,'上架中','2022-04-18 20:08:18','[\"./img/products/blanket_g.jpg\"]','[\"天然羊毛製成\",\"MIT染色最安心\"]','．成分：羊毛、紅色染料\n．保存期限：10年','[{\"src\": \"./img/products/sheep2_1200.jpg\", \"text\": \"原料皆來自本牧場的綿羊\"}, {\"src\": \"./img/products/blanket_g2.jpg\", \"text\": \"羊毛毯染色均勻，水洗不掉色\"}]'),
+(4,'羊毛毯（紅）（兩件組）',400,1050,20,2,'未上架','2022-04-18 20:08:47','[\"./img/products/blanket_r.jpg\"]','[\"天然羊毛製成\",\"MIT染色最安心\"]','．成分：羊毛、紅色染料\n．保存期限：10年','[{\"src\": \"./img/products/sheep2_1200.jpg\", \"text\": \"原料皆來自本牧場的綿羊\"}, {\"src\": \"./img/products/blanket_r2.jpg\", \"text\": \"羊毛毯染色均勻，水洗不掉色\"}]'),
+(5,'羊毛毯（黃）（兩件組）',400,1050,20,2,'未上架','2022-04-18 20:09:14','[\"./img/products/blanket_y.jpg\"]','[\"天然羊毛製成\",\"MIT染色最安心\"]','．成分：羊毛、紅色染料\n．保存期限：10年','[{\"src\": \"./img/products/sheep2_1200.jpg\", \"text\": \"原料皆來自本牧場的綿羊\"}, {\"src\": \"./img/products/blanket_y2.jpg\", \"text\": \"羊毛毯染色均勻，水洗不掉色\"}]'),
+(6,'動物餅乾',50,200,40,1,'上架中','2022-04-18 20:59:30','[\"./img/products/animal_cookies.jpg\"]','[\"加入鮮奶好好吃\",\"動物造型的餅乾\"]','．成分：雞蛋、麵粉、牛奶、玉米粉、砂糖、植物油\n．保存期限：3個月','[{\"src\": \"./img/products/cow_1200.jpg\", \"text\": \"採用本牧場自產的牛奶\"}, {\"src\": \"./img/products/animal_cookies2.jpg\", \"text\": \"小朋友最愛的牧場動物造型\"}]'),
 (7,'草莓牛奶(六入組)',100,299,30,1,'未上架','2022-04-14 10:07:41','[\"./img/products/strawberry_1200.jpg\",\"./img/products/berry2_1200.jpg\",\"./img/products/berry2_1200.jpg\"]','[原果新鮮草莓牛奶,全部手工現做果汁現煮]','．成分：生乳、水、糖、草莓汁\n．保存期限：冷藏14天','[{\"src\": \"./img/products/cow_1200.jpg\", \"text\": \"放牧牛\"}, {\"src\": \"./img/products/cow_1200.jpg\", \"text\": \"不受拘束\"}]'),
 (8,'草莓牛奶(十入組)',100,499,20,1,'未上架','2022-04-14 10:07:41','[\"./img/products/strawberry_1200.jpg\",\"./img/products/berry2_1200.jpg\",\"./img/products/berry2_1200.jpg\"]','[原果新鮮草莓牛奶,全部手工現做果汁現煮]','．成分：生乳、水、糖、草莓汁\n．保存期限：冷藏14天','[{\"src\": \"./img/products/cow_1200.jpg\", \"text\": \"放牧牛\"}, {\"src\": \"./img/products/cow_1200.jpg\", \"text\": \"不受拘束\"}]'),
 (9,'鮮奶酪',120,399,30,1,'未上架','2022-04-14 10:07:41','[\"./img/products/panna_cotta.jpg\"]','[\"香濃不甜膩\",\"配新鮮水果好好吃\"]','．成分：生乳、水、糖、海藻抽取物．保存期限：冷藏14天','[{\"src\": \"./img/products/panna_cotta.jpg\", \"text\": \"小朋友與大朋友的最愛\"}, {\"src\": \"./img/products/berry_1200.jpg\", \"text\": \"當季限定！新鮮草莓在裡面！\"}]'),
-(10,'羊毛毯（黃）',200,549,10,2,'未上架','2022-04-14 10:07:54','[\"./img/products/blanket_y.jpg\"]','[\"天然羊毛製成\",\"MIT染色最安心\"]','．成分：羊毛100%\n．保存期限：10年','[{\"src\": \"./img/products/blanket_y2.jpg\", \"text\": \"追劇耍廢神器\"}, {\"src\": \"./img/products/sheep2_1200.jpg\", \"text\": \"原料來自本牧場的快樂羊咩咩\"}]');
+(10,'羊毛毯（黃）',200,549,10,2,'未上架','2022-04-14 10:07:54','[\"./img/products/blanket_y.jpg\"]','[\"天然羊毛製成\",\"MIT染色最安心\"]','．成分：羊毛100%\n．保存期限：10年','[{\"src\": \"./img/products/blanket_y2.jpg\", \"text\": \"追劇耍廢神器\"}, {\"src\": \"./img/products/sheep2_1200.jpg\", \"text\": \"原料來自本牧場的快樂羊咩咩\"}]'),
+(11,'咖啡牛奶(六入組)',50,290,40,1,'上架中','2022-04-18 21:04:55','[\"./img/products/coffee_1200.jpg\",\"./img/products/coffee2_1200.jpg\",\"./img/products/coffee3_1200.jpg\"]','[\"採用在地咖啡品種\",\"MIT最安心\"]','．成分：咖啡、牛奶、糖\n．保存期限：6個月','[{\"src\": \"./img/products/cow_1200.jpg\", \"text\": \"採用本牧場自產的牛奶\"}, {\"src\": \"./img/products/coffee4_1200.jpg\", \"text\": \"本地咖啡品種，帶有果香不苦澀\"}]'),
+(12,'咖啡牛奶(十二入組)',100,580,40,1,'上架中','2022-04-18 21:05:22','[\"./img/products/coffee_1200.jpg\",\"./img/products/coffee2_1200.jpg\",\"./img/products/coffee3_1200.jpg\"]','[\"採用在地咖啡品種\",\"MIT最安心\"]','．成分：咖啡、牛奶、糖\n．保存期限：6個月','[{\"src\": \"./img/products/cow_1200.jpg\", \"text\": \"採用本牧場自產的牛奶\"}, {\"src\": \"./img/products/coffee4_1200.jpg\", \"text\": \"本地咖啡品種，帶有果香不苦澀\"}]'),
+(13,'木瓜牛奶(十二入組)',100,580,40,1,'上架中','2022-04-18 21:08:24','[\"./img/products/papaya.jpg\"]','[\"期間限定\",\"MIT最安心\"]','．成分：木瓜、牛奶、糖\n．保存期限：6個月','[{\"src\": \"./img/products/cow_1200.jpg\", \"text\": \"採用本牧場自產的牛奶\"}, {\"src\": \"./img/products/papaya2_1200.jpg\", \"text\": \"新鮮木瓜在裡頭\"}]');
 
 /*Table structure for table `PRODUCT_CATEGORY` */
 
