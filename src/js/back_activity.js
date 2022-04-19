@@ -24,30 +24,6 @@ function sAlert(msg, icon, btn) {
     })
 }
 
-// function onoffConfirm(title, text, result) {
-//     Swal.fire({
-//         title: title,
-//         text: text,
-//         icon: 'warning',
-//         showCancelButton: true,
-//         confirmButtonText: '確定',
-//         cancelButtonText: '取消',
-//         buttonsStyling: false,
-//         customClass: {
-//             confirmButton: 'btn-green',
-//             cancelButton: 'btn-red'
-//         },
-//     }).then(function(res) {
-//        if (res.value) {
-//             // sAlert(`<h5>您已成功${result}個活動！</h5>`, 'success', 'OK');
-//             result
-//        }
-//        else {
-           
-//        }
-//     });
-// }
-
 const activityList = new Vue({
     el: '#back_activity',
     // data: {
@@ -58,9 +34,24 @@ const activityList = new Vue({
     //         { IMG: './img/activity/horseshow.jpg', NAME:'馬術秀', S1_START: '11:00~12:00', S2_START: '13:00~14:00', S3_START: '16:00~17:00', STATE: '未上架'},
     //         { IMG: './img/activity/alpacawalk.jpg', NAME:'草泥馬散步秀', S1_START: '10:30~11:30', S2_START: '13:30~14:30', S3_START: '15:30~16:30', STATE: '上架中' },
     //     ],
+        // dates: ["2022/05/01", "2022/05/02", "2022/05/03"],
+        // members: [
+        //     {id: '20', people: '3', time: '2022/03/15 18:22'},
+        //     {id: '3', people: '5', time: '2022/03/12 09:32'},
+        // ],
     // },
     data: {
         activities: [],
+        dates: ["2022-05-01", "2022-05-02", "2022-05-03"],
+        members: [],
+        activityId: '',
+        // overlay: {
+        //     session: '選擇場次時間',
+        // },
+        overlay: {
+            date: '選擇日期',
+            session: '選擇場次時間',
+        }
     },
     created() {
         fetch('./php/back_activity.php')
@@ -71,7 +62,6 @@ const activityList = new Vue({
             res.forEach(function(act){
                 if (act.STATE == "未上架"){
                     let i = res.indexOf(act);
-                    // console.log(i);
                     let offAct = document.querySelectorAll('.actList');
                     offAct[i].classList.add("-off");
                 }else{
@@ -215,84 +205,141 @@ const activityList = new Vue({
             location.href = `./back_activity_modify.html?activity_id=${targetId}`;
         },
         // ==== 已報名會員按鈕 ====
-        signedMembers(){
-            // const params = new URLSearchParams(location.search);
-            // let id = params.get('activity_id');
-            // console.log(id);
-        },
-            
-    },
-});
-
-new Vue({
-    el: '.act-member-overlay',
-    data: {
-        // activity: [
-        //     { name:'我要當牛仔', timeI: '09:30~11:00', timeII: '13:00~14:30', timeIII: '16:30~18:00'},  
-        // ],
-        dates: ["2022/05/01", "2022/05/02", "2022/05/03"],
-        members: [
-            {id: '20', people: '3', time: '2022/03/15 18:22'},
-            {id: '3', people: '5', time: '2022/03/12 09:32'},
-        ],
-    },
-    created(){
-        fetch('./php/activity_signed_members.php', {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(
-                {id: 19}
-            ),
-        })
-        .then(res => res.json())
-        .then(res => this.activity = res)
-        .then(() => {
-            if(this.activity[0].STATE == "上架中"){
-                this.stateCheck = true;
-            }else{
-                this.stateCheck = false;
-            }
-        })
-    },
-});
-
-
-$(function() {
-    // checkAvailability();  
-    //overlay
-    document.addEventListener("click", function(e){
-        if( e.target.classList.contains("member_btn") ){
+        signedMembers(e){
+            // 開啟彈窗
+            // this.members = [];
+            let name = $(e.target).closest(".act-content").find(".name").html();
+            $("h5.o-activity-title").html(name);
+            $('.act-member-overlay').addClass('-on');
+            $('.act-mask').addClass('-on');
             let activity_li = e.target.closest(".act-content");
             let all_time = activity_li.querySelectorAll(".activity-time");
             let overlay_time = document.querySelectorAll(".o-time");
-            
             for(i = 0; i < all_time.length; i++){
                 overlay_time[i].innerHTML = all_time[i].innerHTML;
             };
-        }
-    });
-    
-    $('.x-btn').on("click", function(){
-        $('.act-member-overlay').removeClass('-on');
-        $('.act-mask').removeClass('-on');
-    });
 
-    $('.act-mask').on("click", function(){
-        $('.act-member-overlay').removeClass('-on');
-        $('.act-mask').removeClass('-on');
-    });
+            console.log(e.target);
+            let id = $(e.target).closest('.actList').data('actid');
+            console.log(id);
+            this.activityId = id;
+            $('.nobody').html('請選擇日期及場次時間');
+        },
+        selectDate(){
+            // let selectDate = this.overlay.date;
+            fetch('./php/activity_signed_members.php', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(
+                    {activityId: this.activityId, }
+                ),
+            })
+            .then(res => res.json())
+            .then(res => {
+                if(res.length == 0){
+                    this.members = [];
+                    console.log('nobody');
+                    $('.nobody').html('此日期目前無人報名');
+                }else{
+                    this.members = [];
+                    if( this.overlay.session != '選擇場次時間'){
+                        activityList.selectTime();
+                    }else{
+                        $('.nobody').html('請選擇場次時間');
+                    }
 
-    
-    $("ul").on("click", ".member_btn", function(e){
-        $('.act-member-overlay').addClass('-on');
-        $('.act-mask').addClass('-on');
-        let name = $(this).closest(".act-content").find(".name").html();
-        let all_time = $(this).closest(".act-content").find(".activity-time");
-        $("h5.o-activity-title").html(name);
-    });
+                }        
+            })
+        },
+        selectTime(){
+            let selectStart = (this.overlay.session).slice(0, 5);
+            let selectDate = this.overlay.date;
+            fetch('./php/activity_signed_members.php', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(
+                    {activityId: this.activityId, }
+                ),
+            })
+            .then(res => res.json())
+            .then(res => {
+                if(res.length == 0){
+                    this.members = [];
+                    $('.nobody').html('此場次目前無人報名');
+                }else{
+                    console.log(res);
+                    let result = [];
+                    res.forEach(function(data){
+                        // console.log(data.SESSION);
+                        // console.log((data.SESSION).slice(0, 5));
+                        let memberStart = (data.SESSION).slice(0, 5);
+                        console.log(memberStart);
+                        console.log(selectStart);
+                        
+                        console.log(data.DATE);
+                        if (data.DATE == selectDate && memberStart == selectStart){
+                            result.push(data);
+                            
+                        }else{
+                            
+                        }
+                    });
+                    console.log(result);
+                    if (result.length != 0){
+                        $('.nobody').html('');
+                        this.members = result;
+                        $('span.capacity').html(this.members[0].OPACITY);
+                        // $('span.total-signed').html(this.members[0].ATTENDANCE);
+                    }else{
+                        $('.nobody').html('此場次目前無人報名');
+                        this.members = [];
+                        $('span.capacity').html('0');
+                        // $('span.total-signed').html('N/A');
+                    }
+                    
+                }
+                
+            })
+        },
+        // countTotal(){
+        //     this.overlay.total = 'N/A';
+        //     let count = 0;
+        //     this.members.forEach(function(data){
+        //         count += data.ATTENDANCE;
+        //         // return data.ATTENDANCE;
+        //     });
+        //     // return count;
+        //     this.overlay.total = count;
+        // },
+        // ==== 關閉彈窗 ====
+        closeOverlay(){
+            $('.act-member-overlay').removeClass('-on');
+            $('.act-mask').removeClass('-on');
+            this.members = [];
+            $('span.capacity').html('0');
+            this.overlay.date = '選擇日期';
+            this.overlay.session = '選擇場次時間';
 
+        },  
+    },
+    computed: {
+        total(){
+            // this.overlay.total = 'N/A';
+            let count = 0;
+            // for(let i = 0; i < this.members.length; i++){
+            //     count += this.members[i].ATTENDANCE;
+            // }
+            this.members.forEach(function(data){
+                count += data.ATTENDANCE;
+                // return data.ATTENDANCE;
+            });
+            return count;
+        },
+    },
 });
 
 
