@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (successful == true) {
                     console.log(successful + "訊息" +message+"資料"+data);
 					let bread = document.querySelector(".pd_bread");
-
+					
 					
 					bread.innerText=`首頁 | 周邊產品 | ${data[0].NAME}`;
 					putin_top_pic(data[0].MAIN_PIC);
@@ -36,6 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
                   
                 } else {
                     console.log(successful+' 訊息'+message);
+					let main = document.querySelector(".pd_main");
+					main.innerHTML=`<h3>sorry！找不到此商品！</h3>`
                 }
             })
             
