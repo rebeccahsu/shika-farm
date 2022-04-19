@@ -274,8 +274,6 @@ const activityList = new Vue({
                     console.log(res);
                     let result = [];
                     res.forEach(function(data){
-                        // console.log(data.SESSION);
-                        // console.log((data.SESSION).slice(0, 5));
                         let memberStart = (data.SESSION).slice(0, 5);
                         console.log(memberStart);
                         console.log(selectStart);
@@ -305,16 +303,6 @@ const activityList = new Vue({
                 
             })
         },
-        // countTotal(){
-        //     this.overlay.total = 'N/A';
-        //     let count = 0;
-        //     this.members.forEach(function(data){
-        //         count += data.ATTENDANCE;
-        //         // return data.ATTENDANCE;
-        //     });
-        //     // return count;
-        //     this.overlay.total = count;
-        // },
         // ==== 關閉彈窗 ====
         closeOverlay(){
             $('.act-member-overlay').removeClass('-on');
@@ -328,14 +316,10 @@ const activityList = new Vue({
     },
     computed: {
         total(){
-            // this.overlay.total = 'N/A';
             let count = 0;
-            // for(let i = 0; i < this.members.length; i++){
-            //     count += this.members[i].ATTENDANCE;
-            // }
+
             this.members.forEach(function(data){
                 count += data.ATTENDANCE;
-                // return data.ATTENDANCE;
             });
             return count;
         },
