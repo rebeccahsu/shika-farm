@@ -133,13 +133,13 @@
         margin-top: 40px;
         text-align: center;
         &:before{
-            content: url("../../img/backpages/title_cow_left.png");
+            content: url("../img/backpages/title_cow_left.png");
             width: 30px;
             display: inline;
             margin-right: 50px;
         }
         &:after{
-            content: url("../../img/backpages/title_cow_right.png");
+            content: url("../img/backpages/title_cow_right.png");
             width: 30px;
             display: inline;
             margin-left: 50px;
@@ -148,16 +148,21 @@
     .selects{
         text-align: center;
         margin: 25px 0;
+        select{
+            font-size: $fs-xs;
+            letter-spacing: 1px;
+            padding-left: 5px;
+        }
 
         .o-activity-date{
-            width: 100px;
-            height: 30px;
+            width: 130px;
+            height: 35px;
             border: 1px solid $color_G;
             border-radius: 3px;
         }
         .o-activity-time{
             width: 150px;
-            height: 30px;
+            height: 35px;
             margin-left: 20px;
             border: 1px solid $color_G;
             border-radius: 3px;
