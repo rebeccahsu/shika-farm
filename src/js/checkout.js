@@ -1,3 +1,5 @@
+// const { registry } = require("gulp");
+
 new Vue({
 	el: "#step",
 	data() {
@@ -15,11 +17,73 @@ new Vue({
 				address: "",
 			},
 			cardInfo:{
-				cardNum: {},
+				cardNum: {
+					no1:'',
+					no2:'',
+					no3:'',
+					no4:'',
+				},
 				cardName:"",
-				cadrDate:{},
+				cardDate:{
+					year:'',
+					month:'',
+				},
+				cardcsc:"",
 			},
+			// 收件人姓名
+			userNameError: false,
+			userNameErrMsg: '',
+			// 收件人手機號碼
+			phoneError: false,
+			phoneErrMsg: '',
+			// 收件人手機地址
+			addressError: false,
+			addressErrMsg: '',
+			// 信用卡號
+			cardNumError: false,
+			cardNumErrMsg: '',
 		};
+	},
+	watch: {
+		'userInfo.name': function() {
+			if(this.userInfo.name.length < 2) {
+				this.userNameError = true;
+				this.userNameErrMsg = '字數需大於2';
+			} else {
+				this.userNameError = false;
+				this.userNameErrMsg = '';
+			}
+		},
+		'userInfo.phone': function() {
+			let isPhone = /^09[0-9]{8}$/;
+			if(!isPhone.test(this.userInfo.phone)) {
+				this.phoneError = true;
+				this.phoneErrMsg = '請輸入正確收件人電話';
+			} else {
+				this.phoneError = false;
+				this.phoneErrMsg = '';
+			}
+		},
+		'userInfo.address': function() {
+			if(this.userInfo.address) {
+				this.addressError = true;
+				this.addressErrMsg = '字數需大於6';
+			} else {
+				this.addressError = false;
+				this.addressErrMsg = '';
+			}
+		},
+		creditWatch(val) { 
+			// console.log(val);
+			let Num = /^\d{4}$/;
+			if(!Num.test(val.no1) || !Num.test(val.no2) || !Num.test(val.no3) || !Num.test(val.no4)) {
+				this.cardNumError = true;
+				this.cardNumErrMsg = '請輸入正確卡號';
+			} else {
+				this.cardNumError = false;
+				this.cardNumErrMsg = '';
+			}
+		},
 	},
 	methods: {
 		// 執行add這個function, index->陣列裡的第幾個物件 n->加1減1的值
@@ -37,17 +101,26 @@ new Vue({
 		},
 		// 提交訂單
 		sendOrder() {
+			if(this.userInfo.name != '' && this.userInfo.phone != '' && this.userInfo.address != '' && this.cardInfo.cardNum.no1 != ''  && this.cardInfo.cardNum.no2 != ''  && this.cardInfo.cardNum.no3 != ''  && this.cardInfo.cardNum.no4 != '' && this.cardInfo.cardName != '' && this.cardInfo.cardDate.year != ''  && this.cardInfo.cardDate.month != '' && this.cardInfo.cardcsc != '') {
+				if(!this.userNameError ) {
+
+				} else if(this.userNameError) {
+					alert(this.userNameErrMsg)
+				}
+			} else {
+				alert('未填寫完整')
+			}
 			// 0.檢查收款人資訊是否填寫完整
 			// console.log('aaa');
-			if(this.userInfo.name == ""){
-				alert('請輸入收件人姓名');
-			}
-			if(this.userInfo.phone.match(/^[0-9]{10}$/g) == null){
-				alert('請輸入正確收件人電話');
-			}
-			if(this.userInfo.address == ""){
-				alert('請輸入正確收件人地址');
-			}
+			// if(this.userInfo.name == ""){
+			// 	alert('請輸入收件人姓名');
+			// }
+			// if(this.userInfo.phone.match(/^[0-9]{10}$/g) == null){
+			// 	alert('請輸入正確收件人電話');
+			// }
+			// if(this.userInfo.address == ""){
+			// 	alert('請輸入正確收件人地址');
+			// }
 			// 1.傳送訂單詳細資訊給後台
 			//  - 商品詳細資訊
 			//  - 付款方式資訊
@@ -68,7 +141,7 @@ new Vue({
 			for (let i = 0; i < cards.length; i++) {
 				// ----- 跨欄位刪除 & 只能輸入數字及刪除鍵 ---------//
 				cards[i].addEventListener("keydown", function (e) {
-					console.log(e.which); //e.which轉換成
+					// console.log(e.which); //e.which轉換成
 					// 除了數字0-9及刪除鍵外，不得輸入其他字
 					if (
 						(e.which >= 48 && e.which <= 57) ||
@@ -88,14 +161,14 @@ new Vue({
 		},
 		creditup() {
 			let cards = document.getElementsByClassName("payId");
-			console.log("aaa");
+			// console.log("aaa");
 			for (let i = 0; i < cards.length; i++) {
 				// ----- 跨欄位輸入 & 中文字不能輸入 ------------//
 				cards[i].addEventListener("keyup", function (e) {
 					// 解決中文字可以輸入的情形
 					// 使用正規式：所有非數字字元\D，g所有
 					let str = e.target.value.replace(/\D/g, "");
-					console.log(str);
+					// console.log(str);
 					e.target.value = str; //將中文輸入值用空字串
 					// 希望使用者可以一直輸入下去
 					// console.log(str.length);a
@@ -149,6 +222,10 @@ new Vue({
 		this.products = cart;
 	},
 	computed: {
+		creditWatch() {
+			const {no1, no2, no3, no4} = this.cardInfo.cardNum
+    		return {no1, no2, no3, no4}  		
+		},
 		// 總計 執行function
 		sumTotal: function () {
 			//預設 total=0

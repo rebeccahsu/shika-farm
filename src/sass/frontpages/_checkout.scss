@@ -254,6 +254,24 @@
 		}
 		// =================== 表格2 送貨資訊 ===================
 		// ----------- 送貨資訊欄位 -----------
+		.sendbox,.addressout{
+			position: relative;
+			>span{
+				position: absolute;
+				left: 50%;
+				bottom: -10px;
+				transform: translateX(-50%);
+				font-size: 12px;
+				color: red;
+			}
+		}
+
+		.addressout {
+			span{
+				bottom: 40px;
+			}
+		}
+
 		.send {
 			padding: 10px 50px;
 			border: 1px solid #c4c4c4;
@@ -262,7 +280,7 @@
 			border-bottom: none;
 			@include pad{
 				padding: 10px;
-			}
+			}			
 
 			.sendIn {
 				display: block;
