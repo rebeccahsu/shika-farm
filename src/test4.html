@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vendors/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <form action="">
+    <input type="file" name="" id="topImg">
+    <br><br><br><button type="button" id="send">送出</button>
+    </form>
+    <hr>
+    <div class="block"></div>
+    
+
+<script>
+// 抓檔案
+// 呼叫FileReader轉base64
+var preview_el;
+var preview_img = function (file) {
+
+    var reader = new FileReader(); // 用來讀取檔案
+    reader.readAsDataURL(file); // 讀取檔案
+    reader.addEventListener("load", function () {
+        //console.log(reader.result);
+        let img_str = '<img src="' + reader.result + '" class="preview_img">';
+        preview_el.innerHTML = img_str;
+        //   console.log(img_str);
+    });
+};
+
+$("#topImg").on("change", (e) => {
+    console.log(e.target.files[0]);
+    if ($("#topImg")[0].files.length > 0) {
+        preview_el = $(".block")[0];
+        // preview_img($("#topImg")[0].files[0]);
+        
+
+
+    } else {
+        preview_el = $(".block")[0];
+        preview_el.innerHTML = '<span>請上傳圖片</span>';
+    }
+})
+
+$("#send").on("click",(e) => {
+    e.preventDefault;
+    console.log('send');
+    let file = $("#topImg")[0].files[0];
+    // console.log(file);
+    // let fileReader = new FileReader();
+    upload_img(file);
+    
+
+})
+
+
+function upload_img(file){
+
+    let form_data = new FormData();
+    form_data.append('img',file);
+
+    // fetchAPI
+    fetch('./php/upload_test5.php', {
+    method: 'POST',
+    body: form_data,
+    })
+    .then(resp =>resp.json())
+    .then(body =>{
+        const { succ, img_url } = body;
+        // console.log(body);
+        document.querySelector(".block").innerHTML=`<img src="${img_url}" />`;
+        $("#topImg")[0].value='';
+    })
+}
+
+
+
+// 處理AJAX用的格式
+// let form = new FormData();
+//         form.append("product[photos][]", e.target.files[0])
+
+//         // fetchAPI
+//         fetch('./php/test4.php', {
+//         method: 'POST',
+//         body: form,
+//         })
+//         .then(resp =>resp.json())
+//         .then()
+
+</script>
+</body>
+</html>
