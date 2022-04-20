@@ -71,7 +71,7 @@ function upload_img(file){
     .then(resp =>resp.json())
     .then(body =>{
         const { succ, img_url } = body;
-        // console.log(body);
+        console.log(body);
         document.querySelector(".block").innerHTML=`<img src="${img_url}" />`;
         $("#topImg")[0].value='';
     })

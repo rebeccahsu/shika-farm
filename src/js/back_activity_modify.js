@@ -7,15 +7,20 @@ pages.forEach(function(page){
 });
 
 // sweetalert
-function alertmodify(msg, icon) {
+function sAlert(msg, icon, btn) {
     Swal.fire({
         title: msg,
         icon: icon,
-        showConfirmButton: false, // 確認按鈕（預設會顯示不用設定)
-        // 使用同確認按鈕
+        showConfirmButton: true, // 確認按鈕（預設會顯示不用設定)
+        confirmButtonText: btn, //　按鈕顯示文字
+        confirmButtonAriaLabel: btn, // 網頁無障礙用
         // showDenyButton: true, // 否定按鈕
         showCancelButton: false, // 取消按鈕
         buttonsStyling: false, // 是否使用sweetalert按鈕樣式（預設為true）
+        customClass: {
+                        confirmButton: 'btn-yellow margintop_15 marginleft_2 marginright_2',
+                        cancelButton: 'btn-red margintop_15 marginleft_2 marginright_2'
+                    },
     })
 }
 
@@ -96,18 +101,36 @@ new Vue({
                 .then(res => res.json())
                 .then(res => {
                     if (res.successful) {
-                        alertmodify('<strong>已成功儲存修改內容！</strong>', 'success');
+                        // sAlert('<h5>已成功儲存修改內容！</h5>', 'success', '返回活動列表');
+                        Swal.fire({
+                            title: `<h5>已成功儲存修改內容！</h5>`,
+                            // text: "Write something interesting:",
+                            input: 'password',
+                            showCancelButton: true,
+                            buttonsStyling: false,
+                            confirmButtonText: '繼續編輯',
+                            cancelButtonText: '返回活動列表',
+                            customClass: {
+                                confirmButton: 'btn-green marginright_20',
+                                cancelButton: 'btn-yellow'
+                            },      
+                        }).then((result) => {
+                            if (result.value) {            
+                            }else{
+                                location.href="./back_activity.html";
+                            }
+                        });
                     } 
                     else {
-                        alertmodify('<strong>您沒有需儲存的變更內容</strong>', 'info');
+                        sAlert('<strong>您沒有需儲存的變更內容</strong>', 'info', 'OK');
                     }
                 })
                 .catch(function(err) {
-                    alertmodify('<strong>儲存失敗，請再試一次</strong>', 'error');
+                    sAlert('<strong>儲存失敗，請再試一次</strong>', 'error', 'OK');
                 });
 
             }else{
-                alertmodify('<strong>請填寫完所有欄位再按下儲存</strong>', 'warning');
+                sAlert('<strong>請填寫完所有欄位再按下儲存</strong>', 'warning');
             }
             
         },
