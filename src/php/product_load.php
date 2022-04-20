@@ -6,14 +6,14 @@ $_POST = json_decode(file_get_contents("php://input"), true);
 $ID = $_POST["ID"];
 
 // 檢查email存在
-$sql2 = "SELECT * FROM PRODUCTS where ID='$ID' and STATE='上架中'";
+$sql2 = "SELECT * FROM PRODUCT where ID=$ID and STATE='上架中'";
 $stm = $pdo->query($sql2);
 
 // query回傳成功找到的資料筆數
 $res = $stm->rowCount();
 $data = $stm->fetchAll();
 
-if($res>0){
+if($res==1){
     $resp["successful"] = true;
     $resp["message"] = "找到商品";
     $resp["data"] = $data;
