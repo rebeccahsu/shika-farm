@@ -99,13 +99,35 @@ new Vue({
                     console.log(body);
                     console.log(body.successful);
                     if (successful) {
-                        sAlert('<h5>已成功新增活動！</h5>', 'success', 'OK');
+                        // sAlert('<h5>已成功新增活動！</h5>', 'success', 'OK');
+                        Swal.fire({
+                            title: '<h5>已成功新增活動！</h5>',
+                            icon: 'success',
+                            showCancelButton: true,
+                            confirmButtonText: '返回活動列表',
+                            cancelButtonText: '繼續新增活動',
+                            buttonsStyling: false,
+                            customClass: {
+                                confirmButton: 'btn-green marginright_20',
+                                cancelButton: 'btn-yellow'
+                            },
+                        }).then(function(result) {
+                           if (result.value) {
+                                location.href = './back_activity.html';
+                           }
+                           else {
+                               
+                           }
+                        });
                         this.name = '';
                         this.opacity = '';
                         this.img = '';
                         this.s1_start = '';
+                        this.s1_end = '';
                         this.s2_start = '';
+                        this.s2_end = '';
                         this.s3_start = '';
+                        this.s3_end = '';
                         this.desc = '';
                     } 
                     else {
