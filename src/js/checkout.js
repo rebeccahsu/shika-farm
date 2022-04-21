@@ -16,72 +16,105 @@ new Vue({
 				phone: "",
 				address: "",
 			},
-			cardInfo:{
+			cardInfo: {
 				cardNum: {
-					no1:'',
-					no2:'',
-					no3:'',
-					no4:'',
+					no1: "",
+					no2: "",
+					no3: "",
+					no4: "",
 				},
-				cardName:"",
-				cardDate:{
-					year:'',
-					month:'',
+				cardName: "",
+				cardDate: {
+					year: "",
+					month: "",
 				},
-				cardcsc:"",
+				cardcsc: "",
 			},
 			// 收件人姓名
 			userNameError: false,
-			userNameErrMsg: '',
+			userNameErrMsg: "",
 			// 收件人手機號碼
 			phoneError: false,
-			phoneErrMsg: '',
+			phoneErrMsg: "",
 			// 收件人手機地址
 			addressError: false,
-			addressErrMsg: '',
+			addressErrMsg: "",
 			// 信用卡號
 			cardNumError: false,
-			cardNumErrMsg: '',
+			cardNumErrMsg: "",
+			// 持卡人姓名
+			cardNameError: false,
+			cardNameErrMsg: "",
+			// 到期日
+			cardDateError: false,
+			cardDateErrMsg: "",
+			// 安全碼
+			cardcscError: false,
+			cardcscErrMsg: "",
 		};
 	},
 	watch: {
-		'userInfo.name': function() {
-			if(this.userInfo.name.length < 2) {
+		"userInfo.name": function () {
+			if (this.userInfo.name.length < 2) {
 				this.userNameError = true;
-				this.userNameErrMsg = '字數需大於2';
+				this.userNameErrMsg = "字數需大於2";
 			} else {
 				this.userNameError = false;
-				this.userNameErrMsg = '';
+				this.userNameErrMsg = "";
 			}
 		},
-		'userInfo.phone': function() {
+		"userInfo.phone": function () {
 			let isPhone = /^09[0-9]{8}$/;
-			if(!isPhone.test(this.userInfo.phone)) {
+			if (!isPhone.test(this.userInfo.phone)) {
 				this.phoneError = true;
-				this.phoneErrMsg = '請輸入正確收件人電話';
+				this.phoneErrMsg = "請輸入正確收件人電話";
 			} else {
 				this.phoneError = false;
-				this.phoneErrMsg = '';
+				this.phoneErrMsg = "";
 			}
 		},
-		'userInfo.address': function() {
-			if(this.userInfo.address) {
+		"userInfo.address": function () {
+			if (this.userInfo.address.length < 6) {
 				this.addressError = true;
-				this.addressErrMsg = '字數需大於6';
+				this.addressErrMsg = "字數需大於6";
 			} else {
 				this.addressError = false;
-				this.addressErrMsg = '';
+				this.addressErrMsg = "";
 			}
 		},
-		creditWatch(val) { 
+		"cardInfo.cardcsc": function () {
+			if (this.cardInfo.cardcsc.length < 2) {
+				this.cardcscError = false;
+				this.cardcscErrMsg = "";
+			}
+		},
+		creditWatch(val) {
 			// console.log(val);
 			let Num = /^\d{4}$/;
-			if(!Num.test(val.no1) || !Num.test(val.no2) || !Num.test(val.no3) || !Num.test(val.no4)) {
+			if (
+				!Num.test(val.no1) ||
+				!Num.test(val.no2) ||
+				!Num.test(val.no3) ||
+				!Num.test(val.no4)
+			) {
 				this.cardNumError = true;
-				this.cardNumErrMsg = '請輸入正確卡號';
+				this.cardNumErrMsg = "請輸入正確卡號";
 			} else {
 				this.cardNumError = false;
-				this.cardNumErrMsg = '';
+				this.cardNumErrMsg = "";
+			}
+		},
+		DateWatch() {
+			// console.log(this.cardInfo.cardDate.month);
+			if (
+				this.cardInfo.cardDate.month.length < 2 ||
+				this.cardInfo.cardDate.year.length < 2
+			) {
+				this.cardDateError = true;
+				this.cardDateErrMsg = "請輸入正確到期日";
+			} else {
+				this.cardDateError = false;
+				this.cardDateErrMsg = "";
 			}
 		},
 	},
@@ -101,16 +134,28 @@ new Vue({
 		},
 		// 提交訂單
 		sendOrder() {
-			if(this.userInfo.name != '' && this.userInfo.phone != '' && this.userInfo.address != '' && this.cardInfo.cardNum.no1 != ''  && this.cardInfo.cardNum.no2 != ''  && this.cardInfo.cardNum.no3 != ''  && this.cardInfo.cardNum.no4 != '' && this.cardInfo.cardName != '' && this.cardInfo.cardDate.year != ''  && this.cardInfo.cardDate.month != '' && this.cardInfo.cardcsc != '') {
-				if(!this.userNameError ) {
-
-				} else if(this.userNameError) {
-					alert(this.userNameErrMsg)
+			// 0.檢查收款人資訊是否填寫完整
+			if (
+				this.userInfo.name != "" &&
+				this.userInfo.phone != "" &&
+				this.userInfo.address != "" &&
+				this.cardInfo.cardNum.no1 != "" &&
+				this.cardInfo.cardNum.no2 != "" &&
+				this.cardInfo.cardNum.no3 != "" &&
+				this.cardInfo.cardNum.no4 != "" &&
+				this.cardInfo.cardName != "" &&
+				this.cardInfo.cardDate.year != "" &&
+				this.cardInfo.cardDate.month != "" &&
+				this.cardInfo.cardcsc != ""
+			) {
+				if (!this.userNameError) {
+				} else if (this.userNameError) {
+					alert(this.userNameErrMsg);
 				}
 			} else {
-				alert('未填寫完整')
+				alert("未填寫完整");
 			}
-			// 0.檢查收款人資訊是否填寫完整
+
 			// console.log('aaa');
 			// if(this.userInfo.name == ""){
 			// 	alert('請輸入收件人姓名');
@@ -124,6 +169,7 @@ new Vue({
 			// 1.傳送訂單詳細資訊給後台
 			//  - 商品詳細資訊
 			//  - 付款方式資訊
+
 			// 2. 後台判斷結果
 			// - 交易是否成功結果
 			// - 訂單編號
@@ -138,6 +184,7 @@ new Vue({
 		},
 		creditdown() {
 			let cards = document.getElementsByClassName("payId");
+			// console.log(cards);
 			for (let i = 0; i < cards.length; i++) {
 				// ----- 跨欄位刪除 & 只能輸入數字及刪除鍵 ---------//
 				cards[i].addEventListener("keydown", function (e) {
@@ -161,6 +208,8 @@ new Vue({
 		},
 		creditup() {
 			let cards = document.getElementsByClassName("payId");
+			// console.log(cards);
+
 			// console.log("aaa");
 			for (let i = 0; i < cards.length; i++) {
 				// ----- 跨欄位輸入 & 中文字不能輸入 ------------//
@@ -171,8 +220,9 @@ new Vue({
 					// console.log(str);
 					e.target.value = str; //將中文輸入值用空字串
 					// 希望使用者可以一直輸入下去
-					// console.log(str.length);a
+					// console.log(str.length);
 					if (str.length == 4) {
+						// 設next_el為下一個元素
 						let next_el = this.nextElementSibling;
 						if (next_el != null) {
 							next_el.focus();
@@ -189,28 +239,32 @@ new Vue({
 				},
 				body: JSON.stringify({ id: 19 }),
 			})
-			.then((res) => res.json())
-			.then((res) => {
-				// console.log(res);
-				// console.log(country)
-				// console.log(district)
-				
-				// name.value == res[0].NAME;
-				// $("#name").val(res[0].NAME); //抓到資料庫的姓名塞進收件人輸入框
-				// $("#phone").val(res[0].PHONE); //抓到資料庫的電話塞進電話輸入框
-				// $("#address").val(res[0].COUNTRY + res[0].DISTRICT + res[0].STREET); //抓到資料庫的城市、區域、地址塞進地址輸入框
-				// $('#address').val(`${res[0].COUNTRY}${res[0].DISTRICT}${res[0].STREET}`);
-				if(this.userInfo.name == "" ||this.userInfo.phone == "" || this.userInfo.address == ""){
-					this.userInfo.name = res[0].NAME;
-					this.userInfo.phone = res[0].PHONE;
-					this.userInfo.address = res[0].COUNTRY + res[0].DISTRICT + res[0].STREET;
-				}else{
-					this.userInfo.name = "";
-					this.userInfo.phone = "";
-					this.userInfo.address = "";
-				}
-				
-			});
+				.then((res) => res.json())
+				.then((res) => {
+					console.log(res);
+					// console.log(country)
+					// console.log(district)
+
+					// name.value == res[0].NAME;
+					// $("#name").val(res[0].NAME); //抓到資料庫的姓名塞進收件人輸入框
+					// $("#phone").val(res[0].PHONE); //抓到資料庫的電話塞進電話輸入框
+					// $("#address").val(res[0].COUNTRY + res[0].DISTRICT + res[0].STREET); //抓到資料庫的城市、區域、地址塞進地址輸入框
+					// $('#address').val(`${res[0].COUNTRY}${res[0].DISTRICT}${res[0].STREET}`);
+					if (
+						this.userInfo.name == "" ||
+						this.userInfo.phone == "" ||
+						this.userInfo.address == ""
+					) {
+						this.userInfo.name = res[0].NAME;
+						this.userInfo.phone = res[0].PHONE;
+						this.userInfo.address =
+							res[0].COUNTRY + res[0].DISTRICT + res[0].STREET;
+					} else {
+						this.userInfo.name = "";
+						this.userInfo.phone = "";
+						this.userInfo.address = "";
+					}
+				});
 		},
 	},
 	// 進入頁面就要有初始值就要用created
@@ -222,9 +276,15 @@ new Vue({
 		this.products = cart;
 	},
 	computed: {
+		// 信用卡監聽
 		creditWatch() {
-			const {no1, no2, no3, no4} = this.cardInfo.cardNum
-    		return {no1, no2, no3, no4}  		
+			const { no1, no2, no3, no4 } = this.cardInfo.cardNum;
+			return { no1, no2, no3, no4 };
+		},
+		// 信用卡到期日監聽
+		DateWatch() {
+			const { month, year } = this.cardInfo.cardDate;
+			return { month, year };
 		},
 		// 總計 執行function
 		sumTotal: function () {

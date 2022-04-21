@@ -162,8 +162,6 @@ $(function () {
         } else {
             console.log('取消刪除');
         }
-
-
     })
 })
 
@@ -201,9 +199,7 @@ $("#on_pd").on('click', () => {
                         console.log(id+' / '+message);
                     }
                 })
-
         }
-
     }
 })
 
@@ -239,9 +235,7 @@ $("#off_pd").on('click', () => {
                             console.log(id+' / '+message);
                         }
                     })
-
             }
-
         }
         alert('商品已完成下架');
     }
@@ -251,29 +245,110 @@ $("#off_pd").on('click', () => {
 // 修改上下架end
 // ==================================
 // 商品搜尋
+$('#search').on("keyup",(e)=>{
+    if(e.which == 13){
+        search_product();
+    }
+});
 
-$('#search_pd').on('click', () => {
+$('#search_pd').on('click', () => search_product());
+
+function search_product(){
     let search_target = $('#search').val();
-    console.log(search_target);
-    let list_item_el = $('.list_item');
-    $('.list_item').each((index, value) => {
-        console.log('33333');
-        if (value.getAttribute('data-prd_number').search(search_target) == -1 & value.getAttribute('data-prd_name').search(search_target) == -1) {
-            console.log(value);
-            value.setAttribute("style", "display:none;");
-        } else if (search_target == "") {
-            if ($('#show_off').has('checked') && value.getAttribute('data-prd_condition').search('on') > 0) {
-                console.log('X');
-                value.removeAttribute("style");
-            } else if ($('#show_off').has('checked')) {
-                console.log('v');
-                value.removeAttribute("style");
-            }
-        }
-
+    // console.log(search_target);
+    fetch('./php/back_products_search.php', {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        // 送出內容轉成JSON送出
+        body: JSON.stringify({
+            keyWord:search_target,
+        }),
     })
+        // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+        .then(resp =>  resp.json())   
+        .then(body => {
+            //body也不可以console
+            const { successful, message, data, end} = body;
+            if (successful) {
+                // console.log(successful +'訊息'+message+'數'+end);
+                // console.log(data);
 
-})
+                $(".list_item").remove();
+
+                data.forEach(function(v){
+                    // console.log(v);
+                     // 判斷狀態，寫入class
+                    var condition = "";
+                    var inner_style = ""
+
+                    // 檢查是否顯示下架商品
+                    let ckbox = document.querySelector('#show_off');
+                    if(ckbox.checked == false){
+                        if (v.STATE == '上架中') {
+                            condition = "on";
+                            inner_style = '';
+                            // console.log('list on');
+                        } else {
+                            condition = "off";
+                            inner_style = 'style="display:none;opacity:1;"'
+                            // console.log('list off');
+                        };
+                    }else{
+                        // 顯示下架商品則不隱藏
+                        if (v.STATE == '上架中') {
+                            condition = "on";
+                        }else{
+                            condition = "off";
+                        }
+                    }
+
+                    let MAIN_PIC=JSON.parse(v.MAIN_PIC);
+
+                    var list_html = `<li data-prd_number="${v.ID}" data-prd_name="${v.NAME}" data-prd_condition="${condition}" class="list_item -${condition}" ${inner_style}>
+                    <label class="check_container">
+                    <input type="checkbox"  class="select_item">
+                    <span class="checkmark"></span>
+                    </label>
+                    <img src="${MAIN_PIC[0]}" alt="" class="prd_pic">
+                    <p class="prd_number">${v.ID}</p>
+                    <p class="prd_name">${v.NAME}</p>
+                    <p class="prd_cost">${v.COST}</p>
+                    <p class="prd_price">${v.UNIT_PRICE}</p>
+                    <p class="prd_inStock">${v.STOCK}</p>
+                    <p class="prd_condition">${v.STATE}</p>
+                    <button type="button" class="btn-green prd_edit">修改</button>
+                    </li>`;
+
+                    $('#pds_list').append(list_html)
+                })
+
+            } else {
+                console.log(message);
+                $(".list_item").remove();
+                $('#pds_list').append(`<li><h4 style="padding:20px;">SORRY！ 找不到商品</h4></li>`);
+            }
+        })
+}
+
+
+// $('.list_item').each((index, value) => {
+
+//     if (value.getAttribute('data-prd_number').search(search_target) == -1 & value.getAttribute('data-prd_name').search(search_target) == -1) {
+//         console.log(value);
+//         value.setAttribute("style", "display:none;");
+//     } else if (search_target == "") {
+//         if ($('#show_off').has('checked') && value.getAttribute('data-prd_condition').search('on') > 0) {
+//             console.log('X');
+//             value.removeAttribute("style");
+//         } else if ($('#show_off').has('checked')) {
+//             console.log('v');
+//             value.removeAttribute("style");
+//         }
+//     }
+
+// })
 
 
 // 商品搜尋end
