@@ -14,7 +14,7 @@
         $ServerRoot = $_SERVER["DOCUMENT_ROOT"];
 
         // 要存放檔案的資料夾路徑
-        $path = "/img/activity/";
+        $path = "/g6/img/upload/";
         if(!is_dir($ServerRoot.$path)){
             mkdir($ServerRoot.$path,0777,true);
         };

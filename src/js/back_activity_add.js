@@ -203,7 +203,7 @@ const addActivity = new Vue({
             let form_data = new FormData();
             form_data.append('img',file);
             // fetchAPI
-            fetch('./php/activity_img_upload.php', {
+            fetch('./php/img_upload.php', {
             method: 'POST',
             body: form_data,
             })
