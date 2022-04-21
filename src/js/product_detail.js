@@ -1,19 +1,17 @@
 // 套件================================
 // import Splide from './vendors/splide.min.js';
 
-
-
 document.addEventListener("DOMContentLoaded", function () {
 	// 讀取資料==========================================
 	// const editRule = /[prd_number=]\d{8}$/
 	let urlParams = new URLSearchParams(window.location.search);
-	let id = urlParams.get('prd_number');
+	let id = urlParams.get("prd_number");
 	// console.log(id);
 	// AJAX
-	fetch('./php/product_load.php', {
-		method: 'POST',
+	fetch("./php/product_load.php", {
+		method: "POST",
 		headers: {
-			'Content-type': 'application/json'
+			"Content-type": "application/json",
 		},
 		// 送出內容轉成JSON送出
 		body: JSON.stringify({
@@ -21,32 +19,30 @@ document.addEventListener("DOMContentLoaded", function () {
 		}),
 	})
 		// 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
-		.then(resp => resp.json())
-		.then(body => {
+		.then((resp) => resp.json())
+		.then((body) => {
 			//body也不可以console
 			const { successful, message, data } = body;
 			if (successful == true) {
 				console.log(successful + "訊息" + message + "資料" + data);
 				let bread = document.querySelector(".pd_bread");
-				let kind = (data[0].PRODUCT_CATEGORY_ID =1 ?  "冷凍冷藏":"日常用品");
+				let kind = (data[0].PRODUCT_CATEGORY_ID = 1 ? "冷凍冷藏" : "日常用品");
 				bread.innerText = `首頁 | ${kind} | ${data[0].NAME}`;
 				putin_top_pic(data[0].MAIN_PIC);
 				data_load(data);
 				check_inStock();
-
 			} else {
-				console.log(successful + ' 訊息' + message);
+				console.log(successful + " 訊息" + message);
 				let main = document.querySelector(".pd_main");
-				main.innerHTML=`<div style="height:200px;text-align: center;display: flex;align-items: center;flex-direction:column-reverse;"><h3>sorry！找不到此商品！</h3></div>`;
+				main.innerHTML = `<div style="height:200px;text-align: center;display: flex;align-items: center;flex-direction:column-reverse;"><h3>sorry！找不到此商品！</h3></div>`;
 			}
-		})
-		
+		});
 
 	function data_load(data) {
 		let pd_name = document.querySelector("#pd_info_name");
 		pd_name.innerText = data[0].NAME;
 		let slogn = document.querySelectorAll(".pd_info_slog");
-		let slogan_text = JSON.parse(data[0].SLOGAN)
+		let slogan_text = JSON.parse(data[0].SLOGAN);
 		slogn[0].innerText = slogan_text[0];
 		slogn[1].innerText = slogan_text[1];
 		// 商品規格
@@ -62,15 +58,13 @@ document.addEventListener("DOMContentLoaded", function () {
 		let intro = document.querySelector(".intro_area");
 		let intro_text = JSON.parse(data[0].DESCRIPTION);
 		// console.log(intro_text);
-		for(let i=0; i<intro_text.length; i++){
-			console.log(intro_text[i].src+' / '+intro_text[i].text);
+		for (let i = 0; i < intro_text.length; i++) {
+			console.log(intro_text[i].src + " / " + intro_text[i].text);
 			let intro_html = `<div class="pd_intro">
 			<div class=" pd_intro_pic"><img src="${intro_text[i].src}" alt="">
 			</div><p>${intro_text[i].text}</p></div>`;
-			intro.insertAdjacentHTML("beforeend",intro_html);
-			
+			intro.insertAdjacentHTML("beforeend", intro_html);
 		}
-
 	}
 
 	// 讀取資料end========================================
@@ -78,7 +72,6 @@ document.addEventListener("DOMContentLoaded", function () {
 	let sp1 = $("#splide01").find(".splide__list");
 	new Splide(".splide01").mount();
 	sp1.on("change", function () {
-
 		// 掛載套件=========
 		var main_1 = new Splide(".splide01", {
 			type: "splide",
@@ -145,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	if (window.innerWidth > 992) {
 		removeSplide();
 	}
-})
+});
 
 // for resize
 function addSplide() {
@@ -184,9 +177,8 @@ function putin_top_pic(top_pic) {
 
 	let sp1_under = $("#thumbnail-slider1").find(".splide__list");
 	$.each(top_pic, (i, v) => {
-		sp1_under.append(`<li class="splide__slide"><img src="${v}" alt=""></li>`)
+		sp1_under.append(`<li class="splide__slide"><img src="${v}" alt=""></li>`);
 	});
-
 }
 // 套件與讀取資料end=========================================================
 
@@ -237,61 +229,38 @@ function stockChack(el) {
 $("#pd_info_cart").on("click", (e) => {
 	e.preventDefault();
 
-	let cart_data = JSON.parse(sessionStorage.getItem("products"));
-	if (cart_data != "") {
-		let img = document
-			.querySelector(".splide__list li img")
-			.getAttribute("src");
-		let name = document.querySelector("#pd_info_name").innerText;
-		let price = document.querySelector("#pd_info_pricr").innerText;
-		let count = document.querySelector("#pd_stockCount_input").value;
-		let overlayCount = parseInt(count) + parseInt(cart_data[0].count);
+	// 取得session已經存在的資料，判斷如果不存在就給個陣列
+	let cart_data = JSON.parse(sessionStorage.getItem("products")) ?? [];
+	// 取得頁面上商品詳細資訊
+	let urlParams = new URLSearchParams(window.location.search);
+	let id = urlParams.get("prd_number");
+	let img = document.querySelector(".splide__list li img").getAttribute("src");
+	let name = document.querySelector("#pd_info_name").innerText;
+	let price = document.querySelector("#pd_info_pricr").innerText;
+	let count = document.querySelector("#pd_stockCount_input").value;
+	let product = {
+		id: id,
+		img: img,
+		name: name,
+		price: price,
+		count: count,
+	};
 
-		let products = [
-			{
-				img: img,
-				name: name,
-				price: price,
-				count: overlayCount,
-			},
-		];
-		sessionStorage.setItem("products", JSON.stringify(products));
-		let cart_count = document.querySelector(".quantity");
-		cart_count.value = overlayCount;
+	// 檢查session裡是否已經存在該商品
+	if (cart_data.length > 0) {
+		for (let i = 0; i < cart_data.length; i++) {
+			// 檢查商品id有沒有存在
+			if (cart_data[i].id == product.id) {
+				cart_data[i].count = Number(cart_data[i].count) + Number(product.count);
+			} else {
+				cart_data.push(product);
+			}
+		}
 	} else {
-		let img = document
-			.querySelector(".splide__list li img")
-			.getAttribute("src");
-		let name = document.querySelector("#pd_info_name").innerText;
-		let price = document.querySelector("#pd_info_pricr").innerText;
-		let count = document.querySelector("#pd_stockCount_input").value;
-		let products = [
-			{
-				img: img,
-				name: name,
-				price: price,
-				count: Number(count),
-			},
-		];
-		sessionStorage.setItem("products", JSON.stringify(products));
-		// let cart_count = document.querySelector(".quantity");
-		// // console.log(cart_count);
-		// cart_count.value = count;
+		// 假如不存在就把product丟進去
+		cart_data.push(product);
 	}
-
-	// let img = document.querySelector(".splide__list li img").getAttribute("src");
-	// let name = document.querySelector("#pd_info_name").innerText;
-	// let price = document.querySelector("#pd_info_pricr").innerText;
-	// let count = document.querySelector("#pd_stockCount_input").value;
-	// let products = [
-	// 	{
-	// 		img: img,
-	// 		name: name,
-	// 		price: price,
-	// 		count: Number(count),
-	// 	},
-	// ];
-	// sessionStorage.setItem("products", JSON.stringify(products));
+	sessionStorage.setItem("products", JSON.stringify(cart_data));
 });
 
 $("#pd_info_buy").on("click", (e) => {
@@ -323,5 +292,5 @@ function check_inStock() {
 			"background-color: #fff;  color: #ccc;  border: 1px dotted #ccc;"
 		);
 	}
-};
+}
 //
