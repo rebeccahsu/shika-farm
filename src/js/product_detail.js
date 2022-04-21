@@ -246,17 +246,21 @@ $("#pd_info_cart").on("click", (e) => {
 		count: count,
 	};
 
+	console.log(product.id);
+	// 預設商品不存在
+	let isExist = false;
 	// 檢查session裡是否已經存在該商品
 	if (cart_data.length > 0) {
 		for (let i = 0; i < cart_data.length; i++) {
 			// 檢查商品id有沒有存在
 			if (cart_data[i].id == product.id) {
+				isExist = true;
 				cart_data[i].count = Number(cart_data[i].count) + Number(product.count);
-			} else {
-				cart_data.push(product);
+				break;
 			}
 		}
-	} else {
+	}
+	if(!isExist){
 		// 假如不存在就把product丟進去
 		cart_data.push(product);
 	}
