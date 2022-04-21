@@ -22,20 +22,29 @@
         <h5 class="title">選擇你喜歡的動物，一起在Sìkha玩耍吧！</h5>
         <div class="checkList">
             <section id="slider">
-                <input class="slider" type="radio" name="slider" id="s1" checked>
+                <input v-for="icon in lable_icons" class="slider" type="radio" name="slider" :id="'s'+icon.key"
+                    v-model="activeIndex" :value="icon.key">
+                <!-- <input class="slider" type="radio" name="slider" id="s1" checked>
                 <input class="slider" type="radio" name="slider" id="s2">
                 <input class="slider" type="radio" name="slider" id="s3">
                 <input class="slider" type="radio" name="slider" id="s4">
                 <input class="slider" type="radio" name="slider" id="s5">
-                <input class="slider" type="radio" name="slider" id="s6">
+                <input class="slider" type="radio" name="slider" id="s6"> -->
 
-                <label @click="activeIndex=0" for="s1" id="slide1"><img src="./img/activity/sheep 2.png" alt=""></label>
-                <label @click="activeIndex=1" for="s2" id="slide2"><img src="./img/activity/deer 2.png" alt=""></label>
+                <label @click="test(icon.type)" :class="'-active-'+ activeIndex" v-for="icon in lable_icons"
+                    :for="'s'+icon.key" :id="'slide'+icon.key"><img :src="icon.img" alt=""></label>
+                <!-- <label @click="activeIndex=0" for="s1" id="slide1"><img src="./img/activity/sheep 2.png" 
+                    alt=""></label> -->
+                <!-- <label @click="activeIndex=1" for="s2" id="slide2"><img src="./img/activity/deer 2.png"
+                        alt=""></label>
                 <label @click="activeIndex=2" for="s3" id="slide3"><img src="./img/activity/alpaca 2.png"
                         alt=""></label>
-                <label @click="activeIndex=3" for="s4" id="slide4"><img src="./img/activity/cow 2.png" alt=""></label>
-                <label @click="activeIndex=4" for="s5" id="slide5"><img src="./img/activity/pig 2.png" alt=""></label>
-                <label @click="activeIndex=5" for="s6" id="slide6"><img src="./img/activity/horse 2.png" alt=""></label>
+                <label @click="activeIndex=3" for="s4" id="slide4"><img src="./img/activity/cow 2.png"
+                        alt=""></label>
+                <label @click="activeIndex=4" for="s5" id="slide5"><img src="./img/activity/pig 2.png"
+                        alt=""></label>
+                <label @click="activeIndex=5" for="s6" id="slide6"><img src="./img/activity/horse 2.png"
+                        alt=""></label> -->
             </section>
         </div>
 
@@ -65,14 +74,13 @@
                 <img src="./img/activity/game_entrance.png" alt="">
                 <h5>線上體驗</h5>
             </a></div>
-
         <!-- 點擊展開item區域 -->
-        <section class="odd_item" v-for="(aaa,key) in all_data[activeIndex].list">
-
+        <!-- <section class="odd_item" v-for="(aaa,key) in all_data[activeIndex].list"> -->
+        <section class="odd_item" v-for="(aaa,key) in showList">
             <div class="item">
                 <div class="item_imgcover">
                     <div class="icon_positiveCover">
-                        <img class="item_img" :src="aaa.image" alt="">
+                        <img class="item_img" :src="aaa.IMG" alt="">
                         <div class="item_r_cover">
                             <img v-if='aaa.icon_img' @click="open(aaa)" class="item_img_icon" :src="aaa.icon_img"
                                 alt="">
@@ -83,8 +91,8 @@
                     </div>
                 </div>
                 <div class="item_p">
-                    <h5 class="item_title">{{aaa.title}}</h5>
-                    <p class="item_desc">{{aaa.desc}}</p>
+                    <h5 class="item_title">{{aaa.NAME}}{{xxx}}</h5>
+                    <p class="item_desc">{{aaa.DESC}}</p>
                     <!-- <button v-if='aaa.time_period' class="reserve" :class="'-index'+ activeIndex"
                         :style="{'background': all_data[activeIndex].button_bg}" @click="open(aaa)">點我預約</button> -->
                     <br>
