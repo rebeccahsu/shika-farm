@@ -19,7 +19,9 @@
                         <label for="p_file" class="btn-red choose-file" style="font-size: 18px;">選擇檔案</label>
                         <span class="filename">尚未選擇檔案</span>
                         <input type="file" id="p_file" style="display: none;" @change="fileSelected">
-                        <div class="preview" id="drop_zone" @dragover="dragover" @dragleave="dragleave" @drop="drop"><img v-if="img" :src="img" class="preview-img"><span class="text">圖片拖曳至此處</span></div>
+                        <div class="preview" id="drop_zone" @dragover="dragover" @dragleave="dragleave" @drop="drop">
+                            <img v-if="img" :src="img" class="preview-img"><span class="text">圖片拖曳至此處</span>
+                        </div>
                     </div>
                     <div class="margintop_30">
                         <h5>活動名稱</h5>
@@ -76,16 +78,6 @@
                         <input type="radio" name="catergory" id="alpaca" value="alpaca" v-model="category">
                         <label for="alpaca">草泥馬</label>
                     </div>
-                    <!-- <div class="oneline margintop_30">
-                        <label for="">上架時間</label>
-                        <input type="date" id="on_date" required>
-                        <input type="time" value="23:59" id="on_time">
-                    </div>
-                    <div class="oneline margintop_25">
-                        <label for="">下架時間</label>
-                        <input type="date" id="off_date">
-                        <input type="time" value="23:59" id="off_time">
-                    </div> -->
     
                     <div class="onoroff">
                         <span class="state">上架</span>
@@ -98,7 +90,7 @@
     
                     <div class="buttons">
                         <button type="button" class="btn-green" id="add_activity" @click="addActivity">確認</button>
-                        <a href="back_activity.html"><button type="button" class="btn-border">取消</button></a>
+                        <button type="button" class="btn-border" @click="cancel">取消</button>
                     </div>
                     <div id="msg" class="error"></div>
                     
