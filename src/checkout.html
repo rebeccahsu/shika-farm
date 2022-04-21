@@ -191,14 +191,12 @@
 									class="payId payInput"
 									placeholder="0000"
 									maxlength="4"
-									@keydown="creditdown"
-									@keyup="creditup"
 									v-model="cardInfo.cardNum.no4"
 								/>
 								
 							<span>{{cardNumErrMsg}}</span>
 							</p>
-							<p class="cardAll carddate">
+							<p class="cardAll">
 								<label for="date">到期日</label>
 								<input
 									type="text"
@@ -206,6 +204,8 @@
 									class="month date payInput"
 									placeholder="MM"
 									maxlength="2"
+									@keydown="creditdown"
+									@keyup="creditup"
 									v-model="cardInfo.cardDate.month"
 								/>
 								/
@@ -214,21 +214,20 @@
 									class="year date payInput"
 									placeholder="YY"
 									maxlength="2"
+									@keydown="creditdown"
+									@keyup="creditup"
 									v-model="cardInfo.cardDate.year"
 								/>
-								<span>{{cardDateErrMsg}}</span>
 							</p>
 						</div>
 						<div class="card_infoI">
 							<p class="cardname cardAll">
 								<label for="cardname">持卡人姓名</label>
 								<input type="text" id="cardname" class="payInput" v-model="cardInfo.cardName"/>
-								<span>{{cardNameErrMsg}}</span>
 							</p>
 							<p class="cardAll">
 								<label for="CSC">安全碼</label>
-								<input type="text" id="CSC" class="payInput" maxlength="3" v-model="cardInfo.cardcsc" placeholder="111"/>
-								<span>{{cardcscErrMsg}}</span>
+								<input type="text" id="CSC" class="payInput" maxlength="3" v-model="cardInfo.cardcsc" />
 							</p>
 						</div>
 					</li>

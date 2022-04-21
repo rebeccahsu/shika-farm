@@ -1,41 +1,41 @@
 new Vue ({
     el: '#indexNewsApp',
-    // data: {
-    //     newslist: [
-    //         {DATE: '2022.03.15', TITLE: '4.2 - 4.5 歡慶兒童節 帶小孩來牧場放電囉'},
-    //         {DATE: '2022.03.12', TITLE: '你我一起防疫大作戰'},
-    //         {DATE: '2022.01.27', TITLE: '2022春節營運時間及票價優惠'},
-    //     ],
-    // },
     data: {
-        newslist: [],
+        newslist: [
+            {DATE: '2022.03.15', TITLE: '4.2 - 4.5 歡慶兒童節 帶小孩來牧場放電囉'},
+            {DATE: '2022.03.12', TITLE: '你我一起防疫大作戰'},
+            {DATE: '2022.01.27', TITLE: '2022春節營運時間及票價優惠'},
+        ],
     },
-    mounted() {
-    fetch('./php/index_news.php')
-    .then(res => res.json())
-    .then(res => this.newslist = res)
-    // .then(res => console.log(res))
-    }, 
+    // data: {
+    //     newslist: [],
+    // },
+    // mounted() {
+    // fetch('./php/index_news.php')
+    // .then(res => res.json())
+    // .then(res => this.newslist = res)
+    // // .then(res => console.log(res))
+    // }, 
 })
 
 new Vue ({
     el: '#indexActivity',
-    // data: {
-    //         activities: [
-    //                 {IMG: './img/activity/alpacawalk.jpg', NAME: '陪草泥馬散步'},
-    //                 {IMG: './img/activity/pigrun.jpg', NAME: '小豬賽跑'},
-    //                 {IMG: './img/activity/riding.jpg', NAME: '我要當牛仔'},
-    //             ],
-    // },
     data: {
-        activities: [], //準備一個陣列來抓資料 (如果資料是物件這裡就寫物件)
+            activities: [
+                    {IMG: './img/activity/alpacawalk.jpg', NAME: '陪草泥馬散步'},
+                    {IMG: './img/activity/pigrun.jpg', NAME: '小豬賽跑'},
+                    {IMG: './img/activity/riding.jpg', NAME: '我要當牛仔'},
+                ],
     },
-    mounted() {
-        fetch('./php/index_activities.php')
-        .then(res => res.json())
-        .then(res => this.activities = res)
-        //   .then(res => console.log(res))
-    },  
+    // data: {
+    //     activities: [], //準備一個陣列來抓資料 (如果資料是物件這裡就寫物件)
+    // },
+    // mounted() {
+    //     fetch('./php/index.php')
+    //     .then(res => res.json())
+    //     .then(res => this.activities = res)
+    //     //   .then(res => console.log(res))
+    // },  
 })
 
 gsap.to('.sun', {

@@ -64,14 +64,14 @@ function upload_img(file){
     form_data.append('img',file);
 
     // fetchAPI
-    fetch('./php/upload_test4.php', {
+    fetch('./php/upload_test5.php', {
     method: 'POST',
     body: form_data,
     })
     .then(resp =>resp.json())
     .then(body =>{
         const { succ, img_url } = body;
-        console.log(body);
+        // console.log(body);
         document.querySelector(".block").innerHTML=`<img src="${img_url}" />`;
         $("#topImg")[0].value='';
     })

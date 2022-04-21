@@ -16,11 +16,9 @@
             
                 <form class="activity-detail" id="a_detail">
                     <div class="img-area">
-                        <label for="p_file" class="btn-red choose-file" style="font-size: 18px;">選擇檔案</label>
-                        <span class="filename">{{filename}}</span>
-                        <input type="file" id="p_file" style="display: none;" @change="fileSelected">
+                        <input type="file" id="p_file" @change="fileSelected">
                         <div class="preview" id="drop_zone" @dragover="dragover" @dragleave="dragleave" @drop="drop">
-                            <img v-if="activity[0].IMG" :src="activity[0].IMG" class="preview-img">
+                            <img :src="activity[0].IMG" alt="">
                         </div>
                     </div>
                     <div class="margintop_30">
@@ -89,7 +87,7 @@
     
                     <div class="buttons">
                         <button type="button" class="btn-green" @click="confirmModify">儲存</button>
-                        <button type="button" class="btn-border" @click="cancel">取消</button>
+                        <a href="back_activity.html"><button type="button" class="btn-border">取消</button></a>
                     </div>
                     
     

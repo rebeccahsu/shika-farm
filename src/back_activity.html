@@ -14,89 +14,89 @@
                 "back_title" : "活動管理"
                 })
         
-            <section class="buttonsnNumber">
-                <div class="buttons">
-                    <a href="./back_activity_add.html"><button type="button" class="btn-yellow add-activity">新增</button></a>
-                    <button type="button" class="btn-green on-activity" @click="onAct">上架</button>
-                    <button type="button" class="btn-green off-activity" @click="offAct">下架</button>
-                    <button type="button" class="btn-red delete-activity" @click="deleteAct">刪除</button>
-                </div>
-                <h5 class="actAvailableTitle">上架中的活動：<span class="actAvailable">5</span></h5>
-            </section>
-
-            <div class="showUnavailable">
-                <label class="switch">
-                    <input type="checkbox" checked class="show-switch-btn" @change="switchShow">
-                    <span class="slider round"></span>
-                </label>
-                <p class="showTitle">顯示未上架活動</p>
-            </div>
-
-            <ul class="actLists">
-                <li class="actList" v-for="activity in activities" :data-actid="activity.ID">
-                    <div class="actImgCon">
-                        <img :src="activity.IMG" alt="activity_img" class="activityImg">
+                <section class="buttonsnNumber">
+                    <div class="buttons">
+                        <a href="./back_activity_add.html"><button type="button" class="btn-yellow add-activity">新增</button></a>
+                        <button type="button" class="btn-green on-activity" @click="onAct">上架</button>
+                        <button type="button" class="btn-green off-activity" @click="offAct">下架</button>
+                        <button type="button" class="btn-red delete-activity" @click="deleteAct">刪除</button>
                     </div>
+                    <h5 class="actAvailableTitle">上架中的活動：<span class="actAvailable">5</span></h5>
+                </section>
+    
+                <div class="showUnavailable">
+                    <label class="switch">
+                        <input type="checkbox" checked class="show-switch-btn" @change="switchShow">
+                        <span class="slider round"></span>
+                    </label>
+                    <p class="showTitle">顯示未上架活動</p>
+                </div>
+    
+                <ul class="actLists">
+                    <li class="actList" v-for="activity in activities" :data-actid="activity.ID">
+                        <div class="actImgCon">
+                            <img :src="activity.IMG" alt="activity_img" class="activityImg">
+                        </div>
+                        
+                        <div class="act-content">
+                            <label class="check_container actCheck">
+                                <input type="checkbox" class="check-act">
+                                <span class="checkmark"></span>
+                            </label>
+    
+                            <h5 class="name">{{activity.NAME}}</h5>
+                            <div class="activity-time-list">
+                                <p>場次一</p><span class="activity-time">{{activity.S1_START}}~{{activity.S1_END}}</span>
+                                <p>場次二</p><span class="activity-time">{{activity.S2_START}}~{{activity.S2_END}}</span>
+                                <p>場次三</p><span class="activity-time">{{activity.S3_START}}~{{activity.S3_END}}</span>
+                            </div>
+                            <p class="state">狀態<span class="state-text">{{activity.STATE}}</span></p>
+                            <div class="actButtons">
+                                <button class="btn-yellow member_btn" @click="signedMembers">已報名會員</button>
+                                <button class="btn-green modify_btn" @click="modifyActivity">修改</button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="act-member-overlay">
+                    <h5 class="x-btn" @click="closeOverlay">X</h5>
+                    <h5 class="o-activity-title"></h5>
+                    <div class="selects">
+                        <select class="o-activity-date" @change="selectDate" v-model="overlay.date">
+                          <option value="選擇日期">選擇日期</option>
+                          <option v-for="date in dates">{{date}}</option>
+                        </select>
+                        <select class="o-activity-time" @change="selectTime" v-model="overlay.session">
+                            <option value="選擇場次時間">選擇場次時間</option>
+                            <option class="o-time"></option>
+                            <option class="o-time"></option>
+                            <option class="o-time"></option>
+                        </select>
+                    </div>
+                    <p class="nobody" style="text-align: center;"></p>
+                    <table class="signedup-members">
+                        <thead>
+                            <td>會員編號</td>
+                            <td>會員姓名</td>
+                            <td>報名人數</td>
+                            <td>報名時間</td>
+                        </thead>
+                        <tr class="data" v-for="member in members">
+                            <td>{{member.MEMBER_ID}}</td>
+                            <td>{{member.NAME}}</td>
+                            <td>{{member.ATTENDANCE}}</td>
+                            <td>{{member.UPDATE_TIME}}</td>
+                        </tr>
+                    </table>
                     
-                    <div class="act-content">
-                        <label class="check_container actCheck">
-                            <input type="checkbox" class="check-act">
-                            <span class="checkmark"></span>
-                        </label>
-
-                        <h5 class="name">{{activity.NAME}}</h5>
-                        <div class="activity-time-list">
-                            <p>場次一</p><span class="activity-time">{{activity.S1_START}}~{{activity.S1_END}}</span>
-                            <p>場次二</p><span class="activity-time">{{activity.S2_START}}~{{activity.S2_END}}</span>
-                            <p>場次三</p><span class="activity-time">{{activity.S3_START}}~{{activity.S3_END}}</span>
-                        </div>
-                        <p class="state">狀態<span class="state-text">{{activity.STATE}}</span></p>
-                        <div class="actButtons">
-                            <button class="btn-yellow member_btn" @click="signedMembers">已報名會員</button>
-                            <button class="btn-green modify_btn" @click="modifyActivity">修改</button>
-                        </div>
+                    <div class="info-count">
+                        <p>人數上限：<span class="capacity">0</span></p>
+                        <p>總計報名人數：<span class="total-signed">{{total}}</span></p>
                     </div>
-                </li>
-            </ul>
-
-            <div class="act-member-overlay">
-                <h5 class="x-btn" @click="closeOverlay">X</h5>
-                <h5 class="o-activity-title"></h5>
-                <div class="selects">
-                    <select class="o-activity-date" @change="selectDate" v-model="overlay.date">
-                        <option value="選擇日期">選擇日期</option>
-                        <option v-for="date in dates">{{date}}</option>
-                    </select>
-                    <select class="o-activity-time" @change="selectTime" v-model="overlay.session">
-                        <option value="選擇場次時間">選擇場次時間</option>
-                        <option class="o-time"></option>
-                        <option class="o-time"></option>
-                        <option class="o-time"></option>
-                    </select>
                 </div>
-                <p class="nobody" style="text-align: center;"></p>
-                <table class="signedup-members">
-                    <thead>
-                        <td>會員編號</td>
-                        <td>會員姓名</td>
-                        <td>報名人數</td>
-                        <td>報名時間</td>
-                    </thead>
-                    <tr class="data" v-for="member in members">
-                        <td>{{member.MEMBER_ID}}</td>
-                        <td>{{member.NAME}}</td>
-                        <td>{{member.ATTENDANCE}}</td>
-                        <td>{{member.UPDATE_TIME}}</td>
-                    </tr>
-                </table>
-                
-                <div class="info-count">
-                    <p>人數上限：<span class="capacity">無</span></p>
-                    <p>總計報名人數：<span class="total-signed">{{total}}</span></p>
-                </div>
-            </div>
             
-            <div class="act-mask" @click="closeOverlay"></div>
+                <div class="act-mask" @click="closeOverlay"></div>
 
             <p class="tibameMessage">本網站為緯育TibaMe前端設計工程師班第74期第六組學員專題成果作品，本平台僅供學習、展示之用。</p>
         </main>

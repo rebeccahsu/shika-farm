@@ -7,68 +7,40 @@ pages.forEach(function(page){
 });
 
 // sweetalert
-function sAlert(msg, icon, btn) {
+function alertmodify(msg, icon) {
     Swal.fire({
         title: msg,
         icon: icon,
-        showConfirmButton: true, // 確認按鈕（預設會顯示不用設定)
-        confirmButtonText: btn, //　按鈕顯示文字
-        confirmButtonAriaLabel: btn, // 網頁無障礙用
+        showConfirmButton: false, // 確認按鈕（預設會顯示不用設定)
+        // 使用同確認按鈕
         // showDenyButton: true, // 否定按鈕
         showCancelButton: false, // 取消按鈕
         buttonsStyling: false, // 是否使用sweetalert按鈕樣式（預設為true）
-        customClass: {
-                        confirmButton: 'btn-yellow margintop_15',
-                        cancelButton: 'btn-red margintop_15'
-                    },
     })
 }
 
-function sConfirm(title, text, url) {
-    Swal.fire({
-        title: title,
-        text: text,
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: '確定',
-        cancelButtonText: '取消',
-        buttonsStyling: false,
-        customClass: {
-            confirmButton: 'btn-green marginright_20',
-            cancelButton: 'btn-red'
-        },
-    }).then(function(result) {
-       if (result.value) {
-            location.href = url;
-       }
-       else {
-           
-       }
-    });
-}
-
-const modifyActivity = new Vue({
+//TODO: 連上資料庫時改DATA
+new Vue({
     el: '#a_detail',
-    // data: {
-    //     activity: 
-    //         { IMG: './img/activity/riding.jpg', 
-    //         NAME:'我要當牛仔', 
-    //         OPACITY: '10', 
-    //         TIME: '90',
-    //         S1_START: '09:30', S1_END: '11:00', 
-    //         S2_START: '13:00', S2_END: '14:30', 
-    //         S3_START: '16:30', S3_END: '18:00', 
-    //         STATE: '上架中', 
-    //         DESC: '無論你是大朋友小朋友、初學者，都可以安心做牛仔！* 身高 90 公分以下且與陪同成人體重相加總重不超過 80 公斤的兒童可以與成人一起乘坐。', 
-    //         CATEGORY: 'horse'
-    //         },
-    //         stateCheck: '',
-    // },
     data: {
-        activity: {},
-        stateCheck: '',
-        filename: '',
+        activity: 
+            { IMG: './img/activity/riding.jpg', 
+            NAME:'我要當牛仔', 
+            OPACITY: '10', 
+            TIME: '90',
+            S1_START: '09:30', S1_END: '11:00', 
+            S2_START: '13:00', S2_END: '14:30', 
+            S3_START: '16:30', S3_END: '18:00', 
+            STATE: '上架中', 
+            DESC: '無論你是大朋友小朋友、初學者，都可以安心做牛仔！* 身高 90 公分以下且與陪同成人體重相加總重不超過 80 公斤的兒童可以與成人一起乘坐。', 
+            CATEGORY: 'horse'
+            },
+            stateCheck: '',
     },
+    // data: {
+    //     activity: {},
+    //     stateCheck: '',
+    // },
     created(){
         const params = new URLSearchParams(location.search);
         let id = params.get('activity_id');
@@ -85,10 +57,6 @@ const modifyActivity = new Vue({
         .then(res => res.json())
         .then(res => this.activity = res)
         .then(() => {
-            // filename
-            let src = this.activity[0].IMG.split('/');
-            let displayname = src.slice(-1)[0];
-            this.filename = displayname;
             if(this.activity[0].STATE == "上架中"){
                 this.stateCheck = true;
             }else{
@@ -128,33 +96,18 @@ const modifyActivity = new Vue({
                 .then(res => res.json())
                 .then(res => {
                     if (res.successful) {
-                        Swal.fire({
-                            title: `<h5>已成功儲存修改內容！</h5>`,
-                            showCancelButton: true,
-                            buttonsStyling: false,
-                            confirmButtonText: '繼續編輯',
-                            cancelButtonText: '返回活動列表',
-                            customClass: {
-                                confirmButton: 'btn-green marginright_20',
-                                cancelButton: 'btn-yellow'
-                            },      
-                        }).then((result) => {
-                            if (result.value) {            
-                            }else{
-                                location.href="./back_activity.html";
-                            }
-                        });
+                        alertmodify('<strong>已成功儲存修改內容！</strong>', 'success');
                     } 
                     else {
-                        sAlert('<strong>您沒有需儲存的變更內容</strong>', 'info', 'OK');
+                        alertmodify('<strong>您沒有需儲存的變更內容</strong>', 'info');
                     }
                 })
                 .catch(function(err) {
-                    sAlert('<strong>儲存失敗，請再試一次</strong>', 'error', 'OK');
+                    alertmodify('<strong>儲存失敗，請再試一次</strong>', 'error');
                 });
 
             }else{
-                sAlert('<strong>請填寫完所有欄位再按下儲存</strong>', 'warning');
+                alertmodify('<strong>請填寫完所有欄位再按下儲存</strong>', 'warning');
             }
             
         },
@@ -215,56 +168,171 @@ const modifyActivity = new Vue({
             this.activity[0].S2_END = end_arr[1];
             this.activity[0].S3_END = end_arr[2];
         },
-
-        uploadImg(file){
-            let form_data = new FormData();
-            form_data.append('img',file);
-            // fetchAPI
-            fetch('./php/activity_img_upload.php', {
-            method: 'POST',
-            body: form_data,
-            })
-            .then(resp =>resp.json())
-            .then(body =>{
-                modifyActivity.activity[0].IMG = body.img_url;
-            })
-        },
-
         fileSelected(e){
-            let file = $('#p_file')[0].files[0];
-            if ( $('#p_file')[0].files.length > 0 ){
-                let reader = new FileReader(); //建立FileReader 監聽 Load 事件
-                reader.addEventListener('load',this.imageLoader);
-                reader.readAsDataURL(file);
-                modifyActivity.uploadImg(file);
-                this.filename = file.name;
-            }else{
-
-            }
+            let file = e.target.files.item(0); //取得File物件
+            let reader = new FileReader(); //建立FileReader 監聽 Load 事件
+            reader.addEventListener('load',this.imageLoader);
+            reader.readAsDataURL(file);
+            this.activity[0].IMG = `./img/activity/${file.name}`;
+            $('span.text').remove();
         },
         dragover(e){
-            let drop_div = document.getElementById("drop_zone");
-            e.preventDefault();
-            drop_div.classList.add("-on");
+                let drop_div = document.getElementById("drop_zone");
+                e.preventDefault();
+                drop_div.classList.add("-on");
         },
         dragleave(){
-            let drop_div = document.getElementById("drop_zone");
-            drop_div.classList.remove("-on");
+                let drop_div = document.getElementById("drop_zone");
+                drop_div.classList.remove("-on");
         },
         drop(e){
-            e.preventDefault();
-            $("#drop_zone").removeClass("-on");
-            //顯示預覽圖                
-            if(e.dataTransfer.files.length > 0){
-                modifyActivity.uploadImg(e.dataTransfer.files[0]);
-                // $('.filename').html(e.dataTransfer.files[0].name);
-                this.filename = e.dataTransfer.files[0].name;
-            }else{
-                // modifyActivity.noSelectAnyFile();
-            }
-        },
-        cancel(){
-            sConfirm('內容尚未儲存', '您確定要返回活動列表嗎？', "./back_activity.html");
-        },
+                e.preventDefault();
+                let preview = document.querySelector(".preview");
+                $("#drop_zone").removeClass("-on");
+                //顯示預覽圖                
+                if(e.dataTransfer.files.length > 0){
+                    // previewImg(e.dataTransfer.files[0]);
+                    this.activity[0].IMG = `./img/activity/${e.dataTransfer.files[0].name}`;
+                    $('span.text').remove();
+                }else{
+                    preview.innerHTML = `<span class="text">圖片拖曳至此處</span>`;
+                }
+        }
     },
 });
+
+
+$(function() {
+    
+    
+
+    // ==== 圖片預覽 ====
+    // let preview = document.querySelector(".preview");
+    // let p_file = document.getElementById("p_file");
+    // let previewImg = function(file){
+    //         let reader = new FileReader();
+    //         reader.readAsDataURL(file);
+    //         reader.addEventListener("load", function () {
+    //             let img_preview = `<img src="${reader.result}" alt="" class="preview-img">`;
+    //             preview.innerHTML = img_preview;
+    //         });
+    // };
+
+    // let drop_div = document.getElementById("drop_zone");
+    // drop_div.addEventListener("dragover", function (e) {
+    //     e.preventDefault();
+    //     drop_div.classList.add("-on");
+    // });
+    // drop_div.addEventListener("dragleave", function(e){
+    //     drop_div.classList.remove("-on");
+    // });
+
+    // drop_div.addEventListener("drop", function (e) {
+    //     e.preventDefault();
+    //     // console.log(e.dataTransfer.files);
+    //     drop_div.classList.remove("-on");
+
+    //     //顯示預覽圖                
+    //     if(e.dataTransfer.files.length > 0){
+    //         previewImg(e.dataTransfer.files[0]);
+    //         console.log(e.dataTransfer.files[0]);
+    //     }else{
+    //         preview.innerHTML = `<span class="text">圖片拖曳至此處</span>`;
+    //     }
+    // });
+
+    // p_file.addEventListener("change", function () {
+    //     if(this.files.length > 0){
+    //         previewImg(this.files[0]);
+    //     }else{
+    //         preview.innerHTML = `<span class="text">圖片拖曳至此處</span>`;
+    //     }
+    // });
+
+
+    // //==== 場次時間自動填入 ====
+    // function auto_time (el, p){
+    //     let time = $(el).val().split(":");
+    //     let newHr;
+    //     let newMin;
+    //     switch(p) {
+    //         case 30:
+    //             newMin = parseInt(time[1]) + 30;
+    //             newHr = parseInt(time[0]);
+    //             if (newMin >= 60){
+    //                 newMin = newMin - 60;
+    //                 newHr += 1;
+    //             }
+    //             time.splice(1, 1, newMin);
+    //             time.splice(0, 1, newHr);
+    //             break;
+    //         case 60:
+    //             newHr = parseInt(time[0]) + 1;
+    //             time.splice(0, 1, newHr);
+    //             break;
+    //         case 90:
+    //             newHr = parseInt(time[0]) + 1;
+    //             newMin = parseInt(time[1]) + 30;
+    //             if (newMin > 60){
+    //                 newMin = newMin - 60;
+    //                 newHr += 1;
+    //             }
+    //             time.splice(1, 1, newMin);
+    //             time.splice(0, 1, newHr);
+    //             break;
+    //     }
+    //     time.splice(1, 0, ":")
+    //     console.log(time.toString());
+    //     let time_str = time.toString().replace(/,/g, "");
+    //     if (newHr < 10){
+    //         time_str = "0" + time_str;
+    //     }
+    //     if (newMin < 10){
+    //         time_str = time_str.slice(0, 3) + "0" + time_str.slice(3);
+    //     }
+    //     return time_str;
+    // }
+
+    // let time_start = document.querySelectorAll('.time-start');
+    // let time_end = document.querySelectorAll('.time-end');
+
+    // for( let i = 0; i < time_start.length; i++){
+    //     time_start[i].addEventListener("change", function(){
+    //         let periodChecked = document.querySelector('input[type="radio"]:checked');
+    //         let period = parseInt(periodChecked.id);
+    //         time_end[i].value = auto_time(this, period);
+    //     })
+    // }
+
+
+    // //上下架時間限制
+    // let today = new Date();
+    // // let current_time = today.toLocaleTimeString();
+
+    // function formatDate(date) {
+    //     var d = new Date(date),
+    //         month = '' + (d.getMonth() + 1),
+    //         day = '' + d.getDate(),
+    //         year = d.getFullYear();
+
+    //     if (month.length < 2) 
+    //         month = '0' + month;
+    //     if (day.length < 2) 
+    //         day = '0' + day;
+
+    //     return [year, month, day].join('-');
+    // }
+    
+    // today = formatDate(today);
+    // let on_date = document.getElementById('on_date');
+    // let off_date = document.getElementById('off_date');
+    // on_date.min = today;
+    // on_date.addEventListener("change", function(){
+    //     off_date.min = on_date.value;
+    // });
+    // // let on_time = document.getElementById('on_time');
+    // // on_time.min = current_time;
+
+    
+});
+

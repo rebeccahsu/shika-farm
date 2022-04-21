@@ -6,7 +6,7 @@ $_POST = json_decode(file_get_contents("php://input"), true);
 $mail = $_POST["EMAIL"];
 
 // 檢查email存在
-$sql2 = "SELECT * FROM MEMBER where EMAIL= '$mail' ";
+$sql2 = "SELECT * FROM member where EMAIL= '$mail' ";
 $stm = $pdo->query($sql2);
 $stm->execute();
 // query回傳成功找到的資料筆數

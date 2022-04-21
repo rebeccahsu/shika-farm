@@ -416,26 +416,7 @@
 			}
             .cardAll{
                 margin: 15px;
-				position: relative;
-				>span{
-					position: absolute;
-					top: 90%;
-					left: 65%;
-					color: red;
-					font-size: 12px;
-				}
             }
-			.carddate{
-				margin: 15px;
-				position: relative;
-				>span{
-					position: absolute;
-					top: 90%;
-					left: 45%;
-					color: red;
-					font-size: 12px;
-				}
-			}
             //卡號
             .payId {
                 width: 50px;

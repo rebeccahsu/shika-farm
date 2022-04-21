@@ -13,7 +13,7 @@ $PWD = $_POST["Password"];
 
 //---------------------------------------------------
 // select 資料 where name=輸入的帳號  and 串接條件  PWD=輸入的密碼
-$sql = "SELECT * FROM MEMBER where EMAIL= ? and PASSWORD = ? " ;
+$sql = "SELECT * FROM member where EMAIL= ? and PASSWORD = ? " ;
        //執行 -> 就是PHP 的.       exec執行鍵入$sql內的文字
     
                // 準備  封裝好先不執行
