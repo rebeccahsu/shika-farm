@@ -45,9 +45,6 @@ const activityList = new Vue({
         dates: ["2022-05-01", "2022-05-02", "2022-05-03"],
         members: [],
         activityId: '',
-        // overlay: {
-        //     session: '選擇場次時間',
-        // },
         overlay: {
             date: '選擇日期',
             session: '選擇場次時間',
@@ -76,18 +73,19 @@ const activityList = new Vue({
     methods: {
         // ==== 上架按鈕 ====
         onAct(){
-            function onoffConfirm() {
-                let checkbox = document.querySelectorAll(".check-act");
-                let checked_arr  = [];
-                checkbox.forEach(function(box){
-                    if (box.checked){
-                        let off_li = box.closest(".actList");
-                        checked_arr.push(off_li);
-                    }
-                });
+            let checkbox = document.querySelectorAll(".check-act");
+            let checked_arr  = [];
+            checkbox.forEach(function(box){
+                if (box.checked){
+                    let on_li = box.closest(".actList");
+                    checked_arr.push(on_li);
+                }
+            });
+            
+            // 判斷是否有勾選的項目
+            if ( checked_arr.length > 0 ){
                 Swal.fire({
                     title: `<h5>您確定要上架這 ${checked_arr.length} 個活動嗎？</h5>`,
-                    // text: text,
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonText: '確定',
@@ -97,37 +95,60 @@ const activityList = new Vue({
                         confirmButton: 'btn-green marginright_20',
                         cancelButton: 'btn-red'
                     },
-                }).then(function(res) {
-                   if (res.value) {
-                       checkbox.forEach(function(box){
-                           if (box.checked){
-                                let on_li = box.closest(".actList");
-                                $(on_li).removeClass("-off");
-                                $(on_li).find(".state-text").html("上架中");
-                                box.checked = false;
-                            }
+                })
+                .then(function(res) {
+                    if (res.value) {
+                        checked_arr.forEach(function(act){
+                            let id = $(act).data('actid');
+                            fetch('./php/back_activity_update_status.php', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    id: id,
+                                    state: '上架中',
+                                }),
+                            })
+                            .then(res =>  res.json())   
+                            .then(res => {
+                                if (res.successful) {
+                                    $(act).removeClass("-off");
+                                    $(act).find(".state-text").html("上架中");
+                                    sAlert(`<h5>已成功上架 ${checked_arr.length} 個活動！</h5>`, 'success', 'OK');
+                                    checkbox.forEach(function(box){
+                                        if (box.checked){
+                                            box.checked = false;
+                                        }
+                                    });
+                                } else {
+                                    sAlert(`<h5>您所選的活動皆已是上架狀態</h5>`, 'warning', 'OK');
+                                }
+                                activityList.checkAvailability();       
+                            });
                         });
-                        sAlert(`<h5>已成功上架 ${checked_arr.length} 個活動！</h5>`, 'success', 'OK');
-                        activityList.checkAvailability();
-                   };
+                    };
                 });
+            }else{
+                sAlert(`<h5>您尚未勾選任何活動</h5>`, 'warning', 'OK');
             };
-            onoffConfirm();
+                
         },
         // ==== 下架按鈕 ====
         offAct(){
-            function onoffConfirm() {
-                let checkbox = document.querySelectorAll(".check-act");
-                let checked_arr  = [];
-                checkbox.forEach(function(box){
-                    if (box.checked){
-                        let off_li = box.closest(".actList");
-                        checked_arr.push(off_li);
-                    }
-                });
+
+            let checkbox = document.querySelectorAll(".check-act");
+            let checked_arr  = [];
+            checkbox.forEach(function(box){
+                if (box.checked){
+                    let off_li = box.closest(".actList");
+                    checked_arr.push(off_li);
+                }
+            });
+            // 判斷是否有勾選的項目
+            if ( checked_arr.length > 0 ){
                 Swal.fire({
                     title: `<h5>您確定要下架這 ${checked_arr.length} 個活動嗎？</h5>`,
-                    // text: text,
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonText: '確定',
@@ -137,23 +158,43 @@ const activityList = new Vue({
                         confirmButton: 'btn-green marginright_20',
                         cancelButton: 'btn-red'
                     },
-                }).then(function(res) {
-                   if (res.value) {
-                       checkbox.forEach(function(box){
-                           if (box.checked){
-                               let off_li = box.closest(".actList");
-                               $(off_li).addClass("-off");
-                               $(off_li).find(".state-text").html("未上架");
-                               box.checked = false;
-                            }
+                })
+                .then(function(res) {
+                    if (res.value) {
+                        checked_arr.forEach(function(act){
+                            let id = $(act).data('actid');
+                            fetch('./php/back_activity_update_status.php', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    id: id,
+                                    state: '未上架',
+                                }),
+                            })
+                            .then(res =>  res.json())   
+                            .then(res => {
+                                if (res.successful) {
+                                    $(act).addClass("-off");
+                                    $(act).find(".state-text").html("未上架");
+                                    sAlert(`<h5>已成功下架 ${checked_arr.length} 個活動！</h5>`, 'success', 'OK');
+                                    checkbox.forEach(function(box){
+                                        if (box.checked){
+                                            box.checked = false;
+                                        }
+                                    });
+                                } else {
+                                    sAlert(`<h5>您所選的活動皆已是下架狀態</h5>`, 'warning', 'OK');
+                                }
+                                activityList.checkAvailability();       
+                            });
                         });
-                        sAlert(`<h5>已成功下架 ${checked_arr.length} 個活動！</h5>`, 'success', 'OK');
-                        activityList.checkAvailability();
-                   };
+                    };
                 });
+            }else{
+                sAlert(`<h5>您尚未勾選任何活動</h5>`, 'warning', 'OK');
             };
-            onoffConfirm();
-
             
         },
         // ==== 上架中活動數量 ====
@@ -172,18 +213,81 @@ const activityList = new Vue({
         // ==== 刪除按鈕 ====
         deleteAct(){
             let checkbox = document.querySelectorAll(".check-act");
+            let checked_arr  = [];
+            let state_arr = [];
             checkbox.forEach(function(box){
                 if (box.checked){
                     let del_li = box.closest(".actList");
-                    $(del_li).addClass("fade_out");
-    
-                    setTimeout(function(){
-                        del_li.remove();
-                    }, 1000);
+                    checked_arr.push(del_li);
+                    // 檢查勾選的項目中有無上架中的活動
+                    if (! $(del_li).hasClass('-off')){
+                        state_arr.push('false');
+                    }
                 }
             });
+
+            // 判斷是否有勾選的項目
+            if ( checked_arr.length > 0 ){
+                if (state_arr.length > 0 ){
+                    sAlert(`<h5>勾選的項目中有上架中的活動，<br>因此無法刪除</h5>`, 'warning', 'OK');
+                }else{
+                    Swal.fire({
+                        title: `<h5>若確定要刪除這 ${checked_arr.length} 個活動，<br>請輸入管理員密碼</h5>`,
+                        input: 'password',
+                        showCancelButton: true,
+                        buttonsStyling: false,
+                        confirmButtonText: '送出',
+                        cancelButtonText: '取消',
+                        customClass: {
+                            confirmButton: 'btn-green marginright_20',
+                            cancelButton: 'btn-red'
+                        },      
+                    })
+                    .then((result) => {
+                        if (result.value == 'pass') {
+                            // 輸入密碼正確
+                            checked_arr.forEach(function(act){
+                                let id = $(checked_arr).data('actid');
+                                fetch('./php/back_activity_delete.php', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        ID: id,
+                                    }),
+                                })
+                                .then(res =>  res.json())   
+                                .then(res => {
+                                    if (res.successful) {
+                                        $(act).addClass("fade_out");
+                                        setTimeout(function(){
+                                            act.remove();
+                                        }, 1000);
+                                        sAlert(`<h5>已成功刪除 ${checked_arr.length} 個活動！</h5>`, 'success', 'OK');
+                                        checkbox.forEach(function(box){
+                                            if (box.checked){
+                                                box.checked = false;
+                                            }
+                                        });
+                                    } else {
+                                        sAlert(`<h5>刪除失敗，請稍後再試</h5>`, 'error', 'OK');
+                                    }
+                                    activityList.checkAvailability();       
+                                });
+                            });
+                        }else{
+                            sAlert(`<h5>請輸入正確的密碼</h5>`, 'error', 'OK');
+                        }
+                    });
+                }
+            }else{
+                sAlert(`<h5>您尚未勾選任何活動</h5>`, 'warning', 'OK');
+            }
+
+
         },
-        // ==== 顯示已上架按鈕 ====
+        // ==== 顯示已上架按鈕切換 ====
         switchShow(){
             let activity_li = document.querySelectorAll(".actList");
             let switch_button = document.querySelector(".show-switch-btn");
@@ -218,12 +322,33 @@ const activityList = new Vue({
             for(i = 0; i < all_time.length; i++){
                 overlay_time[i].innerHTML = all_time[i].innerHTML;
             };
-
-            console.log(e.target);
             let id = $(e.target).closest('.actList').data('actid');
             console.log(id);
             this.activityId = id;
-            $('.nobody').html('請選擇日期及場次時間');
+
+            fetch('./php/activity_signed_members.php', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(
+                    {activityId: id, }
+                ),
+            })
+            .then(res => res.json())
+            .then(res => {
+                console.log(res);
+                if(res.length == 0){
+                    this.members = [];
+                    console.log('nobody');
+                    $('.nobody').html('此活動目前無人報名');
+                }else{
+                    this.members = [];
+                    $('span.capacity').html(res[0].OPACITY);
+                    $('.nobody').html('請選擇日期及場次時間');
+                }        
+            })
+            
         },
         selectDate(){
             // let selectDate = this.overlay.date;
@@ -280,10 +405,7 @@ const activityList = new Vue({
                         
                         console.log(data.DATE);
                         if (data.DATE == selectDate && memberStart == selectStart){
-                            result.push(data);
-                            
-                        }else{
-                            
+                            result.push(data);  
                         }
                     });
                     console.log(result);
@@ -291,12 +413,10 @@ const activityList = new Vue({
                         $('.nobody').html('');
                         this.members = result;
                         $('span.capacity').html(this.members[0].OPACITY);
-                        // $('span.total-signed').html(this.members[0].ATTENDANCE);
                     }else{
                         $('.nobody').html('此場次目前無人報名');
                         this.members = [];
-                        $('span.capacity').html('0');
-                        // $('span.total-signed').html('N/A');
+                        // $('span.capacity').html('0');
                     }
                     
                 }
@@ -319,7 +439,7 @@ const activityList = new Vue({
             let count = 0;
 
             this.members.forEach(function(data){
-                count += data.ATTENDANCE;
+                count += parseInt (data.ATTENDANCE);
             });
             return count;
         },

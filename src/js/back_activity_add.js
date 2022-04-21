@@ -33,7 +33,7 @@ function sConfirm(title, text, url) {
         cancelButtonText: '取消',
         buttonsStyling: false,
         customClass: {
-            confirmButton: 'btn-green',
+            confirmButton: 'btn-green marginright_20',
             cancelButton: 'btn-red'
         },
     }).then(function(result) {
@@ -47,7 +47,7 @@ function sConfirm(title, text, url) {
 }
 
 //確認新增
-new Vue({
+const addActivity = new Vue({
     el: '#activity-add-app',
     data(){
         return {
@@ -96,16 +96,35 @@ new Vue({
                 .then((resp) => resp.json())
                 .then((body) => {
                     const { successful } = body;
-                    console.log(body);
-                    console.log(body.successful);
                     if (successful) {
-                        sAlert('<h5>已成功新增活動！</h5>', 'success', 'OK');
+                        Swal.fire({
+                            title: '<h5>已成功新增活動！</h5>',
+                            icon: 'success',
+                            showCancelButton: true,
+                            confirmButtonText: '返回活動列表',
+                            cancelButtonText: '繼續新增活動',
+                            buttonsStyling: false,
+                            customClass: {
+                                confirmButton: 'btn-green marginright_20',
+                                cancelButton: 'btn-yellow'
+                            },
+                        }).then(function(result) {
+                           if (result.value) {
+                                location.href = './back_activity.html';
+                           }
+                           else {
+                               
+                           }
+                        });
                         this.name = '';
                         this.opacity = '';
                         this.img = '';
                         this.s1_start = '';
+                        this.s1_end = '';
                         this.s2_start = '';
+                        this.s2_end = '';
                         this.s3_start = '';
+                        this.s3_end = '';
                         this.desc = '';
                     } 
                     else {
@@ -180,13 +199,33 @@ new Vue({
             this.s3_end = end_arr[2];
         },
 
+        uploadImg(file){
+            let form_data = new FormData();
+            form_data.append('img',file);
+            // fetchAPI
+            fetch('./php/activity_img_upload.php', {
+            method: 'POST',
+            body: form_data,
+            })
+            .then(resp =>resp.json())
+            .then(body =>{
+                addActivity.img = body.img_url;
+                console.log(body.img_url);
+            })
+        },
+        
         fileSelected(e){
-            let file = e.target.files.item(0); //取得File物件
-            let reader = new FileReader(); //建立FileReader 監聽 Load 事件
-            reader.addEventListener('load',this.imageLoader);
-            reader.readAsDataURL(file);
-            this.img = `./img/activity/${file.name}`;
-            $('span.text').remove();
+            let file = $('#p_file')[0].files[0]; //取得File物件
+            if ( $('#p_file')[0].files.length > 0 ){
+                let reader = new FileReader(); //建立FileReader 監聽 Load 事件
+                reader.addEventListener('load',this.imageLoader);
+                reader.readAsDataURL(file);
+                addActivity.uploadImg(file);
+                $('span.text').remove();
+                $('.filename').html(file.name);
+            }else{
+                addActivity.noSelectAnyFile();
+            }  
        },
 
         dragover(e){
@@ -200,16 +239,20 @@ new Vue({
         },
         drop(e){
             e.preventDefault();
-            let preview = document.querySelector(".preview");
             $("#drop_zone").removeClass("-on");
             //顯示預覽圖                
             if(e.dataTransfer.files.length > 0){
-                previewImg(e.dataTransfer.files[0]);
-                this.img = `./img/activity/${e.dataTransfer.files[0].name}`;
+                addActivity.uploadImg(e.dataTransfer.files[0]);
+                $('.filename').html(e.dataTransfer.files[0].name);
                 $('span.text').remove();
             }else{
-                preview.innerHTML = `<span class="text">圖片拖曳至此處</span>`;
+                addActivity.noSelectAnyFile();
             }
+        },
+        noSelectAnyFile(){
+            $('.filename').html('尚未選擇檔案');
+            $('.preview').append(`<span class="text">圖片拖曳至此處</span>`);
+            this.img = '';
         },
         cancel(){
             sConfirm('內容尚未儲存', '您確定要返回活動列表嗎？', "./back_activity.html");

@@ -28,7 +28,7 @@
 // 關閉按鈕和範圍end
 // ============================
 
-// 驗證信箱格式
+// 驗證信箱格式blur
 const emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
 const passwordRule = /^[\w_-]{4,16}$/;
 $('#userMail').on('blur', () => {
@@ -87,7 +87,7 @@ $('#register_password').on('keyup', () => {
 })
 
 
-// 二次確認密碼
+// 二次確認密碼blur
 $('#repassword').on('blur', () => {
     if ($('#password').val() !== $('#repassword').val()) {
         $('label[for="repassword"]').html("<h5>密碼確認<span>*和密碼不一致</span></h5>");
@@ -136,13 +136,6 @@ $('#Street').on('blur', () => {
 // 詳細資料驗證end ======================================
 // 驗證end ============================================
 
-
-// 停止預設行為，切換內容
-$('.forget').on('click', (e) => {
-    e.preventDefault();
-    console.log(e.target);
-})
-
 /*
 $('#login_btn').on('click', (e) => {
     e.preventDefault();
@@ -184,8 +177,8 @@ $('#next').on('click', (e) => {
             //body也不可以console
             const { successful, message } = body;
             if (successful == true) {
-                console.log(successful +' 訊息' + message);
-                sessionStorage.setItem("register",JSON.stringify({mail:userMail,password:newPassword}))
+                // console.log(successful +' 訊息' + message);
+                sessionStorage.setItem("register",JSON.stringify({mail:userMail.value,password:newPassword.value}))
 
                 // location.href = `./password_reset_3.html`;
             } else {
@@ -234,9 +227,10 @@ $('#send').on('click', (e) => {
                 //body也不可以console
                 const { successful, message , ID , NAME} = body;
                 if (successful == true) {
-                    console.log(successful +' 訊息' + message);
+                    // console.log(successful +' 訊息' + message);
                     alert('註冊成功');
                     sessionStorage.removeItem("register");
+                    sessionStorage.setItem("login",JSON.stringify({login:successful,NAME:NAME}));
 
                 } else {
                     console.log(successful + ' 訊息' + message);
@@ -244,7 +238,7 @@ $('#send').on('click', (e) => {
             })
         }else{
         alert("還有欄位沒有寫唷！")
-        console.log('有資料沒有寫');
+        // console.log('有資料沒有寫');
     }
 })
 
@@ -403,8 +397,13 @@ login_btn.addEventListener('click', function (e) {
                 //body也不可以console
                 const { successful, message, ID, NAME } = body;
                 if (successful) {
-                    msg_box.innerHTML = `<p>${ID}</p><p>${NAME}</p><p>${message}</p>`;
-                    
+                    // msg_box.innerHTML = `<p>${ID}</p><p>${NAME}</p><p>${message}</p>`;
+                    console.log(successful+' / '+message+' / '+ID+" / "+NAME);
+                    sessionStorage.setItem("login",JSON.stringify({login:successful,NAME:NAME}));
+                        alert(`${NAME}，歡迎回到Sìkha牧場`)
+                        $("#login_box").addClass("-off");
+                        $("#back_bg").addClass("-off");
+   
                 } else {
                     alert(message);
                 }
@@ -415,4 +414,96 @@ login_btn.addEventListener('click', function (e) {
 
 
 // AJAX 登入 END========================
+// 頁面切換 =====================================
+// 登入註冊切換
+$(".member-icon").on("click", function (e) {
+    e.preventDefault();
+    // TODO: 檢查是否有登入
+    fetch('./php/check_login.php', {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json'
+        },
+    })
+        .then(resp =>  resp.json())   
+        .then(body => {
+            const { successful, message, ID, NAME } = body;
+            if(successful){
+                location.href = './member.html';
+            }else{
+                $("#login_box").removeClass("-off");
+                $("#back_bg").removeClass("-off");
+            }
+        })
+});
 
+$('.loginBlock').on("click", function (e) {
+    // 註冊按鈕
+    if (e.target.classList.contains("register_link")) {
+        $(".toggle-links").attr("style","display:none;");
+        $('#login_form').addClass("form-off");
+        $("#register1").removeClass("form-off");
+    }
+
+    // 忘記密碼link
+    if (e.target.classList.contains("forget_link")) {
+        $(".toggle-links").attr("style","display:none;");
+        $('#login_form').addClass("form-off");
+        $(".password_reset").removeClass("form-off");
+    }
+
+    // 註冊第一步 next
+    if (e.target.classList.contains("next")) {
+        $("#register1").addClass("form-off");
+        $("#register2").removeClass("form-off");
+        $(".shikaBlock").addAttr("style","display:none;");
+    }
+
+    // 註冊第二步 送出，到完成
+    if (e.target.classList.contains("to3")) {
+        $("#register2").addClass("form-off");
+        $("#register3").removeClass("form-off");
+    }
+
+    // 註冊完成
+    if (e.target.classList.contains("register_done")) {
+        $("#login_box").addClass("-off");
+        $('#back_bg').addClass("-off");
+        $("#register3").addClass("form-off");
+    }
+
+
+    // 忘記密碼
+    // if(e.target.classList.contains("send-reset-email")){
+    //     window.location.href = "./password_reset_2.html";
+    // }
+})
+
+
+//==== 彈窗關閉 ====
+
+$('.bi-x').on('click', function (e) {
+    $("#login_box").addClass("-off");
+    $("#back_bg").addClass("-off");
+    $("#login_form").removeClass("form-off");
+    $("#login_form").removeClass("form-off");
+    $("#register1").addClass("form-off");
+    $("#register2").addClass("form-off");
+    $("#register3").addClass("form-off");
+    $(".password_reset.forget-password").addClass("form-off");
+    $(".toggle-links").removeAttr("style","display:none;");
+    $(".shikaBlock").removeAttr("style","display:none;");
+});
+
+$("#back_bg").on('click', function () {
+    $("#login_box").addClass("-off");
+    $("#back_bg").addClass("-off");
+    $("#login_form").removeClass("form-off");
+    $("#register1").addClass("form-off");
+    $("#register2").addClass("form-off");
+    $("#register3").addClass("form-off");
+    $(".password_reset.forget-password").addClass("form-off");
+    $(".toggle-links").removeAttr("style","display:none;");
+    $(".shikaBlock").removeAttr("style","display:none;");
+});
+// 頁面切換 end=============================

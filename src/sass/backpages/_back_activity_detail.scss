@@ -11,6 +11,15 @@
         #p_file{
             margin-bottom: 20px;
         }
+        .choose-file{
+            margin-bottom: 20px;
+            margin-left: 35px;
+        }
+        .filename{
+            transform: translateY(-10px);
+            display: inline-block;
+            margin-left: 10px;
+        }
         #drop_zone{
         border: 1px solid $color_G;
         width: 70%;
