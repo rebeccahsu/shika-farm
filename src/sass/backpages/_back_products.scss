@@ -39,6 +39,9 @@
       }
       #search_pd {
         margin-left: 0;
+        &:hover{
+          cursor: pointer;
+        }
       }
 
       .search_icon{
@@ -162,48 +165,3 @@
     }
   }
 }
-
-/* table*/
-/*
-#prd_list {
-    text-align: center;
-  width: 100%;
-  thead {
-    width: 100%;
-    td{
-        font-size: $fs-s;
-    }
-  }
-  tbody {
-    width: 100%;
-    
-
-    tr {
-      margin: 10px 0;
-      
-      td {
-        width: 9%;
-        font-size: $fs-xs;
-        border: 1px solid blue;
-        vertical-align: middle;
-
-        *{
-          @include borderTest
-        }
-        
-        img{
-          width: 60px;
-          margin: 10px;
-          
-        }
-        .prd_cost::before,.prd_price::before{
-          content:'NT$' ;
-          font-size: $fs-xs;
-        }
-        
-      }
-    }
-  }
-}
-
-*/
