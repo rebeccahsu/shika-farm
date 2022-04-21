@@ -88,7 +88,7 @@
 
 .lbt{
     display: inline-block;
-    width: 64px;
+    width: 100px;
 }
 
 .mb_btn{
@@ -112,6 +112,24 @@
    
 }
 
+
+.logout{
+    margin-top: 45px;
+    font-size: $fs-xs;
+    border-radius: 8px;
+    text-align: center;
+    width: 100px;
+    height: 50px;
+    display: inline-block;
+    color:$color_W;
+    background-color:$color_Y;
+    border: 1px solid $color_Y;
+    cursor: pointer;
+   
+}
+
+
+
 .ch_pw{
     display: inline-block;
     color: $color_G;
@@ -131,6 +149,9 @@
     color: red;
 
 }
+
+
+
 
 //RWD
 

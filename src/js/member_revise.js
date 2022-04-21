@@ -53,6 +53,11 @@ $.ajax({
     }
 });
 
+$.ajax({
+  url: "./php/member.php",
+  method: "GET",
+})
+
 
 
 
