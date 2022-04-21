@@ -33,7 +33,7 @@ function sConfirm(title, text, url) {
         cancelButtonText: '取消',
         buttonsStyling: false,
         customClass: {
-            confirmButton: 'btn-green',
+            confirmButton: 'btn-green marginright_20',
             cancelButton: 'btn-red'
         },
     }).then(function(result) {
@@ -96,10 +96,7 @@ const addActivity = new Vue({
                 .then((resp) => resp.json())
                 .then((body) => {
                     const { successful } = body;
-                    // console.log(body);
-                    // console.log(body.successful);
                     if (successful) {
-                        // sAlert('<h5>已成功新增活動！</h5>', 'success', 'OK');
                         Swal.fire({
                             title: '<h5>已成功新增活動！</h5>',
                             icon: 'success',
@@ -212,17 +209,13 @@ const addActivity = new Vue({
             })
             .then(resp =>resp.json())
             .then(body =>{
-                // const { succ, img_url } = body;
-                console.log(body);
                 addActivity.img = body.img_url;
-                // console.log(.img);
                 console.log(body.img_url);
             })
         },
         
         fileSelected(e){
-            // let file = e.target.files.item(0); //取得File物件
-            let file = $('#p_file')[0].files[0];
+            let file = $('#p_file')[0].files[0]; //取得File物件
             if ( $('#p_file')[0].files.length > 0 ){
                 let reader = new FileReader(); //建立FileReader 監聽 Load 事件
                 reader.addEventListener('load',this.imageLoader);
@@ -232,8 +225,7 @@ const addActivity = new Vue({
                 $('.filename').html(file.name);
             }else{
                 addActivity.noSelectAnyFile();
-            }
-            
+            }  
        },
 
         dragover(e){
@@ -250,10 +242,8 @@ const addActivity = new Vue({
             $("#drop_zone").removeClass("-on");
             //顯示預覽圖                
             if(e.dataTransfer.files.length > 0){
-                // previewImg(e.dataTransfer.files[0]);
                 addActivity.uploadImg(e.dataTransfer.files[0]);
                 $('.filename').html(e.dataTransfer.files[0].name);
-                // this.img = `./img/activity/${e.dataTransfer.files[0].name}`;
                 $('span.text').remove();
             }else{
                 addActivity.noSelectAnyFile();
