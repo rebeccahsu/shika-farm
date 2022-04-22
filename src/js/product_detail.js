@@ -225,6 +225,13 @@ function stockChack(el) {
 }
 // 數量調整按鍵end
 // ==========================================
+let cart_data = JSON.parse(sessionStorage.getItem("products"));
+if(cart_data) {
+	$(".cartCount").text(cart_data.length)
+} else {
+	$(".cartCount").text(0)
+}
+
 
 $("#pd_info_cart").on("click", (e) => {
 	e.preventDefault();
@@ -246,7 +253,7 @@ $("#pd_info_cart").on("click", (e) => {
 		count: count,
 	};
 
-	console.log(product.id);
+	
 	// 預設商品不存在
 	let isExist = false;
 	// 檢查session裡是否已經存在該商品
@@ -260,9 +267,10 @@ $("#pd_info_cart").on("click", (e) => {
 			}
 		}
 	}
-	if(!isExist){
+	if (!isExist) {
 		// 假如不存在就把product丟進去
 		cart_data.push(product);
+		$(".cartCount").text(cart_data.length)
 	}
 	sessionStorage.setItem("products", JSON.stringify(cart_data));
 });
