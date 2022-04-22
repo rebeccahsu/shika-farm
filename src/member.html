@@ -1,124 +1,154 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-	<head>
-		@@include('./layout/head.html', { "title" : "會員中心" })
-	</head>
 
-	<body>
-		<!-- header -->
-		@@include('./layout/header.html')
+<head>
+	@@include('./layout/head.html', { "title" : "會員中心" })
+</head>
 
-		<!-- 首圖 -->
-		<!-- <div class="member_top">
+<body>
+	<!-- header -->
+	@@include('./layout/header.html')
+
+	<!-- 首圖 -->
+	<!-- <div class="member_top">
         <h2 class="memberTitle">會員中心</h2>
     </div> -->
-		<div class="memberTop container-fluid">
-			<h3 class="pageTitle">會員中心</h3>
+	<div class="memberTop container-fluid">
+		<h3 class="pageTitle">會員中心</h3>
+	</div>
+
+	<div class="mb_container">
+		<!-- 切換btn -->
+		<div class="mem_tab">
+			<input class="mem_btn" id="btn1" type="button" value="會員資料" />
+			<input class="mem_btn" id="btn2" type="button" value="我的活動" />
+			<input class="mem_btn" id="btn3" type="button" value="訂單查詢" />
 		</div>
+	</div>
 
-		<div class="mb_container">
-			<!-- 切換btn -->
-			<div class="mem_tab">
-				<input class="mem_btn" id="btn1" type="button" value="會員資料" />
-				<input class="mem_btn" id="btn2" type="button" value="我的活動" />
-				<input class="mem_btn" id="btn3" type="button" value="訂單查詢" />
-			</div>
-		</div>
+	<!-- 第一區 會員資料修改 -->
 
-		<!-- 第一區 會員資料修改 -->
+	<div class="mb_re_wrp container-lg tab" data-id="btn1">
+		<div class="t123">
+			<p class="tit1">編輯會員資料</p>
 
-		<div class="mb_re_wrp container-lg tab" data-id="btn1">
-			<div class="t123">
-				<p class="tit1">編輯會員資料</p>
-
-				<div class="mb_name">
-					<label for="">
-						姓名:<p id="mbName"></p>
-					</label>
-					<label for=""> 
-						信箱:<p id="mbEmail"></p>
-					</label>
-				</div>
-
-				<div class="mb_adr">
-					<label for="" class="lbt">
-						<p>聯絡地址:</p>
-					</label>
-					<div class="cts">
-						<select name="" id="city" class="ads">
-							<option value="000"></option>
-						</select>
-
-						<select name="" id="area" class="ads">
-							<option value="000"></option>
-						</select>
-
-						<input
-							type="text"
-							placeholder=""
-							id="address"
-							class="mb_input"
-						/>
-					</div>
-				</div>
-
-				<div class="mb_tel">
-					<label for="" class="lbt">
-						<p>電話號碼:</p>
-					</label>
-					<input
-						type="text"
-						placeholder=""
-						name="tel"
-						class="mb_input"
-					/>
-				</div>
-
-				<label for="" class="lbt">
-					<p>密碼:</p>
+			<div class="mb_name">
+				<label for="">
+					姓名:<p id="mbName"></p>
 				</label>
-				<a href="#" class="ch_pw">
-					<p>修改密碼</p>
-				</a>
-
-				<div class="mb_pw">
-					<label for="" class="lbt">
-						<p>輸入舊密碼:</p>
-					</label>
-					<input type="text" name="tel" class="mb_input" />
-					<label for="" class="lbt">
-						<p>輸入新密碼:</p>
-					</label>
-					<input type="text" name="tel" class="mb_input" />
-				</div>
-
-				<div class="mb_btn">
-					<button class="save_btn">確認修改</button>
-				</div>
-
-
-				<div class="mb_btn">
-					<button class="logout">帳號登出</button>
-				</div>
-
-
+				<label for="">
+					信箱:<p id="mbEmail"></p>
+				</label>
 			</div>
-		</div>
 
-		<!-- 第二區  活動預約-->
-		<div class="mb_container container-lg">
-			<div class="act_list tab co" id="act_list" data-id="btn2">
-				<h3 class="act_date">5/20(六)</h3>
-				<h4 class="act_title">乳牛吃飽飽</h4>
-				<p class="act_time">預約時間:下午:2:00 預約人數:4人</p>
-				<button class="cancel_btn" id="cancel_btn">取消行程</button>
+			<div class="mb_adr">
+				<label for="" class="lbt">
+					<p>聯絡地址:</p>
+				</label>
+				<div class="cts">
+					<select name="" id="city" class="ads">
+						<option value="000"></option>
+					</select>
+
+					<select name="" id="area" class="ads">
+						<option value="000"></option>
+					</select>
+
+					<input type="text" placeholder="" id="address" class="mb_input" />
+				</div>
 			</div>
-		</div>
 
-		<!-- 第三區  訂單查詢 -->
-		<div class="mb_container">
-			<div class="mb_cl_wrp tab" data-id="btn3">
-				<ul class="cl_list container-lg">
+			<div class="mb_tel">
+				<label for="" class="lbt">
+					<p>電話號碼:</p>
+				</label>
+				<input type="text" name="tel" class="mb_input" id="mb_tel" />
+			</div>
+
+
+
+			<label for="" class="lbt">
+				<p>密碼:</p>
+			</label>
+			<a href="#" class="ch_pw">
+				<p>修改密碼</p>
+			</a>
+
+			<div class="mb_pw">
+				<label for="" class="lbt">
+					<p>輸入舊密碼:</p>
+				</label>
+				<input type="text" name="tel" class="mb_input" />
+				<label for="" class="lbt">
+					<p>輸入新密碼:</p>
+				</label>
+				<input type="text" name="tel" class="mb_input" />
+			</div>
+
+			<div class="mb_btn">
+				<button class="save_btn">確認修改</button>
+			</div>
+
+
+			<div class="mb_btn">
+				<button class="logout">帳號登出</button>
+			</div>
+
+
+		</div>
+	</div>
+
+	<!-- 第二區  活動預約-->
+	<div class="mb_container container-lg">
+		<div class="act_list tab co" id="act_list" data-id="btn2">
+			<h3 class="act_date">5/20(六)</h3>
+			<h4 class="act_title">乳牛吃飽飽</h4>
+			<p class="act_time">預約時間:下午:2:00 預約人數:4人</p>
+			<button class="cancel_btn" id="cancel_btn">取消行程</button>
+		</div>
+	</div>
+
+	<!-- 第三區  訂單查詢 -->
+	<div class="mb_container">
+		<div class="mb_cl_wrp tab" data-id="btn3">
+
+			<table>
+				<thead>
+					<tr>
+						<th>訂單日期</th>
+						<th>訂單編號</th>
+						<th>品項數量</th>
+						<th>訂購總額</th>
+						<th>付款方式</th>
+						<th>訂單狀態</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>2022/03/20</td>
+						<td>1000224</td>
+						<td>1</td>
+						<td>$690</td>
+						<td>信用卡付款</td>
+						<td>檢貨中</td>
+						<td>
+							<button class="cel_list_btn">取消訂單</button>
+							<button id="op_btn">+</button>
+							<div class="de">
+								<p>羊毛毯(綠)</p>
+								<p>1件</p>
+								<p>NTS.499</p>
+							</div>
+						</td>
+
+
+
+
+
+					</tr>
+				</tbody>
+			</table>
+			<!-- <ul class="cl_list container-lg">
 					<li class="cl_t accordion-header" id="headingOne">
 						<p>訂單日期</p>
 						<p>訂單編號</p>
@@ -138,19 +168,24 @@
 						<button id="op_btn">+</button>
 					</li>
 					<li class="list_dt cl_d" id="list_dt" style="display: none">
+						
+						
+
 						<p>羊毛毯(綠)</p>
 						<p>1件</p>
 						<p>NTS.499</p>
+					
 					</li>
 
-					<!-- <div class="cl_d" id="cl_d">
-					</div> -->
-				</ul>
-			</div>
+					<div class="cl_d" id="cl_d">
+					</div>
+				</ul> -->
 		</div>
+	</div>
 
-		<script src="./js/member_revise.js"></script>
-		<!-- footer -->
-		@@include('./layout/footer.html')
-	</body>
+	<script src="./js/member_revise.js"></script>
+	<!-- footer -->
+	@@include('./layout/footer.html')
+</body>
+
 </html>

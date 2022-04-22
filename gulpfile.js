@@ -186,5 +186,5 @@ exports.default = series(
 //online
 exports.online = series(
 	clear,
-	parallel(includeHTML, sassstyle, babel5, min_images, jsonmove)
+	parallel(includeHTML, sassstyle, babel5, min_images, jsonmove, phpmove)
 );

@@ -137,6 +137,7 @@
 
         } else {
             shaver.remove();
+            $('.game-html').css("cursor", "cursor");
             game_area.querySelector("p").innerHTML = "用手指點擊來幫綿羊剃毛吧！";
             click_type = "click";
             document.addEventListener("touchstart", function (e) {

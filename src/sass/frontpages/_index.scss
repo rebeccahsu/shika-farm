@@ -67,9 +67,6 @@
         background-repeat: no-repeat;
         position: relative;
 
-        @include pad{
-            
-        }
         @include mobile{
             background-image: url("../img/index/768_indexbg.jpg");
             background-size: cover;
@@ -101,6 +98,9 @@
             @include desktop-s{
                 width: 190px;
             }
+            @include desktop-l{
+                left: 8%;
+            }
         }
         .top-deer{
             width: 210px;
@@ -121,6 +121,9 @@
             }
             @include desktop-s{
                 width: 160px;
+            }
+            @include desktop-l{
+                left: 18%;
             }
         }
         .top-sheep{
@@ -180,6 +183,9 @@
             @include desktop-s{
                 width: 160px;
             }
+            @include desktop-l{
+                left: 60%;
+            }
         }
         .top-cow{
             width: 340px;
@@ -198,6 +204,9 @@
             }
             @include desktop-s{
                 width: 290px;
+            }
+            @include desktop-l{
+                left: 72%;
             }
         }
 

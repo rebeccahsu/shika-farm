@@ -25,6 +25,11 @@
     @content;
   }
 }
+@mixin desktop-l{
+  @media (min-width: 1700px){
+    @content;
+  }
+}
 
 // ===== 測試用border =====
 @mixin borderTest($borderc:red){

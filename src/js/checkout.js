@@ -76,7 +76,7 @@ new Vue({
 		"userInfo.address": function () {
 			if (this.userInfo.address.length < 6) {
 				this.addressError = true;
-				this.addressErrMsg = "字數需大於6";
+				this.addressErrMsg = "請輸入正確地址";
 			} else {
 				this.addressError = false;
 				this.addressErrMsg = "";
@@ -84,8 +84,20 @@ new Vue({
 		},
 		"cardInfo.cardcsc": function () {
 			if (this.cardInfo.cardcsc.length < 2) {
+				this.cardcscError = true;
+				this.cardcscErrMsg = "請輸入正確安全碼";
+			}else{
 				this.cardcscError = false;
 				this.cardcscErrMsg = "";
+			}
+		},
+		"cardInfo.cardName": function () {
+			if (this.cardInfo.cardName.length < 2) {
+				this.cardNameError = true;
+				this.cardNameErrMsg = "請輸入正確持卡人姓名";
+			} else {
+				this.cardNameError = false;
+				this.cardNameErrMsg = "";
 			}
 		},
 		creditWatch(val) {
@@ -155,17 +167,6 @@ new Vue({
 			} else {
 				alert("未填寫完整");
 			}
-
-			// console.log('aaa');
-			// if(this.userInfo.name == ""){
-			// 	alert('請輸入收件人姓名');
-			// }
-			// if(this.userInfo.phone.match(/^[0-9]{10}$/g) == null){
-			// 	alert('請輸入正確收件人電話');
-			// }
-			// if(this.userInfo.address == ""){
-			// 	alert('請輸入正確收件人地址');
-			// }
 			// 1.傳送訂單詳細資訊給後台
 			//  - 商品詳細資訊
 			//  - 付款方式資訊
@@ -232,7 +233,7 @@ new Vue({
 			}
 		},
 		same() {
-			fetch("./php/member.php", {
+			fetch("./php/checkoutMb.php", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -242,14 +243,6 @@ new Vue({
 				.then((res) => res.json())
 				.then((res) => {
 					console.log(res);
-					// console.log(country)
-					// console.log(district)
-
-					// name.value == res[0].NAME;
-					// $("#name").val(res[0].NAME); //抓到資料庫的姓名塞進收件人輸入框
-					// $("#phone").val(res[0].PHONE); //抓到資料庫的電話塞進電話輸入框
-					// $("#address").val(res[0].COUNTRY + res[0].DISTRICT + res[0].STREET); //抓到資料庫的城市、區域、地址塞進地址輸入框
-					// $('#address').val(`${res[0].COUNTRY}${res[0].DISTRICT}${res[0].STREET}`);
 					if (
 						this.userInfo.name == "" ||
 						this.userInfo.phone == "" ||

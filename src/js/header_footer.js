@@ -111,20 +111,24 @@ const black_bg = new Vue({
 		del(index) {
 			this.products.splice(index, 1);
 			sessionStorage.setItem("products", JSON.stringify(this.products));
+			let cart_data = JSON.parse(sessionStorage.getItem("products"));
+			$(".cartCount").text(cart_data.length);
 		},
 		start_cart() {
-            // 1.取出localStorage的資料, 字串轉成物件 // ??判斷是否為null如果是就用空陣列
+			// 1.取出localStorage的資料, 字串轉成物件 // ??判斷是否為null如果是就用空陣列
 			let cart = JSON.parse(sessionStorage.getItem("products")) ?? [];
 			// 2.把資料放入data裡的products
 			this.products = cart;
 		},
-        end_cart(){
-            sessionStorage.setItem("products", JSON.stringify(this.products));
-        },
+		end_cart() {
+			sessionStorage.setItem("products", JSON.stringify(this.products));
+		},
 	},
 
-    //因為created()在網頁渲染完成後只會執行一次，所以1.2步驟拉出來放在一個函式裡，後續才可再使用
+	//因為created()在網頁渲染完成後只會執行一次，所以1.2步驟拉出來放在一個函式裡，後續才可再使用
 	created() {
+		let cart_data = JSON.parse(sessionStorage.getItem("products"));
+		$(".cartCount").text(cart_data.length);
 		// 1.取出localStorage的資料, 字串轉成物件 // ??判斷是否為null如果是就用空陣列
 		// let cart = JSON.parse(sessionStorage.getItem("products")) ?? [];
 		// 2.把資料放入data裡的products
@@ -170,7 +174,8 @@ cart.addEventListener("click", function (e) {
 
 // 點擊黑色遮罩讓購物車隱藏
 spcart.addEventListener("click", function (e) {
-	if (e.target == spcart) { //如果點擊到的是黑色遮罩 
+	if (e.target == spcart) {
+		//如果點擊到的是黑色遮罩
 		spcart.classList.toggle("active"); //就讓購物車隱藏
 	}
 });
@@ -181,6 +186,6 @@ gosp.addEventListener("click", function (e) {
 });
 
 //點擊結帳按鈕執行end_cart()讓購物車裡的資料放入sessionStorage裡，讓結帳流程能抓到最新資料
-co.addEventListener("click",function(){
-    black_bg.end_cart();
+co.addEventListener("click", function () {
+	black_bg.end_cart();
 });

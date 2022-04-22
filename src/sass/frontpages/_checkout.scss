@@ -449,12 +449,26 @@
             .cardname {
                 text-align: left;
                 padding-left: 35px;
+				position: relative;
+				>span{
+					position: absolute;
+					top: 26px;
+					left: 147px;
+				}
 				
 				@include pad{
 					padding: 0;
 				}
             }
             // 安全碼
+			.cardcsc{
+				position: relative;
+				>span{
+					position: absolute;
+					top: 26px;
+    				left: 175px;
+				}
+			}
             #CSC {
                 width: 120px;
             }
