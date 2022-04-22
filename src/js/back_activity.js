@@ -42,7 +42,7 @@ const activityList = new Vue({
     // },
     data: {
         activities: [],
-        dates: ["2022-05-01", "2022-05-02", "2022-05-03"],
+        dates: ["2022-05-06", "2022-05-07", "2022-05-08"],
         members: [],
         activityId: '',
         overlay: {
