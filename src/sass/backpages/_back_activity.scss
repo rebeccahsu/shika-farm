@@ -44,8 +44,8 @@
             transition: opacity 1s;
 
             .actImgCon{
-                width: 150px;
-                height: 150px;
+                width: 130px;
+                height: 130px;
                 position: relative;
                 overflow: hidden;
                 margin-left: 10px;
@@ -55,13 +55,14 @@
                 }
             }
             .act-content{
-                margin-left: 40px;
+                margin-left: 30px;
                 flex-grow: 1;
                 .actCheck{
                     float: right;
                 }
                 .name{
-                    margin-bottom: 20px;
+                    margin-bottom: 13px;
+                    font-size: 20px;
                 }
                 p{
                     margin-bottom: 10px;
@@ -81,7 +82,7 @@
                 }
                 
                 .state{
-                    margin-top: 20px;
+                    margin-top: 10px;
                     display: inline-block;
                     .state-text{
                         margin-left: 20px;
@@ -89,9 +90,12 @@
                 }
                 .actButtons{
                     float: right;
-                    margin-top: 15px;
+                    margin-top: 5px;
                     .modify_btn{
                         margin-left: 20px;
+                    }
+                    button{
+                        font-size: 20px;
                     }
                 }
             }
