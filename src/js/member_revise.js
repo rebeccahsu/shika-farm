@@ -21,7 +21,7 @@ mb_btn.on('click',function(){  //綁定按鈕事件
 //Tab1會員修改-地址欄位
 
 $.ajax({
-  url: "../JSON/city.json",
+	url: "./JSON/city.json",
 	method: "GET",
     success: function (res) {
       function state(a) {
@@ -55,7 +55,7 @@ $.ajax({
 
 $.ajax({
   url: "./php/member.php",
-  method: "GET",
+  method: "POST",
 })
 
 
