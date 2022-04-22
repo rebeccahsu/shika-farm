@@ -2,22 +2,9 @@
 <html lang="zh-Hant">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sìkha 後台 | 商品管理</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&family=Oswald:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/style.back.css">
-    <link rel="icon" href="img/logo_web.ico" type="image/x-icon"/>
-    <script src="./js/vendors/jquery-3.6.0.min.js"></script>
-    <script src="./js/vendors/vue.js"></script>
-    <!-- <script src="./js/vendors/vue.min.js"></script> -->
-    <!-- sweetalert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script> -->
-
+    @@include('layout/back_head.html', {
+    "title" : "Sìkha 後台 | 商品管理"
+    })
 
 </head>
 
@@ -25,27 +12,13 @@
 
     <main id="back_pds">
         <!-- 側邊導覽列 -->
-        <aside class="b_aside">
-    <a href="./back_index.html"><img src="./img/logo_white.svg" class="asideLogo"></a>
-    
-    <ul class="aside_ul">
-
-        <li><a href="./member_mg.html"><h5>會員查詢</h5></a></li>
-        <li><a href="./back_news.html"><h5>最新消息管理</h5></a></li>
-        <li><a href="./back_products.html"><h5>商品管理</h5></a></li>
-        <li><a href="./back_order.html"><h5>訂單管理</h5></a></li>
-        <li><a href="./back_activity.html"><h5>活動管理</h5></a></li>
-    </ul>
-    <a href="./back_login.html" class="signOut"><h5>登出</h5></a>
-</aside>
+        @@include('./layout/back_aside.html')
         <!-- 後台商品列表 -->
         <div class="pds_right">
 
-            <div class="back_title">
-    <img src="./img/backpages/title_cow_left.png" alt="" class="mb_cow">
-       <h4>商品管理</h4>
-       <img src="./img/backpages/title_cow_right.png" alt="" class="mb_cow">
-   </div> 
+            @@include('./layout/back_title.html', {
+            "back_title" : "商品管理"
+            })
             <div class="btn_area">
                 <div class="btn1">
                     <div class="UD">
