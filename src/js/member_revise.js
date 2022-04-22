@@ -21,7 +21,7 @@ mb_btn.on('click',function(){  //綁定按鈕事件
 //Tab1會員修改-地址欄位
 
 $.ajax({
-  url: "../JSON/city.json",
+  url: "./JSON/city.json",
 	method: "GET",
     success: function (res) {
       function state(a) {
@@ -40,7 +40,7 @@ $.ajax({
       $.each(res, function (index, ele) {
         // console.log(index);
         $("#city").append(
-          "<option value=" + index + ">" + res[index].name + "</option>"
+          "<option value=" + res[index].name + ">" + res[index].name + "</option>"
         );
       });
       // 改變縣市
@@ -53,9 +53,40 @@ $.ajax({
     }
 });
 
+
+
+
+//會員資料回傳
+
+let userid = 'wang_mien@gmail.com' 
+
 $.ajax({
   url: "./php/member.php",
-  method: "GET",
+  method: "POST",
+  dataType: 'json', 
+  data: {
+    id: userid
+  },
+  success: function(data){
+    $('#mbName').text(data[0].NAME)
+    $('#mbEmail').text(data[0].EMAIL)
+    if($('#city option:selected').val() == 000) {
+      $('#city option:selected').text(data[0].COUNTRY)
+    }
+    if($('#area option:selected').val() == 000) {
+      $('#area option:selected').text(data[0].DISTRICT)
+    }
+
+    // $('#area').option(data[0].DISTRICT)
+
+    $('#address').val(data[0].STREET)
+
+    $('#mb_tel').val(data[0].PHONE)
+
+   
+
+  }
+
 })
 
 
