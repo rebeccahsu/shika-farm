@@ -42,7 +42,7 @@ const activityList = new Vue({
     // },
     data: {
         activities: [],
-        dates: ["2022-05-01", "2022-05-02", "2022-05-03"],
+        dates: ["2022-05-06", "2022-05-07", "2022-05-08"],
         members: [],
         activityId: '',
         overlay: {
@@ -247,7 +247,7 @@ const activityList = new Vue({
                         if (result.value == 'pass') {
                             // 輸入密碼正確
                             checked_arr.forEach(function(act){
-                                let id = $(checked_arr).data('actid');
+                                let id = $(act).data('actid');
                                 fetch('./php/back_activity_delete.php', {
                                     method: 'POST',
                                     headers: {
@@ -265,11 +265,15 @@ const activityList = new Vue({
                                             act.remove();
                                         }, 1000);
                                         sAlert(`<h5>已成功刪除 ${checked_arr.length} 個活動！</h5>`, 'success', 'OK');
-                                        checkbox.forEach(function(box){
-                                            if (box.checked){
-                                                box.checked = false;
-                                            }
-                                        });
+                                        // checkbox.forEach(function(box){
+                                        //     if (box.checked){
+                                        //         box.checked = false;
+                                        //     }
+                                        // });
+                                        $(act).find('.check-act').checked = false;
+                                        // if ($(act).find('.check-act').checked){
+                                        //     $(act).find('.check-act').checked = false
+                                        // }
                                     } else {
                                         sAlert(`<h5>刪除失敗，請稍後再試</h5>`, 'error', 'OK');
                                     }
@@ -311,7 +315,6 @@ const activityList = new Vue({
         // ==== 已報名會員按鈕 ====
         signedMembers(e){
             // 開啟彈窗
-            // this.members = [];
             let name = $(e.target).closest(".act-content").find(".name").html();
             $("h5.o-activity-title").html(name);
             $('.act-member-overlay').addClass('-on');
@@ -319,11 +322,10 @@ const activityList = new Vue({
             let activity_li = e.target.closest(".act-content");
             let all_time = activity_li.querySelectorAll(".activity-time");
             let overlay_time = document.querySelectorAll(".o-time");
-            for(i = 0; i < all_time.length; i++){
+            for(let i = 0; i < all_time.length; i++){
                 overlay_time[i].innerHTML = all_time[i].innerHTML;
             };
             let id = $(e.target).closest('.actList').data('actid');
-            console.log(id);
             this.activityId = id;
 
             fetch('./php/activity_signed_members.php', {
@@ -337,7 +339,6 @@ const activityList = new Vue({
             })
             .then(res => res.json())
             .then(res => {
-                console.log(res);
                 if(res.length == 0){
                     this.members = [];
                     console.log('nobody');
@@ -351,7 +352,6 @@ const activityList = new Vue({
             
         },
         selectDate(){
-            // let selectDate = this.overlay.date;
             fetch('./php/activity_signed_members.php', {
                 method: "POST",
                 headers: {
@@ -374,7 +374,6 @@ const activityList = new Vue({
                     }else{
                         $('.nobody').html('請選擇場次時間');
                     }
-
                 }        
             })
         },
@@ -396,26 +395,29 @@ const activityList = new Vue({
                     this.members = [];
                     $('.nobody').html('此場次目前無人報名');
                 }else{
-                    console.log(res);
                     let result = [];
                     res.forEach(function(data){
                         let memberStart = (data.SESSION).slice(0, 5);
-                        console.log(memberStart);
-                        console.log(selectStart);
-                        
-                        console.log(data.DATE);
+                        // console.log(memberStart);
+                        // console.log(selectStart);
+                        // console.log(data.DATE);
                         if (data.DATE == selectDate && memberStart == selectStart){
                             result.push(data);  
                         }
                     });
-                    console.log(result);
+                    // console.log(result);
                     if (result.length != 0){
                         $('.nobody').html('');
                         this.members = result;
                         $('span.capacity').html(this.members[0].OPACITY);
                     }else{
-                        $('.nobody').html('此場次目前無人報名');
-                        this.members = [];
+                        if( this.overlay.date == '選擇日期'){
+                            $('.nobody').html('請選擇日期');
+                        }else{
+                            $('.nobody').html('此場次目前無人報名');
+                            this.members = [];
+                        }
+                        
                         // $('span.capacity').html('0');
                     }
                     

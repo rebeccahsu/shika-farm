@@ -210,7 +210,7 @@ const addActivity = new Vue({
             .then(resp =>resp.json())
             .then(body =>{
                 addActivity.img = body.img_url;
-                console.log(body.img_url);
+                // console.log(body.img_url);
             })
         },
         
