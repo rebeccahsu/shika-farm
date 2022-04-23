@@ -167,6 +167,7 @@ new Vue({
 			} else {
 				alert("未填寫完整");
 			}
+			
 			// 1.傳送訂單詳細資訊給後台
 			//  - 商品詳細資訊
 			//  - 付款方式資訊
@@ -234,15 +235,14 @@ new Vue({
 		},
 		same() {
 			fetch("./php/checkoutMb.php", {
-				method: "POST",
+				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({ id: 19 }),
 			})
 				.then((res) => res.json())
 				.then((res) => {
-					console.log(res);
+					// console.log(res);
 					if (
 						this.userInfo.name == "" ||
 						this.userInfo.phone == "" ||
@@ -267,6 +267,10 @@ new Vue({
 		// 2.把資料放入data裡的products
 		// console.log(cart);
 		this.products = cart;
+
+		fetch('./php/')
+
+		
 	},
 	computed: {
 		// 信用卡監聽

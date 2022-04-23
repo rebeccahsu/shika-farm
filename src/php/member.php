@@ -19,7 +19,3 @@
      echo json_encode($result);
     //  $resultCount = $stmt->rowCount();
 ?>
-
-thead{
-
-}
