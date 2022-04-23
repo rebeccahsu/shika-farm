@@ -19,34 +19,31 @@
             "back_title" : "新增商品"
             })
 
-            <!-- 彈窗 -->
-            <div id="back_bg">
-                <div id="pop_box">
-                    <span>商品主圖1</span>
-                    <input type="file" name="select_topImage1" id="file1"><br>
-                    <span>商品主圖2</span>
-                    <input type="file" name="select_topImage2" id="file2"><br>
-                    <span>商品主圖3</span>
-                    <input type="file" name="select_topImage3" id="file3"><br>
-                    <span>商品主圖4</span>
-                    <input type="file" name="select_topImage4" id="file4"><br>
-                    <button type="button" class="btn-green upload">上傳</button>
-                    <button type="button" class="cancel">取消</button>
-                    <i class="bi bi-x"></i>
-                </div>
-            </div>
-
             <form action="" method="POST">
+                <!-- 彈窗 -->
+                <div id="back_bg">
+                    <div id="pop_box">
+                        <span>商品主圖1</span>
+                        <input type="file" name="select_topImage1" id="file1"><br>
+                        <span>商品主圖2</span>
+                        <input type="file" name="select_topImage2" id="file2"><br>
+                        <span>商品主圖3</span>
+                        <input type="file" name="select_topImage3" id="file3"><br>
+                        <span>商品主圖4</span>
+                        <input type="file" name="select_topImage4" id="file4"><br>
+                        <button type="button" id="top_upload" class="btn-green">上傳</button>
+                        <button type="button" class="cancel">取消</button>
+                        <i class="bi bi-x"></i>
+                    </div>
+                </div>
                 <div class="prd_image_area">
                     <h5 class="select_images">選擇商品照片</h5>
                     <button type="button" class="btn-yellow" id="topImages">選擇圖片</button><br>
                     <figure>
-                        <div class="select_topImage1 select_topImage"><button type="button" class="arror_l"><i
-                                    class="bi bi-chevron-left"></i></button><img src="" alt=""><span>請上傳圖片</span><button type="button"
-                                class="arror_r"><i class="bi bi-chevron-right"></i></button></div>
-                        <div class="select_topImage2 select_topImage"><img src="./img/logo_16B1AA.svg" alt=""></div>
-                        <div class="select_topImage3 select_topImage"><img src="./img/logo_16B1AA.svg" alt=""></div>
-                        <div class="select_topImage4 select_topImage"><img src="./img/logo_16B1AA.svg" alt=""></div>
+                        <div class="select_topImage1 select_topImage"><img src="./img/products/product_default_images.jpg" alt=""></div>
+                        <div class="select_topImage2 select_topImage"><img src="./img/products/product_default_images.jpg" alt=""></div>
+                        <div class="select_topImage3 select_topImage"><img src="./img/products/product_default_images.jpg" alt=""></div>
+                        <div class="select_topImage4 select_topImage"><img src="./img/products/product_default_images.jpg" alt=""></div>
                     </figure>
 
                 </div>
@@ -73,9 +70,8 @@
                             <p for="prd_kind">商品類別</p>
                             <select type="text" id="prd_kind">
                                 <option value="n" selected style="display: none;">請選擇</option>
-                                <option value="食品">食品</option>
-                                <option value="冷凍食品">冷凍食品</option>
-                                <option value="日常用品">日常用品</option>
+                                <option value="1">冷凍冷藏</option>
+                                <option value="2">日常用品</option>
                             </select><br>
                         </div>
                     </div>
@@ -96,23 +92,18 @@
                         <li class="prd_introduce">
                             <input type="file" name="" class="select_introPic">
                             <div class="select_image">
-                                <img src="./img/products/cow_1200.jpg" alt=""><span>更換圖片</span>
+                                <img src="./img/products/product_default_images.jpg" alt=""><span>更換圖片</span>
                             </div>
                             <textarea type="text" class="prd_introduce_input" row="1" cols="2"
                                 maxlength="30"></textarea>
                         </li>
                         <li class="prd_introduce">
                             <input type="file" name="" class="select_introPic">
-                            <div class="select_image"><span>上傳圖片</span></div>
+                            <div class="select_image">
+                                <img src="./img/products/product_default_images.jpg" alt=""><span>更換圖片</span>
+                            </div>
                             <textarea type="text" class="prd_introduce_input" row="1" cols="2"
                                 maxlength="30"></textarea>
-                        </li>
-                        <li class="prd_introduce">
-                            <input type="file" name="" class="select_introPic">
-                            <div class="select_image"><span>上傳圖片</span></div>
-                            <textarea type="text" class="prd_introduce_input" row="1" cols="2"
-                                maxlength="30"></textarea>
-                            <i class="bi bi-x"></i>
                         </li>
                     </ul>
                 </article>
