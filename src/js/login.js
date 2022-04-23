@@ -399,7 +399,7 @@ login_btn.addEventListener('click', function (e) {
                 if (successful) {
                     // msg_box.innerHTML = `<p>${ID}</p><p>${NAME}</p><p>${message}</p>`;
                     console.log(successful+' / '+message+' / '+ID+" / "+NAME);
-                    sessionStorage.setItem("login",JSON.stringify({login:successful,NAME:NAME}));
+                    sessionStorage.setItem("login",JSON.stringify({login:successful,NAME:NAME,ID:ID}));
                         alert(`${NAME}，歡迎回到Sìkha牧場`)
                         $("#login_box").addClass("-off");
                         $("#back_bg").addClass("-off");
