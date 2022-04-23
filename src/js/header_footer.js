@@ -116,6 +116,8 @@ const black_bg = new Vue({
 			// $(".cartCount").text(cart_data.length);
 			if (cart_data != null){
 				$(".cartCount").text(cart_data.length);
+			}else{
+				$(".cartCount").text(0);
 			}
 		},
 		start_cart() {
@@ -136,6 +138,8 @@ const black_bg = new Vue({
 		// $(".cartCount").text(cart_data.length);
 		if (cart_data != null){
 			$(".cartCount").text(cart_data.length);
+		}else{
+			$(".cartCount").text(0);
 		}
 		
 		// 1.取出localStorage的資料, 字串轉成物件 // ??判斷是否為null如果是就用空陣列
