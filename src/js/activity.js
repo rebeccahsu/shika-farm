@@ -3,8 +3,6 @@ const vm = new Vue({
     el: '#app',
     data() {
         return {
-            xxx: 'yyy',
-            showList: [],
             s: 's',
             slide: 'slide',
             modal_open: null,
@@ -15,38 +13,32 @@ const vm = new Vue({
                     {
                         key: 0,
                         img: './img/activity/sheep 2.png',
-                        checked: true,
-                        type: 'sheep'
+                        checked: true
                     },
                     {
                         key: 1,
                         img: './img/activity/deer 2.png',
-                        checked: false,
-                        type: 'deer'
+                        checked: false
                     },
                     {
                         key: 2,
                         img: './img/activity/alpaca 2.png',
-                        checked: false,
-                        type: 'alpaca'
+                        checked: false
                     },
                     {
                         key: 3,
                         img: './img/activity/cow 2.png',
-                        checked: false,
-                        type: 'cow'
+                        checked: false
                     },
                     {
                         key: 4,
                         img: './img/activity/pig 2.png',
-                        checked: false,
-                        type: 'pig'
+                        checked: false
                     },
                     {
                         key: 5,
                         img: './img/activity/horse 2.png',
-                        checked: false,
-                        type: 'horse'
+                        checked: false
                     }
                 ],
             all_data:
@@ -238,7 +230,7 @@ const vm = new Vue({
             },
 
             body: JSON.stringify({
-                title: this.all_data[this.activeIndex],
+                title: 'sheep',
             }),
         })
 
@@ -246,38 +238,117 @@ const vm = new Vue({
 
             .then(res => res.json())
             .then((res) => {
-                this.all_data = res;
-                this.showList = this.all_data;
 
 
 
 
 
-                // for (let i = 0; i < 6; i++) {
-                //     console.log(res);
-                //     vm.all_data[i].list = res
 
-                //     // var categoryList = []; 存最終結果
 
-                //     //res按照CATEGORY分類
-                //     var categoryContainer = {}; //針對CATEGORY分類的容器
-                //     res.forEach(item => {
-                //         categoryContainer[item.CATEGORY] = categoryContainer[item.CATEGORY] || [];
-                //         categoryContainer[item.CATEGORY].push(item);
-                //     });
+                for (let i = 0; i < 6; i++) {
+                    console.log(res);
+                    vm.all_data[i].list = res
 
-                //     console.log(categoryContainer); //按照CATEGORY分類完成
-                //     // if else CA=sheep push sheep ary
-                // }
-                // vm.showList = vm.all_data[0].list;
-                // console.log(Object.keys(categoryContainer)); //物件的key:sheep.deer...
+                    // var categoryList = []; 存最終結果
+
+                    //res按照CATEGORY分類
+                    var categoryContainer = {}; //針對CATEGORY分類的容器
+                    res.forEach(item => {
+                        categoryContainer[item.CATEGORY] = categoryContainer[item.CATEGORY] || [];
+                        categoryContainer[item.CATEGORY].push(item);
+                    });
+
+                    console.log(categoryContainer); //按照CATEGORY分類完成
+                    // if else CA=sheep push sheep ary
+                }
+
+                console.log(Object.keys(categoryContainer)); //物件的key:sheep.deer...
                 //k[j]=keyNme
 
-                // for (j = 0; j < Object.keys(categoryContainer).length; j++) {
+                for (j = 0; j < Object.keys(categoryContainer).length; j++) {
 
-                //     vm.all_data[`${Object.keys(categoryContainer)[j]}`].list =
-                //         categoryContainer[`${Object.keys(categoryContainer)[j]}`];
-                // };
+                    // console.log(`${Object.keys(categoryContainer)[j]}`);
+
+                    // console.log(vm.all_data[`${Object.keys(categoryContainer)[j]}`]);
+
+                    for (let index = 0; index < vm.all_data.length; index++) {
+                        const element = vm.all_data[index];
+
+                        if (element.title === `${Object.keys(categoryContainer)[j]}`) {
+
+                            vm.all_data[index].list = categoryContainer[`${Object.keys(categoryContainer)[j]}`]
+
+                            if (element.title === 'sheep') {
+                                vm.all_data[index].list.push({
+                                    name: '0',
+                                    title: 'sheep',
+                                    NAME: '餵羊喝ㄋㄟㄋㄟ',
+                                    IMG: './img/activity/drink.jpg',
+                                    DESC: '每日限量100罐營養好喝的ㄋㄟㄋㄟ，憑門票可兌換一罐，每張門票限兌換一罐，喜歡綿羊的大朋友小朋友請把握機會，跟綿羊更親近。',
+                                    data: ['3/11', '3/13'],
+                                })
+                            }
+
+                            if (element.title === 'deer') {
+                                vm.all_data[index].list.push({
+                                    name: '1',
+                                    title: 'deer',
+                                    NAME: '餵食吃仙貝',
+                                    IMG: './img/activity/deercookie.jpg',
+                                    DESC: '到Sìkha牧場憑門票即可兌換鹿仙貝一包，請可愛的小鹿們吃仙貝小點心，留下美好的回憶！',
+                                    data: ['3/11', '3/13']
+                                })
+                            }
+
+                            if (element.title === 'alpaca') {
+                                vm.all_data[index].list.push({
+                                    name: '2',
+                                    title: 'alpaca',
+                                    NAME: '餵草泥馬',
+                                    IMG: './img/activity/alpacaeat.jpg',
+                                    icon_img: '',
+                                    DESC: '想與草泥馬近距離接觸嗎？這就是你最好的機會，趕快一起來Sìkha牧場餵可愛的草泥馬吃草吧！',
+                                    data: ['3/11', '3/13']
+                                })
+
+                            }
+
+                            if (element.title === 'cow') {
+                                vm.all_data[index].list.push({
+                                    name: '3',
+                                    title: 'cow',
+                                    NAME: '乳牛吃飽飽',
+                                    IMG: './img/activity/eatfresh.jpg',
+                                    icon_img: '',
+                                    DESC: '來到Sìkha牧場，就可以憑門票兌換一把草，可以更近一步的跟可愛的乳牛互動餵牠吃草吃到飽！！',
+                                    data: ['3/11', '3/13']
+                                })
+                            }
+
+                            if (element.title === 'pig') {
+                                vm.all_data[index].list.push({
+                                    name: '4',
+                                    title: 'pig',
+                                    NAME: '小豬相見歡',
+                                    IMG: './img/activity/playwithpig.jpg',
+                                    icon_img: '',
+                                    DESC: '想和可愛的小豬們成為朋友嗎？快來和牠們一起無憂無慮地拍照玩耍，感受小豬們歡樂的氣氛吧！',
+                                    data: ['3/11', '3/13'],
+                                })
+
+                                vm.all_data[index].list.push({
+                                    title: '53453',
+                                })
+                            }
+
+                        }
+                    }
+
+
+
+                    // vm.all_data[`${Object.keys(categoryContainer)[j]}`].list =
+                    //     categoryContainer[`${Object.keys(categoryContainer)[j]}`];
+                };
 
 
                 // for (let j = 0; j < CATEGORY.length; j++) {
@@ -303,9 +374,6 @@ const vm = new Vue({
         //.then(res => console.log(res))
     },
     methods: {
-        test(type) {
-            this.showList = this.all_data.filter(e => e.CATEGORY === type);
-        },
         open(data) {
             //console.log(data);
             this.modal_open = data
@@ -313,8 +381,6 @@ const vm = new Vue({
         close() {
             this.modal_open = null
         },
-
-
 
         // activeIndexSwitch() {
         //     fetch('./php/activity.php', {
@@ -324,6 +390,9 @@ const vm = new Vue({
         //         },
 
         //         body: JSON.stringify({
+        //             title: this.all_data[this.activeIndex],
+        //         }),
+        //     })
 
         //         .then(res => res.json())
         //         .then((res) => {
