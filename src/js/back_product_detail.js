@@ -1,44 +1,59 @@
 //目前頁面亮燈
 let pages = document.querySelector(".aside_ul").querySelectorAll("h5");
-pages.forEach(function(page){
-    if ( page.innerHTML == "商品管理"){
+pages.forEach(function (page) {
+    if (page.innerHTML == "商品管理") {
         page.closest("a").classList.add("-on");
     }
 });
 
 // 進入頁面是否讀資料
-const editRule = /[prd_number=]\d{8}$/
+
 document.addEventListener("DOMContentLoaded", function (e) {
-    if (editRule.test(location.search)) {
-        let task = JSON.parse(localStorage.getItem("prd_list"));
-        let number0 = location.search.slice(12, 20);
-        // console.log(number);
-        // console.log(task);
-        task.forEach(function (value, i) {
-            if (task[i].prd_number == number0) {
-                // console.log(task[i]);
-                let pdata = task[i];
-                // 帶入資料
-                showData(pdata);
-                $('.back_title').find('h4').text('修改商品');
-                $('.select_images').after(`<spap style="float:right">品號：${task[i].prd_number}</spap>`)
-            }
+    // console.log('aaaa');
+    let urlParams = new URLSearchParams(window.location.search);
+    let id = urlParams.get('prd_number');
+    if (id != null) {
+
+        fetch('./php/back_product_detail_select.php', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            // 送出內容轉成JSON送出
+            body: JSON.stringify({
+                ID: id,
+            }),
         })
+            // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+            .then(resp => resp.json())
+            .then(body => {
+                //body也不可以console
+                const { successful, message, data, ID } = body;
+                if (successful == true) {
+                    console.log(successful + "訊息" + message + "資料" + ID + " / " + data);
+                    showData(data[0]);
+                    $('.back_title').find('h4').text('修改商品');
+                    $('.select_images').after(`<spap id="prd_number" style="float:right">品號：${ID}</spap>`)
+                    $("#submit").text('修改');
+                } else {
+                    console.log(successful + ' 訊息' + message);
+
+                }
+            })
     }
 });
-
 function showData(pdata) {
-    // console.log(pdata);
-    // console.log(pdata.prd_slog[0]);
-    $('#prd_slog1').val(pdata.prd_slog[0]);
-    $('#prd_slog2').val(pdata.prd_slog[1]);
-    $('#prd_inStock').val(pdata.prd_inStock);
-    $("#prd_price").val(pdata.prd_price);
-    $("#prd_cost").val(pdata.prd_cost);
-    $("#prd_name").val(pdata.prd_name);
-    $("#prd_ingredient").val(pdata.prd_ingredient);
-    putin_intro(pdata.prd_intro);
-    putin_topimg(pdata.prd_topImage)
+
+    $('#prd_slog1').val(JSON.parse(pdata.SLOGAN)[0]);
+    $('#prd_slog2').val(JSON.parse(pdata.SLOGAN)[1]);
+    $('#prd_inStock').val(pdata.STOCK);
+    $("#prd_price").val(pdata.UNIT_PRICE);
+    $("#prd_cost").val(pdata.COST);
+    $("#prd_name").val(pdata.NAME);
+    $("#prd_ingredient").val(pdata.DETAIL);
+    $("#prd_kind").val((pdata.PRODUCT_CATEGORY_ID) == 1 ? 1 : 2);
+    putin_intro(JSON.parse(pdata.DESCRIPTION));
+    putin_topimg(JSON.parse(pdata.MAIN_PIC))
 }
 
 function putin_topimg(d) {
@@ -81,7 +96,7 @@ function putin_intro(d) {
     let el_text;
     for (let i = 0; i < 5; i++) {
         if (d[i] != null) {
-            if(i>1){
+            if (i > 1) {
                 let ul_el = document.querySelector('#introduce_area');
                 let li_html = `<li class="prd_introduce">
                 <input type="file" name="" class="select_introPic">
@@ -89,7 +104,7 @@ function putin_intro(d) {
                 <textarea type="text" class="prd_introduce_input" row="1" cols="2" maxlength="30"></textarea>
                 <i class="bi bi-x"></i>
             </li>`
-                ul_el.insertAdjacentHTML("beforeend",li_html);
+                ul_el.insertAdjacentHTML("beforeend", li_html);
             }
             switch (i) {
                 case 0:
@@ -262,28 +277,28 @@ $('#topImages').on('click', (e) => {
 })
 
 // 樣式變更
-function add_shadow(el) {
-    el.classList.add("y_shadow");
-}
-function remove_shadow(el) {
-    el.classList.remove("y_shadow");
-}
+// function add_shadow(el) {
+//     el.classList.add("y_shadow");
+// }
+// function remove_shadow(el) {
+//     el.classList.remove("y_shadow");
+// }
 
-$('.select_topImage').on("dragover", (e) => {
-    e.preventDefault;
-    add_shadow(e.target);
-})
+// $('.select_topImage').on("dragover", (e) => {
+//     e.preventDefault;
+//     add_shadow(e.target);
+// })
 
-$('.select_topImage').on("dragleave", (e) => {
-    e.preventDefault;
-    remove_shadow(e.target);
-})
+// $('.select_topImage').on("dragleave", (e) => {
+//     e.preventDefault;
+//     remove_shadow(e.target);
+// })
 
 
-$('.select_topImage').on("drop", (e) => {
-    e.preventDefault;
-    add_shadow(e.target);
-})
+// $('.select_topImage').on("drop", (e) => {
+//     e.preventDefault;
+//     add_shadow(e.target);
+// })
 
 
 
@@ -310,7 +325,7 @@ $("#file1").on("change", (e) => {
         preview_img($("#file1")[0].files[0]);
     } else {
         preview_el = $(".select_topImage1")[0];
-        preview_el.innerHTML = '<span>請上傳圖片</span>';
+        preview_el.innerHTML = '<img src="./img/products/product_default_images.jpg" alt="">';
     }
 })
 
@@ -321,7 +336,7 @@ $("#file2").on("change", (e) => {
         preview_img($("#file2")[0].files[0]);
     } else {
         preview_el = $(".select_topImage2")[0];
-        preview_el.innerHTML = '<img src="./img/logo_16B1AA.svg" alt="">';
+        preview_el.innerHTML = '<img src="./img/products/product_default_images.jpg" alt="">';
     }
 })
 
@@ -332,7 +347,7 @@ $("#file3").on("change", (e) => {
         preview_img($("#file3")[0].files[0]);
     } else {
         preview_el = $(".select_topImage3")[0];
-        preview_el.innerHTML = '<img src="./img/logo_16B1AA.svg" alt="">';
+        preview_el.innerHTML = '<img src="./img/products/product_default_images.jpg" alt="">';
     }
 })
 
@@ -343,23 +358,24 @@ $("#file4").on("change", (e) => {
         preview_img($("#file4")[0].files[0]);
     } else {
         preview_el = $(".select_topImage4")[0];
-        preview_el.innerHTML = '<img src="./img/logo_16B1AA.svg" alt="">';
+        preview_el.innerHTML = '<img src="./img/products/product_default_images.jpg" alt="">';
     }
 })
 
-$(".upload").on('click', (e) => {
+$("#top_upload").on('click', (e) => {
     e.preventDefault();
-    let img_base64 = [];
-    for (let i = 0; i < $('.preview_img').length; i++) {
-        let img = $('.preview_img')[i].getAttribute('src');
-        if (img !== "./img/logo_16B1AA.svg" || img == null) {
-            img_base64.push(img);
-            //    console.log(img_base64);
-            sessionStorage.setItem("top_img", JSON.stringify(img_base64));
-        }
+    let topImg = document.querySelector("#pop_box");
+        topImg = topImg.querySelectorAll("input");
+    let pre_top = document.querySelectorAll(".select_topImage")
+    let prd_number = document.querySelector("#prd_number");
+    if(prd_number){
+        upload_img(topImg, pre_top, 1);
+    }else{
+        new_upload_img(topImg, pre_top, 1);
     }
     closebg();
 })
+
 
 
 // intro區塊 上傳圖片
@@ -401,44 +417,7 @@ document.addEventListener("click", function (e) {
 })
 // 圖片上傳end
 // =================================================
-/*
-// 資料格式  //前台時用innerHTML
-var product = {
-    //prd_number: `${$('.prd_number')[i].innerText}`,
-    prd_name: `${$('#prd_name')[i].innerText}`, // <-> "varchar"
-    prd_cost: $('#prd_cost')[i].innerText,
-    prd_price: $('#prd_price')[i].innerText,
-    prd_inStock: $('#prd_inStock')[i].innerText,
-    prd_pic: `${$('#prd_pic')[i].getAttribute("src")}`, //(主圖網址) "./img/producds/${品號}_top01"  <-> "varchar"
-    prd_condition: `${$('#prd_condition')[i].innerText}`,
-    prd_topImage: [`${$('.prd_topImage')[i].getAttribute("src")}`], // (網址) ["./img/producds/${品號}_top01"] max=4
-    prd_intro: [{scr:`${$('.pd_intro_pic')[i].getAttribute("src")}`,text:`${$('.prd_introduce_input')[i].innerText}`}], //商品介紹,"varchar" [{"src","text"}]  (網址)[{"./img/producds/${品號}_01"},{}] max=5
-    
-    prd_kind: `${$('#prd_kind').val()}`, //和資料庫關聯
-    prd_slog: [`${$('#prd_slog1').val()}`, `${$('#prd_slog2').val()}`], //促銷標語 max=2
-    prd_ingredient: `${$('#prd_ingredient').val()}`, //innerHtml 商品規格
 
-
-    //前台讀出intro
-    // var prd_intro = 
-    //         `<div class="pd_intro">
-    //             <div class="pd_intro_pic"><img src="`${$('.pd_intro_pic')[i].getAttribute("src")}`" alt="">
-    //             </div>
-    //             <p>${$('.prd_introduce_input')[i].innerText}</p>
-    //         </div>`;
-    
-
-    // 後台讀出intro
-var prd_introduce =
-`<li class="prd_introduce">
-        <input type="file" name="" class="select_introPic">
-        <div class="select_image"><img src"" class="preview_img"/><span>選擇圖片</span></div>
-        <textarea type="text" class="prd_introduce_input" row="1" cols="2" maxlength="30"></textarea>
-        <i class="bi bi-x"></i>
-    </li>`
-
-}
-*/
 
 // 檢查必填欄位、取消按鍵
 $('#submit').on('click', (e) => {
@@ -447,7 +426,7 @@ $('#submit').on('click', (e) => {
     check_price();
     check_inStock();
     check_name();
-    check_kind()
+    check_kind();
     if ($('#prd_name').val() == "" || $('#prd_cost').val() == "" || $('#prd_price').val() == "" || $('#prd_inStock').val() == "" || $('#prd_kind').val() == "n") {
 
         // console.log($("#prd_name")[0].offsetTop);
@@ -455,37 +434,243 @@ $('#submit').on('click', (e) => {
         window.scrollTo(0, $("#prd_name")[0].offsetTop - 100);
         alert('有欄位沒寫');
     } else { //有資料庫時要改寫存入地點
-        console.log('還沒寫好');
-/*
-        let intro = $('.prd_introduce');
-        $('.prd_introduce').each((i, v) => {
-            console.log(i, v);
+        // 取ID
+        let urlParams = new URLSearchParams(window.location.search);
+        let prd_number = urlParams.get('prd_number');
+        // 抓資料
+        let topImg = document.querySelector("#pop_box");
+        topImg = topImg.querySelectorAll("input");
+        let pre_top = document.querySelectorAll(".select_topImage");
 
-            var product = {
-                //prd_number: `${$('.prd_number')[i].innerText}`,
-                prd_name: $('#prd_name').val(), // <-> "varchar"
-                prd_cost: $('#prd_cost').val(),
-                prd_price: $('#prd_price').val(),
-                prd_inStock: $('#prd_inStock').val(),
-                prd_pic: `${$('.select_topImage1')[0].getAttribute("src")}`, //(主圖網址) "./img/producds/${品號}_top01"  <-> "varchar"
-                prd_condition: `未上架`, //新增=未上架,修改=抓值${$('#prd_condition').val()}
-                prd_topImage: [`${$('.select_topImage1')[0].getAttribute("src")}`], // (網址) ["./img/producds/${品號}_top01"] max=4
-                prd_intro: [{ scr: `${$('.prd_introduce')[i].querySelectorAll('img')[0].getAttribute("src")}`, text: `${$('.prd_introduce_input')[i].innerText}` }], //商品介紹,"varchar" [{"src","text"}]  (網址)[{"./img/producds/${品號}_01"},{}] max=5
-                // 前台是pd_intro 後台是prd_introduce
-                prd_kind: `${$('#prd_kind').val()}`, //和資料庫關聯
-                prd_slog: [`${$('#prd_slog1').val()}`, `${$('#prd_slog2').val()}`], //促銷標語 max=2
-                prd_ingredient: `${$('#prd_ingredient').val()}`, //innerHtml 商品規格
+        let name = document.querySelector("#prd_name").value;
+        let cost = document.querySelector("#prd_cost").value;
+        let price = document.querySelector("#prd_price").value;
+        let stock = document.querySelector("#prd_inStock").value;
+        let kind = document.querySelector("#prd_kind").value == "冷凍冷藏" ? 1 : 2;
+        let slogan = `["${document.querySelector("#prd_slog1").value}", "${document.querySelector("#prd_slog2").value}"]`;
+        let detail = document.querySelector("#prd_ingredient").value;
+        let prd_introduce_el = document.querySelector("#introduce_area");
+        let intro_input = prd_introduce_el.querySelectorAll("input");
+        let pre_intro = prd_introduce_el.querySelectorAll(".select_image");
+
+        // 判斷ID是否存在
+        if (prd_number != null) {
+            
+            upload_img(intro_input, pre_intro, 2);
+            let topImg_src = [];
+            for (let i = 0; i < 3; i++) {
+                // 不是預設圖片時，存入網址
+                if (pre_top[i].querySelector("img").getAttribute("src") != './img/products/product_default_images.jpg') {
+                    topImg_src.push(pre_top[i].querySelector("img").getAttribute("src"))
+                }
             }
 
-            console.log(product);
+            // intro區塊，此區塊不判斷預設圖片
+            let intro_arr = [];
+            let intro = document.querySelectorAll(".prd_introduce");
+            for (let i = 0; i < intro.length; i++) {
+                intro_arr.push({ "src": pre_intro[i].querySelector("img").getAttribute("src"), "text": intro[i].querySelector("textarea").value });
+            }
 
-            // location.href = "./back_products.html";
-        });
-        */
+            //轉換存入格式
+            topImg_src = `["${topImg_src.join('","')}"]`;
+            // console.log(topImg_src);
+            // console.log(slogan);
+
+            let bb = {
+                ID: prd_number,
+                    topImg: topImg_src,
+                    NAME: name,
+                    COST: cost,
+                    PRICE: price,
+                    STOCK: stock,
+                    KIND: kind,
+                    SLOGAN: slogan,
+                    DETAIL: detail,
+                    INTRO: intro_arr,
+            };
+            console.log(bb);
+
+            fetch('./php/back_product_detail_update.php', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                // 送出內容轉成JSON送出
+                body: JSON.stringify({
+                    ID: prd_number,
+                    topImg: topImg_src,
+                    NAME: name,
+                    COST: cost,
+                    PRICE: price,
+                    STOCK: stock,
+                    KIND: kind,
+                    SLOGAN: slogan,
+                    DETAIL: detail,
+                    INTRO: intro_arr,
+                }),
+
+            })
+                // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+                .then(resp => resp.json())
+                .then(body => {
+                    //body也不可以console
+                    const { successful, message, ID } = body;
+                    if (successful == true) {
+                        console.log(successful + ' / ' + message + ' / ' + ID);
+                    } else {
+                        console.log(successful + ' / ' + message);
+                    }
+                })
+        } else {
+
+            new_upload_img(intro_input, pre_intro, 2);
+
+            fetch('./php/back_product_detail_insert.php', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    NAME: name,
+                    COST: cost,
+                    PRICE: price,
+                    STOCK: stock,
+                    KIND: kind,
+                    SLOGAN: slogan,
+                    DETAIL: detail,
+                    INTRO: intro,
+                }),
+            })
+                // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+                .then(resp => resp.json())
+                .then(body => {
+                    //body也不可以console
+                    const { successful, message, ID } = body;
+                    if (successful == true) {
+                        console.log(successful + ' / ' + message + ' / ' + ID);
+                    } else {
+                        console.log(successful + ' / ' + message);
+                    }
+                })
+        }
+
     }
 })
 
-// 存入前取資料
+function upload_img(input_el, img_el, nb) {
+    let urlParams = new URLSearchParams(window.location.search);
+    let ID = urlParams.get('prd_number');
+    // 將單一個input的檔案做成formData送出
+    var formm = new FormData();
+    for (let i = 0; i < input_el.length; i++) {
+        if(input_el[i].files[0] != undefined){
+            // console.log(input_el[i].files[0]);
+            formm.append('file[]', input_el[i].files[0]);
+        }
+    }
+    // console.log(formm);
+
+    // 放入ID資料
+        formm.append('ID', ID);
+        // fetchAPI
+        fetch('./php/back_product_detail_upload.php', {
+            method: 'POST',
+            body: formm,
+        })
+            .then(resp => resp.json())
+            .then(body => {
+        // console.log(nb);
+
+        // 找出對應的pre_img區塊
+        let change_img_arr = [];
+        for (let i = 0; i < input_el.length; i++){
+            if(input_el[i].files[0] != undefined){
+                change_img_arr.push(img_el[i]);
+            }
+        }
+                //nb：1是首圖區塊top_img；2是intro配圖的區塊 
+                if (nb == 1) {
+                    for (let j = 0; j < change_img_arr.length; j++) {
+                        if(body[j] != undefined){
+                            // console.log(body[j]);
+                            change_img_arr[j].innerHTML = `<img src="${body[j]}">`;
+
+                        }
+                    }
+
+                } else if (nb == 2) {
+                    for (let j = 0; j < change_img_arr.length; j++) {
+                        if(body[j] != undefined){
+                        // console.log(body[j]);
+                        change_img_arr[j].innerHTML = `<img src="${body[j]}"><span>更換圖片</span>`;
+                        }
+                    }
+                }
+        })
+    
+}
+
+function new_upload_img(input_el, img_el, nb) {
+    check_ID();
+    // 取出新品號
+    let newID = JSON.parse(sessionStorage.getItem("new_id"));
+    var formm = new FormData();
+    for (let i = 0; i < input_el.length; i++) {
+        formm.append('file[]', input_el[i].files[0]);
+    }
+    formm.append('ID', newID);
+    // fetchAPI
+    fetch('./php/back_product_detail_upload.php', {
+        method: 'POST',
+        body: formm,
+    })
+        .then(resp => resp.json())
+        .then(body => {
+    // console.log(nb);
+
+    // 找出對應區塊
+    let change_img_arr = [];
+    for (let i = 0; i < input_el.length; i++){
+        if(input_el[i].files[0] != undefined){
+            change_img_arr.push(img_el[i]);
+        }
+    }
+    //nb：1是首圖區塊top_img；2是intro配圖的區塊
+            if (nb == 1) {
+                for (let j = 0; j < change_img_arr.length; j++) {
+                    if(body[j] != undefined){
+                        // console.log(body[j]);
+                        change_img_arr[j].innerHTML = `<img src="${body[j]}">`;
+                    }
+                }
+
+            } else if (nb == 2) {
+                for (let j = 0; j < change_img_arr.length; j++) {
+                    if(body[j] != undefined){
+                    // console.log(body[j]);
+                    change_img_arr[j].innerHTML = `<img src="${body[j]}"><span>更換圖片</span>`;
+                    }
+                }
+            }
+    })
+}
+
+// 檢查品號
+function check_ID() {
+    // fetchAPI
+    fetch('./php/back_product_detail_new.php', {
+        method: 'POST',
+    })
+        .then(resp => resp.json())
+        .then(body => {
+            const { successful, ID } = body;
+            // console.log(successful + ' / ' + ID);
+            sessionStorage.setItem("new_id", ID);
+        })
+}
+
+
 
 
 
