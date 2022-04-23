@@ -114,5 +114,28 @@
 }
 
 
+.tblist{
+    border: 1px solid green;
+    width: 1200px;
+}
 
+.tbname{
+    color: white;
+    background-color: green;
+    padding: 20px;
+    height: 60px;
+    align-items: center;
+    line-height: 60px;
+}
 
+.li1,td{
+    padding-left: 20px;
+}
+
+.li1,th{
+    padding-left: 20px;
+}
+
+.th{
+    justify;
+}
