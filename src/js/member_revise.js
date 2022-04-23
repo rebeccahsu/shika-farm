@@ -1,3 +1,4 @@
+const { json } = require("is_js")
 
 
 //tab切換效果
@@ -22,6 +23,7 @@ $.ajax({
   url: "./php/member.php",
   method: "GET",
   dataType: 'json',
+  async:false,
   success: function (data) {
     //console.log(data[0])
 
@@ -127,7 +129,7 @@ let userInfo = {
   tel: $('#mb_tel').val(),
   // 新密碼舊密碼
   newpd: $('#newpd').val(),
-  oldpd: $('#oldpd').val(),
+  // oldpd: $('#oldpd').val(),
 }
 
 
@@ -150,14 +152,13 @@ $('#logout').on('click', function(){
 
 //確認修改按鈕
 let userid = JSON.parse(sessionStorage.getItem("login")).ID;
-console.log(userid)
+
 $('#confirmBtn').on('click', function(){
   $.ajax({
     url: './php/logout.php',
     method: "POST",
-    dataType:'json',
     data:{
-      id:userid
+      id:userInfo,
     },
     success: function (data) {
       console.log(data);
