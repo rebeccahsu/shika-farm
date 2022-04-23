@@ -1,3 +1,23 @@
+// sweetalert
+function sAlert(msg, icon, btn) {
+    Swal.fire({
+        title: msg,
+        icon: icon,
+        showConfirmButton: true, // 確認按鈕（預設會顯示不用設定)
+        confirmButtonText: btn, //　按鈕顯示文字
+        confirmButtonAriaLabel: btn, // 網頁無障礙用
+        // showDenyButton: true, // 否定按鈕
+        showCancelButton: false, // 取消按鈕
+        buttonsStyling: false, // 是否使用sweetalert按鈕樣式（預設為true）
+        customClass: {
+            confirmButton: 'btn-yellow margintop_15',
+            cancelButton: 'btn-red margintop_15'
+        },
+    })
+}
+
+
+
 
 const vm = new Vue({
     el: '#app',
@@ -437,8 +457,25 @@ const vm = new Vue({
             }
         },
 
-
-
+        check_login() {
+            e.preventDefault();
+            // TODO: 檢查是否有登入
+            fetch('./php/check_login.php', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+            })
+                .then(resp => resp.json())
+                .then(body => {
+                    const { successful } = body;
+                    if (successful) {
+                        // location.href = './activity.html';
+                    } else {
+                        sAlert('<h5>請先登入會員</h5>', 'warning', 'OK');
+                    }
+                })
+        },
 
 
 

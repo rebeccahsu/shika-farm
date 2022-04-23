@@ -86,8 +86,9 @@
                             <img v-if='aaa.icon_img' @click="open(aaa)" class="item_img_icon" :src="aaa.icon_img"
                                 alt="">
                             <button v-if='aaa.TIME' class="reserve" :class="'-index'+ activeIndex"
-                                :style="{'background': all_data[activeIndex].button_bg}"
-                                @click="open(aaa)">點我預約</button>
+                                :style="{'background': all_data[activeIndex].button_bg}" @click="open(aaa)">
+                                <div @click="check_login">點我預約</div>
+                            </button>
                         </div>
                     </div>
                 </div>
