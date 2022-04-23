@@ -394,71 +394,72 @@ const vm = new Vue({
         close() {
             this.modal_open = null
         },
-        addReservation() {
-            if (this.ID != '' && this.ACTIVITY_ID != '' && this.MEMBER_ID != '' && this.DATE != '' && this.SESSION != '' && this.ATTENDANCE != '' && this.UPDATE_TIME != '') {
-                fetch("./php/add_reservaion.php", {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json',
-                        // "Accept": 'application/json'
-                    },
-                    body: JSON.stringify({
-                        ID: this.ID,
-                        ACTIVITY_ID: this.ACTIVITY_ID,
-                        MEMBER_ID: this.MEMBER_ID,
-                        DATE: this.DATE,
-                        SESSION: this.SESSION,
-                        ATTENDANCE: this.ATTENDANCE,
-                        UPDATE_TIME: this.UPDATE_TIME,
-                    }),
+        // addReservation() {
+        //     if (this.ID != '' && this.ACTIVITY_ID != '' && this.MEMBER_ID != '' && this.DATE != '' && this.SESSION != '' && this.ATTENDANCE != '' && this.UPDATE_TIME != '') {
+        //         fetch("./php/add_reservaion.php", {
+        //             method: "POST",
+        //             headers: {
+        //                 'Content-Type': 'application/json',
+        //                 // "Accept": 'application/json'
+        //             },
+        //             body: JSON.stringify({
+        //                 ID: this.ID,
+        //                 ACTIVITY_ID: this.ACTIVITY_ID,
+        //                 MEMBER_ID: this.MEMBER_ID,
+        //                 DATE: this.DATE,
+        //                 SESSION: this.SESSION,
+        //                 ATTENDANCE: this.ATTENDANCE,
+        //                 UPDATE_TIME: this.UPDATE_TIME,
+        //             }),
 
-                })
-                    .then((resp) => resp.json())
-                    .then((body) => {
-                        const { successful } = body;
-                        if (successful) {
-                            Swal.fire({
-                                title: '<h5>預約完成！</h5>',
-                                icon: 'success',
-                                showCancelButton: true,
-                                confirmButtonText: '返回牧場節目',
-                                cancelButtonText: '繼續預約',
-                                buttonsStyling: false,
-                                customClass: {
-                                    confirmButton: 'btn-green marginright_20',
-                                    cancelButton: 'btn-yellow'
-                                },
-                            }).then(function (result) {
-                                if (result.value) {
-                                    location.href = './activity.html';
-                                }
-                                else {
+        //         })
+        //             .then((resp) => resp.json())
+        //             .then((body) => {
+        //                 const { successful } = body;
+        //                 if (successful) {
+        //                     Swal.fire({
+        //                         title: '<h5>預約完成！</h5>',
+        //                         icon: 'success',
+        //                         showCancelButton: true,
+        //                         confirmButtonText: '返回牧場節目',
+        //                         cancelButtonText: '繼續預約',
+        //                         buttonsStyling: false,
+        //                         customClass: {
+        //                             confirmButton: 'btn-green marginright_20',
+        //                             cancelButton: 'btn-yellow'
+        //                         },
+        //                     }).then(function (result) {
+        //                         if (result.value) {
+        //                             location.href = './activity.html';
+        //                         }
+        //                         else {
 
-                                }
-                            });
-                            this.ID = '';
-                            this.ACTIVITY_ID = '';
-                            this.MEMBER_ID = '';
-                            this.DATE = '';
-                            this.SESSION = '';
-                            this.ATTENDANCE = '';
-                            this.UPDATE_TIME = '';
-                        }
-                        else {
-                            sAlert('<h5>預約失敗，請再試一次</h5>', 'error', 'OK');
-                        }
-                    })
-                    .catch(function (err) {
-                        sAlert('<h5>預約失敗，請再試一次</h5>', 'error', 'OK');
-                    });
+        //                         }
+        //                     });
+        //                     this.ID = '';
+        //                     this.ACTIVITY_ID = '';
+        //                     this.MEMBER_ID = '';
+        //                     this.DATE = '';
+        //                     this.SESSION = '';
+        //                     this.ATTENDANCE = '';
+        //                     this.UPDATE_TIME = '';
+        //                 }
+        //                 else {
+        //                     sAlert('<h5>預約失敗，請再試一次</h5>', 'error', 'OK');
+        //                 }
+        //             })
+        //             .catch(function (err) {
+        //                 sAlert('<h5>預約失敗，請再試一次</h5>', 'error', 'OK');
+        //             });
 
-            } else {
-                sAlert('<h5>請填寫完所有欄位再送出</h5>', 'warning', 'OK');
-            }
-        },
+        //     } else {
+        //         sAlert('<h5>請填寫完所有欄位再送出</h5>', 'warning', 'OK');
+        //     }
+        // },
 
         check_login() {
-            e.preventDefault();
+            // console.log("aaa");
+            // e.preventDefault();
             // TODO: 檢查是否有登入
             fetch('./php/check_login.php', {
                 method: 'POST',
@@ -471,7 +472,9 @@ const vm = new Vue({
                     const { successful } = body;
                     if (successful) {
                         // location.href = './activity.html';
+                        console.log("已經登入");
                     } else {
+                        console.log("尚未登入");
                         sAlert('<h5>請先登入會員</h5>', 'warning', 'OK');
                     }
                 })
