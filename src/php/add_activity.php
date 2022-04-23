@@ -1,29 +1,24 @@
 <?php
     include ("./connection.php");
     
-    $activity = json_decode(file_get_contents("php://input"), true);
-    // echo json_encode($activity);
+    session_strat();  //提取會員資料
+    
+    $reservation= json_decode(file_get_contents("php://input"), true);
 
     $SQL = '
-        INSERT INTO `ACTIVITY`
-        (`NAME`, `IMG`, `ATTENDANCE`, `OPACITY`, `STATE`, `TIME`, `S1_START`, `S1_END`, `S2_START`, `S2_END`, `S3_START`, `S3_END`, `DESC`, `CATEGORY`)
+        INSERT INTO `RESERVATION`
+        (`ACTIVITY_ID`, `MEMBER_ID`, `DATE`, `SESSION`, `ATTENDANCE`, `UPDATE_TIME`)
         VALUES
-        (:name, :img, 0,  :opacity, :state, :time, :s1_start, :s1_end, :s2_start, :s2_end, :s3_start, :s3_end, :desc, :category)
+        (:activity_ID, :MEMBER_ID, :date, :session, :attendance, :NOW())
     ';
     $stmt = $pdo->prepare($SQL);
-    $stmt->bindValue(":name", $activity["name"]);
-    $stmt->bindValue(":img", $activity["img"]);
-    $stmt->bindValue(":opacity", $activity["opacity"]);
-    $stmt->bindValue(":state", $activity["state"]);
-    $stmt->bindValue(":time", $activity["time"]);
-    $stmt->bindValue(":s1_start", $activity["s1_start"]);
-    $stmt->bindValue(":s1_end", $activity["s1_end"]);
-    $stmt->bindValue(":s2_start", $activity["s2_start"]);
-    $stmt->bindValue(":s2_end", $activity["s2_end"]);
-    $stmt->bindValue(":s3_start", $activity["s3_start"]);
-    $stmt->bindValue(":s3_end", $activity["s3_end"]);
-    $stmt->bindValue(":desc", $activity["desc"]);
-    $stmt->bindValue(":category", $activity["category"]);
+    //$stmt->bindValue(":ID", $reservation["ID"]); //此為預約資料表自動產生的AI 不給值
+    $stmt->bindValue(":activity_ID", $reservation["ACTIVITY_ID"]);
+    $stmt->bindValue(":MEMBER_ID", $_SESSION["ID"]);  //MEMBER_ID 不確定要不要放進來跟怎麼放 在html裡也沒有給他name及v-model
+    $stmt->bindValue(":date", $reservation["DATE"]);
+    $stmt->bindValue(":session", $reservation["session"]);
+    $stmt->bindValue(":attendance", $reservation["ATTENDANCE"]);
+    $stmt->bindValuue(":NOW()", $reservation["UPDATE_TIME"]); //UPDATE_TIME 不確定要不要放進來跟怎麼放 在html裡也沒有給他name及v-model
     $stmt->execute();
     
     $resultCount = $stmt->rowCount();
@@ -33,6 +28,6 @@
     } else {
         $respBody["successful"] = false;
     }
-    
+
     echo json_encode($respBody);
 ?>

@@ -84,8 +84,9 @@
 
 
 .modal_button {
-    height: 25px;
-    width: 90px;
+    font-size: 16px;
+    height: 30px;
+    width: 100px;
     background-color: #16B1AA;
     border: none;
     border-radius: 10px;
@@ -128,6 +129,18 @@ button.hamburger_icon span.-hr {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+}
+
+.dateSelect{
+    font-size: 16px;
+    width: 110px;
+    height: 30px;
+    margin-bottom: 8px;
+
+}
+
+.attendance{
+    margin-top: 12px;
 }
 
 

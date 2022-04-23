@@ -46,8 +46,13 @@ const vm = new Vue({
     el: '#app',
     data() {
         return {
-            DATE: '',
-
+            //ID: '', //此為預約資料表自動產生的AI 不給值
+            activity_ID: '', //html寫在 我要預約的button裡面
+            //MEMBER_ID 不確定要不要放進來跟怎麼放 在html裡也沒有給他name及v-model
+            date: '',
+            session: '',
+            attendance: '',
+            //UPDATE_TIME 不確定要不要放進來跟怎麼放 在html裡也沒有給他name及v-model
 
             s: 's',
             slide: 'slide',
@@ -451,13 +456,13 @@ const vm = new Vue({
                         // "Accept": 'application/json'
                     },
                     body: JSON.stringify({
-                        ID: this.ID,
-                        ACTIVITY_ID: this.ACTIVITY_ID,
-                        MEMBER_ID: this.MEMBER_ID,
-                        DATE: this.DATE,
-                        SESSION: this.SESSION,
-                        ATTENDANCE: this.ATTENDANCE,
-                        UPDATE_TIME: this.UPDATE_TIME,
+                        //ID: this.ID, //此為預約資料表自動產生的AI 不給值
+                        ACTIVITY_ID: this.activity_ID,
+                        MEMBER_ID: this.$_SESSION["ID"], //MEMBER_ID 不確定要不要放進來跟怎麼放 在html裡也沒有給他name及v-model
+                        DATE: this.date,
+                        SESSION: this.session,
+                        ATTENDANCE: this.attendance,
+                        UPDATE_TIME: this.NOW(), //UPDATE_TIME 不確定要不要放進來跟怎麼放 在html裡也沒有給他name及v-model
                     }),
 
                 })
@@ -484,13 +489,22 @@ const vm = new Vue({
 
                                 }
                             });
-                            this.ID = '';
-                            this.ACTIVITY_ID = '';
-                            this.MEMBER_ID = '';
-                            this.DATE = '';
-                            this.SESSION = '';
-                            this.ATTENDANCE = '';
-                            this.UPDATE_TIME = '';
+                            //this.ID = '';
+                            // this.ACTIVITY_ID = '';
+                            // this.MEMBER_ID = '';
+                            // this.DATE = '';
+                            // this.SESSION = '';
+                            // this.ATTENDANCE = '';
+                            // this.UPDATE_TIME = '';
+
+                            //this.ID = ''; ////此為預約資料表自動產生的AI 不給值
+                            this.activity_ID = '';
+                            this.MEMBER_ID = '';  //MEMBER_ID 不確定要不要放進來跟怎麼放 在html裡也沒有給他name及v-model
+                            this.date = '';
+                            this.session = '';
+                            this.attendance = '';
+                            this.NOW();  //UPDATE_TIME 不確定要不要放進來跟怎麼放 在html裡也沒有給他name及v-model
+
                         }
                         else {
                             sAlert('<h5>預約失敗，請再試一次</h5>', 'error', 'OK');
