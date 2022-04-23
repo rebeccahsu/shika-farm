@@ -73,20 +73,20 @@ $.ajax({
 
 
 //密碼欄位取消a連結預設
-var el = document.querySelector('.ch_pw');
-el.addEventListener('click', function (e) {
-  e.preventDefault();
-  console.log('test');
-  $('.mb_pw').show()
-});
+// var el = document.querySelector('.ch_pw');
+// el.addEventListener('click', function (e) {
+//   e.preventDefault();
+//   console.log('test');
+//   $('.mb_pw').toggle()
+// });
 
 // 把修改密碼輸入框display:block
 
-var el = document.querySelector('.ch_pw');
-el.addEventListener('click', function (e) {
-  e.preventDefault();
-  console.log('test');
-});
+// var el = document.querySelector('.ch_pw');
+// el.addEventListener('click', function (e) {
+//   e.preventDefault();
+//   console.log('test');
+// });
 
 
 //Tab2 預約欄位取消預約
@@ -131,7 +131,7 @@ let userInfo = {
 }
 
 
-
+//登出按鈕
 
 $('#logout').on('click', function(){
   $.ajax({
@@ -147,6 +147,29 @@ $('#logout').on('click', function(){
 
   })
 });
+
+//確認修改按鈕
+let userid = JSON.parse(sessionStorage.getItem("login")).ID;
+console.log(userid)
+$('#confirmBtn').on('click', function(){
+  $.ajax({
+    url: './php/logout.php',
+    method: "POST",
+    dataType:'json',
+    data:{
+      id:userid
+    },
+    success: function (data) {
+      console.log(data);
+    }
+
+  })
+});
+
+
+
+
+
 
 
 
