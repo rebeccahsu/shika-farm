@@ -121,21 +121,30 @@
 
 .tbname{
     color: white;
-    background-color: green;
+    background-color: $color_G;
     padding: 20px;
     height: 60px;
     align-items: center;
     line-height: 60px;
 }
 
-.li1,td{
+tr{
+    height: 60px;
+    text-align: center;
+    padding: 20px;
+}
+.li2 td{
     padding-left: 20px;
+    text-align: center;
+    
 }
 
-.li1,th{
+.li1 th{
     padding-left: 20px;
+    text-align: center;
+
 }
 
-.th{
-    justify;
+.li3{
+border: 1px solid $color_G ;
 }
