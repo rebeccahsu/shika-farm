@@ -14,7 +14,7 @@
     $stmt = $pdo->prepare($SQL);
     $stmt->bindValue(":ID", $reservation["ID"]);
     $stmt->bindValue(":ACTIVITY_ID", $reservation["ACTIVITY_ID"]);
-    $stmt->bindValue(":MEMBER_ID", $reservation["MEMBER_ID"]);  //$_SESSION["ID"]
+    $stmt->bindValue(":MEMBER_ID", $reservation["$_SESSION['ID']"]);  //$_SESSION["ID"]
     $stmt->bindValue(":DATE", $reservation["DATE"]);
     $stmt->bindValue(":SESSION", $reservation["SESSION"]);
     $stmt->bindValue(":ATTENDANCE", $reservation["ATTENDANCE"]);
