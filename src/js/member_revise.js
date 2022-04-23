@@ -15,47 +15,10 @@ mb_btn.on('click',function(){  //綁定按鈕事件
   $('.tab[data-id="'+ tab_id+ '"]').show()
 })
 
-
-//Tab1會員修改-地址欄位
- 
-$.ajax({
-  url: "./JSON/city.json",
-	method: "GET",
-    success: function (res) {
-      function state(a) {
-        for (let i = 0; i < res[a].districts.length; i++) {
-          //console.log(res[a].districts[i].name)
-          $("#area").append(
-            "<option value=" +
-              res[a].districts[i].name +
-              ">" +
-              res[a].districts[i].name +
-              "</option>"
-          );
-        }
-      }
-      // 初始畫面的縣市呈現
-      $.each(res, function (index, ele) {
-        // console.log(index);
-        $("#city").append(
-          "<option value=" + res[index].name + ">" + res[index].name + "</option>"
-        );
-      });
-      // 改變縣市
-      $("#city").on("change", function () {
-        //console.log($(this).children("option:selected").val());
-        var num = $(this).children("option:selected").val();
-        $("#area").find("option").remove();
-        state(num); //num 是縣市的索引值  state是縣市區域的函式
-      });
-    }
-});
-
-
-
 //會員資料回傳
 
-let userid = 'wang_mien@gmail.com' 
+let userid = 'wang_mien@gmail.com'
+let usercity = ''
 
 $.ajax({
   url: "./php/member.php",
@@ -65,23 +28,53 @@ $.ajax({
     id: userid
   },
   success: function(data){
+    //console.log(data[0])
 
     $('#mbName').text(data[0].NAME)
     $('#mbEmail').text(data[0].EMAIL)
-    if($('#city option:selected').val() == 000) {
-      $('#city option:selected').text(data[0].COUNTRY)
-    }
-    if($('#area option:selected').val() == 000) {
-      $('#area option:selected').text(data[0].DISTRICT)
-    }
-
     $('#address').val(data[0].STREET)
-
     $('#mb_tel').val(data[0].PHONE)
+    $('#area option:selected').text(data[0].DISTRICT)
+    usercity = data[0].COUNTRY
   }
-
 })
 
+
+//Tab1會員修改-地址欄位
+
+$.ajax({
+  url: "./JSON/city.json",
+	method: "GET",
+    success: function (res) {
+      // 初始畫面的縣市呈現
+      $.each(res, function (index) {
+         $("#city").append(
+           "<option value=" + index + ">" + res[index].name + "</option>"
+         );
+      });
+
+      // 改變縣市
+      $("#city").on("change", function () {
+        var num = $(this).children("option:selected").val();
+        $("#area").find("option").remove();
+        state(num); //num 是縣市的索引值  state是縣市區域的函式
+      });
+
+      $("#city").find("option:contains('" + usercity + "')").attr("selected", true);
+      
+      function state(idx) {
+        for (let i = 0; i < res[idx].districts.length; i++) {
+          $("#area").append(
+            "<option value=" +
+              res[idx].districts[i].name +
+              ">" +
+              res[idx].districts[i].name +
+              "</option>"
+          );
+        }
+      }
+    }
+});
 
 
 //密碼欄位取消a連結預設
