@@ -112,7 +112,11 @@ const black_bg = new Vue({
 			this.products.splice(index, 1);
 			sessionStorage.setItem("products", JSON.stringify(this.products));
 			let cart_data = JSON.parse(sessionStorage.getItem("products"));
-			$(".cartCount").text(cart_data.length);
+			
+			// $(".cartCount").text(cart_data.length);
+			if (cart_data != null){
+				$(".cartCount").text(cart_data.length);
+			}
 		},
 		start_cart() {
 			// 1.取出localStorage的資料, 字串轉成物件 // ??判斷是否為null如果是就用空陣列
@@ -128,7 +132,12 @@ const black_bg = new Vue({
 	//因為created()在網頁渲染完成後只會執行一次，所以1.2步驟拉出來放在一個函式裡，後續才可再使用
 	created() {
 		let cart_data = JSON.parse(sessionStorage.getItem("products"));
-		$(".cartCount").text(cart_data.length);
+
+		// $(".cartCount").text(cart_data.length);
+		if (cart_data != null){
+			$(".cartCount").text(cart_data.length);
+		}
+		
 		// 1.取出localStorage的資料, 字串轉成物件 // ??判斷是否為null如果是就用空陣列
 		// let cart = JSON.parse(sessionStorage.getItem("products")) ?? [];
 		// 2.把資料放入data裡的products
