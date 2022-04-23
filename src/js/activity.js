@@ -16,6 +16,29 @@ function sAlert(msg, icon, btn) {
     })
 }
 
+function sConfirm(title, text, url) {
+    Swal.fire({
+        title: title,
+        text: text,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: '確定',
+        cancelButtonText: '取消',
+        buttonsStyling: false,
+        customClass: {
+            confirmButton: 'btn-green marginright_20',
+            cancelButton: 'btn-red'
+        },
+    }).then(function (result) {
+        if (result.value) {
+            location.href = url;
+        }
+        else {
+
+        }
+    });
+}
+
 
 
 
@@ -23,6 +46,9 @@ const vm = new Vue({
     el: '#app',
     data() {
         return {
+            DATE: '',
+
+
             s: 's',
             slide: 'slide',
             modal_open: null,
@@ -394,69 +420,6 @@ const vm = new Vue({
         close() {
             this.modal_open = null
         },
-        // addReservation() {
-        //     if (this.ID != '' && this.ACTIVITY_ID != '' && this.MEMBER_ID != '' && this.DATE != '' && this.SESSION != '' && this.ATTENDANCE != '' && this.UPDATE_TIME != '') {
-        //         fetch("./php/add_reservaion.php", {
-        //             method: "POST",
-        //             headers: {
-        //                 'Content-Type': 'application/json',
-        //                 // "Accept": 'application/json'
-        //             },
-        //             body: JSON.stringify({
-        //                 ID: this.ID,
-        //                 ACTIVITY_ID: this.ACTIVITY_ID,
-        //                 MEMBER_ID: this.MEMBER_ID,
-        //                 DATE: this.DATE,
-        //                 SESSION: this.SESSION,
-        //                 ATTENDANCE: this.ATTENDANCE,
-        //                 UPDATE_TIME: this.UPDATE_TIME,
-        //             }),
-
-        //         })
-        //             .then((resp) => resp.json())
-        //             .then((body) => {
-        //                 const { successful } = body;
-        //                 if (successful) {
-        //                     Swal.fire({
-        //                         title: '<h5>預約完成！</h5>',
-        //                         icon: 'success',
-        //                         showCancelButton: true,
-        //                         confirmButtonText: '返回牧場節目',
-        //                         cancelButtonText: '繼續預約',
-        //                         buttonsStyling: false,
-        //                         customClass: {
-        //                             confirmButton: 'btn-green marginright_20',
-        //                             cancelButton: 'btn-yellow'
-        //                         },
-        //                     }).then(function (result) {
-        //                         if (result.value) {
-        //                             location.href = './activity.html';
-        //                         }
-        //                         else {
-
-        //                         }
-        //                     });
-        //                     this.ID = '';
-        //                     this.ACTIVITY_ID = '';
-        //                     this.MEMBER_ID = '';
-        //                     this.DATE = '';
-        //                     this.SESSION = '';
-        //                     this.ATTENDANCE = '';
-        //                     this.UPDATE_TIME = '';
-        //                 }
-        //                 else {
-        //                     sAlert('<h5>預約失敗，請再試一次</h5>', 'error', 'OK');
-        //                 }
-        //             })
-        //             .catch(function (err) {
-        //                 sAlert('<h5>預約失敗，請再試一次</h5>', 'error', 'OK');
-        //             });
-
-        //     } else {
-        //         sAlert('<h5>請填寫完所有欄位再送出</h5>', 'warning', 'OK');
-        //     }
-        // },
-
         check_login() {
             // console.log("aaa");
             // e.preventDefault();
@@ -479,6 +442,70 @@ const vm = new Vue({
                     }
                 })
         },
+        addReservation() {
+            if (this.ID != '' && this.ACTIVITY_ID != '' && this.MEMBER_ID != '' && this.DATE != '' && this.SESSION != '' && this.ATTENDANCE != '' && this.UPDATE_TIME != '') {
+                fetch("./php/add_reservaion.php", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        // "Accept": 'application/json'
+                    },
+                    body: JSON.stringify({
+                        ID: this.ID,
+                        ACTIVITY_ID: this.ACTIVITY_ID,
+                        MEMBER_ID: this.MEMBER_ID,
+                        DATE: this.DATE,
+                        SESSION: this.SESSION,
+                        ATTENDANCE: this.ATTENDANCE,
+                        UPDATE_TIME: this.UPDATE_TIME,
+                    }),
+
+                })
+                    .then((resp) => resp.json())
+                    .then((body) => {
+                        const { successful } = body;
+                        if (successful) {
+                            Swal.fire({
+                                title: '<h5>預約完成！</h5>',
+                                icon: 'success',
+                                showCancelButton: true,
+                                confirmButtonText: '返回牧場節目',
+                                cancelButtonText: '繼續預約',
+                                buttonsStyling: false,
+                                customClass: {
+                                    confirmButton: 'btn-green marginright_20',
+                                    cancelButton: 'btn-yellow'
+                                },
+                            }).then(function (result) {
+                                if (result.value) {
+                                    location.href = './activity.html';
+                                }
+                                else {
+
+                                }
+                            });
+                            this.ID = '';
+                            this.ACTIVITY_ID = '';
+                            this.MEMBER_ID = '';
+                            this.DATE = '';
+                            this.SESSION = '';
+                            this.ATTENDANCE = '';
+                            this.UPDATE_TIME = '';
+                        }
+                        else {
+                            sAlert('<h5>預約失敗，請再試一次</h5>', 'error', 'OK');
+                        }
+                    })
+                    .catch(function (err) {
+                        sAlert('<h5>預約失敗，請再試一次</h5>', 'error', 'OK');
+                    });
+
+            } else {
+                sAlert('<h5>請填寫完所有欄位再送出</h5>', 'warning', 'OK');
+            }
+        },
+
+
 
 
 
