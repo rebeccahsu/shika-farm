@@ -238,13 +238,6 @@ const vm = new Vue({
 
             .then(res => res.json())
             .then((res) => {
-
-
-
-
-
-
-
                 for (let i = 0; i < 6; i++) {
                     console.log(res);
                     vm.all_data[i].list = res
@@ -381,32 +374,71 @@ const vm = new Vue({
         close() {
             this.modal_open = null
         },
+        addReservation() {
+            if (this.ID != '' && this.ACTIVITY_ID != '' && this.MEMBER_ID != '' && this.DATE != '' && this.SESSION != '' && this.ATTENDANCE != '' && this.UPDATE_TIME != '') {
+                fetch("./php/add_reservaion.php", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        // "Accept": 'application/json'
+                    },
+                    body: JSON.stringify({
+                        ID: this.ID,
+                        ACTIVITY_ID: this.ACTIVITY_ID,
+                        MEMBER_ID: this.MEMBER_ID,
+                        DATE: this.DATE,
+                        SESSION: this.SESSION,
+                        ATTENDANCE: this.ATTENDANCE,
+                        UPDATE_TIME: this.UPDATE_TIME,
+                    }),
 
-        // activeIndexSwitch() {
-        //     fetch('./php/activity.php', {
-        //         method: "POST",
-        //         headers: {
-        //             "Contene-Type": "application/json",
-        //         },
+                })
+                    .then((resp) => resp.json())
+                    .then((body) => {
+                        const { successful } = body;
+                        if (successful) {
+                            Swal.fire({
+                                title: '<h5>預約完成！</h5>',
+                                icon: 'success',
+                                showCancelButton: true,
+                                confirmButtonText: '返回牧場節目',
+                                cancelButtonText: '繼續預約',
+                                buttonsStyling: false,
+                                customClass: {
+                                    confirmButton: 'btn-green marginright_20',
+                                    cancelButton: 'btn-yellow'
+                                },
+                            }).then(function (result) {
+                                if (result.value) {
+                                    location.href = './activity.html';
+                                }
+                                else {
 
-        //         body: JSON.stringify({
-        //             title: this.all_data[this.activeIndex],
-        //         }),
-        //     })
+                                }
+                            });
+                            this.ID = '';
+                            this.ACTIVITY_ID = '';
+                            this.MEMBER_ID = '';
+                            this.DATE = '';
+                            this.SESSION = '';
+                            this.ATTENDANCE = '';
+                            this.UPDATE_TIME = '';
+                        }
+                        else {
+                            sAlert('<h5>預約失敗，請再試一次</h5>', 'error', 'OK');
+                        }
+                    })
+                    .catch(function (err) {
+                        sAlert('<h5>預約失敗，請再試一次</h5>', 'error', 'OK');
+                    });
 
-        //         .then(res => res.json())
-        //         .then((res) => {
-        //             console.log(res);
-        //             for (let i = 0; i < 5; i++) {
-        //                 vm.all_data[i].list = res
-        //             }
+            } else {
+                sAlert('<h5>請填寫完所有欄位再送出</h5>', 'warning', 'OK');
+            }
+        },
 
 
 
-        //         })
-
-
-        // }
 
 
 
