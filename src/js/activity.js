@@ -448,7 +448,7 @@ const vm = new Vue({
                 })
         },
         addReservation() {
-            if (this.ID != '' && this.ACTIVITY_ID != '' && this.MEMBER_ID != '' && this.DATE != '' && this.SESSION != '' && this.ATTENDANCE != '' && this.UPDATE_TIME != '') {
+            if (this.activity_ID != '' && this.MEMBER_ID != '' && this.date != '' && this.session != '' && this.attendance != '') {
                 fetch("./php/add_reservaion.php", {
                     method: "POST",
                     headers: {
