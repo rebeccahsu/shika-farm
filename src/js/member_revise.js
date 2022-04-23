@@ -16,8 +16,6 @@ mb_btn.on('click',function(){  //綁定按鈕事件
 })
 
 
-
-
 //Tab1會員修改-地址欄位
 
 $.ajax({
@@ -55,7 +53,6 @@ $.ajax({
 
 
 
-
 //會員資料回傳
 
 let userid = 'wang_mien@gmail.com' 
@@ -68,6 +65,7 @@ $.ajax({
     id: userid
   },
   success: function(data){
+
     $('#mbName').text(data[0].NAME)
     $('#mbEmail').text(data[0].EMAIL)
     if($('#city option:selected').val() == 000) {
@@ -88,7 +86,6 @@ $.ajax({
   }
 
 })
-
 
 
 
