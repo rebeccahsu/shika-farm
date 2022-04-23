@@ -160,14 +160,16 @@ new Vue({
 				this.cardInfo.cardDate.month != "" &&
 				this.cardInfo.cardcsc != ""
 			) {
-				if (!this.userNameError) {
-				} else if (this.userNameError) {
-					alert(this.userNameErrMsg);
-				}
+
 			} else {
 				alert("未填寫完整");
+				return;
 			}
 			
+			let order = {
+				memberid: JSON.parse(sessionStorage.getItem('login')).ID,
+
+			}
 			// 1.傳送訂單詳細資訊給後台
 			//  - 商品詳細資訊
 			//  - 付款方式資訊
@@ -235,10 +237,13 @@ new Vue({
 		},
 		same() {
 			fetch("./php/checkoutMb.php", {
-				method: "GET",
+				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
 				},
+				body: JSON.stringify({
+					ID: sessionStorage.getItem('ID')
+				})
 			})
 				.then((res) => res.json())
 				.then((res) => {
