@@ -1,7 +1,7 @@
 <?php
     include ("./connection.php");
 
-    $sql = "select * from ORDER";
+    $sql = "SELECT * FROM `ORDER`;";
     $statement = $pdo->prepare($sql);
     $statement->execute();
     $orders = $statement->fetchAll();
