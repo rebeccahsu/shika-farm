@@ -30,6 +30,7 @@ new Vue({
 				},
 				cardcsc: "",
 			},
+			orderID: "",
 			// 收件人姓名
 			userNameError: false,
 			userNameErrMsg: "",
@@ -150,34 +151,62 @@ new Vue({
 			if (
 				this.userInfo.name != "" &&
 				this.userInfo.phone != "" &&
-				this.userInfo.address != "" &&
-				this.cardInfo.cardNum.no1 != "" &&
-				this.cardInfo.cardNum.no2 != "" &&
-				this.cardInfo.cardNum.no3 != "" &&
-				this.cardInfo.cardNum.no4 != "" &&
-				this.cardInfo.cardName != "" &&
-				this.cardInfo.cardDate.year != "" &&
-				this.cardInfo.cardDate.month != "" &&
-				this.cardInfo.cardcsc != ""
+				this.userInfo.address != "" 
 			) {
-
+				if(this.payType == 'card'){
+					if(
+						this.cardInfo.cardNum.no1 == "" ||
+						this.cardInfo.cardNum.no2 == "" ||
+						this.cardInfo.cardNum.no3 == "" ||
+						this.cardInfo.cardNum.no4 == "" ||
+						this.cardInfo.cardName == "" ||
+						this.cardInfo.cardDate.year == "" ||
+						this.cardInfo.cardDate.month == "" ||
+						this.cardInfo.cardcsc == ""
+					){
+						alert("未填寫完整");
+						return;
+					}
+				}
 			} else {
 				alert("未填寫完整");
 				return;
 			}
 			
+
 			let order = {
 				memberid: JSON.parse(sessionStorage.getItem('login')).ID,
-
+				total: this.sumTotal,
+				payment: this.payType,
+				address: this.userInfo.address,
+				name: this.userInfo.name,
+				phone: this.userInfo.phone,
+				detail: this.products,
 			}
+			
+			// console.log(order);
 			// 1.傳送訂單詳細資訊給後台
 			//  - 商品詳細資訊
 			//  - 付款方式資訊
-			
+			fetch('./php/checkout.php',{
+				method: 'POST',
+				headers: new Headers({
+					'Content-Type': 'application/json'
+				}),
+				body: JSON.stringify(order),
+			})
 			// 2. 後台判斷結果
 			// - 交易是否成功結果
 			// - 訂單編號
-			// 3. 交易成功後將locoalstroage(購物車)清空
+				.then((res) => res.json()) 
+				.then((res) => {
+					// console.log(res);
+					this.orderID = res;
+					this.step = 'C';
+					// 3. 交易成功後將locoalstroage(購物車)清空
+					sessionStorage.removeItem("products");
+					black_bg.cartCount();
+				})
 		},
 		goStepB() {
 			if (this.products.length > 0) {
@@ -242,7 +271,7 @@ new Vue({
 					"Content-Type": "application/json",
 				},
 				body: JSON.stringify({
-					ID: sessionStorage.getItem('ID')
+					ID: JSON.parse(sessionStorage.getItem('login')).ID,
 				})
 			})
 				.then((res) => res.json())
