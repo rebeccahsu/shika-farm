@@ -3,13 +3,13 @@
     
     $body = json_decode(file_get_contents("php://input"), true);
 
-    $sql = 'UPDATE ACTIVITY SET STATE = :state WHERE ID = :id;';
+    $sql = 'UPDATE 'ORDER' SET LOGISTICS_STATE = :LOGISTICS_STATE WHERE ID = :id;';
 
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue(":id", $body["id"]);
-    $stmt->bindValue(":state", $body["state"]);
+    $stmt->bindValue(":LOGISTICS_STATE", $body["LOGISTICS_STATE"]);
     $stmt->execute();
-    $activity_new = $stmt->fetchAll();
+    $order_new = $stmt->fetchAll();
     
     $resultCount = $stmt->rowCount();
     
