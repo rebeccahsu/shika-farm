@@ -1,4 +1,4 @@
-const { json } = require("is_js")
+// const { json } = require("is_js")
 
 
 //tab切換效果
@@ -106,8 +106,8 @@ $('.cancel_btn').on('click', function () {
 //詳細產品下拉按鈕
 $('#op_btn').on('click', function () {
   console.log('1')
-  $('#list_dt').slideToggle()
-  console.log('2')
+  $('#li3').slideToggle()
+   console.log('2')
 
 })
 
@@ -115,7 +115,9 @@ $('#op_btn').on('click', function () {
 
 $('.cel_list_btn').on('click', function () {
   if (confirm("確定取消訂單?")) {
-    $('.cl_d').hide()
+    // $('.cl_d').hide()
+    $('#li2').hide()
+
   }
 })
 
@@ -155,11 +157,11 @@ let userid = JSON.parse(sessionStorage.getItem("login")).ID;
 
 $('#confirmBtn').on('click', function(){
   $.ajax({
-    url: './php/logout.php',
+    url: './php/memberupdate.php',
     method: "POST",
-    data:{
-      id:userInfo,
-    },
+    data: JSON.stringify({
+      userinfo: userInfo,
+    }),
     success: function (data) {
       console.log(data);
     }
