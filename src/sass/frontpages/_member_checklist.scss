@@ -115,7 +115,7 @@
 
 
 .tblist{
-    border: 1px solid green;
+    border: 1px solid $color_G;
     width: 1200px;
 }
 
@@ -136,6 +136,7 @@ tr{
 .li2 td{
     padding-left: 20px;
     text-align: center;
+    padding-top: 20px;
     
 }
 
@@ -147,4 +148,10 @@ tr{
 
 .li3{
 border: 1px solid $color_G ;
+
+
+.li3 td{
+   padding-top: 20px;
+    
+    }
 }
