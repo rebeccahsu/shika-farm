@@ -63,7 +63,7 @@ const addActivity = new Vue({
             s3_start: '',
             s3_end: '',
             desc: '',
-            category: 'cow',
+            categoryId: '4',
 
         }
     },
@@ -89,7 +89,7 @@ const addActivity = new Vue({
                         s3_start: this.s3_start,
                         s3_end: this.s3_end,
                         desc: this.desc, 
-                        category: this.category,
+                        categoryId: this.categoryId,
                         }),
 
                 })

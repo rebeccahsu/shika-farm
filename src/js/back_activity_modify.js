@@ -91,6 +91,9 @@ const modifyActivity = new Vue({
             this.filename = displayname;
             if(this.activity[0].STATE == "上架中"){
                 this.stateCheck = true;
+                $('input[name="opacity"]').attr('disabled','disabled');
+                $('input[name="time"]').attr('disabled','disabled');
+                $('input.time-start').attr('disabled','disabled');
             }else{
                 this.stateCheck = false;
             }
@@ -100,7 +103,7 @@ const modifyActivity = new Vue({
         confirmModify(){
             const params = new URLSearchParams(location.search);
             let id = params.get('activity_id');
-            if (this.img != '' && this.name != '' && this.opacity != '' && this.desc != '' && this.s1_start != '' && this.s2_start != '' && this.s3_start != ''){
+            if (this.activity[0].IMG != '' && this.activity[0].NAME != '' && this.activity[0].OPACITY != '' && this.activity[0].DESC != '' && this.activity[0].S1_START != '' && this.activity[0].S2_START != '' && this.activity[0].S3_START != ''){
                 // console.log(id);
                 fetch('./php/modify_activity_update.php', {
                     method: "POST",
@@ -121,7 +124,7 @@ const modifyActivity = new Vue({
                         s3_start: this.activity[0].S3_START,
                         s3_end: this.activity[0].S3_END,
                         desc: this.activity[0].DESC, 
-                        category: this.activity[0].CATEGORY,
+                        categoryId: this.activity[0].CATEGORY_ID,
                         
                     }),
                 })
@@ -261,6 +264,17 @@ const modifyActivity = new Vue({
                 this.filename = e.dataTransfer.files[0].name;
             }else{
                 // modifyActivity.noSelectAnyFile();
+            }
+        },
+        switchOnOff(e){
+            if(e.target.checked){
+                $('input[name="opacity"]').attr('disabled','disabled');
+                $('input[name="time"]').attr('disabled','disabled');
+                $('input.time-start').attr('disabled','disabled');
+            }else{
+                $('input[name="opacity"]').removeAttr('disabled');
+                $('input[name="time"]').removeAttr('disabled');
+                $('input.time-start').removeAttr('disabled');
             }
         },
         cancel(){

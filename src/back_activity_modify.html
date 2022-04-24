@@ -29,7 +29,7 @@
                     </div>
                     <div class="oneline margintop_25">
                         <label>人數上限</label>
-                        <input type="number" required oninput="if(value<1)value=1" v-model="activity[0].OPACITY">
+                        <input type="number" required oninput="if(value<1)value=1" v-model="activity[0].OPACITY" name="opacity">
                     </div>
                     <div class="oneline margintop_25">
                         <label>時間長度</label>
@@ -64,24 +64,24 @@
                     </div>
                     <div class="margintop_25">
                         <label>動物分類</label>
-                        <input type="radio" name="catergory" id="cow" value="cow" v-model="activity[0].CATEGORY">
+                        <input type="radio" name="catergory" id="cow" value="4" v-model="activity[0].CATEGORY_ID">
                         <label for="cow">牛</label>
-                        <input type="radio" name="catergory" id="sheep" value="sheep" v-model="activity[0].CATEGORY">
+                        <input type="radio" name="catergory" id="sheep" value="1" v-model="activity[0].CATEGORY_ID">
                         <label for="sheep">羊</label>
-                        <input type="radio" name="catergory" id="deer" value="deer" v-model="activity[0].CATEGORY">
+                        <input type="radio" name="catergory" id="deer" value="2" v-model="activity[0].CATEGORY_ID">
                         <label for="deer">鹿</label>
-                        <input type="radio" name="catergory" id="pig" value="pig" v-model="activity[0].CATEGORY">
+                        <input type="radio" name="catergory" id="pig" value="5" v-model="activity[0].CATEGORY_ID">
                         <label for="pig">豬</label>
-                        <input type="radio" name="catergory" id="horse" value="horse" v-model="activity[0].CATEGORY">
+                        <input type="radio" name="catergory" id="horse" value="6" v-model="activity[0].CATEGORY_ID">
                         <label for="horse">馬</label>
-                        <input type="radio" name="catergory" id="alpaca" value="alpaca" v-model="activity[0].CATEGORY">
+                        <input type="radio" name="catergory" id="alpaca" value="3" v-model="activity[0].CATEGORY_ID">
                         <label for="alpaca">草泥馬</label>
                     </div>
     
                     <div class="onoroff">
                         <span class="state">上架</span>
                         <label class="switch">
-                            <input type="checkbox" checked class="show-switch-btn" v-model="stateCheck">
+                            <input type="checkbox" checked class="show-switch-btn" v-model="stateCheck" @change="switchOnOff">
                             <span class="slider round"></span>
                         </label>
                         
