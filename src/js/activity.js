@@ -458,11 +458,12 @@ const vm = new Vue({
             let actid = $('.modal').data("id");
             let endtime = $('input[name="session"]:checked').data('end');
             let session = this.reservation.start + "~" + endtime;
-            if (this.date != '' && this.start != '' && this.attendance != '') {
-                if ($('#left').html() == 0 || parseInt($('#left').html()) - parseInt(this.attendance) < 0){
+            let count_result = parseInt($('#left').html()) - parseInt(this.reservation.attendance);
+            if (this.reservation.date != '' && this.reservation.start != '' && this.reservation.attendance != '') {
+                if ($('#left').html() < 0 || count_result < 0){
                     sAlert('<h5>本場次剩餘名額不足，<br>請選擇其他場次</h5>', 'warning', 'OK');
                 }else{
-                    fetch("./php/add_reservaion.php", {
+                    fetch("./php/add_reservation.php", {
                         method: "POST",
                         headers: {
                             'Content-Type': 'application/json',
@@ -472,9 +473,9 @@ const vm = new Vue({
                             //ID: this.ID, //此為預約資料表自動產生的AI 不給值
                             ACTIVITY_ID: actid,
                             // MEMBER_ID: this.$_SESSION["ID"], //MEMBER_ID 不確定要不要放進來跟怎麼放 在html裡也沒有給他name及v-model
-                            DATE: this.date,
+                            DATE: this.reservation.date,
                             SESSION: session,
-                            ATTENDANCE: this.attendance,
+                            ATTENDANCE: this.reservation.attendance,
                             // UPDATE_TIME: this.NOW(), //UPDATE_TIME 不確定要不要放進來跟怎麼放 在html裡也沒有給他name及v-model
                         }),
     
@@ -513,9 +514,9 @@ const vm = new Vue({
                             //this.ID = ''; ////此為預約資料表自動產生的AI 不給值
                             // this.activity_ID = '';
                             // this.MEMBER_ID = '';  //MEMBER_ID 不確定要不要放進來跟怎麼放 在html裡也沒有給他name及v-model
-                            this.date = '';
-                            this.start = '';
-                            this.attendance = '';
+                            this.reservation.date = '';
+                            this.reservation.start = '';
+                            this.reservation.attendance = '';
                             // this.NOW();  //UPDATE_TIME 不確定要不要放進來跟怎麼放 在html裡也沒有給他name及v-model
     
                         }

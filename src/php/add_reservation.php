@@ -1,7 +1,7 @@
 <?php
     include ("./connection.php");
     
-    session_strat();  //提取會員資料
+    session_start();  //提取會員資料
     
     $reservation= json_decode(file_get_contents("php://input"), true);
 
@@ -9,7 +9,7 @@
         INSERT INTO `RESERVATION`
         (`ACTIVITY_ID`, `MEMBER_ID`, `DATE`, `SESSION`, `ATTENDANCE`, `UPDATE_TIME`)
         VALUES
-        (:activity_ID, :MEMBER_ID, :date, :session, :attendance, :NOW())
+        (:activity_ID, :MEMBER_ID, :date, :session, :attendance, NOW())
     ';
     $stmt = $pdo->prepare($SQL);
     //$stmt->bindValue(":ID", $reservation["ID"]); //此為預約資料表自動產生的AI 不給值
