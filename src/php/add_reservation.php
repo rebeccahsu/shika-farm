@@ -6,19 +6,19 @@
     $reservation= json_decode(file_get_contents("php://input"), true);
 
     $SQL = '
-        INSERT INTO `TFD105_G6`.`RESERVATION`
-        (`ID`, `ACTIVITY_ID`, `MEMBER_ID`, `DATE`, `SESSION`, `ATTENDANCE`, `UPDATE_TIME`)
+        INSERT INTO `RESERVATION`
+        (`ACTIVITY_ID`, `MEMBER_ID`, `DATE`, `SESSION`, `ATTENDANCE`, `UPDATE_TIME`)
         VALUES
-        (:name, :img, 0,  :opacity, :state, :time, :s1_start,)
+        (:activity_ID, :MEMBER_ID, :date, :session, :attendance, :NOW())
     ';
     $stmt = $pdo->prepare($SQL);
-    $stmt->bindValue(":ID", $reservation["ID"]);
-    $stmt->bindValue(":ACTIVITY_ID", $reservation["ACTIVITY_ID"]);
-    $stmt->bindValue(":MEMBER_ID", $_SESSION["ID"]);  //$_SESSION["ID"]
-    $stmt->bindValue(":DATE", $reservation["DATE"]);
-    $stmt->bindValue(":SESSION", $reservation["SESSION"]);
-    $stmt->bindValue(":ATTENDANCE", $reservation["ATTENDANCE"]);
-    $stmt->bindValue(":UPDATE_TIME", $reservation["UPDATE_TIME"]);
+    //$stmt->bindValue(":ID", $reservation["ID"]); //此為預約資料表自動產生的AI 不給值
+    $stmt->bindValue(":activity_ID", $reservation["ACTIVITY_ID"]);
+    $stmt->bindValue(":MEMBER_ID", $_SESSION["ID"]);  //MEMBER_ID 不確定要不要放進來跟怎麼放 在html裡也沒有給他name及v-model
+    $stmt->bindValue(":date", $reservation["DATE"]);
+    $stmt->bindValue(":session", $reservation["session"]);
+    $stmt->bindValue(":attendance", $reservation["ATTENDANCE"]);
+    $stmt->bindValuue(":NOW()", $reservation["UPDATE_TIME"]); //UPDATE_TIME 不確定要不要放進來跟怎麼放 在html裡也沒有給他name及v-model
     $stmt->execute();
     
     $resultCount = $stmt->rowCount();
