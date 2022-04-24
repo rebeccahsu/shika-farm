@@ -147,7 +147,7 @@ new Vue({
                 })
                     .then(function (res) {
                         if (res.value) {
-                            checked_arr.forEach(function (act) {
+                            checked_arr.forEach(function (li) {
                                 let id = $(li).data('id');
                                 fetch('./php/back_order_update_status.php', {
                                     method: 'POST',
