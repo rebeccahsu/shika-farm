@@ -8,7 +8,7 @@
     $sql_modify = 'update ACTIVITY 
     set `NAME` = :name, `IMG` = :img, `OPACITY` = :opacity, `STATE` = :state, 
     `TIME` = :time, `S1_START` = :s1_start, `S1_END` = :s1_end, `S2_START`= :s2_start, `S2_END`= :s2_end, 
-    `S3_START`= :s3_start, `S3_END`= :s3_end, `DESC`= :desc, `CATEGORY`= :category where ID = :id;';
+    `S3_START`= :s3_start, `S3_END`= :s3_end, `DESC`= :desc, `CATEGORY_ID`= :categoryId where ID = :id;';
 
     $stmt_modify = $pdo->prepare($sql_modify);
     $stmt_modify->bindValue(":id", $body["id"]);
@@ -24,7 +24,7 @@
     $stmt_modify->bindValue(":s3_start", $body["s3_start"]);
     $stmt_modify->bindValue(":s3_end", $body["s3_end"]);
     $stmt_modify->bindValue(":desc", $body["desc"]);
-    $stmt_modify->bindValue(":category", $body["category"]);
+    $stmt_modify->bindValue(":categoryId", $body["categoryId"]);
     $stmt_modify->execute();
     $activity_new = $stmt_modify->fetchAll();
     
