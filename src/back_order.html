@@ -10,28 +10,28 @@
 
 <body>
 
-        <!-- 側邊導覽列 -->
-        @@include('./layout/back_aside.html')
-        <!-- 後台訂單列表 -->
-        <div class="backcontainer order-container">
-            @@include('./layout/back_title.html', {
-            "back_title" : "訂單管理"
-            })
-            <div class="o_btn_area">
-                <div>
-                    <button id="return_order" type="button" class="btn-yellow">退貨</button>
-                    <button id="ship_order" type="button" class="btn-red">出貨</button>
-                </div>
-                <div class="search-area">
-                    <input type="text" name="search" id="search_order">
-                    <img src="./img/icon/search.png" alt="" class="search_icon">
-                </div>
+    <!-- 側邊導覽列 -->
+    @@include('./layout/back_aside.html')
+    <!-- 後台訂單列表 -->
+    <div class="backcontainer order-container">
+        @@include('./layout/back_title.html', {
+        "back_title" : "訂單管理"
+        })
+        <div class="o_btn_area">
+            <div>
+                <button id="return_order" type="button" class="btn-yellow">退貨</button>
+                <button id="ship_order" type="button" class="btn-red">出貨</button>
             </div>
+            <div class="search-area">
+                <input type="text" name="search" id="search_order">
+                <img src="./img/icon/search.png" alt="" class="search_icon">
+            </div>
+        </div>
 
-
+        <div id="app">
             <section class="list_area">
                 <ul id="order-list">
-                    <li class="">                
+                    <li class="">
                         <p class="fieldName"></p>
                         <p class="fieldName">訂單編號</p>
                         <p class="fieldName">成立時間</p>
@@ -41,157 +41,50 @@
                         <p class="fieldName">詳細內容</p>
                     </li>
 
-                    <li class="order-li">
+                    <li v-for="order in orders" class="order-li">
                         <label class="check_container">
                             <input class="checkBox check-order" type="checkbox">
                             <span class="checkmark"></span>
                         </label>
-                        <p class="order_number">8601</p>
-                        <p class="order_name">2022/03/15</p>
-                        <p class="order_member">88811</p>
-                        <p class="order_price">$860</p>
-                        <p class="order_condition">撿貨中</p>
+                        <p class="order_number">{{order.ID}}</p>
+                        <p class="order_name">{{order.ORDER_DATE}}</p>
+                        <p class="order_member">{{order.MEMBER_ID}}</p>
+                        <p class="order_price">{{order.TOTAL}}</p>
+                        <p class="order_condition">{{order.LOGISTICS_STATE}}</p>
                         <button type="button" class="btn-green order_info">...</button>
                     </li>
-                    <li class="order-li">
-                        <label class="check_container">
-                            <input class="checkBox check-order" type="checkbox">
-                            <span class="checkmark"></span>
-                        </label>
-                        <p class="order_number">8600</p>
-                        <p class="order_name">2022/03/15</p>
-                        <p class="order_member">25012</p>
-                        <p class="order_price">$700</p>
-                        <p class="order_condition">出貨中</p>
-                        <button type="button" class="btn-green order_info">...</button>
-                    </li>
-                    <li class="order-li">
-                        <label class="check_container">
-                            <input class="checkBox check-order" type="checkbox">
-                            <span class="checkmark"></span>
-                        </label>
-                        <p class="order_number">8599</p>
-                        <p class="order_name">2022/03/15</p>
-                        <p class="order_member">866513</p>
-                        <p class="order_price">$390</p>
-                        <p class="order_condition">已送達</p>
-                        <button type="button" class="btn-green order_info">...</button>
-                    </li>
-                    <li class="order-li">
-                        <label class="check_container">
-                            <input class="checkBox check-order" type="checkbox">
-                            <span class="checkmark"></span>
-                        </label>
-                        <p class="order_number">8598</p>
-                        <p class="order_name">2022/03/14</p>
-                        <p class="order_member">74224</p>
-                        <p class="order_price">$580</p>
-                        <p class="order_condition">已送達</p>
-                        <button type="button" class="btn-green order_info">...</button>
-                    </li>
-                    <li class="order-li">
-                        <label class="check_container">
-                            <input class="checkBox check-order" type="checkbox">
-                            <span class="checkmark"></span>
-                        </label>
-                        <p class="order_number">8597</p>
-                        <p class="order_name">2022/03/11</p>
-                        <p class="order_member">02416</p>
-                        <p class="order_price">$290</p>
-                        <p class="order_condition">已送達</p>
-                        <button type="button" class="btn-green order_info">...</button>
-                    </li>
-                    <li class="order-li">
-                        <label class="check_container">
-                            <input class="checkBox check-order" type="checkbox">
-                            <span class="checkmark"></span>
-                        </label>
-                        <p class="order_number">8596</p>
-                        <p class="order_name">2022/03/01</p>
-                        <p class="order_member">65727</p>
-                        <p class="order_price">$450</p>
-                        <p class="order_condition">已送達</p>
-                        <button type="button" class="btn-green order_info">...</button>
-                    </li>
-                    <li class="order-li">
-                        <label class="check_container">
-                            <input class="checkBox check-order" type="checkbox">
-                            <span class="checkmark"></span>
-                        </label>
-                        <p class="order_number">8595</p>
-                        <p class="order_name">2022/02/15</p>
-                        <p class="order_member">65727</p>
-                        <p class="order_price">$590</p>
-                        <p class="order_condition">已送達</p>
-                        <button type="button" class="btn-green order_info">...</button>
-                    </li>
-                    <li class="order-li">
-                        <label class="check_container">
-                            <input class="checkBox check-order" type="checkbox">
-                            <span class="checkmark"></span>
-                        </label>
-                        <p class="order_number">8594</p>
-                        <p class="order_name">2022/02/10</p>
-                        <p class="order_member">75428</p>
-                        <p class="order_price">$450</p>
-                        <p class="order_condition">已送達</p>
-                        <button type="button" class="btn-green order_info">...</button>
-                    </li>
-                    <li class="order-li">
-                        <label class="check_container">
-                            <input class="checkBox check-order" type="checkbox">
-                            <span class="checkmark"></span>
-                        </label>
-                        <p class="order_number">8593</p>
-                        <p class="order_name">2022/01/15</p>
-                        <p class="order_member">46728</p>
-                        <p class="order_price">$1190</p>
-                        <p class="order_condition">已送達</p>
-                        <button type="button" class="btn-green order_info">...</button>
-                    </li>
-                    <li class="order-li">
-                        <label class="check_container">
-                            <input class="checkBox check-order" type="checkbox">
-                            <span class="checkmark"></span>
-                        </label>
-                        <p class="order_number">8592</p>
-                        <p class="order_name">2022/01/15</p>
-                        <p class="order_member">78908</p>
-                        <p class="order_price">$290</p>
-                        <p class="order_condition">已送達</p>
-                        <button type="button" class="btn-green order_info">...</button>
-                    </li>
+
                 </ul>
-
-
             </section>
-
-
-            <div id="o_page_area">
-                <ul>
-                    <li class="prev_page"><a href="#">
-                            <p>＜</p>
-                        </a></li>
-                    <li class="page_hear"><a href="#">
-                            <p>1</p>
-                        </a></li>
-                    <li><a href="#">
-                            <p>2</p>
-                        </a></li>
-                    <li><a href="#">
-                            <p>3</p>
-                        </a></li>
-
-                    <li class="next_page"><a href="#">
-                            <p>＞</p>
-                        </a></li>
-                </ul>
-
-
-            </div>
-
-            <p class="tibameMessage">本網站為緯育TibaMe前端設計工程師班第72期第二組學員專題成果作品，本平台僅供學習、展示之用。</p>
         </div>
+
+
+
+        <!-- <div id="o_page_area">
+                    <ul>
+                        <li class="prev_page"><a href="#">
+                                <p>＜</p>
+                            </a></li>
+                        <li class="page_hear"><a href="#">
+                                <p>1</p>
+                            </a></li>
+                        <li><a href="#">
+                                <p>2</p>
+                            </a></li>
+                        <li><a href="#">
+                                <p>3</p>
+                            </a></li>
+
+                        <li class="next_page"><a href="#">
+                                <p>＞</p>
+                            </a></li>
+                    </ul>
+
+
+                </div> -->
+
+        <p class="tibameMessage">本網站為緯育TibaMe前端設計工程師班第72期第二組學員專題成果作品，本平台僅供學習、展示之用。</p>
+    </div>
 
     <script src="js/back_order.js"></script>
 </body>
