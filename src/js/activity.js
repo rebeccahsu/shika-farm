@@ -315,7 +315,7 @@ const vm = new Vue({
                 console.log(Object.keys(categoryContainer)); //物件的key:sheep.deer...
                 //k[j]=keyNme
 
-                for (j = 0; j < Object.keys(categoryContainer).length; j++) {
+                for (let j = 0; j < Object.keys(categoryContainer).length; j++) {
 
                     // console.log(`${Object.keys(categoryContainer)[j]}`);
 
