@@ -38,7 +38,7 @@ CREATE TABLE `ACTIVITY` (
   PRIMARY KEY (`ID`),
   KEY `FK_ACTIVITY_CATEGORY_idx` (`CATEGORY_ID`),
   CONSTRAINT `FK_ACTIVITY_CATEGORY_ID` FOREIGN KEY (`CATEGORY_ID`) REFERENCES `ACTIVITY_CATEGORY` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb3;
 
 /*Data for the table `ACTIVITY` */
 
@@ -51,7 +51,8 @@ insert  into `ACTIVITY`(`ID`,`NAME`,`IMG`,`OPACITY`,`STATE`,`TIME`,`S1_START`,`S
 (11,'DIY ㄋㄟㄋㄟ 肥皂','./img/activity/soap.jpg',30,'上架中',90,'09:30','11:00','13:00','14:30','16:00','17:30','喜歡洗澡嗎 ? 簡單三步驟就能讓你完成屬於自己的肥皂 ，讓Sìkha肥皂滲透你的肌膚，享受肌膚絲緞般的觸感，自用送禮兩相宜，還不快來體驗！',1),
 (21,'擠ㄋㄟㄋㄟ','./img/activity/milkmaker.jpg',20,'上架中',30,'09:00','09:30','10:00','10:30','14:00','14:30','幫乳牛媽媽擠ㄋㄟㄋㄟ，讓小朋友們知道，原來牛奶是從這裡來的呢！。透過工作人員教學說明後，我們可以親手擠出白色的牛奶，配合乳牛媽媽的生理時間，提供每日３個場次可以體驗喔！',4),
 (31,'DIY ㄋㄟㄋㄟ 餅乾','./img/activity/makecookie.jpg',30,'上架中',90,'09:30','11:00','13:00','14:30','16:30','18:00','奶味香濃的餅乾大人小孩都喜歡！但有親手做過餅乾嗎？Sìkha牧場提供新鮮牛奶讓各位大朋友小朋友來這親手製作出香濃可口的ㄋㄟㄋㄟ餅乾 ! ? 簡單三步驟就能讓你完成屬於自己的肥皂 ，讓Sìkha肥皂滲透你的肌膚，享受肌膚絲緞般的觸感，自用送禮兩相宜，還不快來體驗！',4),
-(32,'小鹿相見歡','./img/activity/playwithdeer.jpg',20,'上架中',30,'09:00','09:30','11:00','11:30','14:00','14:30','大朋友小朋友趕快來Sìkha牧場與可愛親人的梅花鹿近距離互動，並拍照留下紀念吧！',2);
+(32,'小鹿相見歡','./img/activity/playwithdeer.jpg',20,'上架中',30,'09:00','09:30','11:00','11:30','14:00','14:30','大朋友小朋友趕快來Sìkha牧場與可愛親人的梅花鹿近距離互動，並拍照留下紀念吧！',2),
+(56,'1231','/g6/img/upload/1650775012.eatfresh.jpg',50,'未上架',30,'12:42','13:12','12:40','13:10','15:36','16:06','23323232321',4);
 
 /*Table structure for table `ACTIVITY_CATEGORY` */
 
@@ -69,7 +70,7 @@ CREATE TABLE `ACTIVITY_CATEGORY` (
 insert  into `ACTIVITY_CATEGORY`(`ID`,`CATEGORY`,`ICON`) values 
 (1,'sheep','./img/activity/sheep1.png'),
 (2,'deer','./img/activity/deer1.png'),
-(3,'alpaca','./img/activity/alpacar1.png'),
+(3,'alpaca','./img/activity/alpaca1.png'),
 (4,'cow','./img/activity/cow1.png'),
 (5,'pig','./img/activity/pig1.png'),
 (6,'horse','./img/activity/horse1.png');

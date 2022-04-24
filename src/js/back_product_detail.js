@@ -10,6 +10,9 @@ pages.forEach(function (page) {
 
 document.addEventListener("DOMContentLoaded", function (e) {
     // console.log('aaaa');
+    sessionStorage.removeItem("new_id");
+    check_ID();
+
     let urlParams = new URLSearchParams(window.location.search);
     let id = urlParams.get('prd_number');
     if (id != null) {
@@ -100,7 +103,7 @@ function putin_intro(d) {
                 let ul_el = document.querySelector('#introduce_area');
                 let li_html = `<li class="prd_introduce">
                 <input type="file" name="" class="select_introPic">
-                <div class="select_image"><img src"" class="preview_img"/><span>上傳圖片</span></div>
+                <div class="select_image"><img src"./img/products/product_default_images.jpg" class="preview_img"/><span>更換圖片</span></div>
                 <textarea type="text" class="prd_introduce_input" row="1" cols="2" maxlength="30"></textarea>
                 <i class="bi bi-x"></i>
             </li>`
@@ -364,6 +367,9 @@ $("#file4").on("change", (e) => {
 
 $("#top_upload").on('click', (e) => {
     e.preventDefault();
+    if(!sessionStorage.getItem("new_id")){
+        check_ID();
+    }
     let topImg = document.querySelector("#pop_box");
         topImg = topImg.querySelectorAll("input");
     let pre_top = document.querySelectorAll(".select_topImage")
@@ -406,9 +412,13 @@ document.addEventListener("click", function (e) {
             select_introPic.click();
             select_introPic.addEventListener('change', () => {
                 if (select_introPic.files.length > 0) {
+
                     preview_intro(select_introPic.files[0]);
+                    upload_intro_img(select_introPic, select_image);
+
+
                 } else {
-                    select_image.innerHTML = '<span>上傳圖片</span>';
+                    select_image.innerHTML = '<img src="./img/products/product_default_images.jpg" class="preview_img"><span>上傳圖片</span>';
                 }
             })
         }
@@ -453,7 +463,7 @@ $('#submit').on('click', (e) => {
         let intro_input = prd_introduce_el.querySelectorAll("input");
         let pre_intro = prd_introduce_el.querySelectorAll(".select_image");
 
-        // 判斷ID是否存在
+// 判斷ID是否存在   存在=>修改商品；不存在=>新增商品=========================
         if (prd_number != null) {
             
             upload_img(intro_input, pre_intro, 2);
@@ -476,20 +486,6 @@ $('#submit').on('click', (e) => {
             topImg_src = `["${topImg_src.join('","')}"]`;
             // console.log(topImg_src);
             // console.log(slogan);
-
-            let bb = {
-                ID: prd_number,
-                    topImg: topImg_src,
-                    NAME: name,
-                    COST: cost,
-                    PRICE: price,
-                    STOCK: stock,
-                    KIND: kind,
-                    SLOGAN: slogan,
-                    DETAIL: detail,
-                    INTRO: intro_arr,
-            };
-            console.log(bb);
 
             fetch('./php/back_product_detail_update.php', {
                 method: 'POST',
@@ -517,21 +513,38 @@ $('#submit').on('click', (e) => {
                     //body也不可以console
                     const { successful, message, ID } = body;
                     if (successful == true) {
-                        console.log(successful + ' / ' + message + ' / ' + ID);
+                        // console.log(successful + ' / ' + message + ' / ' + ID);
+                        alert("修改成功！")
+                        location.href = "./back_products.html";
                     } else {
                         console.log(successful + ' / ' + message);
                     }
                 })
         } else {
+// 新增商品===========================================================
+            // new_upload_img(intro_input, pre_intro, 2);
+            let topImg_src = [];
+            for (let i = 0; i < 3; i++) {
+                // 不是預設圖片時，存入網址
+                if (pre_top[i].querySelector("img").getAttribute("src") != './img/products/product_default_images.jpg') {
+                    topImg_src.push(pre_top[i].querySelector("img").getAttribute("src"))
+                }
+            }
 
-            new_upload_img(intro_input, pre_intro, 2);
+            // intro區塊，此區塊不判斷預設圖片
+            let intro_arr = [];
+            let intro = document.querySelectorAll(".prd_introduce");
+            for (let i = 0; i < intro.length; i++) {
+                intro_arr.push({ "src": pre_intro[i].querySelector("img").getAttribute("src"), "text": intro[i].querySelector("textarea").value });
+            }
 
-            fetch('./php/back_product_detail_insert.php', {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json'
-                },
-                body: JSON.stringify({
+            //轉換存入格式
+            topImg_src = `["${topImg_src.join('","')}"]`;
+
+
+            // 檢查格式
+            let bb = {
+                    topImg: topImg_src,
                     NAME: name,
                     COST: cost,
                     PRICE: price,
@@ -539,7 +552,26 @@ $('#submit').on('click', (e) => {
                     KIND: kind,
                     SLOGAN: slogan,
                     DETAIL: detail,
-                    INTRO: intro,
+                    INTRO: intro_arr,
+            };
+            console.log(bb);
+
+            // ajax 
+            fetch('./php/back_product_detail_insert.php', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    topImg: topImg_src,
+                    NAME: name,
+                    COST: cost,
+                    PRICE: price,
+                    STOCK: stock,
+                    KIND: kind,
+                    SLOGAN: slogan,
+                    DETAIL: detail,
+                    INTRO: intro_arr,
                 }),
             })
                 // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
@@ -547,8 +579,10 @@ $('#submit').on('click', (e) => {
                 .then(body => {
                     //body也不可以console
                     const { successful, message, ID } = body;
-                    if (successful == true) {
+                    if (successful) {
                         console.log(successful + ' / ' + message + ' / ' + ID);
+                        alert("新增成功！")
+                        location.href = "./back_products.html";
                     } else {
                         console.log(successful + ' / ' + message);
                     }
@@ -612,7 +646,7 @@ function upload_img(input_el, img_el, nb) {
 }
 
 function new_upload_img(input_el, img_el, nb) {
-    check_ID();
+    
     // 取出新品號
     let newID = JSON.parse(sessionStorage.getItem("new_id"));
     var formm = new FormData();
@@ -640,7 +674,7 @@ function new_upload_img(input_el, img_el, nb) {
             if (nb == 1) {
                 for (let j = 0; j < change_img_arr.length; j++) {
                     if(body[j] != undefined){
-                        // console.log(body[j]);
+                        console.log(1+" / "+body[j]);
                         change_img_arr[j].innerHTML = `<img src="${body[j]}">`;
                     }
                 }
@@ -648,7 +682,7 @@ function new_upload_img(input_el, img_el, nb) {
             } else if (nb == 2) {
                 for (let j = 0; j < change_img_arr.length; j++) {
                     if(body[j] != undefined){
-                    // console.log(body[j]);
+                    console.log(2+" / "+body[j]);
                     change_img_arr[j].innerHTML = `<img src="${body[j]}"><span>更換圖片</span>`;
                     }
                 }
@@ -670,9 +704,31 @@ function check_ID() {
         })
 }
 
+function upload_intro_img(input_el, pre_img) {
+    let urlParams = new URLSearchParams(window.location.search);
+    let ID = urlParams.get('prd_number');
+    if (!ID) {
+        // 取出新品號
+        ID = JSON.parse(sessionStorage.getItem("new_id"));
+    }
+    var formm = new FormData();
+    formm.append('file', input_el.files[0]);
+    formm.append('ID', ID);
+    // fetchAPI
+    fetch('./php/back_product_detail_introImg_upload.php', {
+        method: 'POST',
+        body: formm,
+    })
+        .then(resp => resp.json())
+        .then(body => {
+            const { succ, img_url } = body;
+            // console.log(succ+" / "+img_url);
+            pre_img.innerHTML=`<img src="${img_url}" class="preview_img"><span>上傳圖片</span>`;
+            // console.log(pre_img);
 
-
-
+        })
+}
+    
 
 // 取消
 $('#cancel').on('click', (e) => {
