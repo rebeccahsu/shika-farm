@@ -50,6 +50,7 @@ new Vue({
         //退回按鈕
         returnOrder() {
             let checkbox = document.querySelectorAll(".check-order");
+            console.log(checkbox);
             let checked_arr = [];
             checkbox.forEach(box => {
                 if (box.checked) {
@@ -77,8 +78,8 @@ new Vue({
                 })
                     .then(function (res) {
                         if (res.value) {
-                            checked_arr.forEach(function (act) {
-                                let id = $(act).data('actid');
+                            checked_arr.forEach(function (li) {
+                                let id = $(li).data('id');
                                 fetch('./php/back_order_update_status.php', {
                                     method: 'POST',
                                     headers: {
@@ -86,7 +87,7 @@ new Vue({
                                     },
                                     body: JSON.stringify({
                                         id: id,
-                                        LOGISTICS_STATE: '退回中',
+                                        LOGISTICS_STATE: '退貨中',
                                     }),
                                 })
                                     .then(res => res.json())
@@ -101,9 +102,8 @@ new Vue({
                                                 }
                                             });
                                         } else {
-                                            sAlert(`<h5>您所選的活動皆已是退回狀態</h5>`, 'warning', 'OK');
+                                            sAlert(`<h5>您所選的訂單皆已是退回狀態</h5>`, 'warning', 'OK');
                                         }
-                                        activityList.checkAvailability();
                                     });
                             });
                         };
@@ -148,7 +148,7 @@ new Vue({
                     .then(function (res) {
                         if (res.value) {
                             checked_arr.forEach(function (act) {
-                                let id = $(act).data('actid');
+                                let id = $(li).data('id');
                                 fetch('./php/back_order_update_status.php', {
                                     method: 'POST',
                                     headers: {
@@ -173,7 +173,6 @@ new Vue({
                                         } else {
                                             sAlert(`<h5>您所選的活動皆已是出貨狀態</h5>`, 'warning', 'OK');
                                         }
-                                        activityList.checkAvailability();
                                     });
                             });
                         };

@@ -21,8 +21,8 @@
         <div id="app">
             <div class="o_btn_area">
                 <div>
-                    <button @click="returnOrder()" type="button" class="btn-yellow">退貨</button>
-                    <button @click="shipOrder()" type="button" class="btn-red">出貨</button>
+                    <button @click="returnOrder" type="button" class="btn-yellow">退貨</button>
+                    <button @click="shipOrder" type="button" class="btn-red">出貨</button>
                 </div>
                 <div class="search-area">
                     <input type="text" name="search" @keyup="searchOrder()" id="search_order">
@@ -42,7 +42,7 @@
                         <p class="fieldName">詳細內容</p>
                     </li>
 
-                    <li v-for="order in orders" class="order-li">
+                    <li v-for="order in orders" class="order-li" :data-id="order.ID">
                         <label class="check_container">
                             <input class="checkBox check-order" type="checkbox">
                             <span class="checkmark"></span>
