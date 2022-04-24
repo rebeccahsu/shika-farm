@@ -72,7 +72,6 @@ const modifyActivity = new Vue({
     created(){
         const params = new URLSearchParams(location.search);
         let id = params.get('activity_id');
-        // console.log(id);
         fetch('./php/modify_activity_select.php', {
             method: "POST",
             headers: {
@@ -85,7 +84,6 @@ const modifyActivity = new Vue({
         .then(res => res.json())
         .then(res => this.activity = res)
         .then(() => {
-            // filename
             let src = this.activity[0].IMG.split('/');
             let displayname = src.slice(-1)[0];
             this.filename = displayname;

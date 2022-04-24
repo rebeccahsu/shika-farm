@@ -14,7 +14,7 @@
                 "back_title" : "修改活動"
                 })
             
-                <form class="activity-detail" id="a_detail">
+                <form class="activity-detail" id="a_detail" v-if="activity[0]">
                     <div class="img-area">
                         <label for="p_file" class="btn-red choose-file" style="font-size: 18px;">選擇檔案</label>
                         <span class="filename">{{filename}}</span>
@@ -91,8 +91,6 @@
                         <button type="button" class="btn-green" @click="confirmModify">儲存</button>
                         <button type="button" class="btn-border" @click="cancel">取消</button>
                     </div>
-                    
-    
                 </form>
 
         
