@@ -195,6 +195,7 @@ $("#on_pd").on('click', () => {
                     const { successful, message,end,id} = body;
                     if (successful) {
                         console.log(successful +'訊息'+message+'數'+end);
+                        alert("商品上架成功！")
                     } else {
                         console.log(id+' / '+message);
                     }
@@ -231,6 +232,7 @@ $("#off_pd").on('click', () => {
                         const { successful, message,end,id} = body;
                         if (successful) {
                             console.log(successful +'訊息'+message+'數'+end);
+                            alert("商品下架成功！")
                         } else {
                             console.log(id+' / '+message);
                         }
@@ -331,25 +333,6 @@ function search_product(){
             }
         })
 }
-
-
-// $('.list_item').each((index, value) => {
-
-//     if (value.getAttribute('data-prd_number').search(search_target) == -1 & value.getAttribute('data-prd_name').search(search_target) == -1) {
-//         console.log(value);
-//         value.setAttribute("style", "display:none;");
-//     } else if (search_target == "") {
-//         if ($('#show_off').has('checked') && value.getAttribute('data-prd_condition').search('on') > 0) {
-//             console.log('X');
-//             value.removeAttribute("style");
-//         } else if ($('#show_off').has('checked')) {
-//             console.log('v');
-//             value.removeAttribute("style");
-//         }
-//     }
-
-// })
-
 
 // 商品搜尋end
 // ========================================
