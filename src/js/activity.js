@@ -450,7 +450,7 @@ const vm = new Vue({
                     } else {
                         console.log("尚未登入");
                         sAlert('<h5>請先登入會員</h5>', 'warning', 'OK');
-                        // vm.close();  //若沒有登入就關閉彈窗
+                        vm.close();  //若沒有登入就關閉彈窗
                     }
                 })
         },

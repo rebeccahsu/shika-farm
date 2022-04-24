@@ -97,12 +97,12 @@
                 <div class="item_imgcover">
                     <div class="icon_positiveCover">
                         <img class="item_img" :src="aaa.IMG" alt="">
-                        <div class="item_r_cover">
+                        <div class="item_r_cover" @click="check_login">
                             <img v-if='aaa.ICON' @click="open(aaa)" class="item_img_icon" :src="aaa.ICON"
                                 alt="">
                             <button v-if='aaa.TIME' class="reserve" :class="'-index'+ activeIndex"
                                 :style="{'background': all_data[activeIndex].button_bg}" @click="open(aaa)">
-                                <div @click="check_login()">點我預約</div>
+                                <div @click="check_login">點我預約</div>
                             </button>
                         </div>
                     </div>
