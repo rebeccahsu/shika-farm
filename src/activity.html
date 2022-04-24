@@ -45,7 +45,7 @@
 
         <!-- 預約彈窗 -->
         <div class="black_bg" v-if="modal_open !== null" @click="close()"></div>
-        <div class="modal" v-if="modal_open !== null">
+        <div class="modal" v-if="modal_open !== null" :data-id="modal_open.ID">
             <div class="x_icon_position">
                 <button type="button" class="hamburger_icon" @click="close()">
                     <span class="-hr -top"></span>
@@ -53,27 +53,31 @@
                 </button>
             </div>
             <!-- <input name="date" v-model="date" class="modal_date" id="date" type="date"><br><br> -->
-            <select name="date" v-model="date" class="dateSelect">
+            <select name="date" v-model="reservation.date" class="dateSelect" @change="checkLeft">
                 <option value="" disabled selected>請選擇日期</option>
-                <option value="day1">2022-05-06</option>
-                <option value="day2">2022-05-07</option>
-                <option value="day3">2022-05-08</option>
+                <option value="2022-05-06">2022-05-06</option>
+                <option value="2022-05-07">2022-05-07</option>
+                <option value="2022-05-08">2022-05-08</option>
             </select><br>
             <!-- <template v-for="(item2,key) in modal_open.time_period">
                 <input type="radio" :id="period+key" name="period"><label :for="period+key"> {{item2}}</label><br>
             </template> -->
-            <input type="radio" id="period1" name="session" v-model="session"><label
-                for="period1">場次一：{{modal_open.S1_START}}-{{modal_open.S1_END}}</label><br>
-            <input type="radio" id="period1" name="session" v-model="session"><label
-                for="period1">場次二：{{modal_open.S2_START}}-{{modal_open.S2_END}}</label><br>
-            <input type="radio" id="period1" name="session" v-model="session"><label
-                for="period1">場次三：{{modal_open.S3_START}}-{{modal_open.S3_END}}</label><br>
+            <input type="radio" id="period1" name="session" v-model="reservation.start" :value="modal_open.S1_START" :data-end="modal_open.S1_END" @change="checkLeft">
+            <label for="period1">場次一：{{modal_open.S1_START}}~{{modal_open.S1_END}}</label>
+            <br>
+            <input type="radio" id="period2" name="session" v-model="reservation.start" :value="modal_open.S2_START" :data-end="modal_open.S2_END" @change="checkLeft">
+            <label for="period2">場次二：{{modal_open.S2_START}}~{{modal_open.S2_END}}</label>
+            <br>
+            <input type="radio" id="period3" name="session" v-model="reservation.start" :value="modal_open.S3_START" :data-end="modal_open.S3_END" @change="checkLeft">
+            <label for="period3">場次三：{{modal_open.S3_START}}~{{modal_open.S3_END}}</label>
+            <br>
 
-            預約人數： <input type="number" name="attendance" v-model="attendance" min="1" max="20" class="attendance">
-            人</br>
-            剩餘人數： {{modal_open.OPACITY}} 人</br><br>
-            <button class="modal_button" name="activity_ID" v-model="activity_ID"
-                @click="addReservation()">我要預約{{modal_open.ID}}</button><br><br>
+            預約人數： 
+            <input type="number" name="attendance" v-model="reservation.attendance" min="1" max="20" class="attendance">人
+            </br>
+            剩餘人數： <span id="left">{{modal_open.OPACITY}}</span> 人</br><br>
+            <button class="modal_button" name="activity_ID" :data-id="activity_ID"
+                @click="addReservation()">我要預約</button><br><br>
             <img class="modal_img" src="./img/activity/horse1.png" alt="">
         </div>
 

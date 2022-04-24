@@ -16,9 +16,9 @@
     $stmt->bindValue(":activity_ID", $reservation["ACTIVITY_ID"]);
     $stmt->bindValue(":MEMBER_ID", $_SESSION["ID"]);  //MEMBER_ID 不確定要不要放進來跟怎麼放 在html裡也沒有給他name及v-model
     $stmt->bindValue(":date", $reservation["DATE"]);
-    $stmt->bindValue(":session", $reservation["session"]);
+    $stmt->bindValue(":session", $reservation["SESSION"]);
     $stmt->bindValue(":attendance", $reservation["ATTENDANCE"]);
-    $stmt->bindValuue(":NOW()", $reservation["UPDATE_TIME"]); //UPDATE_TIME 不確定要不要放進來跟怎麼放 在html裡也沒有給他name及v-model
+    // $stmt->bindValuue(":NOW()", $reservation["UPDATE_TIME"]); //UPDATE_TIME 不確定要不要放進來跟怎麼放 在html裡也沒有給他name及v-model
     $stmt->execute();
     
     $resultCount = $stmt->rowCount();

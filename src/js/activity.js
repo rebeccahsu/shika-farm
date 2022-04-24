@@ -269,7 +269,13 @@ const vm = new Vue({
                             // },
                         ]
                     },
-                ]
+                ],
+            reservation: {
+                // activity_ID: '',
+                date: '',
+                start:'',
+                attendance: '',
+            },
         }
     },
     mounted() {
@@ -444,28 +450,35 @@ const vm = new Vue({
                     } else {
                         console.log("尚未登入");
                         sAlert('<h5>請先登入會員</h5>', 'warning', 'OK');
+                        // vm.close();  //若沒有登入就關閉彈窗
                     }
                 })
         },
         addReservation() {
-            if (this.activity_ID != '' && this.MEMBER_ID != '' && this.date != '' && this.session != '' && this.attendance != '') {
-                fetch("./php/add_reservaion.php", {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json',
-                        // "Accept": 'application/json'
-                    },
-                    body: JSON.stringify({
-                        //ID: this.ID, //此為預約資料表自動產生的AI 不給值
-                        ACTIVITY_ID: this.activity_ID,
-                        MEMBER_ID: this.$_SESSION["ID"], //MEMBER_ID 不確定要不要放進來跟怎麼放 在html裡也沒有給他name及v-model
-                        DATE: this.date,
-                        SESSION: this.session,
-                        ATTENDANCE: this.attendance,
-                        UPDATE_TIME: this.NOW(), //UPDATE_TIME 不確定要不要放進來跟怎麼放 在html裡也沒有給他name及v-model
-                    }),
-
-                })
+            let actid = $('.modal').data("id");
+            let endtime = $('input[name="session"]:checked').data('end');
+            let session = this.reservation.start + "~" + endtime;
+            if (this.date != '' && this.start != '' && this.attendance != '') {
+                if ($('#left').html() == 0 || parseInt($('#left').html()) - parseInt(this.attendance) < 0){
+                    sAlert('<h5>本場次剩餘名額不足，<br>請選擇其他場次</h5>', 'warning', 'OK');
+                }else{
+                    fetch("./php/add_reservaion.php", {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json',
+                            // "Accept": 'application/json'
+                        },
+                        body: JSON.stringify({
+                            //ID: this.ID, //此為預約資料表自動產生的AI 不給值
+                            ACTIVITY_ID: actid,
+                            // MEMBER_ID: this.$_SESSION["ID"], //MEMBER_ID 不確定要不要放進來跟怎麼放 在html裡也沒有給他name及v-model
+                            DATE: this.date,
+                            SESSION: session,
+                            ATTENDANCE: this.attendance,
+                            // UPDATE_TIME: this.NOW(), //UPDATE_TIME 不確定要不要放進來跟怎麼放 在html裡也沒有給他name及v-model
+                        }),
+    
+                    })
                     .then((resp) => resp.json())
                     .then((body) => {
                         const { successful } = body;
@@ -486,7 +499,7 @@ const vm = new Vue({
                                     location.href = './activity.html';
                                 }
                                 else {
-
+    
                                 }
                             });
                             //this.ID = '';
@@ -496,15 +509,15 @@ const vm = new Vue({
                             // this.SESSION = '';
                             // this.ATTENDANCE = '';
                             // this.UPDATE_TIME = '';
-
+    
                             //this.ID = ''; ////此為預約資料表自動產生的AI 不給值
-                            this.activity_ID = '';
-                            this.MEMBER_ID = '';  //MEMBER_ID 不確定要不要放進來跟怎麼放 在html裡也沒有給他name及v-model
+                            // this.activity_ID = '';
+                            // this.MEMBER_ID = '';  //MEMBER_ID 不確定要不要放進來跟怎麼放 在html裡也沒有給他name及v-model
                             this.date = '';
-                            this.session = '';
+                            this.start = '';
                             this.attendance = '';
-                            this.NOW();  //UPDATE_TIME 不確定要不要放進來跟怎麼放 在html裡也沒有給他name及v-model
-
+                            // this.NOW();  //UPDATE_TIME 不確定要不要放進來跟怎麼放 在html裡也沒有給他name及v-model
+    
                         }
                         else {
                             sAlert('<h5>預約失敗，請再試一次</h5>', 'error', 'OK');
@@ -513,10 +526,47 @@ const vm = new Vue({
                     .catch(function (err) {
                         sAlert('<h5>預約失敗，請再試一次</h5>', 'error', 'OK');
                     });
+                
+                }
 
             } else {
                 sAlert('<h5>請填寫完所有欄位再送出</h5>', 'warning', 'OK');
             }
+        },
+        checkLeft(){
+            // 檢查剩餘人數
+            let actid = $('.modal').data("id");
+            let endtime = $('input[name="session"]:checked').data('end');
+            let session = this.reservation.start + "~" + endtime;
+
+            fetch('./php/reservation_left_opacity.php', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    activityId: actid,
+                    date: this.reservation.date,
+                    session: session,
+                }),
+            })
+            .then(res => res.json())
+            .then(res => {
+                if(res.length == 0){
+                    // console.log('nobody');
+                    $('#left').html(this.modal_open.OPACITY);
+                }else{
+                    // console.log(res);
+                    let count = 0;
+                    res.forEach(function(data){
+                        count += data.ATTENDANCE;
+                    });
+                    // console.log(count);
+                    let left = parseInt(this.modal_open.OPACITY) - parseInt(count);
+                    $('#left').html(left);
+                }        
+            })
+            
         },
 
 
