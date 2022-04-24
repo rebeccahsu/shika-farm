@@ -102,14 +102,39 @@ $('.cancel_btn').on('click', function () {
 })
 
 //Tab3 詳細訂單
-
 //詳細產品下拉按鈕
-$('#op_btn').on('click', function () {
-  console.log('1')
-  $('#li3').slideToggle()
-   console.log('2')
+function open_detail(ID){
+  // console.log(ID);
+  fetch("./php/mb_order_detail.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      orderID: ID,
+    })
+  })
+  .then((res) => res.json())
+  .then((res) => {
+    $('#li'+ ID).children().remove()
+	  $('#li'+ ID).slideToggle()
+    console.log(res);
+    $('#li'+ ID).append("<ul class='detail' style='list-style-type: none;>");
+    for(let i = 0; i < res.length; i++){
+      $('#li'+ ID).append("<li'>" + res[i].NAME + " " + res[i].QUANTITY + '件' +  " " + 'NT$' + res[i].UNIT_PRICE +"</li>");
+    }
+    $('#li'+ ID).append("</ul>");
+  });
+}
 
-})
+// $('#op_btn').on('click', function (e) {
+//   console.log("aaa");
+  
+//   console.log('1')
+//   $('#li3').slideToggle()
+//    console.log('2')
+
+// })
 
 //取消訂單
 
@@ -173,23 +198,48 @@ $('#confirmBtn').on('click', function(){
 
 
 
-
-
-
-
-
-
-
-//會員登出
-
-// var express = require('express'),
-//      router = express.Router();
-
-// router.get('/', function(req, res) {
-//   req.session.destroy();
-//   res.redirect('/login');
+// 取得訂單資訊
+// $.ajax({
+//   url:"./php/mb_list.php",
+//   method:"POST",
+//   data:JSON.stringify({
+//         memberID: JSON.parse(sessionStorage.getItem('login')).ID,
+//   }),
+  
+//   success:function(res){console.log(res)},
+//   error:function(err){console.log(err)},
 // });
 
-// module.exports = router;
+fetch("./php/mb_list.php", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    memberID: JSON.parse(sessionStorage.getItem('login')).ID,
+  })
+})
+.then((res) => res.json())
+.then((res) => {
+	console.log(res);
+  let tr_row = "";
+  for(let i = 0; i < res.length; i++){
+    tr_row += "<tr class='li2'>";
+    tr_row += "<td>"+ res[i].ORDER_DATE +"</td>"
+    tr_row += "<td id='orderID'>"+ res[i].ID +"</td>"
+    tr_row += "<td>"+ res[i].quantity +"</td>"
+    tr_row += "<td>"+ res[i].TOTAL +"</td>"
+    tr_row += "<td>"+ res[i].PAYMENT +"</td>"
+    tr_row += "<td>"+ res[i].LOGISTICS_STATE +"</td>"
+    tr_row += "<td><button class='cel_list_btn'>取消訂單</button>"
+    tr_row += "<button id='op_btn' onclick='open_detail(" + res[i].ID + ")'>+</button></td>"
+    tr_row += "</tr>";
+    tr_row += "<tr class='li3' id='li" + res[i].ID + "' style='display:none;'>";
+    tr_row += "</tr>";
+
+  }
+  $("#li2").append(tr_row);
+});
+
 
 
