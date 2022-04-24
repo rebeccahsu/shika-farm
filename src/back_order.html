@@ -17,18 +17,19 @@
         @@include('./layout/back_title.html', {
         "back_title" : "訂單管理"
         })
-        <div class="o_btn_area">
-            <div>
-                <button id="return_order" type="button" class="btn-yellow">退貨</button>
-                <button id="ship_order" type="button" class="btn-red">出貨</button>
-            </div>
-            <div class="search-area">
-                <input type="text" name="search" id="search_order">
-                <img src="./img/icon/search.png" alt="" class="search_icon">
-            </div>
-        </div>
 
         <div id="app">
+            <div class="o_btn_area">
+                <div>
+                    <button @click="returnOrder()" type="button" class="btn-yellow">退貨</button>
+                    <button @click="shipOrder()" type="button" class="btn-red">出貨</button>
+                </div>
+                <div class="search-area">
+                    <input type="text" name="search" @keyup="searchOrder()" id="search_order">
+                    <img src="./img/icon/search.png" alt="" class="search_icon">
+                </div>
+            </div>
+
             <section class="list_area">
                 <ul id="order-list">
                     <li class="">
@@ -51,7 +52,7 @@
                         <p class="order_member">{{order.MEMBER_ID}}</p>
                         <p class="order_price">{{order.TOTAL}}</p>
                         <p class="order_condition">{{order.LOGISTICS_STATE}}</p>
-                        <button type="button" class="btn-green order_info">...</button>
+                        <button type="button" @click="orderInfo()" class="btn-green order_info">...</button>
                     </li>
 
                 </ul>
