@@ -70,7 +70,7 @@ const addActivity = new Vue({
     methods: {
         addActivity(){
             if (this.img != '' && this.name != '' && this.opacity != '' && this.desc != '' && this.s1_start != '' && this.s2_start != '' && this.s3_start != ''){
-                fetch("./php/add_activity.php", {
+                fetch("./php/back_activity_add.php", {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json',
