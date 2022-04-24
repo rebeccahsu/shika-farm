@@ -4,7 +4,7 @@
     $sql = "select * from ORDER";
     $statement = $pdo->prepare($sql);
     $statement->execute();
-    $activities = $statement->fetchAll();
+    $orders = $statement->fetchAll();
 
     $result = $orders;
 
