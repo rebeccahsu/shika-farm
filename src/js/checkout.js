@@ -172,7 +172,6 @@ new Vue({
 				alert("未填寫完整");
 				return;
 			}
-			
 
 			let order = {
 				memberid: JSON.parse(sessionStorage.getItem('login')).ID,
