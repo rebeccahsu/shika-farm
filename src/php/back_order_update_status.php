@@ -3,7 +3,7 @@
     
     $body = json_decode(file_get_contents("php://input"), true);
 
-    $sql = 'UPDATE 'ORDER' SET LOGISTICS_STATE = :LOGISTICS_STATE WHERE ID = :id;';
+    $sql = 'UPDATE ORDER` SET LOGISTICS_STATE = :LOGISTICS_STATE WHERE ID = :id;';
 
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue(":id", $body["id"]);
