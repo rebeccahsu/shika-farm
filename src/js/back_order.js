@@ -195,9 +195,15 @@ new Vue({
             });
         },
 
-        // ===== 詳情按鈕 ====
-        orderInfo() {
-            window.location.href = "./back_order_detail.html";
+        // // ===== 詳情按鈕 ====
+        // orderInfo() {
+        //     window.location.href = "./back_order_detail.html";
+        // },
+
+        // ==== 跳轉詳情頁面按鈕 ====
+        orderInfo(e) {
+            let targetId = $(e.target).closest('li').data('id');
+            location.href = `./back_order_detail.html?order_id=${targetId}`;
         },
     },
 });
