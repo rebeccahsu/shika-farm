@@ -250,7 +250,7 @@ $("#pd_info_cart").on("click", (e) => {
 		img: img,
 		name: name,
 		price: price,
-		count: count,
+		count: Number(count),
 	};
 
 	

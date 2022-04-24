@@ -177,8 +177,10 @@ let co = document.getElementsByClassName("Co")[0]; //結帳按鈕
 // 點擊購物車icon讓購物車彈出
 cart.addEventListener("click", function (e) {
 	e.preventDefault(); //停止a連結預設行為
-	spcart.classList.toggle("active");
-	black_bg.start_cart(); //在點擊後，在強制執行一次這個vue裡面的start_cart()函式
+	if(location.href!="http://localhost/tfd105_g6/dist/checkout.html"){
+		spcart.classList.toggle("active");
+		black_bg.start_cart(); //在點擊後，在強制執行一次這個vue裡面的start_cart()函式
+	}
 });
 
 // 點擊黑色遮罩讓購物車隱藏
@@ -192,6 +194,7 @@ spcart.addEventListener("click", function (e) {
 // 點擊繼續購物按鈕讓購物車隱藏
 gosp.addEventListener("click", function (e) {
 	spcart.classList.toggle("active");
+	location.href="http://localhost/tfd105_g6/dist/products.html";
 });
 
 //點擊結帳按鈕執行end_cart()讓購物車裡的資料放入sessionStorage裡，讓結帳流程能抓到最新資料
