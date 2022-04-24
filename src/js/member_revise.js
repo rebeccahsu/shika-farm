@@ -138,6 +138,7 @@ let userInfo = {
 //登出按鈕
 
 $('#logout').on('click', function(){
+  sessionStorage.clear();
   $.ajax({
     url: './php/logout.php',
     method: "POST",
@@ -145,7 +146,6 @@ $('#logout').on('click', function(){
       if(data == '登出成功') {
         alert('登出成功');
         location.href = 'index.html'
-
       }
     }
 
