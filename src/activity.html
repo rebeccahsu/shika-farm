@@ -98,7 +98,7 @@
                     <div class="icon_positiveCover">
                         <img class="item_img" :src="aaa.IMG" alt="">
                         <div class="item_r_cover">
-                            <img v-if='aaa.icon_img' @click="open(aaa)" class="item_img_icon" :src="aaa.icon_img"
+                            <img v-if='aaa.ICON' @click="open(aaa)" class="item_img_icon" :src="aaa.ICON"
                                 alt="">
                             <button v-if='aaa.TIME' class="reserve" :class="'-index'+ activeIndex"
                                 :style="{'background': all_data[activeIndex].button_bg}" @click="open(aaa)">
