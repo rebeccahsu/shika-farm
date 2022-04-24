@@ -1,17 +1,15 @@
-// 套件================================
-// import Splide from './vendors/splide.min.js';
-
+// 讀取頁面開始 ==============================================================
 document.addEventListener("DOMContentLoaded", function () {
 	// 讀取資料==========================================
 	// const editRule = /[prd_number=]\d{8}$/
 	let urlParams = new URLSearchParams(window.location.search);
-	let id = urlParams.get("prd_number");
+	let id = urlParams.get('prd_number');
 	// console.log(id);
 	// AJAX
-	fetch("./php/product_load.php", {
-		method: "POST",
+	fetch('./php/product_load.php', {
+		method: 'POST',
 		headers: {
-			"Content-type": "application/json",
+			'Content-type': 'application/json'
 		},
 		// 送出內容轉成JSON送出
 		body: JSON.stringify({
@@ -19,30 +17,33 @@ document.addEventListener("DOMContentLoaded", function () {
 		}),
 	})
 		// 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
-		.then((resp) => resp.json())
-		.then((body) => {
+		.then(resp => resp.json())
+		.then(body => {
 			//body也不可以console
 			const { successful, message, data } = body;
 			if (successful == true) {
-				console.log(successful + "訊息" + message + "資料" + data);
+				// console.log(successful + "訊息" + message + "資料" + data);
 				let bread = document.querySelector(".pd_bread");
 				let kind = (data[0].PRODUCT_CATEGORY_ID = 1 ? "冷凍冷藏" : "日常用品");
 				bread.innerText = `首頁 | ${kind} | ${data[0].NAME}`;
 				putin_top_pic(data[0].MAIN_PIC);
 				data_load(data);
 				check_inStock();
+
 			} else {
-				console.log(successful + " 訊息" + message);
+				// console.log(successful + ' 訊息' + message);
 				let main = document.querySelector(".pd_main");
 				main.innerHTML = `<div style="height:200px;text-align: center;display: flex;align-items: center;flex-direction:column-reverse;"><h3>sorry！找不到此商品！</h3></div>`;
 			}
-		});
+		})
+
+
 
 	function data_load(data) {
 		let pd_name = document.querySelector("#pd_info_name");
 		pd_name.innerText = data[0].NAME;
 		let slogn = document.querySelectorAll(".pd_info_slog");
-		let slogan_text = JSON.parse(data[0].SLOGAN);
+		let slogan_text = JSON.parse(data[0].SLOGAN)
 		slogn[0].innerText = slogan_text[0];
 		slogn[1].innerText = slogan_text[1];
 		// 商品規格
@@ -59,88 +60,23 @@ document.addEventListener("DOMContentLoaded", function () {
 		let intro_text = JSON.parse(data[0].DESCRIPTION);
 		// console.log(intro_text);
 		for (let i = 0; i < intro_text.length; i++) {
-			console.log(intro_text[i].src + " / " + intro_text[i].text);
+			// console.log(intro_text[i].src+' / '+intro_text[i].text);
 			let intro_html = `<div class="pd_intro">
 			<div class=" pd_intro_pic"><img src="${intro_text[i].src}" alt="">
 			</div><p>${intro_text[i].text}</p></div>`;
 			intro.insertAdjacentHTML("beforeend", intro_html);
+
 		}
 	}
 
 	// 讀取資料end========================================
 
-	let sp1 = $("#splide01").find(".splide__list");
-	new Splide(".splide01").mount();
-	sp1.on("change", function () {
-		// 掛載套件=========
-		var main_1 = new Splide(".splide01", {
-			type: "splide",
-			rewind: true,
-			pagination: false,
-			// arrows: false,
-			// fixedHeight: 500,
-			padding: { bottom: 10 },
-			// マウスホイールによるスライダーの移動を有効
-			wheel: true,
-			releaseWheel: true,
-		});
+})
 
-		var thumbnails_1 = new Splide("#thumbnail-slider1", {
-			fixedWidth: 183,
-			fixedHeight: 183,
-			gap: 10,
-			rewind: true,
-			pagination: false,
-			cover: true,
-			isNavigation: false,
-			arrows: false,
-			padding: { top: 10, left: 0, right: 0 },
-			breakpoints: {
-				1200: {
-					fixedWidth: 163,
-					fixedHeight: 163,
-				},
-				992: {
-					fixedWidth: 130,
-					fixedHeight: 130,
-					gap: 10,
-				},
-				768: {
-					// destroy:true,  //廢棄會將此段套件失效
-					// autoWidth: false
-				},
-			},
-		});
 
-		main_1.sync(thumbnails_1);
-		main_1.mount();
-		thumbnails_1.mount();
-	});
 
-	var main_2 = new Splide("#splide02", {
-		fixedWidth: "90",
-		autoHeight: true,
-		type: "splide",
-		rewind: true,
-		pagination: true,
-		arrows: true,
-		gap: 20,
-		padding: { bottom: 10 },
-		mediaQuery: "min", //mediaQuery:'min'or'max'配合breakpoints: 尺寸
-		// destroy: false,  //廢棄會將此段套件區塊會display:none
-		breakpoints: {
-			992: {
-				drag: false,
-			},
-		},
-	}).mount();
 
-	if (window.innerWidth > 992) {
-		removeSplide();
-	}
-});
-
-// for resize
+// for resize==============================
 function addSplide() {
 	$(".pd_recommend").children("div").attr("id", "splide02");
 	$(".pd_recommend_list").parent("div").addClass("splide__track");
@@ -167,18 +103,103 @@ $(window).on("resize", function () {
 	}
 });
 // for resize end========================
+// 讀入首圖top_img=======================
 function putin_top_pic(top_pic) {
 	top_pic = JSON.parse(top_pic);
-	console.log(top_pic);
-	let sp1 = $("#splide01").find(".splide__list");
-	top_pic.forEach((v) => {
-		sp1.append(`<li class="splide__slide"><img src="${v}" alt=""></li>`);
+
+	let top01 = document.querySelector(".splide01");
+	top01 = top01.querySelectorAll("img");
+	let top02 = document.querySelector("#thumbnail-slider1")
+	top02 = top02.querySelectorAll("img");
+
+	top_pic.forEach((v, i) => {
+		console.log(i + " / " + v);
+		top01[i].setAttribute("src", `${v}`);
+		top02[i].setAttribute("src", `${v}`);
+
+	})
+	// 刪除多餘的空li
+	for (let i = 3; i > 0; i--) {
+		if (top01[i].getAttribute("src") == "") {
+			console.log(i + "XXX");
+			top01[i].closest("li").remove();
+			top02[i].closest("li").remove();
+		}
+	}
+
+	//開始掛載套件=========================== 
+	// 掛載套件=========
+	var main_1 = new Splide(".splide01", {
+		type: "splide",
+		rewind: true,
+		pagination: false,
+		// arrows: false,
+		// fixedHeight: 500,
+		padding: { bottom: 10 },
+		// マウスホイールによるスライダーの移動を有効
+		wheel: true,
+		releaseWheel: true,
 	});
 
-	let sp1_under = $("#thumbnail-slider1").find(".splide__list");
-	$.each(top_pic, (i, v) => {
-		sp1_under.append(`<li class="splide__slide"><img src="${v}" alt=""></li>`);
+	var thumbnails_1 = new Splide("#thumbnail-slider1", {
+		fixedWidth: 183,
+		fixedHeight: 183,
+		gap: 10,
+		rewind: true,
+		pagination: false,
+		cover: true,
+		isNavigation: false,
+		arrows: false,
+		padding: { top: 10, left: 0, right: 0 },
+		breakpoints: {
+			1200: {
+				fixedWidth: 163,
+				fixedHeight: 163,
+			},
+			992: {
+				fixedWidth: 130,
+				fixedHeight: 130,
+				gap: 10,
+			},
+			768: {
+				// destroy:true,  //廢棄會將此段套件失效
+				// autoWidth: false
+			},
+		},
 	});
+
+
+	var main_2 = new Splide("#splide02", {
+		fixedWidth: "90",
+		autoHeight: true,
+		type: "splide",
+		rewind: true,
+		pagination: true,
+		arrows: true,
+		gap: 20,
+		padding: { bottom: 10 },
+		mediaQuery: "min", //mediaQuery:'min'or'max'配合breakpoints: 尺寸
+		// destroy: false,  //廢棄會將此段套件區塊會display:none
+		breakpoints: {
+			992: {
+				drag: false,
+			},
+		},
+	}).mount();
+
+
+	new Splide(".splide01").mount();
+	main_1.sync(thumbnails_1);
+	main_1.mount();
+	thumbnails_1.mount();
+
+	if (window.innerWidth > 992) {
+		removeSplide();
+	}
+
+	// console.log(topImg01);
+	// console.log(topImg02);
+
 }
 // 套件與讀取資料end=========================================================
 
@@ -305,4 +326,4 @@ function check_inStock() {
 		);
 	}
 }
-//
+//庫存0時，停用按鈕、加入購物車和購買 end===============
