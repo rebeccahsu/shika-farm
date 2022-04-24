@@ -199,5 +199,14 @@ gosp.addEventListener("click", function (e) {
 
 //點擊結帳按鈕執行end_cart()讓購物車裡的資料放入sessionStorage裡，讓結帳流程能抓到最新資料
 co.addEventListener("click", function () {
-	black_bg.end_cart();
+	if(sessionStorage.getItem("login")){
+		spcart.classList.toggle("active");
+    	$("#login_box").removeClass("-off");
+		$("#back_bg").removeClass("-off");
+		location.href = 'checkout.html';
+	}else{
+		black_bg.end_cart();
+		alert("購物車無商品");
+	}
+	
 });

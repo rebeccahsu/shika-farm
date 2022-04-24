@@ -4,7 +4,15 @@
     $activity = json_decode(file_get_contents("php://input"), true);
     // $title = $_POST['title'];
     // echo $title;
-    $sql = "select * from ACTIVITY where STATE = '上架中'";
+
+    // $sql = "select * from ACTIVITY where STATE = '上架中'";
+
+    $sql = 'SELECT a.* , ac.*
+            FROM ACTIVITY a JOIN ACTIVITY_CATEGORY ac
+            ON a.CATEGORY_ID = ac.ID AS ac_CATEGORY_ID
+            WHERE a.STATE = "上架中";
+            '
+
     // $statement = $pdo->prepare($sql);
     // $statement->execute();
     // $all_data = $statement->fetchAll();
