@@ -7,6 +7,24 @@ pages.forEach(function (page) {
     }
 });
 
+// sweetalert
+function sAlert(msg, icon, btn) {
+    Swal.fire({
+        title: msg,
+        icon: icon,
+        showConfirmButton: true, // 確認按鈕（預設會顯示不用設定)
+        confirmButtonText: btn, //　按鈕顯示文字
+        confirmButtonAriaLabel: btn, // 網頁無障礙用
+        // showDenyButton: true, // 否定按鈕
+        showCancelButton: false, // 取消按鈕
+        buttonsStyling: false, // 是否使用sweetalert按鈕樣式（預設為true）
+        customClass: {
+            confirmButton: 'btn-yellow margintop_15 marginleft_2 marginright_2',
+            cancelButton: 'btn-red margintop_15 marginleft_2 marginright_2'
+        },
+    })
+}
+
 new Vue({
     el: '#app',
     data: {
@@ -29,6 +47,7 @@ new Vue({
     },
     methods: {
         //===== 新刪修 =========
+        //退回按鈕
         returnOrder() {
             let checkbox = document.querySelectorAll(".check-order");
             let checked_arr = [];
@@ -41,10 +60,62 @@ new Vue({
                     box.checked = false;
                 }
             });
-            // console.log(checked_arr[0]);
-            if (confirm("確定退回 " + checked_arr.length + " 個訂單嗎？")) {
-                alert("已退回 " + checked_arr.length + " 個訂單！");
-            }
+
+            // 判斷是否有勾選的項目
+            if (checked_arr.length > 0) {
+                Swal.fire({
+                    title: `<h5>您確定要退回 ${checked_arr.length} 筆訂單嗎？</h5>`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: '確定',
+                    cancelButtonText: '取消',
+                    buttonsStyling: false,
+                    customClass: {
+                        confirmButton: 'btn-green marginright_20',
+                        cancelButton: 'btn-red'
+                    },
+                })
+                    .then(function (res) {
+                        if (res.value) {
+                            checked_arr.forEach(function (act) {
+                                let id = $(act).data('actid');
+                                fetch('./php/back_order_update_status.php', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        id: id,
+                                        LOGISTICS_STATE: '退回中',
+                                    }),
+                                })
+                                    .then(res => res.json())
+                                    .then(res => {
+                                        if (res.successful) {
+                                            $(act).addClass("-off");
+                                            $(act).find(".state-text").html("未上架");
+                                            sAlert(`<h5>已成功退回 ${checked_arr.length} 筆訂單！</h5>`, 'success', 'OK');
+                                            checkbox.forEach(function (box) {
+                                                if (box.checked) {
+                                                    box.checked = false;
+                                                }
+                                            });
+                                        } else {
+                                            sAlert(`<h5>您所選的活動皆已是退回狀態</h5>`, 'warning', 'OK');
+                                        }
+                                        activityList.checkAvailability();
+                                    });
+                            });
+                        };
+                    });
+            } else {
+                sAlert(`<h5>您尚未勾選任何活動</h5>`, 'warning', 'OK');
+            };
+
+            // // console.log(checked_arr[0]);
+            // if (confirm("確定退回 " + checked_arr.length + " 個訂單嗎？")) {
+            //     alert("已退回 " + checked_arr.length + " 個訂單！");
+            // }
         },
 
         //出貨按鈕
@@ -59,10 +130,62 @@ new Vue({
                     box.checked = false;
                 }
             });
-            // console.log(checked_arr[0]);
-            if (confirm("確定出貨 " + checked_arr.length + " 個訂單嗎？")) {
-                alert("已出貨 " + checked_arr.length + " 個訂單！");
-            }
+
+            // 判斷是否有勾選的項目
+            if (checked_arr.length > 0) {
+                Swal.fire({
+                    title: `<h5>您確定要出貨這 ${checked_arr.length} 筆訂單嗎？</h5>`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: '確定',
+                    cancelButtonText: '取消',
+                    buttonsStyling: false,
+                    customClass: {
+                        confirmButton: 'btn-green marginright_20',
+                        cancelButton: 'btn-red'
+                    },
+                })
+                    .then(function (res) {
+                        if (res.value) {
+                            checked_arr.forEach(function (act) {
+                                let id = $(act).data('actid');
+                                fetch('./php/back_order_update_status.php', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        id: id,
+                                        LOGISTICS_STATE: '出貨中',
+                                    }),
+                                })
+                                    .then(res => res.json())
+                                    .then(res => {
+                                        if (res.successful) {
+                                            $(act).removeClass("-off");
+                                            $(act).find(".state-text").html("上架中");
+                                            sAlert(`<h5>已成功出貨 ${checked_arr.length} 筆訂單！</h5>`, 'success', 'OK');
+                                            checkbox.forEach(function (box) {
+                                                if (box.checked) {
+                                                    box.checked = false;
+                                                }
+                                            });
+                                        } else {
+                                            sAlert(`<h5>您所選的活動皆已是出貨狀態</h5>`, 'warning', 'OK');
+                                        }
+                                        activityList.checkAvailability();
+                                    });
+                            });
+                        };
+                    });
+            } else {
+                sAlert(`<h5>您尚未勾選任何訂單</h5>`, 'warning', 'OK');
+            };
+
+            // // console.log(checked_arr[0]);
+            // if (confirm("確定出貨 " + checked_arr.length + " 個訂單嗎？")) {
+            //     alert("已出貨 " + checked_arr.length + " 個訂單！");
+            // }
         },
 
         // ==== 訂單搜尋 ====
