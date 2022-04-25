@@ -188,10 +188,12 @@ new Vue({
         },
 
         // ==== 訂單搜尋 ====
-        searchOrder() {
-            let target = $(this).val();
-            $(".order-li").filter(() => {
-                $(this).toggle($(this).text().indexOf(target) > -1)
+        searchOrder(e) {
+            let target = $(e.target).val();
+            // console.log(target);
+            $(".order-li").each(function() {
+                // console.log(this);
+                $(this).toggle($(this).text().indexOf(target) > -1);
             });
         },
 
@@ -203,13 +205,6 @@ new Vue({
 });
 
 // $(function () {
-//     //目前頁面亮燈
-//     let pages = document.querySelector(".aside_ul").querySelectorAll("h5");
-//     pages.forEach(function (page) {
-//         if (page.innerHTML == "訂單管理") {
-//             page.closest("a").classList.add("-on");
-//         }
-//     });
 
 //     //===== 新刪修 =========
 //     let checkbox = document.querySelectorAll(".check-order");
