@@ -31,17 +31,17 @@
 
         <div class="list container-lg">
             <p>排序</p>
-            <select>
-                <option>請選擇類別</option>
-                <option>價錢高到低</option>
-                <option>價錢低到高</option>
+            <select class="price_sort">
+                <option value="">請選擇類別</option>
+                <option value="high">價錢高到低</option>
+                <option value="low">價錢低到高</option>
             </select>
         </div>
 
 
 
         <div class="main_down container-lg">
-            <a href="./product_detail.html?prd_number=9">
+            <!-- <a href="./product_detail.html?prd_number=9">
                 <div class="down-in">
                     <img src="./img/products/panna_cotta.jpg" alt="">
                     <h5>鮮奶烙</h5>
@@ -103,7 +103,7 @@
                     <h5>羊毛毯(綠)</h5>
                     <h5 class="price">NT$549</h5>
                 </div>
-            </a>
+            </a> -->
 
         </div>
 
@@ -116,6 +116,7 @@
 
     <!-- footer -->
     @@include('./layout/footer.html')
+    <script src="./js/products.js"></script>
 </body>
 
 </html>
