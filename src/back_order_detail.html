@@ -29,8 +29,8 @@
                             <p>數量</p>
                             <p>小計</p>
                         </li>
-                        <li class="product">
-                            <p><img :src="orderDetail.MAIN_PIC" alt=""></p>
+                        <li v-for="" class="product">
+                            <p><img :src="orderDetail.MAIN_PIC[orderDetail.PRODUCT_ID]" alt=""></p>
                             <p>{{orderDetail.NAME}}</p>
                             <p>{{orderDetail.UNIT_PRICE}}</p>
                             <p>{{orderDetail.QUANTITY}}</p>
