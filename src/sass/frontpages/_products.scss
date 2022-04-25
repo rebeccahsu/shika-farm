@@ -95,6 +95,11 @@
 
 .main_down .price {
     color: $color_G;
+    &::before{
+        content: 'NT$';
+        color: inherit;
+        font-size: inherit;
+    }
 }
 
 .main_down .down-in {
