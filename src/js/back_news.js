@@ -218,7 +218,7 @@ new Vue({
     methods: {
         edit(e){
             let target_id = $(e.target).closest('li').data('id');
-            location.href = `./back_news_detail.html?news_number=${target_id}`;
+            location.href = `./back_news_detail.html?news_id=${target_id}`;
         },
     },
 })

@@ -43,9 +43,6 @@
                     </div>
 
                 </div>
-                <!-- <div class="bk_img">
-                    <img id="showimg" src="" style="display:none;" />
-                </div> -->
 
                 <div class="bl_down">
                     <h5>文章內容</h5>
@@ -55,12 +52,12 @@
                 <div class="date">
                     <span>建立日期</span>
                     <!-- <span>{{news[0].DATE}}</span> -->
-                    <input type="text" v-model="news[0].DATE">
+                    <input type="text" v-model="news[0].DATE" disabled>
                 </div>
 
                 <div class="buttonArea margintop_40">
-                    <input type="submit" value="發表" class=" btn_o">
-                    <input type="submit" value="取消" class=" btn_d">
+                    <input type="button" value="儲存" class=" btn_o" @click="modifyNews">
+                    <input type="button" value="取消" class=" btn_d">
                 </div>
 
             </div>
@@ -71,21 +68,56 @@
     </article>
 
     <script>
-        function showImg(thisimg) {
-            var file = thisimg.files[0];
-            if (window.FileReader) {
-                var fr = new FileReader();
-
-                var showimg = document.getElementById('showimg');
-                fr.onloadend = function (e) {
-                    showimg.src = e.target.result;
-                };
-                fr.readAsDataURL(file);
-                showimg.style.display = 'block';
+        //目前頁面亮燈
+        let pages = document.querySelector(".aside_ul").querySelectorAll("h5");
+        pages.forEach(function(page){
+            if ( page.innerHTML == "最新消息管理"){
+                page.closest("a").classList.add("-on");
             }
+        });
+
+        // sweetalert
+        function sAlert(msg, icon, btn) {
+            Swal.fire({
+                title: msg,
+                icon: icon,
+                showConfirmButton: true, // 確認按鈕（預設會顯示不用設定)
+                confirmButtonText: btn, //　按鈕顯示文字
+                confirmButtonAriaLabel: btn, // 網頁無障礙用
+                // showDenyButton: true, // 否定按鈕
+                showCancelButton: false, // 取消按鈕
+                buttonsStyling: false, // 是否使用sweetalert按鈕樣式（預設為true）
+                customClass: {
+                                confirmButton: 'btn-yellow margintop_15',
+                                cancelButton: 'btn-red margintop_15'
+                            },
+            })
         }
 
-        new Vue({
+        function sConfirm(title, text, url) {
+            Swal.fire({
+                title: title,
+                text: text,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: '確定',
+                cancelButtonText: '取消',
+                buttonsStyling: false,
+                customClass: {
+                    confirmButton: 'btn-green marginright_20',
+                    cancelButton: 'btn-red'
+                },
+            }).then(function(result) {
+            if (result.value) {
+                    location.href = url;
+            }
+            else {
+                
+            }
+            });
+        }
+
+        const vm = new Vue({
             el: '#edit-news',
             data: {
                 news: [],
@@ -93,9 +125,9 @@
             },
             created(){
                 const params = new URLSearchParams(location.search);
-                let id = params.get('news_number');
-                console.log(id);
-                fetch('./php/modify_news_select.php', {
+                let id = params.get('news_id');
+                if(id != null){
+                    fetch('./php/modify_news_select.php', {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json',
@@ -103,63 +135,111 @@
                     body: JSON.stringify(
                         {id: id}
                     ),
-                })
-                .then(res => res.json())
-                .then(res => this.news = res)
-                .then(() => {
-                    let src = this.news[0].IMG.split('/');
-                    let displayname = src.slice(-1)[0];
-                    this.filename = displayname;
-                })
+                    })
+                    .then(res => res.json())
+                    .then(res => this.news = res)
+                    .then(() => {
+                        let src = this.news[0].IMG.split('/');
+                        let displayname = src.slice(-1)[0];
+                        this.filename = displayname;
+                    })
+                }                
             },
             methods: {
-            uploadImg(file){
-                let form_data = new FormData();
-                form_data.append('img',file);
-                // fetchAPI
-                fetch('./php/img_upload.php', {
-                method: 'POST',
-                body: form_data,
-                })
-                .then(resp =>resp.json())
-                .then(body =>{
-                    modifyActivity.activity[0].IMG = body.img_url;
-                })
-            },
+                uploadImg(file){
+                    let form_data = new FormData();
+                    form_data.append('img',file);
+                    // fetchAPI
+                    fetch('./php/img_upload.php', {
+                    method: 'POST',
+                    body: form_data,
+                    })
+                    .then(resp =>resp.json())
+                    .then(body =>{
+                        vm.news[0].IMG = body.img_url;
+                    })
+                },
 
-            fileSelected(e){
-                let file = $('#p_file')[0].files[0];
-                if ( $('#p_file')[0].files.length > 0 ){
-                    let reader = new FileReader(); //建立FileReader 監聽 Load 事件
-                    reader.addEventListener('load',this.imageLoader);
-                    reader.readAsDataURL(file);
-                    modifyActivity.uploadImg(file);
-                    this.filename = file.name;
-                }else{
+                fileSelected(e){
+                    let file = $('#p_file')[0].files[0];
+                    if ( $('#p_file')[0].files.length > 0 ){
+                        let reader = new FileReader(); //建立FileReader 監聽 Load 事件
+                        reader.addEventListener('load',this.imageLoader);
+                        reader.readAsDataURL(file);
+                        vm.uploadImg(file);
+                        this.filename = file.name;
+                    }else{
 
-                }
-            },
-            dragover(e){
-                let drop_div = document.getElementById("drop_zone");
-                e.preventDefault();
-                drop_div.classList.add("-on");
-            },
-            dragleave(){
-                let drop_div = document.getElementById("drop_zone");
-                drop_div.classList.remove("-on");
-            },
-            drop(e){
-                e.preventDefault();
-                $("#drop_zone").removeClass("-on");
-                //顯示預覽圖                
-                if(e.dataTransfer.files.length > 0){
-                    modifyActivity.uploadImg(e.dataTransfer.files[0]);
-                    // $('.filename').html(e.dataTransfer.files[0].name);
-                    this.filename = e.dataTransfer.files[0].name;
+                    }
+                },
+                dragover(e){
+                    let drop_div = document.getElementById("drop_zone");
+                    e.preventDefault();
+                    drop_div.classList.add("-on");
+                },
+                dragleave(){
+                    let drop_div = document.getElementById("drop_zone");
+                    drop_div.classList.remove("-on");
+                },
+                drop(e){
+                    e.preventDefault();
+                    $("#drop_zone").removeClass("-on");
+                    //顯示預覽圖                
+                    if(e.dataTransfer.files.length > 0){
+                        vm.uploadImg(e.dataTransfer.files[0]);
+                        this.filename = e.dataTransfer.files[0].name;
+                    }else{
+                    }
+                },
+
+                modifyNews(){
+                    const params = new URLSearchParams(location.search);
+                    let id = params.get('news_id');
+                    if (this.news[0].IMG != '' && this.news[0].TITLE != '' && this.news[0].DESCRIPTION != ''){
+                    fetch('./php/modify_news_update.php', {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            id: id,
+                            title: this.news[0].TITLE,
+                            img: this.news[0].IMG,
+                            desc: this.news[0].DESCRIPTION,                             
+                        }),
+                    })
+                    .then(res => res.json())
+                    .then(res => {
+                        if (res.successful) {
+                            Swal.fire({
+                                title: `<h5>已成功儲存修改內容！</h5>`,
+                                showCancelButton: true,
+                                buttonsStyling: false,
+                                confirmButtonText: '繼續編輯',
+                                cancelButtonText: '返回消息列表',
+                                customClass: {
+                                    confirmButton: 'btn-green marginright_20',
+                                    cancelButton: 'btn-yellow'
+                                },      
+                            }).then((result) => {
+                                if (result.value) {            
+                                }else{
+                                    location.href="./back_news.html";
+                                }
+                            });
+                        } 
+                        else {
+                            sAlert('<strong>您沒有需儲存的變更內容</strong>', 'info', 'OK');
+                        }
+                    })
+                    .catch(function(err) {
+                        sAlert('<strong>儲存失敗，請再試一次</strong>', 'error', 'OK');
+                    });
+
                 }else{
-                    // modifyActivity.noSelectAnyFile();
+                    sAlert('<strong>請填寫完所有欄位再按下儲存</strong>', 'warning');
                 }
-            },
+                },
             },
         })
     </script>
