@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				// console.log(successful + "訊息" + message + "資料" + data);
 				let bread = document.querySelector(".pd_bread");
 				let kind = (data[0].PRODUCT_CATEGORY_ID = 1 ? "冷凍冷藏" : "日常用品");
-				bread.innerText = `首頁 | ${kind} | ${data[0].NAME}`;
+				bread.innerText = `首頁 | 周邊商品 | ${kind} | ${data[0].NAME}`;
 				putin_top_pic(data[0].MAIN_PIC);
 				data_load(data);
 				check_inStock();
