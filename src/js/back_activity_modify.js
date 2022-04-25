@@ -147,15 +147,15 @@ const modifyActivity = new Vue({
                         });
                     } 
                     else {
-                        sAlert('<strong>您沒有需儲存的變更內容</strong>', 'info', 'OK');
+                        sAlert('<h5>您沒有需儲存的變更內容</h5>', 'info', 'OK');
                     }
                 })
                 .catch(function(err) {
-                    sAlert('<strong>儲存失敗，請再試一次</strong>', 'error', 'OK');
+                    sAlert('<h5>儲存失敗，請再試一次</h5>', 'error', 'OK');
                 });
 
             }else{
-                sAlert('<strong>請填寫完所有欄位再按下儲存</strong>', 'warning');
+                sAlert('<h5>請填寫完所有欄位再按下儲存</h5>', 'warning', 'OK');
             }
             
         },

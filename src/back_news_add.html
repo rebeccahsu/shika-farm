@@ -14,14 +14,14 @@
     <article class="news-container">
         
         @@include('./layout/back_title.html', {
-            "back_title" : "編輯最新消息"
+            "back_title" : "新增最新消息"
         })
 
-        <form class="form" id="edit-news" v-if="news[0]">
+        <form class="form" id="edit-news" v-if="news">
 
             <div class="bk_top">
                 <h5 class="bk_text">文章標題</h5>
-                <input type="text" class="bk_input" v-model="news[0].TITLE">
+                <input type="text" class="bk_input" v-model="news.TITLE">
             </div>
 
             <div class="bk_main">
@@ -38,7 +38,7 @@
                         <span class="filename">{{filename}}</span>
                         <input type="file" id="p_file" style="display: none;" @change="fileSelected">
                         <div class="preview" id="drop_zone" @dragover="dragover" @dragleave="dragleave" @drop="drop">
-                            <img v-if="news[0].IMG" :src="news[0].IMG" class="preview-img">
+                            <img v-if="news.IMG" :src="news.IMG" class="preview-img">
                         </div>
                     </div>
 
@@ -46,17 +46,17 @@
 
                 <div class="bl_down">
                     <h5>文章內容</h5>
-                    <textarea name="" id="" cols="50" rows="10" v-model="news[0].DESCRIPTION"></textarea>
+                    <textarea name="" id="" cols="50" rows="10" v-model="news.DESCRIPTION"></textarea>
                 </div>
 
                 <div class="date">
                     <span>建立日期</span>
-                    <!-- <span>{{news[0].DATE}}</span> -->
-                    <input type="text" v-model="news[0].DATE" disabled>
+                    <!-- <span>{{news.DATE}}</span> -->
+                    <input type="text" v-model="news.DATE" disabled>
                 </div>
 
                 <div class="buttonArea margintop_40">
-                    <input type="button" value="儲存" class=" btn_o" @click="modifyNews">
+                    <input type="button" value="發表" class=" btn_o" @click="publishNews">
                     <input type="button" value="取消" class=" btn_d" @click="cancel">
                 </div>
 
@@ -120,32 +120,70 @@
         const vm = new Vue({
             el: '#edit-news',
             data: {
-                news: [],
+                news: {
+                    TITLE: '',
+                    IMG: '',
+                    DESCRIPTION: '',
+                    DATE: '',
+                },
                 filename: '',
             },
             created(){
-                const params = new URLSearchParams(location.search);
-                let id = params.get('news_id');
-                if(id != null){
-                    fetch('./php/modify_news_select.php', {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(
-                        {id: id}
-                    ),
-                    })
-                    .then(res => res.json())
-                    .then(res => this.news = res)
-                    .then(() => {
-                        let src = this.news[0].IMG.split('/');
-                        let displayname = src.slice(-1)[0];
-                        this.filename = displayname;
-                    })
-                }                
+                let date = new Date();
+                let now =
+                date.getFullYear()  + "-" +
+                ("00" + (date.getMonth() + 1)).slice(-2) + "-" +
+                ("00" + date.getDate()).slice(-2);
+                // console.log(now);
+                this.news.DATE = now;               
             },
             methods: {
+                publishNews(){
+                    if (this.news.IMG != '' && this.news.TITLE != '' && this.news.DESCRIPTION != ''){
+                        fetch('./php/back_news_add.php', {
+                            method: "POST",
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                title: this.news.TITLE,
+                                img: this.news.IMG,
+                                desc: this.news.DESCRIPTION,  
+                            }),
+                        })
+                        .then(res => res.json())
+                        .then(res => {
+                            if (res.successful) {
+                                Swal.fire({
+                                    title: `<h5>已成功發表最新消息！</h5>`,
+                                    showCancelButton: true,
+                                    buttonsStyling: false,
+                                    confirmButtonText: '繼續新增',
+                                    cancelButtonText: '返回消息列表',
+                                    customClass: {
+                                        confirmButton: 'btn-green marginright_20',
+                                        cancelButton: 'btn-yellow'
+                                    },      
+                                }).then((result) => {
+                                    if (result.value) {            
+                                    }else{
+                                        location.href="./back_news.html";
+                                    }
+                                });
+                            } 
+                            else {
+                                // sAlert('<strong>您沒有需儲存的變更內容</strong>', 'info', 'OK');
+                            }
+                        })
+                        .catch(function(err) {
+                            sAlert('<h5>資料送出失敗，請再試一次</h5>', 'error', 'OK');
+                        });
+
+                    }else{
+                        sAlert('<h5>請填寫完所有欄位<br>再按下發表</h5>', 'warning', 'OK');
+                    }
+                },
+
                 uploadImg(file){
                     let form_data = new FormData();
                     form_data.append('img',file);
@@ -156,7 +194,7 @@
                     })
                     .then(resp =>resp.json())
                     .then(body =>{
-                        vm.news[0].IMG = body.img_url;
+                        vm.news.IMG = body.img_url;
                     })
                 },
 
@@ -191,56 +229,6 @@
                     }else{
                     }
                 },
-
-                modifyNews(){
-                    const params = new URLSearchParams(location.search);
-                    let id = params.get('news_id');
-                    if (this.news[0].IMG != '' && this.news[0].TITLE != '' && this.news[0].DESCRIPTION != ''){
-                    fetch('./php/modify_news_update.php', {
-                        method: "POST",
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            id: id,
-                            title: this.news[0].TITLE,
-                            img: this.news[0].IMG,
-                            desc: this.news[0].DESCRIPTION,                             
-                        }),
-                    })
-                    .then(res => res.json())
-                    .then(res => {
-                        if (res.successful) {
-                            Swal.fire({
-                                title: `<h5>已成功儲存修改內容！</h5>`,
-                                showCancelButton: true,
-                                buttonsStyling: false,
-                                confirmButtonText: '繼續編輯',
-                                cancelButtonText: '返回消息列表',
-                                customClass: {
-                                    confirmButton: 'btn-green marginright_20',
-                                    cancelButton: 'btn-yellow'
-                                },      
-                            }).then((result) => {
-                                if (result.value) {            
-                                }else{
-                                    location.href="./back_news.html";
-                                }
-                            });
-                        } 
-                        else {
-                            sAlert('<h5>您沒有需儲存的變更內容</h5>', 'info', 'OK');
-                        }
-                    })
-                    .catch(function(err) {
-                        sAlert('<h5>儲存失敗，請再試一次</h5>', 'error', 'OK');
-                    });
-
-                }else{
-                    sAlert('<h5>請填寫完所有欄位再按下儲存</h5>', 'warning');
-                }
-                },
-
                 cancel(){
                     sConfirm('內容尚未儲存', '您確定要返回最新消息列表嗎？', "./back_news.html");
                 },

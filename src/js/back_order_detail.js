@@ -17,10 +17,7 @@ new Vue({
         //     },
         // ],
 
-        order_details: [],
-        orders: [],
-        members: [],
-        products: [],
+        orderDetails: [],
     },
     created() {
         const params = new URLSearchParams(location.search);
@@ -35,7 +32,7 @@ new Vue({
             ),
         })
             .then(res => res.json())
-            .then(res => this.order_detail = res)
+            .then(res => this.orderDetails = res)
     },
 
 });
