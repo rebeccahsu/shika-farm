@@ -25,7 +25,7 @@
                 <button class="btn-red" id="remove_news" @click="deleteNews">刪除</a></button>
             </div>
 
-            <div class="right">
+            <!-- <div class="right"> -->
                 
                 <!-- <span>篩選:</span>
                 <select class="select_right" @change="filter">
@@ -35,76 +35,76 @@
                 </select> -->
 
                 <!-- <input type="search" placeholder="搜尋..." class="select_left"> -->
-                <div class="search" enter-class="select_left">
-                    <input type="text" class="search-input" id="member_search" @keyup="searchNews"/>
-                    <img src="./img/icon/search.png" alt="" class="search_icon" />
-                </div>
-
+            <div class="search" enter-class="select_left">
+                <input type="text" class="search-input" id="member_search" @keyup="searchNews"/>
+                <img src="./img/icon/search.png" alt="" class="search_icon" />
             </div>
+
+            <!-- </div> -->
 
         </div>
 
-        <main class="news-list">
-            <div class="main">
+        <ul class="news-list">
+            <li class="main">
+                <p></p>
                 <p>封面標題</p>
                 <p>文章標題</p>
                 <p>發布時間</p>
-            </div>
+                <p></p>
+            </li>
     
-            <ul class="list">
-                <li class="list_in news-li" v-for="news in list" :data-id="news.ID">
-                    <label class="check_container">
-                        <input type="checkbox" class="check-news">
-                        <span class="checkmark"></span>
-                    </label>
-                    <img :src="news.IMG" alt="">
-                    <p>{{news.TITLE}}</p>
-                    <p>{{news.DATE}}</p>
-                    <button type="button" @click="edit">編輯</button>
-                </li>
-                <!-- <li class="list_in">
-                    <label class="check_container">
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                    <img src="./img/news/Rectangle 1964.png" alt="">
-                    <p>你我一起防疫大作戰</p>
-                    <p>2022/3/15 00:00</p>
-                    <button>編輯</button>
-                </li>
-                <li class="list_in">
-                    <label class="check_container">
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                    <img src="./img/news/Rectangle 1966.png" alt="">
-                    <p>新冠狀病毒防疫一起來</p>
-                    <p>2022/3/15 00:00</p>
-                    <button>編輯</button>
-                </li>
-                <li class="list_in">
-                    <label class="check_container">
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                    <img src="./img/news/Rectangle 1968.png" alt="">
-                    <p>【公告】2022春節營運時間及票價優惠</p>
-                    <p>2022/3/15 00:00</p>
-                    <button>編輯</button>
-                </li>
-                <li class="list_in">
-                    <label class="check_container">
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                    <img src="./img/news/Rectangle 1969.png" alt="">
-                    <p>【粉萌春日祭】3月周末例假日門票優惠開始啦!</p>
-                    <p>2022/2/28 00:00</p>
-                    <button>編輯</button>
-                </li> -->
-            </ul>
+            <li class="list_in news-li" v-for="news in list" :data-id="news.ID">
+                <label class="check_container">
+                    <input type="checkbox" class="check-news">
+                    <span class="checkmark"></span>
+                </label>
+                <img :src="news.IMG" alt="">
+                <p>{{news.TITLE}}</p>
+                <p>{{news.DATE}}</p>
+                <button type="button" @click="edit">編輯</button>
+            </li>
+            <!-- <li class="list_in">
+                <label class="check_container">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+                <img src="./img/news/Rectangle 1964.png" alt="">
+                <p>你我一起防疫大作戰</p>
+                <p>2022/3/15 00:00</p>
+                <button>編輯</button>
+            </li>
+            <li class="list_in">
+                <label class="check_container">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+                <img src="./img/news/Rectangle 1966.png" alt="">
+                <p>新冠狀病毒防疫一起來</p>
+                <p>2022/3/15 00:00</p>
+                <button>編輯</button>
+            </li>
+            <li class="list_in">
+                <label class="check_container">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+                <img src="./img/news/Rectangle 1968.png" alt="">
+                <p>【公告】2022春節營運時間及票價優惠</p>
+                <p>2022/3/15 00:00</p>
+                <button>編輯</button>
+            </li>
+            <li class="list_in">
+                <label class="check_container">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+                <img src="./img/news/Rectangle 1969.png" alt="">
+                <p>【粉萌春日祭】3月周末例假日門票優惠開始啦!</p>
+                <p>2022/2/28 00:00</p>
+                <button>編輯</button>
+            </li> -->
             
-        </main>
+        </ul>
         <!-- <div class="down">
             <span><a href="">1</a></span>
             <span><a href="">2</a></span>

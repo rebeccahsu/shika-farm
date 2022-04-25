@@ -3,51 +3,24 @@
     padding: 0 40px;
     @include back_title();
 
-    .search{
-        padding-top: 10px;
-        // margin: 2% 0 0 5%;
-        position: relative;
-        float: right;
-        margin-right: 5%;
-    }
-    .search_icon{
-        position: absolute;
-        width: 20px;
-        // top: 35px;
-        // left: 335px;
-        cursor: pointer;
-    }
-
-    .search-input{
-        // display: block;
-        margin: 15px 0 15px 15px;
-        height: 40px;
-        width: 285px;
-        border-radius: 8px;
-        padding: 10px;
-        border: 2px solid #ccc;
-        font-size: $fs-s;
-    }
-
     .tibameMessage{
         text-align: center;
         margin: 30px 0 50px;
     }
 }
 
-.bk_title{
-    display: flex;
-    text-align: center;
-    justify-content: center;
-}
+// .bk_title{
+//     display: flex;
+//     text-align: center;
+//     justify-content: center;
+// }
 
 .bi_top{
     display: flex;
-    // margin-left: 150px;
     width: 900px;
     margin: 0 auto;
     justify-content: space-between;
-    // align-items: center;
+    align-items: center;
 
     .left{
         button{
@@ -55,12 +28,36 @@
         }
     }
 
-    .right{
+    // .right{
+        // display: flex;
         select{
             margin-left: 10px;
             margin-right: 30px;
         }
-    }
+        .search{
+            display: inline-block;
+            position: relative;
+        }
+
+        .search_icon{
+            position: absolute;
+            width: 20px;
+            top: 26px;
+            left: 268px;
+            cursor: pointer;
+        }
+    
+        .search-input{
+            // display: block;
+            margin: 15px 0 15px 15px;
+            height: 40px;
+            width: 285px;
+            border-radius: 8px;
+            padding: 10px;
+            border: 2px solid #ccc;
+            // font-size: 20px;
+        }
+    // }
 }
 
 
@@ -72,42 +69,50 @@
     font-size: 15px;
 }
 
-.select_right{
-    width: 160px;
-    height: 40px;
-    border-radius: 8px;
-	border: 2px solid #ccc;
-    font-size: 15px;
-}
+// .select_right{
+//     width: 160px;
+//     height: 40px;
+//     border-radius: 8px;
+// 	border: 2px solid #ccc;
+//     font-size: 15px;
+// }
 
 .news-list{
     width: 900px;
-    margin: 25px auto 0;
-    .main{
-        display: flex;
-        margin-left: 60px;
+    margin: 15px auto 0;
+    // .main{
+    //     display: flex;
+    //     margin-left: 80px;
+    // }
+    
+    // .main p:nth-child(2){
+    //     margin-left: 150px;
+    // }
+    // .main p:nth-child(3){
+    //     margin-left: 200px;
+    // }
+    li{
+        display: grid;
+        grid-template-columns: 8% 20% 32% 20% 20%;
+        text-align: center;
     }
     
-    .main p:nth-child(2){
-        margin-left: 150px;
-    }
-    .main p:nth-child(3){
-        margin-left: 200px;
-    }
-    
-    .list img{
+    img{
         width: 140px;
         height: 100px;
     }
     
-    .list .list_in{
+    .list_in{
         height: 160px;
-        display: flex;
+        // display: flex;
         border: 1px solid $color_G;
         border-radius: 5px;
-        justify-content:space-around;
+        // justify-content:space-around;
+        justify-content: center;
+        justify-items: center;
         align-items: center;
         margin-top: 25px;
+        transition: opacity 1s;
     }
     
     .list_in p{
@@ -122,6 +127,10 @@
         height: 38px;
         font-size: 15px;
     }
+}
+
+.list_in.fade_out{
+    opacity: 0;
 }
 
 .down{
