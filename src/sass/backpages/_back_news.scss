@@ -1,6 +1,38 @@
 .bk_in{
     margin-left: 20%;
+    padding: 0 40px;
     @include back_title();
+
+    .search{
+        padding-top: 10px;
+        // margin: 2% 0 0 5%;
+        position: relative;
+        float: right;
+        margin-right: 5%;
+    }
+    .search_icon{
+        position: absolute;
+        width: 20px;
+        // top: 35px;
+        // left: 335px;
+        cursor: pointer;
+    }
+
+    .search-input{
+        // display: block;
+        margin: 15px 0 15px 15px;
+        height: 40px;
+        width: 285px;
+        border-radius: 8px;
+        padding: 10px;
+        border: 2px solid #ccc;
+        font-size: $fs-s;
+    }
+
+    .tibameMessage{
+        text-align: center;
+        margin: 30px 0 50px;
+    }
 }
 
 .bk_title{
@@ -15,7 +47,7 @@
     width: 900px;
     margin: 0 auto;
     justify-content: space-between;
-    align-items: center;
+    // align-items: center;
 
     .left{
         button{
@@ -24,7 +56,6 @@
     }
 
     .right{
-        display: flex;
         select{
             margin-left: 10px;
             margin-right: 30px;
@@ -64,14 +95,10 @@
         margin-left: 200px;
     }
     
-    .list{
-    }
-    
     .list img{
         width: 140px;
         height: 100px;
     }
-    
     
     .list .list_in{
         height: 160px;
@@ -122,27 +149,6 @@
     border-radius: 50%;
     width: 35px;
     height: 35px;
-}
-
-@media screen and (max-width:1200px){
-    .list .list_in{
-        margin-left: 200px;
-    }
-    .main{
-        margin-left: 370px;
-    }
-}
-
-@media screen and (min-width:1500px){
-    .main{
-        margin-left: 590px;
-    }
-    .main p:nth-child(2){
-        margin-left: 300px;
-    }
-    .main p:nth-child(3){
-        margin-left: 300px;
-    }
 }
 
 
