@@ -21,7 +21,7 @@ new Vue({
     },
     created() {
         const params = new URLSearchParams(location.search);
-        let id = params.get('id');
+        let id = params.get('order_id');
         fetch('./php/back_order_detail.php', {
             method: "POST",
             headers: {

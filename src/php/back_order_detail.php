@@ -12,7 +12,9 @@
     // ON m.ID = o.MEMBER_ID
     // WHERE o.ID = :id;';
     
-    $sql = 'SELECT o.*, p.ID, p.MAIN_PIC, od.QUANTITY, od.UNIT_PRICE
+    $sql = 'SELECT o.*, p.ID, p.MAIN_PIC, p.NAME,
+             m.EMAIL, m.COUNTRY, m.DISTRICT, m.STREET,
+             od.QUANTITY, od.UNIT_PRICE, od.ORDER_ID, od.PRODUCT_ID
             FROM ORDER_DETAIL od JOIN `ORDER` o
             ON od.ORDER_ID = o.ID
             JOIN PRODUCT p
