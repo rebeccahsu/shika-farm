@@ -5,7 +5,7 @@ include("./connection.php");
 $_POST = json_decode(file_get_contents("php://input"), true);
 $ID = $_POST["ID"];
 
-// 檢查email存在
+// 檢查ID存在
 $sql2 = "SELECT * FROM PRODUCT where ID=$ID and STATE='上架中'";
 $stm = $pdo->query($sql2);
 
