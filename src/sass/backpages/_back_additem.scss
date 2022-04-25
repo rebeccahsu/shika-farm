@@ -45,7 +45,11 @@
         padding: 10px;
         font-size: 20px;
         letter-spacing: 1px;
+        &:disabled{
+            background-color: #e5e5e6;
+        }
     }
+
 }
 
 .bk_main{
