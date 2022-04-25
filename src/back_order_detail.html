@@ -31,10 +31,10 @@
                         </li>
                         <li class="product">
                             <p><img src="./img/products/blanket_r.jpg" alt=""></p>
-                            <p>羊毛毯(紅)</p>
+                            <p>{{product.NAME}}</p>
                             <p>{{orderDetail.UNIT_PRICE}}</p>
                             <p>{{orderDetail.QUANTITY}}</p>
-                            <p>NT$549</p>
+                            <p>NT${{order.TOTAL}}</p>
                         </li>
                     </ul>
                 </section>
@@ -43,15 +43,15 @@
                     <p class="title">訂單資料</p>
                     <div class="content info">
                         <p>訂單編號：{{orderDetail.ORDER_ID}}</p>
-                        <p>成立日期：2022/03/13</p>
-                        <p>消費金額：NT＄1,098</p>
-                        <p>付款狀態：已結清</p>
-                        <p>付款方式：信用卡</p>
-                        <p>訂購人：王曉明</p>
-                        <p>會員帳號：m01@gmail.com</p>
-                        <p>收件地址：台北市中山區南京東路三段219號五樓</p>
-                        <p>物流編號：000001331</p>
-                        <p>物流狀態：已取貨</p>
+                        <p>成立日期：{{order.ORDER_DATE}}</p>
+                        <p>消費金額：NT${{order.TOTAL}}</p>
+                        <p>付款狀態：{{order.PAYMENT_STATE}}</p>
+                        <p>付款方式：{{order.PAYMENT}}</p>
+                        <p>訂購人：{{order.RECEIVER_NAME}}</p>
+                        <p>會員帳號：{{member.EMAIL}}</p>
+                        <p>收件地址：{{member.COUNTRY}}{{member.DISTRICT}}{{member.STREET}}</p>
+                        <!-- <p>物流編號：000001331</p> 資料庫沒有這個值 -->
+                        <p>物流狀態：{{order.LOGISTICS_STATE}}</p>
                     </div>
 
                 </section>
