@@ -18,7 +18,7 @@
         "back_title" : "訂單內容"
         })
         <div id="app">
-            <div v-for="orderDetail in orderDetils">
+            <div v-for="orderDetail in orderDetails">
                 <section class="order-info">
                     <p class="title">訂單商品</p>
                     <ul class="content">
@@ -30,11 +30,11 @@
                             <p>小計</p>
                         </li>
                         <li class="product">
-                            <p><img src="./img/products/blanket_r.jpg" alt=""></p>
-                            <p>{{product.NAME}}</p>
+                            <p><img :src="orderDetail.MAIN_PIC" alt=""></p>
+                            <p>{{orderDetail.NAME}}</p>
                             <p>{{orderDetail.UNIT_PRICE}}</p>
                             <p>{{orderDetail.QUANTITY}}</p>
-                            <p>NT${{order.TOTAL}}</p>
+                            <p>NT${{orderDetail.TOTAL}}</p>
                         </li>
                     </ul>
                 </section>
@@ -43,15 +43,15 @@
                     <p class="title">訂單資料</p>
                     <div class="content info">
                         <p>訂單編號：{{orderDetail.ORDER_ID}}</p>
-                        <p>成立日期：{{order.ORDER_DATE}}</p>
-                        <p>消費金額：NT${{order.TOTAL}}</p>
-                        <p>付款狀態：{{order.PAYMENT_STATE}}</p>
-                        <p>付款方式：{{order.PAYMENT}}</p>
-                        <p>訂購人：{{order.RECEIVER_NAME}}</p>
-                        <p>會員帳號：{{member.EMAIL}}</p>
-                        <p>收件地址：{{member.COUNTRY}}{{member.DISTRICT}}{{member.STREET}}</p>
+                        <p>成立日期：{{orderDetail.ORDER_DATE}}</p>
+                        <p>消費金額：NT${{orderDetail.TOTAL}}</p>
+                        <p>付款狀態：{{orderDetail.PAYMENT_STATE}}</p>
+                        <p>付款方式：{{orderDetail.PAYMENT}}</p>
+                        <p>訂購人：{{orderDetail.RECEIVER_NAME}}</p>
+                        <p>會員帳號：{{orderDetail.EMAIL}}</p>
+                        <p>收件地址：{{orderDetail.COUNTRY}}{{orderDetail.DISTRICT}}{{orderDetail.STREET}}</p>
                         <!-- <p>物流編號：000001331</p> 資料庫沒有這個值 -->
-                        <p>物流狀態：{{order.LOGISTICS_STATE}}</p>
+                        <p>物流狀態：{{orderDetail.LOGISTICS_STATE}}</p>
                     </div>
 
                 </section>
@@ -61,7 +61,7 @@
 
         <a href="./back_order.html" class="btn-green">返回</a>
 
-        <p class="tibameMessage">本網站為緯育TibaMe前端設計工程師班第74期第六組學員專題成果作品，本平台僅供學習、展示之用。</p>
+        <p class="tibameMessage">本網站為緯育TibaMe前端設計工程師班第72期第二組學員專題成果作品，本平台僅供學習、展示之用。</p>
 
     </main>
 
