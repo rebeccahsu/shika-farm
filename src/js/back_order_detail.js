@@ -35,7 +35,7 @@ new Vue({
             ),
         })
             .then(res => res.json())
-            .then(res => this.order_detail = res)
+            .then(res => this.order_details = res)
     },
 
 });
