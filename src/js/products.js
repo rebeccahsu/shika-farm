@@ -27,10 +27,10 @@ document.addEventListener("DOMContentLoaded",function(){
                     }
                     let main_pic = JSON.parse(data[i].MAIN_PIC);
                     let prd_card = `
-                    <a data-id="${data[i].ID}" data-price="${data[i].UNIT_PRICE}" href="./product_detail.html?prd_number=${data[i].ID}">
+                    <a data-id="${data[i].ID}" data-price="${data[i].UNIT_PRICE}" href="./product_detail.html?prd_number=${data[i].ID}" title="${data[i].NAME}">
                     <div class="down-in">
                         <img src="${main_pic[0]}" alt="">
-                        <h5>${data[i].NAME}</h5>
+                        <h5>${t_name}</h5>
                         <h5 class="price">${data[i].UNIT_PRICE}</h5>
                     </div>
                     </a>`;
@@ -103,7 +103,7 @@ function tag_for_kind(kind_id){
                     }
                     let main_pic = JSON.parse(data[i].MAIN_PIC);
                     let prd_card = `
-                    <a data-id="${data[i].ID}" data-price="${data[i].UNIT_PRICE}" href="./product_detail.html?prd_number=${data[i].ID}">
+                    <a data-id="${data[i].ID}" data-price="${data[i].UNIT_PRICE}" href="./product_detail.html?prd_number=${data[i].ID}" title="${data[i].NAME}">
                     <div class="down-in">
                         <img src="${main_pic[0]}" alt="">
                         <h5>${t_name}</h5>
@@ -121,7 +121,7 @@ function tag_for_kind(kind_id){
 }
 
 // 排序變更=========================================================
-/*
+
 var price_sort_el = document.querySelector(".price_sort");
 
 price_sort_el.addEventListener("change", function(){
@@ -138,6 +138,7 @@ price_sort_el.addEventListener("change", function(){
             price:prd_card[i].getAttribute("data-price"),
             name:prd_name,
             img:img_src,
+            title:prd_card[i].getAttribute("title"),
         }
         task.push(obj);
     }
@@ -159,18 +160,19 @@ price_sort_el.addEventListener("change", function(){
 
     }
     
-    console.log(task);
+    // console.log(task);
     main_down.innerHTML=``;
     for(let i=0; i<task.length; i++){
         let card_html = `
-        <a data-id="${data[i].ID}" data-price="${data[i].UNIT_PRICE}" href="./product_detail.html?prd_number=${data[i].ID}">
+        <a data-id="${task[i].id}" data-price="${task[i].price}" href="./product_detail.html?prd_number=${task[i].id}" title="${task[i].title}">
         <div class="down-in">
-            <img src="${main_pic[0]}" alt="">
-            <h5>${t_name}</h5>
-            <h5 class="price">${data[i].UNIT_PRICE}</h5>
+            <img src="${task[i].img}" alt="">
+            <h5>${task[i].name}</h5>
+            <h5 class="price">${task[i].price}</h5>
         </div>
         </a>`
-        main_down.insertAdjacentHTML("beforeend",);
+        main_down.insertAdjacentHTML("beforeend",card_html);
     }
 })
-*/
+
+// 排序變更 end======================================================
