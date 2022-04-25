@@ -232,8 +232,7 @@ const activityList = new Vue({
                     sAlert(`<h5>勾選的項目中有上架中的活動，<br>因此無法刪除</h5>`, 'warning', 'OK');
                 }else{
                     Swal.fire({
-                        title: `<h5>若確定要刪除這 ${checked_arr.length} 個活動，<br>請輸入管理員密碼</h5>`,
-                        input: 'password',
+                        title: `<h5>確定要刪除這 ${checked_arr.length} 個活動嗎？</h5>`,
                         showCancelButton: true,
                         buttonsStyling: false,
                         confirmButtonText: '送出',
@@ -244,52 +243,91 @@ const activityList = new Vue({
                         },      
                     })
                     .then((result) => {
-                        if (result.value == 'pass') {
-                            // 輸入密碼正確
+                        
+                        if (result.value) {
+                            let success_arr = [];
+                            let fail_arr = [];
                             checked_arr.forEach(function(act){
+
                                 let id = $(act).data('actid');
-                                fetch('./php/back_activity_delete.php', {
-                                    method: 'POST',
+                                // 是否有預約
+                                fetch('./php/activity_signed_members.php', {
+                                    method: "POST",
                                     headers: {
-                                        'Content-type': 'application/json'
+                                        'Content-Type': 'application/json',
                                     },
-                                    body: JSON.stringify({
-                                        ID: id,
-                                    }),
+                                    body: JSON.stringify(
+                                        {activityId: id, }
+                                    ),
                                 })
-                                .then(res =>  res.json())   
+                                .then(res => res.json())
                                 .then(res => {
-                                    if (res.successful) {
-                                        $(act).addClass("fade_out");
-                                        setTimeout(function(){
-                                            act.remove();
-                                        }, 1000);
-                                        sAlert(`<h5>已成功刪除 ${checked_arr.length} 個活動！</h5>`, 'success', 'OK');
-                                        // checkbox.forEach(function(box){
-                                        //     if (box.checked){
-                                        //         box.checked = false;
-                                        //     }
-                                        // });
-                                        $(act).find('.check-act').checked = false;
-                                        // if ($(act).find('.check-act').checked){
-                                        //     $(act).find('.check-act').checked = false
-                                        // }
-                                    } else {
-                                        sAlert(`<h5>刪除失敗，請稍後再試</h5>`, 'error', 'OK');
+                                    
+                                    function deleteNews(res){
+                                        if(res.length == 0){
+                                            // console.log('無人預約');
+                                            success_arr.push(act);
+                                            
+                                        }else{
+                                            // console.log('return');
+                                            fail_arr.push(act);
+                                            return;
+                                        }
+
+                                        fetch('./php/back_activity_delete.php', {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-type': 'application/json'
+                                            },
+                                            body: JSON.stringify({
+                                                ID: id,
+                                            }),
+                                        })
+                                        .then(res =>  res.json())   
+                                        .then(res => {
+                                            if (res.successful) {
+                                                $(act).addClass("fade_out");
+                                                setTimeout(function(){
+                                                    act.remove();
+                                                }, 1000);
+                                                $(act).find('.check-act').checked = false;
+                                                
+                                            } else {
+                                                sAlert(`<h5>刪除失敗，請稍後再試</h5>`, 'error', 'OK');
+                                            }
+                                            activityList.checkAvailability();       
+                                        });
+
                                     }
-                                    activityList.checkAvailability();       
+
+                                    deleteNews(res);
+                            
+                                    if(success_arr.length == 0){   
+                                        sAlert(`<h5>尚有會員預約場次的活動無法刪除</h5>`, 'warning', 'OK');
+                                    }else{
+                                        if(fail_arr.length != 0){
+                                            sAlert(`<h5>已成功刪除 ${success_arr.length} 個活動，<br>有 ${fail_arr.length} 個活動尚有會員預約的場次，<br>因此無法刪除</h5>`, 'warning', 'OK');
+                                        }else{
+                                            sAlert(`<h5>已成功刪除 ${success_arr.length} 個活動！</h5>`, 'success', 'OK');
+                                        }
+                                    }
+   
                                 });
+
                             });
-                        }else{
-                            sAlert(`<h5>請輸入正確的密碼</h5>`, 'error', 'OK');
+
+                            checkbox.forEach(function(box){
+                                if (box.checked){
+                                    box.checked = false;
+                                }
+                            });  
                         }
+
                     });
                 }
             }else{
                 sAlert(`<h5>您尚未勾選任何活動</h5>`, 'warning', 'OK');
             }
-
-
         },
         // ==== 顯示已上架按鈕切換 ====
         switchShow(){
