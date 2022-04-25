@@ -10,72 +10,62 @@
 
 <body>
 
-        <!-- 側邊導覽列 -->
-        @@include('./layout/back_aside.html')
-        <!-- 後台訂單列表 -->
-        <main class="backcontainer order-container order-detail">
-            @@include('./layout/back_title.html', {
-            "back_title" : "訂單內容"
-            })
-            
-            <section class="order-info">
-                <p class="title">訂單商品</p>
-                <ul class="content">
-                    <li class="head">
-                        <p>商品照片</p>
-                        <p>商品名稱</p>
-                        <p>價格</p>
-                        <p>數量</p>
-                        <p>小計</p>
-                    </li>
-                    <li class="product">
-                        <p><img src="./img/products/blanket_r.jpg" alt=""></p>
-                        <p>羊毛毯(紅)</p>
-                        <p>NT$549</p>
-                        <p>1</p>
-                        <p>NT$549</p>
-                    </li>
-                    <li class="product">
-                        <p><img src="./img/products/blanket_y.jpg" alt=""></p>
-                        <p>羊毛毯(黃)</p>
-                        <p>NT$549</p>
-                        <p>1</p>
-                        <p>NT$549</p>
-                    </li>
-                </ul>
-            </section>
+    <!-- 側邊導覽列 -->
+    @@include('./layout/back_aside.html')
+    <!-- 後台訂單列表 -->
+    <main class="backcontainer order-container order-detail">
+        @@include('./layout/back_title.html', {
+        "back_title" : "訂單內容"
+        })
+        <div id="app">
+            <div v-for="orderDetail in orderDetils">
+                <section class="order-info">
+                    <p class="title">訂單商品</p>
+                    <ul class="content">
+                        <li class="head">
+                            <p>商品照片</p>
+                            <p>商品名稱</p>
+                            <p>價格</p>
+                            <p>數量</p>
+                            <p>小計</p>
+                        </li>
+                        <li class="product">
+                            <p><img src="./img/products/blanket_r.jpg" alt=""></p>
+                            <p>羊毛毯(紅)</p>
+                            <p>{{orderDetail.UNIT_PRICE}}</p>
+                            <p>{{orderDetail.QUANTITY}}</p>
+                            <p>NT$549</p>
+                        </li>
+                    </ul>
+                </section>
 
-            <section class="order-info">
-                <p class="title">訂單資料</p>
-                <div class="content info">
-                    <p>訂單編號：000020220311</p>
-                    <p>成立日期：2022/3/11</p>
-                    <p>消費金額：NT＄1,098</p>
-                    <p>付款狀態：已結清</p>
-                    <p>付款方式：信用卡</p>
-                    <p>訂購人：王曉明</p>
-                    <p>會員帳號：m01@gmail.com</p>
-                    <p>收件地址：台北市中山區南京東路三段219號五樓</p>
-                    <p>物流編號：000001331</p>
-                    <p>物流狀態：已取貨</p>
-                </div>
+                <section class="order-info">
+                    <p class="title">訂單資料</p>
+                    <div class="content info">
+                        <p>訂單編號：{{orderDetail.ORDER_ID}}</p>
+                        <p>成立日期：2022/03/13</p>
+                        <p>消費金額：NT＄1,098</p>
+                        <p>付款狀態：已結清</p>
+                        <p>付款方式：信用卡</p>
+                        <p>訂購人：王曉明</p>
+                        <p>會員帳號：m01@gmail.com</p>
+                        <p>收件地址：台北市中山區南京東路三段219號五樓</p>
+                        <p>物流編號：000001331</p>
+                        <p>物流狀態：已取貨</p>
+                    </div>
 
-            </section>
+                </section>
+            </div>
 
-            <a href="./back_order.html" class="btn-green">返回</a>
+        </div>
 
-            <p class="tibameMessage">本網站為緯育TibaMe前端設計工程師班第72期第二組學員專題成果作品，本平台僅供學習、展示之用。</p>
-            
-        </main>
+        <a href="./back_order.html" class="btn-green">返回</a>
 
-    <script>
-        let pages = document.querySelector(".aside_ul").querySelectorAll("h5");
-        pages.forEach(function(page){
-            if ( page.innerHTML == "訂單管理"){
-                page.closest("a").classList.add("-on");
-            }
-        });
-    </script>
+        <p class="tibameMessage">本網站為緯育TibaMe前端設計工程師班第72期第二組學員專題成果作品，本平台僅供學習、展示之用。</p>
+
+    </main>
+
+    <script src="js/back_order_detail.js"></script>
 </body>
 
 </html>
