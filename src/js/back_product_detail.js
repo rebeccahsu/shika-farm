@@ -11,11 +11,12 @@ pages.forEach(function (page) {
 document.addEventListener("DOMContentLoaded", function (e) {
     // console.log('aaaa');
     sessionStorage.removeItem("new_id");
-    check_ID();
 
     let urlParams = new URLSearchParams(window.location.search);
     let id = urlParams.get('prd_number');
     if (id != null) {
+        $('.back_title').find('h4').text('修改商品');
+        $("#submit").text('修改');
 
         fetch('./php/back_product_detail_select.php', {
             method: 'POST',
@@ -35,14 +36,16 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 if (successful == true) {
                     console.log(successful + "訊息" + message + "資料" + ID + " / " + data);
                     showData(data[0]);
-                    $('.back_title').find('h4').text('修改商品');
+                    
                     $('.select_images').after(`<spap id="prd_number" style="float:right">品號：${ID}</spap>`)
-                    $("#submit").text('修改');
+                    
                 } else {
                     console.log(successful + ' 訊息' + message);
 
                 }
             })
+    }else{
+        check_ID();
     }
 });
 function showData(pdata) {
@@ -456,7 +459,7 @@ $('#submit').on('click', (e) => {
         let cost = document.querySelector("#prd_cost").value;
         let price = document.querySelector("#prd_price").value;
         let stock = document.querySelector("#prd_inStock").value;
-        let kind = document.querySelector("#prd_kind").value == "冷凍冷藏" ? 1 : 2;
+        let kind = document.querySelector("#prd_kind").value == 1 ? 1 : 2;
         let slogan = `["${document.querySelector("#prd_slog1").value}", "${document.querySelector("#prd_slog2").value}"]`;
         let detail = document.querySelector("#prd_ingredient").value;
         let prd_introduce_el = document.querySelector("#introduce_area");
