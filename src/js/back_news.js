@@ -8,7 +8,22 @@ $(function () {
     });
 })
 
-
+function sAlert(msg, icon, btn) {
+    Swal.fire({
+        title: msg,
+        icon: icon,
+        showConfirmButton: true, // 確認按鈕（預設會顯示不用設定)
+        confirmButtonText: btn, //　按鈕顯示文字
+        confirmButtonAriaLabel: btn, // 網頁無障礙用
+        // showDenyButton: true, // 否定按鈕
+        showCancelButton: false, // 取消按鈕
+        buttonsStyling: false, // 是否使用sweetalert按鈕樣式（預設為true）
+        customClass: {
+                        confirmButton: 'btn-yellow margintop_15 marginleft_2 marginright_2',
+                        cancelButton: 'btn-red margintop_15 marginleft_2 marginright_2'
+                    },
+    })
+}
 
 // 刪除按鈕
 
@@ -165,8 +180,7 @@ new Vue({
             // 判斷是否有勾選的項目
             if ( checked_arr.length > 0 ){
                     Swal.fire({
-                        title: `<h5>若確定要刪除這 ${checked_arr.length} 個最新消息，<br>請輸入管理員密碼</h5>`,
-                        input: 'password',
+                        title: `<h5>您確定要刪除這 ${checked_arr.length} 個最新消息嗎？</h5>`,
                         showCancelButton: true,
                         buttonsStyling: false,
                         confirmButtonText: '送出',
@@ -177,7 +191,7 @@ new Vue({
                         },      
                     })
                     .then((result) => {
-                        if (result.value == 'pass') {
+                        if (result.value) {
                             checked_arr.forEach(function(li){
                                 let id = $(li).data('id');
                                 fetch('./php/back_news_delete.php', {
@@ -196,15 +210,14 @@ new Vue({
                                         setTimeout(function(){
                                             li.remove();
                                         }, 1000);
-                                        sAlert(`<h5>已成功刪除 ${checked_arr.length} 個活動！</h5>`, 'success', 'OK');
+                                        console.log(res);
+                                        sAlert(`<h5>已成功刪除 ${checked_arr.length} 個最新消息！</h5>`, 'success', 'OK');
                                         $(li).find('.check-news').checked = false;
                                     } else {
                                         sAlert(`<h5>刪除失敗，請稍後再試</h5>`, 'error', 'OK');
                                     }
                                 });
                             });
-                        }else{
-                            sAlert(`<h5>請輸入正確的密碼</h5>`, 'error', 'OK');
                         }
                     });
             }else{
