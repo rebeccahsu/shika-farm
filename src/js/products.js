@@ -55,16 +55,25 @@ var list_normal = list_tag.querySelectorAll("a")[2];
 list_all.addEventListener("click",function(e){
     e.preventDefault();
     tag_for_kind('%');
+    list_cold.classList.remove("here");
+    list_normal.classList.remove("here");
+    list_all.classList.add("here");
 });
 
 list_cold.addEventListener("click",function(e){
     e.preventDefault();
     tag_for_kind(1);
+    list_all.classList.remove("here");
+    list_normal.classList.remove("here");
+    list_cold.classList.add("here");
 });
 
 list_normal.addEventListener("click",function(e){
     e.preventDefault();
     tag_for_kind(2);
+    list_all.classList.remove("here");
+    list_cold.classList.remove("here");
+    list_normal.classList.add("here");
 });
 
 
