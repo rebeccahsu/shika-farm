@@ -23,18 +23,18 @@
                     <p class="title">訂單商品</p>
                     <ul class="content">
                         <li class="head">
-                            <!-- <p>商品照片</p> -->
+                            <p>商品照片</p>
                             <p>商品名稱</p>
                             <p>商品售價</p>
                             <p>購買數量</p>
-                            <!-- <p>小計</p> -->
+                            <p>小計</p>
                         </li>
                         <li v-for="orderDetail in orderDetails" class="product">
-                            <!-- <p><img :src="orderDetail.MAIN_PIC" alt=""></p> -->
+                            <p><img :src="JSON.parse(orderDetail.MAIN_PIC)[0]" alt=""></p>
                             <p>{{orderDetail.NAME}}</p>
                             <p>{{orderDetail.UNIT_PRICE}}</p>
                             <p>{{orderDetail.QUANTITY}}</p>
-                            <!-- <p>{{orderDetail.UNIT_PRICE}}*{{orderDetail.QUANTITY}}</p> -->
+                            <p>NT${{orderDetail.UNIT_PRICE * orderDetail.QUANTITY}}</p>
                         </li>
                     </ul>
                 </section>
