@@ -128,7 +128,7 @@ function open_detail(ID) {
     .then((res) => {
       $('#li' + ID).children().remove()
       $('#li' + ID).slideToggle()
-      console.log(res);
+      // console.log(res);
       $('#li' + ID).append("<ul class='detail' style='list-style-type: none;>");
       for (let i = 0; i < res.length; i++) {
         $('#li' + ID).append("<li>" + res[i].NAME + " " + res[i].QUANTITY + '件' + " " + 'NT$' + res[i].UNIT_PRICE + "</li>");
@@ -315,7 +315,7 @@ fetch("./php/mb_list.php", {
 })
   .then((res) => res.json())
   .then((res) => {
-    console.log(res);
+    // console.log(res);
     let tr_row = "";
     for (let i = 0; i < res.length; i++) {
       tr_row += "<tr class='li2' id='sort" + i + "'>";
@@ -333,14 +333,14 @@ fetch("./php/mb_list.php", {
     }
 
     $("#li2").append(tr_row);
-    if ($('#li2').find('td:nth-child(6)').text() == '已取消') {
-      // alert('訂單已取消');
-      // $('#li2').find('td:nth-child(6)').closest('tr').remove();
-    }
+    // if ($('#li2').find('td:nth-child(6)').text() == '已取消') {
+    //   // alert('訂單已取消');
+    //   // $('#li2').find('td:nth-child(6)').closest('tr').remove();
+    // }
   })
   .then((res) => {
     let tr = $("tr");
-    console.log(tr.length);
+    // console.log(tr.length);
     // console.log($('#li2').find(`tr:nth-child(1) td:nth-child(6)`).text());
     // console.log($('#li2').find(`tr:nth-child(3) td:nth-child(6)`).text());
     for (let i = 1; i < tr.length; i += 2) {
