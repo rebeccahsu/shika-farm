@@ -112,14 +112,12 @@ $('#show_off').on('click', (e) => {
 // 顯示未上架end==========================================
 // 刪除按鈕===============================
 
-$(function () {
+
     $('#del_pd').on('click', () => {
         // console.log($(".list_item"));
-
-
         Swal.fire({
             title: `<h5>您確定要上架刪除商品嗎？</h5>`,
-            icon: 'warning',
+            icon: 'question',
             showCancelButton: true,
             confirmButtonText: '確定',
             cancelButtonText: '取消',
@@ -129,59 +127,59 @@ $(function () {
                 cancelButton: 'btn-red'
             },
         }).then(function(res) {
-           if (res.value) {
+            if (res.value) {
 
-               // 使用者按確認之後要做的事寫在這裡
-               //可以搭配alert使用
-               for (var i = $('.select_item').length - 1; i > 0; i--) {
-                if ($(".select_item")[i].checked == true) { //checke box 有打勾時
-                    let aa = $(".select_item")[i].closest("li").getAttribute("data-prd_condition");
+                // 使用者按確認之後要做的事寫在這裡
+                //可以搭配alert使用
+                for (let i = $('.select_item').length - 1; i > -1; i--) {
+                    if ($(".select_item")[i].checked) { //checke box 有打勾時
+                        console.log($('.select_item')[i]);
+                        let aa = $(".select_item")[i].closest("li").getAttribute("data-prd_condition");
+                        if (aa == "on") {
+                            // alert("上架中的商品不能刪除");
+                            sAlert("上架中的商品不能刪除" , "warning", "確定");
+                        } else if (aa == "off") {
+                            // AJAX
+                            // console.log($(".select_item")[i].checked);
+                            let target_id = $(".select_item")[i].closest('li').getAttribute('data-prd_number');
 
-                    if (aa == "on") {
-                        alert("上架中的商品不能刪除");
-                        // sAlert("上架中的商品不能刪除" , "success", "確定");
-                    } else if (aa == "off") {
-                        // AJAX
-                        // console.log($(".select_item")[i].checked);
-                        let target_id = $(".select_item")[i].closest('li').getAttribute('data-prd_number');
-
-                        fetch('./php/back_products_delete.php', {
-                            method: 'POST',
-                            headers: {
-                                'Content-type': 'application/json'
-                            },
-                            // 送出內容轉成JSON送出
-                            body: JSON.stringify({
-                                ID: target_id,
-                            }),
-                        })
-
-                            // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
-                            .then(resp => resp.json())
-                            .then(body => {
-                                //body也不可以console
-                                const { successful, message, end ,id } = body;
-                                if (successful) {
-                                    console.log(successful + '訊息' + message + '數' + end +" / "+id);
-                                    let id_el = document.querySelectorAll(".prd_number");
-                                    id_el.forEach((v,i)=>{
-                                        if(v.innerText == id){
-                                            v.closest("li").remove();
-                                        }
-                                    })
-
-                                } else {
-                                    // alert(message);
-                                    let msg = `品號：${id} `
-                                    sAlert((msg+message), "error", "確定");
-                                    $(".select_item")[i].checked = false
-                                    return;
-                                }
+                            fetch('./php/back_products_delete.php', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-type': 'application/json'
+                                },
+                                // 送出內容轉成JSON送出
+                                body: JSON.stringify({
+                                    ID: target_id,
+                                }),
                             })
-                    }
 
+                                // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+                                .then(resp => resp.json())
+                                .then(body => {
+                                    //body也不可以console
+                                    const { successful, message, end, id } = body;
+                                    if (successful) {
+                                        console.log(successful + '訊息' + message + '數' + end + " / " + id);
+                                        let id_el = document.querySelectorAll(".prd_number");
+                                        id_el.forEach((v, i) => {
+                                            if (v.innerText == id) {
+                                                v.closest("li").remove();
+                                            }
+                                        })
+
+                                    } else {
+                                        // alert(message);
+                                        let msg = `品號：${id} `
+                                        sAlert((msg + message), "error", "確定");
+                                        $(".select_item")[i].checked = false
+                                        return;
+                                    }
+                                })
+                        }
+                    }
                 }
-            }
+                sAlert("刪除成功", "success", "確定");
           
            }else{
                   // 使用者按取消之後要做的事寫在這裡
@@ -249,7 +247,7 @@ $(function () {
 
 
 
-})
+
 
 // 刪除按鈕 end===============================
 // 修改上下架=========================
@@ -299,6 +297,7 @@ $("#on_pd").on('click', () => {
                                 sAlert('商品上架成功！', "success", "確定")
                             } else {
                                 console.log(id + ' / ' + message);
+                                
                             }
                         })
                     $(".select_item")[i].checked = false;
@@ -533,24 +532,6 @@ function search_product() {
             }
         })
 }
-
-
-// $('.list_item').each((index, value) => {
-
-//     if (value.getAttribute('data-prd_number').search(search_target) == -1 & value.getAttribute('data-prd_name').search(search_target) == -1) {
-//         console.log(value);
-//         value.setAttribute("style", "display:none;");
-//     } else if (search_target == "") {
-//         if ($('#show_off').has('checked') && value.getAttribute('data-prd_condition').search('on') > 0) {
-//             console.log('X');
-//             value.removeAttribute("style");
-//         } else if ($('#show_off').has('checked')) {
-//             console.log('v');
-//             value.removeAttribute("style");
-//         }
-//     }
-
-// })
 
 
 // 商品搜尋end
