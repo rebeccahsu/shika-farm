@@ -50,7 +50,7 @@
 			width: 650px;
 		}
 		@include mobile{
-			width: 450px;
+			width: 360px;
 		}
 
 		.carName {
@@ -108,7 +108,7 @@
 					margin: 0px 20px 0 190px;
 				}
 				@include mobile{
-					margin: 0px 20px 0 120px;
+					margin: 0px 20px 0 95px;
 				}
 			}
 			.quantity {
@@ -182,7 +182,7 @@
 			width: 650px;
 		}
 		@include mobile{
-			width: 450px;
+			width: 360px;
 		}
 		// =================== 表格1 總計 ===================
 		// *********** 總計表格標題 ***********
@@ -195,6 +195,9 @@
 			font-size: $fs-s;
 			border-radius: 8px 8px 0 0;
 			@include textCenter();
+			@include mobile{
+
+			}
 
 			.titleTop {
 				font-size: $fs-s;

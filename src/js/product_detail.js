@@ -333,14 +333,15 @@ $("#pd_info_buy").on("click", (e) => {
 	}
 	sessionStorage.setItem("products", JSON.stringify(cart_data));
 
-	if(sessionStorage.getItem("login")){
+	if(!sessionStorage.getItem("login")){
 		black_bg.end_cart();
 		location.href = 'checkout.html';
 	}else{
-    	$("#login_box").removeClass("-off");
+		$("#login_box").removeClass("-off");
 		$("#back_bg").removeClass("-off");
 	}
 });
+
 
 // 放入購物車、直接購買end
 // ==========================================
