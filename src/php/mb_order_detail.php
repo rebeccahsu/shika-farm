@@ -7,8 +7,8 @@
      // 另新變數=資料內文
     //  $serch_value = $input_value['input_value'];
  
-     $sql = "SELECT TFD105_G6.ORDER_DETAIL.* , TFD105_G6.PRODUCT.NAME FROM TFD105_G6.ORDER_DETAIL
-     left join TFD105_G6.PRODUCT on TFD105_G6.ORDER_DETAIL.PRODUCT_ID = TFD105_G6.PRODUCT.ID
+     $sql = "SELECT ORDER_DETAIL.* , PRODUCT.NAME FROM ORDER_DETAIL
+     left join PRODUCT on ORDER_DETAIL.PRODUCT_ID = PRODUCT.ID
      where ORDER_ID = :id;";
      $stmt = $pdo->prepare($sql);
      $stmt->bindValue(":id", $body["orderID"]);
