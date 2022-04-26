@@ -8,7 +8,7 @@
     //  $serch_value = $input_value['input_value'];
  
     $sql = "SELECT a.NAME, r.DATE, r.SESSION, r.ATTENDANCE,r.MEMBER_ID
-    from TFD105_G6.ACTIVITY a join TFD105_G6.RESERVATION r
+    from ACTIVITY a join RESERVATION r
     on a.ID = r.ACTIVITY_ID
     WHERE r.MEMBER_ID = :id;";
 

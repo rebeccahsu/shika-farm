@@ -7,7 +7,7 @@
      // 另新變數=資料內文
     //  $serch_value = $input_value['input_value'];
  
-     $sql = "SELECT * , (select count(*) from TFD105_G6.ORDER_DETAIL where TFD105_G6.ORDER.ID = TFD105_G6.ORDER_DETAIL.ORDER_ID)as quantity FROM TFD105_G6.ORDER where MEMBER_ID = :id;";
+     $sql = "SELECT * , (select count(*) from ORDER_DETAIL where ORDER.ID = ORDER_DETAIL.ORDER_ID)as quantity FROM ORDER where MEMBER_ID = :id;";
      $stmt = $pdo->prepare($sql);
      $stmt->bindValue(":id", $body["memberID"]);
      $stmt->execute();
