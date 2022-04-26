@@ -113,7 +113,7 @@ function putin_top_pic(top_pic) {
 	top02 = top02.querySelectorAll("img");
 
 	top_pic.forEach((v, i) => {
-		console.log(i + " / " + v);
+		// console.log(i + " / " + v);
 		top01[i].setAttribute("src", `${v}`);
 		top02[i].setAttribute("src", `${v}`);
 
@@ -121,7 +121,7 @@ function putin_top_pic(top_pic) {
 	// 刪除多餘的空li
 	for (let i = 3; i > 0; i--) {
 		if (top01[i].getAttribute("src") == "") {
-			console.log(i + "XXX");
+			// console.log(i + "XXX");
 			top01[i].closest("li").remove();
 			top02[i].closest("li").remove();
 		}
@@ -299,6 +299,7 @@ $("#pd_info_buy").on("click", (e) => {
 	e.preventDefault();
 	console.log("buy");
 	let cart_data = JSON.parse(sessionStorage.getItem("products")) ?? [];
+	console.log(cart_data);
 	// 取得頁面上商品詳細資訊
 	let urlParams = new URLSearchParams(window.location.search);
 	let id = urlParams.get("prd_number");
@@ -313,25 +314,33 @@ $("#pd_info_buy").on("click", (e) => {
 		price: price,
 		count: Number(count),
 	};
-	// 預設商品不存在
-	let isExist = false;
-	// 檢查session裡是否已經存在該商品
+
 	if (cart_data.length > 0) {
-		for (let i = 0; i < cart_data.length; i++) {
-			// 檢查商品id有沒有存在
-			if (cart_data[i].id == product.id) {
-				isExist = true;
-				cart_data[i].count = Number(cart_data[i].count) + Number(product.count);
-				break;
-			}
+
+		if(checkNotExist() == undefined){
+			console.log('購物車不存在此商品');
+			// console.log(checkNotExist());
+			cart_data.push(product);
+			black_bg.products.push(product);
+			$(".cartCount").text(cart_data.length);
+			console.log('add');
+		}else{
+			console.log('購物車已有此商品');
+			let i = checkNotExist();
+			black_bg.products[i].count += Number(product.count);
 		}
+		
 	}
-	if (!isExist) {
-		// 假如不存在就把product丟進去
-		cart_data.push(product);
-		$(".cartCount").text(cart_data.length)
+
+	function checkNotExist(){
+		for (let i = 0; i < cart_data.length; i++) {
+			if (cart_data[i].id != product.id) {
+				
+			}else{
+				return i;
+			}
+		}		
 	}
-	sessionStorage.setItem("products", JSON.stringify(cart_data));
 
 	if(sessionStorage.getItem("login")){
 		black_bg.end_cart();
