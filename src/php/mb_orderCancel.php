@@ -8,7 +8,7 @@
     // 另新變數=資料內文
     // $serch_value = $input_value['input_value'];
 
-    $sql = "UPDATE TFD105_G6.order
+    $sql = "UPDATE `ORDER`
     set LOGISTICS_STATE = '已取消'
     WHERE ID = :id;";
 

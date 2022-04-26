@@ -9,7 +9,7 @@
     
     $id = $_SESSION['ID'];
     
-    $sql = "SELECT * FROM TFD105_G6.MEMBER where ID='$id'";
+    $sql = "SELECT * FROM MEMBER where ID='$id'";
     //  $stmt = $pdo->prepare($sql);
     //  $stmt->bindValue(":id", $body["id"]);
     $stmt = $pdo->query($sql);
