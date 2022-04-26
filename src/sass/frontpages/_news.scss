@@ -85,7 +85,8 @@
 }
 
 .main_min .a_out{
-    width: 500px;
+    display: flex;
+    flex-wrap: wrap;
     margin-top: 15px;
 }
 
