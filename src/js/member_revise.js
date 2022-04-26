@@ -197,8 +197,17 @@ $('#logout').on('click', function () {
     method: "POST",
     success: function (data) {
       if (data == '登出成功') {
-        alert('登出成功');
-        location.href = 'index.html'
+        Swal.fire({
+          title: `<h5>登出成功！</h5><p>即將自動跳轉回首頁</p>`,
+          icon: 'success',
+          showConfirmButton: false, // 確認按鈕（預設會顯示不用設定)
+          showCancelButton: false, // 取消按鈕
+          buttonsStyling: false, // 是否使用sweetalert按鈕樣式（預設為true）
+      })
+        setTimeout(() => {
+          location.href = 'index.html';
+        }, 1800)
+        
       }
     }
 
