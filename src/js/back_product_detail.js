@@ -251,12 +251,13 @@ $('#add_prdIntroduce').on('click', (e) => {
     if ($('.prd_introduce').length == 2 || $('.prd_introduce').length < 5) {
         $('#introduce_area').append(`<li class="prd_introduce">
         <input type="file" name="" class="select_introPic">
-        <div class="select_image"><span>上傳圖片</span></div>
+        <div class="select_image"><img src="./img/products/product_default_images.jpg" class="intro_img"/><span>上傳圖片</span></div>
         <textarea type="text" class="prd_introduce_input" row="1" cols="2" maxlength="30"></textarea>
         <i class="bi bi-x"></i>
     </li>`);
     } else {
-        alert("商品介紹區塊最多只能5個");
+        // alert("商品介紹區塊最多只能5個");
+        sAlert("商品介紹區塊最多只能5個", "warning", "確定")
     }
 })
 
@@ -445,7 +446,9 @@ $('#submit').on('click', (e) => {
         // console.log($("#prd_name")[0].offsetTop);
 
         window.scrollTo(0, $("#prd_name")[0].offsetTop - 100);
-        alert('有欄位沒寫');
+        // alert('有欄位沒寫');
+        sAlert('有欄位沒寫', "warning", "確定")
+        
     } else { //有資料庫時要改寫存入地點
         // 取ID
         let urlParams = new URLSearchParams(window.location.search);
@@ -517,7 +520,30 @@ $('#submit').on('click', (e) => {
                     const { successful, message, ID } = body;
                     if (successful == true) {
                         // console.log(successful + ' / ' + message + ' / ' + ID);
-                        alert("修改成功！")
+                        // alert("修改成功！")
+                        Swal.fire({
+                            title: `<h5>修改成功！</h5>`,
+                            icon: "success",
+                            showCancelButton: true,
+                            confirmButtonText: '確定',
+                            // cancelButtonText: '取消',
+                            showCancelButton: false, // 取消按鈕
+                            buttonsStyling: false,
+                            customClass: {
+                                confirmButton: 'btn-green marginright_20',
+                                cancelButton: 'btn-red'
+                            },
+                        }).then(function(res) {
+                           if (res.value) {
+        
+                               // 使用者按確認之後要做的事寫在這裡
+                               //可以搭配alert使用
+                          
+                           }else{
+                                  // 使用者按取消之後要做的事寫在這裡
+                           };
+                        });
+
                         location.href = "./back_products.html";
                     } else {
                         console.log(successful + ' / ' + message);
@@ -584,8 +610,22 @@ $('#submit').on('click', (e) => {
                     const { successful, message, ID } = body;
                     if (successful) {
                         console.log(successful + ' / ' + message + ' / ' + ID);
-                        alert("新增成功！")
-                        location.href = "./back_products.html";
+                        // alert("新增成功！")
+                        Swal.fire({
+                            title: `<h5>新增成功！</h5>`,
+                            icon: "success",
+                            showCancelButton: true,
+                            confirmButtonText: '確定',
+                            // cancelButtonText: '取消',
+                            showCancelButton: false, // 取消按鈕
+                            buttonsStyling: false,
+                            customClass: {
+                                confirmButton: 'btn-green marginright_20',
+                                cancelButton: 'btn-red'
+                            },
+                        }).then(function() {
+                               location.href = "./back_products.html";
+                        });
                     } else {
                         console.log(successful + ' / ' + message);
                     }
@@ -743,7 +783,25 @@ $('#cancel').on('click', (e) => {
 
 // =================================================
 
+// sweetAlert 套件
+function sAlert(msg, icon, btn) {
+    Swal.fire({
+        title: msg,
+        icon: icon,
+        showConfirmButton: true, // 確認按鈕（預設會顯示不用設定)
+        confirmButtonText: btn, //　按鈕顯示文字
+        confirmButtonAriaLabel: btn, // 網頁無障礙用
+        // showDenyButton: true, // 否定按鈕
+        showCancelButton: false, // 取消按鈕
+        buttonsStyling: false, // 是否使用sweetalert按鈕樣式（預設為true）
+        customClass: {
+            confirmButton: 'btn-green margintop_15 marginleft_2 marginright_2',
+            cancelButton: 'btn-red margintop_15 marginleft_2 marginright_2'
+        },
+    })
+}
 
+// ===================================================
 
 
 
