@@ -315,6 +315,7 @@ fetch("./php/mb_list.php", {
 })
   .then((res) => res.json())
   .then((res) => {
+    console.log(res);
     let tr_row = "";
     for (let i = 0; i < res.length; i++) {
       tr_row += "<tr class='li2' id='sort" + i + "'>";
@@ -333,8 +334,8 @@ fetch("./php/mb_list.php", {
 
     $("#li2").append(tr_row);
     if ($('#li2').find('td:nth-child(6)').text() == '已取消') {
-      alert('訂單已取消');
-      $('#li2').find('td:nth-child(6)').closest('tr').remove();
+      // alert('訂單已取消');
+      // $('#li2').find('td:nth-child(6)').closest('tr').remove();
     }
   })
   .then((res) => {
