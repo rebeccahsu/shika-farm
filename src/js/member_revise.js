@@ -131,7 +131,7 @@ function open_detail(ID) {
       console.log(res);
       $('#li' + ID).append("<ul class='detail' style='list-style-type: none;>");
       for (let i = 0; i < res.length; i++) {
-        $('#li' + ID).append("<li'>" + res[i].NAME + " " + res[i].QUANTITY + '件' + " " + 'NT$' + res[i].UNIT_PRICE + "</li>");
+        $('#li' + ID).append("<li>" + res[i].NAME + " " + res[i].QUANTITY + '件' + " " + 'NT$' + res[i].UNIT_PRICE + "</li>");
       }
       $('#li' + ID).append("</ul>");
     });
@@ -169,13 +169,13 @@ function cancel_btn(ID) {
 
 //取消訂單
 
-$('.cel_list_btn').on('click', function () {
-  if (confirm("確定取消訂單?")) {
-    // $('.cl_d').hide()
-    $('#li2').hide()
+// $('.cel_list_btn').on('click', function () {
+//   if (confirm("確定取消訂單?")) {
+//     // $('.cl_d').hide()
+//     $('#li2').hide()
 
-  }
-})
+//   }
+// })
 
 //會員資訊修改
 // 1.先準備要送去後端的資料
