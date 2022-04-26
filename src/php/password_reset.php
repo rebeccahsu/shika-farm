@@ -30,18 +30,21 @@ if($res >0 ){
         $resp["successful"] = true;
         $resp["NAME"] = $data[0]["NAME"];
         $resp["message"] = "修改成功！";
+        $resp["row"] = $resultCount;
         echo json_encode($resp);
     
     }else{
         // $resp["PASSWORD"] = $pwd;
         $resp["successful"] = false;
         $resp["message"] = "哦哦！好像出了點問題！(修改失敗)";
+        $resp["row"] = $resultCount;
         echo json_encode($resp);
     }
 
 }else{
     $resp["successful"] = false;
     $resp["message"] = "哦哦！好像出了點問題！(驗證錯誤)";
+    $resp["row"] = $res;
     echo json_encode($resp);
 }
 
