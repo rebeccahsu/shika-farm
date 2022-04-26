@@ -282,7 +282,7 @@ $(document).on('click', ".cancel_btn", function (e) {
 
   if ($(e.target).hasClass('cancel_btn')) {
     for (let i = 0; i < cBtnCount; i++) {
-      $(e.target).closest('.act_list').find('.cancel_btn').css({ 'background-color': 'gray', 'border': 'none' })
+      $(e.target).closest('.act_list').find('.cancel_btn').css({ 'background-color': 'gray', 'border': 'none'});
       $(e.target).closest('.act_list').find('.cancel_btn').text("已取消");
     }
     console.log($(e.target).closest('.act_list').find('.cancel_btn').val())
