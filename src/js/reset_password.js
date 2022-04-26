@@ -38,7 +38,7 @@ $('#send_psd').on('click', (e) => {
     } else if (psd.search(passwordRule) == -1) {
         $('label[for="reset_password"]').html("<h5>密碼<span>*請輸入半形的英文和數字</span></h5>");
     } else if (repsd == "") {
-        console.log('object');
+        // console.log('object');
         $('label[for="reset_repassword"]').html("<h5>密碼確認<span>*和密碼不一致</span></h5>");
     } else if (psd != repsd) {
         $('label[for="reset_repassword"]').html("<h5>密碼確認<span>*和密碼不一致</span></h5>");
@@ -61,14 +61,16 @@ $('#send_psd').on('click', (e) => {
             .then(resp =>  resp.json())   
             .then(body => {
                 //body也不可以console
-                const { successful, NAME, message } = body;
+                const { successful, NAME, message ,row} = body;
                 if (successful == true) {
                     console.log(successful +'會員'+NAME +' 訊息'+message);
                     reset_pwd.remove();
+                    $(".shikaBlock").attr("style","display:none;");
+                    
 
                     // location.href = `./password_reset_3.html`;
                 } else {
-                    console.log(successful+' 訊息'+message);
+                    console.log(successful+' 訊息'+message +" / "+row);
                 }
             })
             .then(reset_comple.classList.remove('form-off'))

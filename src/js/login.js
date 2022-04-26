@@ -89,10 +89,10 @@ $('#register_password').on('keyup', () => {
 
 // 二次確認密碼blur
 $('#repassword').on('blur', () => {
-    if ($('#password').val() !== $('#repassword').val()) {
-        $('label[for="repassword"]').html("<h5>密碼確認<span>*和密碼不一致</span></h5>");
+    if ($('#register_password').val() !== $('#repassword').val()) {
+        $('label[for="repassword"]').html("<h5>確認密碼<span>*和密碼不一致</span></h5>");
     } else {
-        $('label[for="repassword"]').html("<h5>密碼確認</h5>");
+        $('label[for="repassword"]').html("<h5>確認密碼</h5>");
     }
 })
 
@@ -116,6 +116,19 @@ $('#userName').on('blur', () => {
     }
 });
 
+// 限制生日=======================================
+let date = new Date();
+let day = date.getDate();
+let month = date.getMonth() + 1;
+let year = date.getFullYear();
+if (month < 10) month = "0" + month;
+if (day < 10) day = "0" + day;
+let today = year + "-" + month + "-" + day;
+
+$('#birthday').attr("max",today);
+$('#birthday').attr("min","1822-04-27");
+
+// 限制生日end=======================================
 
 $('#birthday').on('blur', () => {
     if ($('#birthday').val() == "") {
@@ -160,32 +173,41 @@ $('#next').on('click', (e) => {
     let newPassword = document.querySelector("#register_password");
     let userMail = document.querySelector("#register_mail");
     
-    fetch('./php/register_email.php', {
-        method: 'POST',
-        headers: {
-            'Content-type': 'application/json'
-        },
-        // 送出內容轉成JSON送出
-        body: JSON.stringify({
-            EMAIL:userMail.value,
-            PASSWORD: newPassword.value,
-        }),
-    })
-        // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
-        .then(resp => resp.json())
-        .then(body => {
-            //body也不可以console
-            const { successful, message } = body;
-            if (successful == true) {
-                // console.log(successful +' 訊息' + message);
-                sessionStorage.setItem("register",JSON.stringify({mail:userMail.value,password:newPassword.value}))
-
-                // location.href = `./password_reset_3.html`;
-            } else {
-                $('label[for="register_mail"]').html("<h5>電子郵件<span>*e-mail已註冊過</span></h5>");
-                console.log(successful + ' 訊息' + message);
-            }
+    if(userMail.value.search(emailRule) != -1 && userMail.value != "" && newPassword.value.length > 3 && newPassword.value.length < 17 && newPassword.value.search(passwordRule) != -1){
+        fetch('./php/register_email.php', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            // 送出內容轉成JSON送出
+            body: JSON.stringify({
+                EMAIL:userMail.value,
+                PASSWORD: newPassword.value,
+            }),
         })
+            // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+            .then(resp => resp.json())
+            .then(body => {
+                //body也不可以console
+                const { successful, message } = body;
+                if (successful == true) {
+                    // console.log(successful +' 訊息' + message);
+                    sessionStorage.setItem("register",JSON.stringify({mail:userMail.value,password:newPassword.value}))
+                    $("#register1").addClass("form-off");
+                    $("#register2").removeClass("form-off");
+                    $(".shikaBlock").attr("style","display:none;");
+        
+                    // location.href = `./password_reset_3.html`;
+                } else {
+                    $('label[for="register_mail"]').html("<h5>電子郵件<span>*e-mail已註冊過</span></h5>");
+                    console.log(successful + ' 訊息' + message);
+                }
+            })
+    }else{
+        console.log("XX");
+    }
+
+    
 })
 // 註冊送出帳密end=================================================================
 // 註冊送出詳細資料===================================================
@@ -228,16 +250,22 @@ $('#send').on('click', (e) => {
                 const { successful, message , ID , NAME} = body;
                 if (successful == true) {
                     // console.log(successful +' 訊息' + message);
-                    alert('註冊成功');
+                    // alert('註冊成功');
+                    sAlert('註冊成功', "success", "確認");
                     sessionStorage.removeItem("register");
                     sessionStorage.setItem("login",JSON.stringify({login:successful,NAME:NAME}));
-
+                       
+                    // 註冊第二步 送出，到完成
+                    $("#register2").addClass("form-off");
+                    $("#register3").removeClass("form-off");
+                    
                 } else {
                     console.log(successful + ' 訊息' + message);
                 }
             })
         }else{
-        alert("還有欄位沒有寫唷！")
+        // alert("還有欄位沒有寫唷！");
+        sAlert("還有欄位沒有寫唷！", "warning", "確定");
         // console.log('有資料沒有寫');
     }
 })
@@ -318,10 +346,10 @@ function send_forgetEmail(forgetEmail, forgetName, TOKEN){
     
         .then(() => {
             testBtn.value = '送出';
-            alert('Sent!');
+            // alert('Sent!');
         }, (err) => {
             testBtn.value = '送出';
-            alert(JSON.stringify(err));
+            console.log(JSON.stringify(err));
         });
 }
 
@@ -400,12 +428,14 @@ login_btn.addEventListener('click', function (e) {
                     // msg_box.innerHTML = `<p>${ID}</p><p>${NAME}</p><p>${message}</p>`;
                     console.log(successful+' / '+message+' / '+ID+" / "+NAME);
                     sessionStorage.setItem("login",JSON.stringify({login:successful,NAME:NAME,ID:ID}));
-                        alert(`${NAME}，歡迎回到Sìkha牧場`)
+                        // alert(`${NAME}，歡迎回到Sìkha牧場`);
+                        sAlert(`${NAME}，歡迎回到Sìkha牧場`, "success", "確認");
                         $("#login_box").addClass("-off");
                         $("#back_bg").addClass("-off");
    
                 } else {
-                    alert(message);
+                    // alert(message);
+                    sAlert(message, "error", "確認")
                 }
             })
     }
@@ -452,19 +482,6 @@ $('.loginBlock').on("click", function (e) {
         $(".password_reset").removeClass("form-off");
     }
 
-    // 註冊第一步 next
-    if (e.target.classList.contains("next")) {
-        $("#register1").addClass("form-off");
-        $("#register2").removeClass("form-off");
-        $(".shikaBlock").addAttr("style","display:none;");
-    }
-
-    // 註冊第二步 送出，到完成
-    if (e.target.classList.contains("to3")) {
-        $("#register2").addClass("form-off");
-        $("#register3").removeClass("form-off");
-    }
-
     // 註冊完成
     if (e.target.classList.contains("register_done")) {
         $("#login_box").addClass("-off");
@@ -507,3 +524,22 @@ $("#back_bg").on('click', function () {
     $(".shikaBlock").removeAttr("style","display:none;");
 });
 // 頁面切換 end=============================
+// Sweetalert套件 ===================================
+function sAlert(msg, icon, btn) {
+    Swal.fire({
+        title: msg,
+        icon: icon,
+        showConfirmButton: true, // 確認按鈕（預設會顯示不用設定)
+        confirmButtonText: btn, //　按鈕顯示文字
+        confirmButtonAriaLabel: btn, // 網頁無障礙用
+        // showDenyButton: true, // 否定按鈕
+        showCancelButton: false, // 取消按鈕
+        buttonsStyling: false, // 是否使用sweetalert按鈕樣式（預設為true）
+        customClass: {
+                        confirmButton: 'btn-yellow margintop_15 marginleft_2 marginright_2',
+                        cancelButton: 'btn-red margintop_15 marginleft_2 marginright_2'
+                    },
+    })
+}
+
+// Sweetalert套件 end =================================
