@@ -459,6 +459,9 @@
             //卡號
             .payId {
                 width: 50px;
+				@include mobile{
+					width: 44px;
+				}
             }
             //到期日
             .date {
