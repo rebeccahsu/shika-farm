@@ -149,9 +149,13 @@ tr{
 .li3{
 border: 1px solid $color_G ;
 
-
-.li3 td{
-   padding-top: 20px;
+    li{
+        display: block;
+        text-align: left;
+        margin: 20px;
+    }
+    .li3 td{
+        padding-top: 20px;
     
     }
 }
@@ -159,4 +163,11 @@ border: 1px solid $color_G ;
 .detail>li{
 
     list-style-type: none;
+}
+
+.mb_container{
+    @include mobile{
+        width: 100%;
+       overflow-y: auto;
+    }
 }
