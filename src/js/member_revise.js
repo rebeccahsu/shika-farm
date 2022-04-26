@@ -218,7 +218,7 @@ $('#logout').on('click', function () {
 });
 
 //確認修改按鈕
-let userid = JSON.parse(sessionStorage.getItem("login")).ID;
+// let userid = JSON.parse(sessionStorage.getItem("login")).ID;
 
 $('#confirmBtn').on('click', function () {
   let userInfo = {
@@ -256,9 +256,9 @@ fetch("./php/mb_orderActive.php", {
   headers: {
     "Content-Type": "application/json",
   },
-  body: JSON.stringify({
-    memberID: JSON.parse(sessionStorage.getItem('login')).ID,
-  })
+  // body: JSON.stringify({
+  //   memberID: JSON.parse(sessionStorage.getItem('login')).ID,
+  // })
 })
   .then((res) => res.json())
   .then((res) => {
@@ -309,9 +309,9 @@ fetch("./php/mb_list.php", {
   headers: {
     "Content-Type": "application/json",
   },
-  body: JSON.stringify({
-    memberID: JSON.parse(sessionStorage.getItem('login')).ID,
-  })
+  // body: JSON.stringify({
+  //   memberID: JSON.parse(sessionStorage.getItem('login')).ID,
+  // })
 })
   .then((res) => res.json())
   .then((res) => {
