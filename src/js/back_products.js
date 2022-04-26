@@ -1,13 +1,13 @@
 //目前頁面亮燈
 let pages = document.querySelector(".aside_ul").querySelectorAll("h5");
-pages.forEach(function(page){
-    if ( page.innerHTML == "商品管理"){
+pages.forEach(function (page) {
+    if (page.innerHTML == "商品管理") {
         page.closest("a").classList.add("-on");
     }
 });
 
 // 取得資料 =========================================================================
-document.addEventListener("DOMContentLoaded",function(){
+document.addEventListener("DOMContentLoaded", function () {
 
     // var product = {
     //     prd_number: `${$('.prd_number')[i].innerText}`,
@@ -24,44 +24,44 @@ document.addEventListener("DOMContentLoaded",function(){
     //     prd_ingredient: "糖、香料、美好的事物和小女孩", //innerHtml 商品規格
     // }
 
-            let url = './php/back_products_putin.php';
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json'
-                },
-                // 送出內容轉成JSON送出
-                body: JSON.stringify({
-                    ID:1,
-                }),
-            })
-           
-                // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
-                .then(resp =>  resp.json())   
-                .then(body => {
-                    //body也不可以console
-                    const { successful, message, data } = body;
-                    if (successful) {
-                        // console.log(data);
-                        data.forEach(function(v){
-                            // console.log(v);
-                             // 判斷狀態，寫入class
-                            var condition = "";
-                            var inner_style = ""
+    let url = './php/back_products_putin.php';
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        // 送出內容轉成JSON送出
+        body: JSON.stringify({
+            ID: 1,
+        }),
+    })
 
-                            if (v.STATE == '上架中') {
-                                condition = "on";
-                                inner_style = '';
-                                // console.log('list on');
-                            } else {
-                                condition = "off";
-                                inner_style = 'style="display:none;opacity:1;"'
-                                // console.log('list off');
-                            };
+        // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+        .then(resp => resp.json())
+        .then(body => {
+            //body也不可以console
+            const { successful, message, data } = body;
+            if (successful) {
+                // console.log(data);
+                data.forEach(function (v) {
+                    // console.log(v);
+                    // 判斷狀態，寫入class
+                    var condition = "";
+                    var inner_style = ""
 
-                            let MAIN_PIC=JSON.parse(v.MAIN_PIC);
+                    if (v.STATE == '上架中') {
+                        condition = "on";
+                        inner_style = '';
+                        // console.log('list on');
+                    } else {
+                        condition = "off";
+                        inner_style = 'style="display:none;opacity:1;"'
+                        // console.log('list off');
+                    };
 
-                            var list_html = `<li data-prd_number="${v.ID}" data-prd_name="${v.NAME}" data-prd_condition="${condition}" class="list_item -${condition}" ${inner_style}>
+                    let MAIN_PIC = JSON.parse(v.MAIN_PIC);
+
+                    var list_html = `<li data-prd_number="${v.ID}" data-prd_name="${v.NAME}" data-prd_condition="${condition}" class="list_item -${condition}" ${inner_style}>
                             <label class="check_container">
                             <input type="checkbox"  class="select_item">
                             <span class="checkmark"></span>
@@ -76,14 +76,14 @@ document.addEventListener("DOMContentLoaded",function(){
                             <button type="button" class="btn-green prd_edit">修改</button>
                             </li>`;
 
-                            $('#pds_list').append(list_html)
-                        })
-
-                    } else {
-                        alert(message);
-                    }
+                    $('#pds_list').append(list_html)
                 })
-        
+
+            } else {
+                alert(message);
+            }
+        })
+
 })
 
 // 取得資料 end =========================================================================
@@ -115,54 +115,140 @@ $('#show_off').on('click', (e) => {
 $(function () {
     $('#del_pd').on('click', () => {
         // console.log($(".list_item"));
-        if (confirm("確定要刪除資料嗎？")) {
-                            // 打勾的項目數量 
-            for (var i = $('.select_item').length-1; i>0 ; i--) {
+
+
+        Swal.fire({
+            title: `<h5>您確定要上架刪除商品嗎？</h5>`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: '確定',
+            cancelButtonText: '取消',
+            buttonsStyling: false,
+            customClass: {
+                confirmButton: 'btn-green marginright_20',
+                cancelButton: 'btn-red'
+            },
+        }).then(function(res) {
+           if (res.value) {
+
+               // 使用者按確認之後要做的事寫在這裡
+               //可以搭配alert使用
+               for (var i = $('.select_item').length - 1; i > 0; i--) {
                 if ($(".select_item")[i].checked == true) { //checke box 有打勾時
-                    switch ($(".select_item")[i].closest("li").getAttribute("data-prd_condition")) {    //找出li的狀態
-                        case "on":
-                            alert("上架中的商品不能刪除");
-                            break;
+                    let aa = $(".select_item")[i].closest("li").getAttribute("data-prd_condition");
 
-                        case "off":
-                            // AJAX
-                            // console.log($(".select_item")[i].checked);
-                            let target_id = $(".select_item")[i].closest('li').getAttribute('data-prd_number');
+                    if (aa == "on") {
+                        alert("上架中的商品不能刪除");
+                        // sAlert("上架中的商品不能刪除" , "success", "確定");
+                    } else if (aa == "off") {
+                        // AJAX
+                        // console.log($(".select_item")[i].checked);
+                        let target_id = $(".select_item")[i].closest('li').getAttribute('data-prd_number');
 
-                            fetch('./php/back_products_delete.php', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-type': 'application/json'
-                                },
-                                // 送出內容轉成JSON送出
-                                body: JSON.stringify({
-                                    ID:target_id,
-                                }),
+                        fetch('./php/back_products_delete.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-type': 'application/json'
+                            },
+                            // 送出內容轉成JSON送出
+                            body: JSON.stringify({
+                                ID: target_id,
+                            }),
+                        })
+
+                            // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+                            .then(resp => resp.json())
+                            .then(body => {
+                                //body也不可以console
+                                const { successful, message, end ,id } = body;
+                                if (successful) {
+                                    console.log(successful + '訊息' + message + '數' + end +" / "+id);
+                                    let id_el = document.querySelectorAll(".prd_number");
+                                    id_el.forEach((v,i)=>{
+                                        if(v.innerText == id){
+                                            v.closest("li").remove();
+                                        }
+                                    })
+
+                                } else {
+                                    // alert(message);
+                                    let msg = `品號：${id} `
+                                    sAlert((msg+message), "error", "確定");
+                                    $(".select_item")[i].checked = false
+                                    return;
+                                }
                             })
-                           
-                                // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
-                                .then(resp =>  resp.json())   
-                                .then(body => {
-                                    //body也不可以console
-                                    const { successful, message,end} = body;
-                                    if (successful) {
-                                        console.log(successful +'訊息'+message+'數'+end);
-                                    } else {
-                                        alert(message);
-                                    }
-                                })
-                                .then($(".select_item")[i].closest('li').remove())
-                            break;
-                        default:
-                            console.log("default");
                     }
+
                 }
             }
+          
+           }else{
+                  // 使用者按取消之後要做的事寫在這裡
+                  console.log('取消刪除');
+           };
+        });
 
+    /*
+        if (confirm("確定要刪除資料嗎？")) {
+            // 打勾的項目數量 
+            for (var i = $('.select_item').length - 1; i > 0; i--) {
+                if ($(".select_item")[i].checked == true) { //checke box 有打勾時
+                    let aa = $(".select_item")[i].closest("li").getAttribute("data-prd_condition");
+
+                    if (aa == "on") {
+                        alert("上架中的商品不能刪除");
+                        // sAlert("上架中的商品不能刪除" , "success", "確定");
+                    } else if (aa == "off") {
+                        // AJAX
+                        // console.log($(".select_item")[i].checked);
+                        let target_id = $(".select_item")[i].closest('li').getAttribute('data-prd_number');
+
+                        fetch('./php/back_products_delete.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-type': 'application/json'
+                            },
+                            // 送出內容轉成JSON送出
+                            body: JSON.stringify({
+                                ID: target_id,
+                            }),
+                        })
+
+                            // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+                            .then(resp => resp.json())
+                            .then(body => {
+                                //body也不可以console
+                                const { successful, message, end ,id } = body;
+                                if (successful) {
+                                    console.log(successful + '訊息' + message + '數' + end +" / "+id);
+                                    let id_el = document.querySelectorAll(".prd_number");
+                                    id_el.forEach((v,i)=>{
+                                        if(v.innerText == id){
+                                            v.closest("li").remove();
+                                        }
+                                    })
+
+                                } else {
+                                    // alert(message);
+                                    let msg = `品號：${id} `
+                                    sAlert((msg+message), "error", "確定");
+                                    $(".select_item")[i].checked = false
+                                    return;
+                                }
+                            })
+                    }
+
+                }
+            }
         } else {
             console.log('取消刪除');
         }
+    */
     })
+
+
+
 })
 
 // 刪除按鈕 end===============================
@@ -170,42 +256,154 @@ $(function () {
 
 $("#on_pd").on('click', () => {
 
-    for (var i = 0; i < $('.select_item').length; i++) {
-        if ($(".select_item")[i].checked == true) {
-            // console.log($('.select_item')[i]);
-            $('.list_item')[i].setAttribute('data-prd_condition', 'on');
-            $('.list_item')[i].setAttribute('class', 'list_item -on');
-            $('.prd_condition')[i].innerText = '上架中';
-            let item_nub = $('.list_item')[i].getAttribute("data-prd_number");
-            // console.log(item_nub);
-            fetch('./php/back_products_STATEtoON.php', {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json'
-                },
-                // 送出內容轉成JSON送出
-                body: JSON.stringify({
-                    ID:item_nub,
-                }),
-            })
-                // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
-                .then(resp =>  resp.json())   
-                .then(body => {
-                    //body也不可以console
-                    const { successful, message,end,id} = body;
-                    if (successful) {
-                        console.log(successful +'訊息'+message+'數'+end);
-                        alert("商品上架成功！")
-                    } else {
-                        console.log(id+' / '+message);
-                    }
-                })
+    // sweetAlert 套件 ==========================================================
+    Swal.fire({
+        title: `<h5>確定要上架商品嗎？</h5>`,
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: '確定',
+        cancelButtonText: '取消',
+        buttonsStyling: false,
+        customClass: {
+            confirmButton: 'btn-green marginright_20',
+            cancelButton: 'btn-red'
+        },
+    }).then(function (res) {
+        if (res.value) {
+            for (var i = 0; i < $('.select_item').length; i++) {
+                if ($(".select_item")[i].checked == true) {
+                    // console.log($('.select_item')[i]);
+                    $('.list_item')[i].setAttribute('data-prd_condition', 'on');
+                    $('.list_item')[i].setAttribute('class', 'list_item -on');
+                    $('.prd_condition')[i].innerText = '上架中';
+                    let item_nub = $('.list_item')[i].getAttribute("data-prd_number");
+                    // console.log(item_nub);
+                    fetch('./php/back_products_STATEtoON.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-type': 'application/json'
+                        },
+                        // 送出內容轉成JSON送出
+                        body: JSON.stringify({
+                            ID: item_nub,
+                        }),
+                    })
+                        // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+                        .then(resp => resp.json())
+                        .then(body => {
+                            //body也不可以console
+                            const { successful, message, end, id } = body;
+                            if (successful) {
+                                console.log(successful + '訊息' + message + '數' + end);
+                                // alert("商品上架成功！")
+                                sAlert('商品上架成功！', "success", "確定")
+                            } else {
+                                console.log(id + ' / ' + message);
+                            }
+                        })
+                    $(".select_item")[i].checked = false;
+                }
+            }
         }
-    }
+    })
+
+    /*
+        for (var i = 0; i < $('.select_item').length; i++) {
+            if ($(".select_item")[i].checked == true) {
+                // console.log($('.select_item')[i]);
+                $('.list_item')[i].setAttribute('data-prd_condition', 'on');
+                $('.list_item')[i].setAttribute('class', 'list_item -on');
+                $('.prd_condition')[i].innerText = '上架中';
+                let item_nub = $('.list_item')[i].getAttribute("data-prd_number");
+                // console.log(item_nub);
+                fetch('./php/back_products_STATEtoON.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-type': 'application/json'
+                    },
+                    // 送出內容轉成JSON送出
+                    body: JSON.stringify({
+                        ID:item_nub,
+                    }),
+                })
+                    // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+                    .then(resp =>  resp.json())   
+                    .then(body => {
+                        //body也不可以console
+                        const { successful, message,end,id} = body;
+                        if (successful) {
+                            console.log(successful +'訊息'+message+'數'+end);
+                            // alert("商品上架成功！")
+                            sAlert('商品上架成功！', "success", "確定")
+                        } else {
+                            console.log(id+' / '+message);
+                        }
+                    })
+            }
+        }
+    */
+
 })
 
 
 $("#off_pd").on('click', () => {
+
+    // sweetAlert 套件 ==========================================================
+    Swal.fire({
+        title: `<h5>確定要下架商品嗎？</h5>`,
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: '確定',
+        cancelButtonText: '取消',
+        buttonsStyling: false,
+        customClass: {
+            confirmButton: 'btn-green marginright_20',
+            cancelButton: 'btn-red'
+        },
+    }).then(function (res) {
+        if (res.value) {
+            // 使用者按確認之後要做的事寫在這裡
+            //可以搭配alert使用
+            for (var i = 0; i < $('.select_item').length; i++) {
+                if ($(".select_item")[i].checked == true) {
+                    // console.log($('.select_item')[i]);
+                    $('.list_item')[i].setAttribute('data-prd_condition', 'off');
+                    $('.list_item')[i].setAttribute('class', 'list_item -off');
+                    $('.prd_condition')[i].innerText = '未上架';
+                    let item_nub = $('.list_item')[i].getAttribute("data-prd_number");
+                    // console.log(item_nub);
+                    fetch('./php/back_products_STATEtoOFF.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-type': 'application/json'
+                        },
+                        // 送出內容轉成JSON送出
+                        body: JSON.stringify({
+                            ID: item_nub,
+                        }),
+                    })
+                        // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+                        .then(resp => resp.json())
+                        .then(body => {
+                            //body也不可以console
+                            const { successful, message, end, id } = body;
+                            if (successful) {
+                                console.log(successful + '訊息' + message + '數' + end);
+
+                            } else {
+                                console.log(id + ' / ' + message);
+                            }
+                        })
+
+                    $(".select_item")[i].checked = false;
+                }
+            }
+            sAlert('商品已完成下架', "success", "確定");
+
+        };
+    });
+
+    /*
     if (confirm("確定要下架商品嗎？")) {
         for (var i = 0; i < $('.select_item').length; i++) {
             if ($(".select_item")[i].checked == true) {
@@ -232,30 +430,32 @@ $("#off_pd").on('click', () => {
                         const { successful, message,end,id} = body;
                         if (successful) {
                             console.log(successful +'訊息'+message+'數'+end);
-                            alert("商品下架成功！")
+
                         } else {
                             console.log(id+' / '+message);
                         }
                     })
             }
         }
-        alert('商品已完成下架');
+        // alert('商品已完成下架');
+        sAlert('商品已完成下架', "success", "確定")
     }
+    */
 })
 
 
 // 修改上下架end
 // ==================================
 // 商品搜尋
-$('#search').on("keyup",(e)=>{
-    if(e.which == 13){
+$('#search').on("keyup", (e) => {
+    if (e.which == 13) {
         search_product();
     }
 });
 
 $('#search_pd').on('click', () => search_product());
 
-function search_product(){
+function search_product() {
     let search_target = $('#search').val();
     // console.log(search_target);
     fetch('./php/back_products_search.php', {
@@ -265,29 +465,29 @@ function search_product(){
         },
         // 送出內容轉成JSON送出
         body: JSON.stringify({
-            keyWord:search_target,
+            keyWord: search_target,
         }),
     })
         // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
-        .then(resp =>  resp.json())   
+        .then(resp => resp.json())
         .then(body => {
             //body也不可以console
-            const { successful, message, data, end} = body;
+            const { successful, message, data, end } = body;
             if (successful) {
                 // console.log(successful +'訊息'+message+'數'+end);
                 // console.log(data);
 
                 $(".list_item").remove();
 
-                data.forEach(function(v){
+                data.forEach(function (v) {
                     // console.log(v);
-                     // 判斷狀態，寫入class
+                    // 判斷狀態，寫入class
                     var condition = "";
                     var inner_style = ""
 
                     // 檢查是否顯示下架商品
                     let ckbox = document.querySelector('#show_off');
-                    if(ckbox.checked == false){
+                    if (ckbox.checked == false) {
                         if (v.STATE == '上架中') {
                             condition = "on";
                             inner_style = '';
@@ -297,16 +497,16 @@ function search_product(){
                             inner_style = 'style="display:none;opacity:1;"'
                             // console.log('list off');
                         };
-                    }else{
+                    } else {
                         // 顯示下架商品則不隱藏
                         if (v.STATE == '上架中') {
                             condition = "on";
-                        }else{
+                        } else {
                             condition = "off";
                         }
                     }
 
-                    let MAIN_PIC=JSON.parse(v.MAIN_PIC);
+                    let MAIN_PIC = JSON.parse(v.MAIN_PIC);
 
                     var list_html = `<li data-prd_number="${v.ID}" data-prd_name="${v.NAME}" data-prd_condition="${condition}" class="list_item -${condition}" ${inner_style}>
                     <label class="check_container">
@@ -333,6 +533,25 @@ function search_product(){
             }
         })
 }
+
+
+// $('.list_item').each((index, value) => {
+
+//     if (value.getAttribute('data-prd_number').search(search_target) == -1 & value.getAttribute('data-prd_name').search(search_target) == -1) {
+//         console.log(value);
+//         value.setAttribute("style", "display:none;");
+//     } else if (search_target == "") {
+//         if ($('#show_off').has('checked') && value.getAttribute('data-prd_condition').search('on') > 0) {
+//             console.log('X');
+//             value.removeAttribute("style");
+//         } else if ($('#show_off').has('checked')) {
+//             console.log('v');
+//             value.removeAttribute("style");
+//         }
+//     }
+
+// })
+
 
 // 商品搜尋end
 // ========================================
@@ -373,17 +592,34 @@ $('.next_page').on('click', (e) => {
 
 // ========================================
 // 修改按鈕>網址轉跳
-    $(document).on('click', (e) => {
-        // console.log(e.target);
-        // console.log(e.target.getAttribute('class'));
-        if(e.target.getAttribute('class') == 'btn-green prd_edit'){
-            console.log('edit');
-            let target_prd = $(e.target).closest('li').data('prd_number');
-            console.log(target_prd);
-            location.href = `./back_product_detail.html?prd_number=${target_prd}`;
-        }
-    })
+$(document).on('click', (e) => {
+    // console.log(e.target);
+    // console.log(e.target.getAttribute('class'));
+    if (e.target.getAttribute('class') == 'btn-green prd_edit') {
+        console.log('edit');
+        let target_prd = $(e.target).closest('li').data('prd_number');
+        console.log(target_prd);
+        location.href = `./back_product_detail.html?prd_number=${target_prd}`;
+    }
+})
 
 // ===========================================
 
+// sweetAlert 套件
+function sAlert(msg, icon, btn) {
+    Swal.fire({
+        title: msg,
+        icon: icon,
+        showConfirmButton: true, // 確認按鈕（預設會顯示不用設定)
+        confirmButtonText: btn, //　按鈕顯示文字
+        confirmButtonAriaLabel: btn, // 網頁無障礙用
+        // showDenyButton: true, // 否定按鈕
+        showCancelButton: false, // 取消按鈕
+        buttonsStyling: false, // 是否使用sweetalert按鈕樣式（預設為true）
+        customClass: {
+            confirmButton: 'btn-green margintop_15 marginleft_2 marginright_2',
+            cancelButton: 'btn-red margintop_15 marginleft_2 marginright_2'
+        },
+    })
+}
 
