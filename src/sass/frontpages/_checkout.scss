@@ -44,14 +44,14 @@
 	// ---------- 購物車 ----------
 	.step1 {
 		margin: 100px auto 0;
-		width: 1000px;
+		width: 100%;
 		display: grid;
-		@include pad{
-			width: 650px;
-		}
-		@include mobile{
-			width: 360px;
-		}
+		// @include pad{
+		// 	width: 650px;
+		// }
+		// @include mobile{
+		// 	width: 360px;
+		// }
 
 		.carName {
 			background-color: $color_Y;
