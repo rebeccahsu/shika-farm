@@ -16,6 +16,7 @@ function sAlert(msg, icon, btn) {
   })
 }
 
+
 //tab切換效果
 let mb_btn = $('.mem_btn')   //先選擇BTN 三個CLASS必須一樣才能使用
 mb_btn.eq(0).addClass('on')  //選到第一個BTN加上CLASS EQ0第的一個
@@ -30,6 +31,8 @@ mb_btn.on('click', function () {  //綁定按鈕事件
   // console.log(this)
   $('.tab[data-id="' + tab_id + '"]').show()
 })
+
+
 
 //會員資料回傳
 let usercity = ''
