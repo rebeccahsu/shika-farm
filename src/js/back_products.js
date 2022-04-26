@@ -186,68 +186,7 @@ $('#show_off').on('click', (e) => {
                   console.log('取消刪除');
            };
         });
-
-    /*
-        if (confirm("確定要刪除資料嗎？")) {
-            // 打勾的項目數量 
-            for (var i = $('.select_item').length - 1; i > 0; i--) {
-                if ($(".select_item")[i].checked == true) { //checke box 有打勾時
-                    let aa = $(".select_item")[i].closest("li").getAttribute("data-prd_condition");
-
-                    if (aa == "on") {
-                        alert("上架中的商品不能刪除");
-                        // sAlert("上架中的商品不能刪除" , "success", "確定");
-                    } else if (aa == "off") {
-                        // AJAX
-                        // console.log($(".select_item")[i].checked);
-                        let target_id = $(".select_item")[i].closest('li').getAttribute('data-prd_number');
-
-                        fetch('./php/back_products_delete.php', {
-                            method: 'POST',
-                            headers: {
-                                'Content-type': 'application/json'
-                            },
-                            // 送出內容轉成JSON送出
-                            body: JSON.stringify({
-                                ID: target_id,
-                            }),
-                        })
-
-                            // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
-                            .then(resp => resp.json())
-                            .then(body => {
-                                //body也不可以console
-                                const { successful, message, end ,id } = body;
-                                if (successful) {
-                                    console.log(successful + '訊息' + message + '數' + end +" / "+id);
-                                    let id_el = document.querySelectorAll(".prd_number");
-                                    id_el.forEach((v,i)=>{
-                                        if(v.innerText == id){
-                                            v.closest("li").remove();
-                                        }
-                                    })
-
-                                } else {
-                                    // alert(message);
-                                    let msg = `品號：${id} `
-                                    sAlert((msg+message), "error", "確定");
-                                    $(".select_item")[i].checked = false
-                                    return;
-                                }
-                            })
-                    }
-
-                }
-            }
-        } else {
-            console.log('取消刪除');
-        }
-    */
     })
-
-
-
-
 
 // 刪除按鈕 end===============================
 // 修改上下架=========================
@@ -305,42 +244,6 @@ $("#on_pd").on('click', () => {
             }
         }
     })
-
-    /*
-        for (var i = 0; i < $('.select_item').length; i++) {
-            if ($(".select_item")[i].checked == true) {
-                // console.log($('.select_item')[i]);
-                $('.list_item')[i].setAttribute('data-prd_condition', 'on');
-                $('.list_item')[i].setAttribute('class', 'list_item -on');
-                $('.prd_condition')[i].innerText = '上架中';
-                let item_nub = $('.list_item')[i].getAttribute("data-prd_number");
-                // console.log(item_nub);
-                fetch('./php/back_products_STATEtoON.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-type': 'application/json'
-                    },
-                    // 送出內容轉成JSON送出
-                    body: JSON.stringify({
-                        ID:item_nub,
-                    }),
-                })
-                    // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
-                    .then(resp =>  resp.json())   
-                    .then(body => {
-                        //body也不可以console
-                        const { successful, message,end,id} = body;
-                        if (successful) {
-                            console.log(successful +'訊息'+message+'數'+end);
-                            // alert("商品上架成功！")
-                            sAlert('商品上架成功！', "success", "確定")
-                        } else {
-                            console.log(id+' / '+message);
-                        }
-                    })
-            }
-        }
-    */
 
 })
 
@@ -401,45 +304,6 @@ $("#off_pd").on('click', () => {
 
         };
     });
-
-    /*
-    if (confirm("確定要下架商品嗎？")) {
-        for (var i = 0; i < $('.select_item').length; i++) {
-            if ($(".select_item")[i].checked == true) {
-                // console.log($('.select_item')[i]);
-                $('.list_item')[i].setAttribute('data-prd_condition', 'off');
-                $('.list_item')[i].setAttribute('class', 'list_item -off');
-                $('.prd_condition')[i].innerText = '未上架';
-                let item_nub = $('.list_item')[i].getAttribute("data-prd_number");
-                // console.log(item_nub);
-                fetch('./php/back_products_STATEtoOFF.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-type': 'application/json'
-                    },
-                    // 送出內容轉成JSON送出
-                    body: JSON.stringify({
-                        ID:item_nub,
-                    }),
-                })
-                    // 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
-                    .then(resp =>  resp.json())   
-                    .then(body => {
-                        //body也不可以console
-                        const { successful, message,end,id} = body;
-                        if (successful) {
-                            console.log(successful +'訊息'+message+'數'+end);
-
-                        } else {
-                            console.log(id+' / '+message);
-                        }
-                    })
-            }
-        }
-        // alert('商品已完成下架');
-        sAlert('商品已完成下架', "success", "確定")
-    }
-    */
 })
 
 
@@ -473,8 +337,6 @@ function search_product() {
             //body也不可以console
             const { successful, message, data, end } = body;
             if (successful) {
-                // console.log(successful +'訊息'+message+'數'+end);
-                // console.log(data);
 
                 $(".list_item").remove();
 
@@ -545,31 +407,31 @@ $('#new_pd').on('click', () => {
 //=========================================
 
 //停止頁籤預設行為
-$('.page_hear').on('click', (e) => {
-    e.preventDefault;
-    // console.log('a');
+// $('.page_hear').on('click', (e) => {
+//     e.preventDefault;
+//     // console.log('a');
 
-})
+// })
 
-$('.prev_page').on('click', (e) => {
-    e.preventDefault;
-    // console.log('a');
-    if (!($('.page_hear').find("p").text() == '1')) {
-        // console.log('hear');
-        $('.page_hear').prev().addClass('page_hear');
-        $('.page_hear')[1].classList.remove('page_hear');
-    }
-})
+// $('.prev_page').on('click', (e) => {
+//     e.preventDefault;
+//     // console.log('a');
+//     if (!($('.page_hear').find("p").text() == '1')) {
+//         // console.log('hear');
+//         $('.page_hear').prev().addClass('page_hear');
+//         $('.page_hear')[1].classList.remove('page_hear');
+//     }
+// })
 
-$('.next_page').on('click', (e) => {
-    e.preventDefault;
-    // console.log('a');
-    if (!($('.page_hear').next().is('.next_page'))) {
-        // console.log('hear');
-        $('.page_hear').next().addClass('page_hear');
-        $('.page_hear')[0].classList.remove('page_hear');
-    }
-})
+// $('.next_page').on('click', (e) => {
+//     e.preventDefault;
+//     // console.log('a');
+//     if (!($('.page_hear').next().is('.next_page'))) {
+//         // console.log('hear');
+//         $('.page_hear').next().addClass('page_hear');
+//         $('.page_hear')[0].classList.remove('page_hear');
+//     }
+// })
 
 // ========================================
 // 修改按鈕>網址轉跳
