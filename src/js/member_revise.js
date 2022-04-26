@@ -209,7 +209,7 @@ $('#logout').on('click', function () {
       })
         setTimeout(() => {
           location.href = 'index.html';
-        }, 1800)
+        }, 1500)
         
       }
     }
