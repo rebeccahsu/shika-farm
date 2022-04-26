@@ -19,7 +19,7 @@
     .titleBar{
         width: 90%;
         display: grid;
-        grid-template-columns: 15% 15% 25% 20% 25%;
+        grid-template-columns: 10% 15% 35% 15% 25%;
         @include  marginCenter();
         background-color: $color_G;
         color: $color_W;
