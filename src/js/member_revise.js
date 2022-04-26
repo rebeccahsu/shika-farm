@@ -1,5 +1,20 @@
 // const { json } = require("is_js")
-
+function sAlert(msg, icon, btn) {
+  Swal.fire({
+      title: msg,
+      icon: icon,
+      showConfirmButton: true, // 確認按鈕（預設會顯示不用設定)
+      confirmButtonText: btn, //　按鈕顯示文字
+      confirmButtonAriaLabel: btn, // 網頁無障礙用
+      // showDenyButton: true, // 否定按鈕
+      showCancelButton: false, // 取消按鈕
+      buttonsStyling: false, // 是否使用sweetalert按鈕樣式（預設為true）
+      customClass: {
+                      confirmButton: 'btn-yellow margintop_15 marginleft_2 marginright_2',
+                      cancelButton: 'btn-red margintop_15 marginleft_2 marginright_2'
+                  },
+  })
+}
 
 //tab切換效果
 let mb_btn = $('.mem_btn')   //先選擇BTN 三個CLASS必須一樣才能使用
@@ -161,16 +176,16 @@ $('.cel_list_btn').on('click', function () {
 
 //會員資訊修改
 // 1.先準備要送去後端的資料
-let userInfo = {
-  email: $('#mbEmail').text(),
-  city: $('#city option:selected').text(),
-  area: $('#area option:selected').text(),
-  address: $('#address').val(),
-  tel: $('#mb_tel').val(),
-  // 新密碼舊密碼
-  newpd: $('#newpd').val(),
-  // oldpd: $('#oldpd').val(),
-}
+// let userInfo = {
+//   email: $('#mbEmail').text(),
+//   city: $('#city option:selected').text(),
+//   area: $('#area option:selected').text(),
+//   address: $('#address').val(),
+//   tel: $('#mb_tel').val(),
+//   // 新密碼舊密碼
+//   newpd: $('#newpd').val(),
+//   // oldpd: $('#oldpd').val(),
+// }
 
 
 //登出按鈕
@@ -194,6 +209,17 @@ $('#logout').on('click', function () {
 let userid = JSON.parse(sessionStorage.getItem("login")).ID;
 
 $('#confirmBtn').on('click', function () {
+  let userInfo = {
+    email: $('#mbEmail').text(),
+    city: $('#city option:selected').text(),
+    area: $('#area option:selected').text(),
+    address: $('#address').val(),
+    tel: $('#mb_tel').val(),
+    // 新密碼舊密碼
+    newpd: $('#newpd').val(),
+    // oldpd: $('#oldpd').val(),
+  }
+
   $.ajax({
     url: './php/memberupdate.php',
     method: "POST",
@@ -201,7 +227,12 @@ $('#confirmBtn').on('click', function () {
       userinfo: userInfo,
     }),
     success: function (data) {
-      console.log(data);
+      // console.log(data);
+      if(data == 'true'){
+        sAlert(`<h5>已成功修改會員資料！</h5>`, 'success', 'OK');
+      }else{
+        sAlert(`<h5>沒有需儲存的修改內容！</h5>`, 'info', 'OK');
+      }
     }
 
   })
