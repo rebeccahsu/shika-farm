@@ -33,8 +33,10 @@ new Vue({
         })
             .then(res => res.json())
             .then(res => this.orderDetails = res)
-    },
 
+        // const orderPackage = this.orderDetails.filter(ORDER_DETAIL.ORDER_ID === ORDER.ID);
+        // console.log(orderPackage);
+    },
 });
 
 
