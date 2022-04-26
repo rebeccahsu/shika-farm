@@ -3,8 +3,9 @@
     
     $body = json_decode(file_get_contents("php://input"), true);
 
+    // ALTER TABLE `NEWS` CHANGE COLUMN `ID` `ID` INT NOT NULL AUTO_INCREMENT ;
     $sql = '
-        INSERT INTO `TFD105_G6`.`NEWS`
+        INSERT INTO `NEWS`
         (`ADMIN_ID`, `TITLE`, `DESCRIPTION`, `DATE`, `IMG`)
         VALUES
         (1, :title, :desc, curdate(), :img);
