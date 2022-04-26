@@ -314,34 +314,6 @@ $("#pd_info_buy").on("click", (e) => {
 		price: price,
 		count: Number(count),
 	};
-	// 預設商品不存在
-	// let isExist = false;
-	// // 檢查session裡是否已經存在該商品
-	// if (cart_data.length > 0) {
-	// 	for (let i = 0; i < cart_data.length; i++) {
-	// 		// 檢查商品id有沒有存在
-	// 		if (cart_data[i].id == product.id) {
-	// 			isExist = true;
-	// 			cart_data[i].count = Number(cart_data[i].count) + Number(product.count);
-	// 			break;
-	// 		}
-	// 	}
-	// }
-	// if (!isExist) {
-	// 	// 假如不存在就把product丟進去
-	// 	cart_data.push(product);
-	// 	$(".cartCount").text(cart_data.length)
-	// }
-	// sessionStorage.setItem("products", JSON.stringify(cart_data));
-
-	// if(!sessionStorage.getItem("login")){
-	// 	black_bg.end_cart();
-	// 	location.href = 'checkout.html';
-	// }else{
-    // 	$("#login_box").removeClass("-off");
-	// 	$("#back_bg").removeClass("-off");
-	// }
-
 	if (cart_data.length > 0) {
 
 		if(checkNotExist() == undefined){
