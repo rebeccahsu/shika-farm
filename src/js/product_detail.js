@@ -370,11 +370,13 @@ $("#pd_info_buy").on("click", (e) => {
 	}
 
 	if(!sessionStorage.getItem("login")){
-		black_bg.end_cart();
-		location.href = 'checkout.html';
-	}else{
+		console.log("bbb");
 		$("#login_box").removeClass("-off");
 		$("#back_bg").removeClass("-off");
+	}else{
+		console.log("aaa");
+		black_bg.end_cart();
+		location.href = 'checkout.html';
 	}
 });
 
