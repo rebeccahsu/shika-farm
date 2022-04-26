@@ -154,18 +154,14 @@ $('#login_btn').on('click', (e) => {
     e.preventDefault();
     console.log(e.target);
 })
-*/
+
 
 $('#FBlogin_btn').on('click', (e) => {
     e.preventDefault();
     console.log(e.target);
 })
+*/
 
-// 註冊會員連結
-$('.register').on('click', (e) => {
-    e.preventDefault();
-    console.log(e.target);
-})
 
 // 註冊送出帳密=================================================================
 $('#next').on('click', (e) => {
@@ -345,10 +341,9 @@ function send_forgetEmail(forgetEmail, forgetName, TOKEN){
     emailjs.send(serviceID, templateID,templateParams ,"abHautzLicXP7SnzL")
     
         .then(() => {
-            testBtn.value = '送出';
+        console.log("send email");
             // alert('Sent!');
         }, (err) => {
-            testBtn.value = '送出';
             console.log(JSON.stringify(err));
         });
 }
@@ -404,7 +399,7 @@ login_btn.addEventListener('click', function (e) {
     e.preventDefault();
     let userMail = document.querySelectorAll('.userMail')[0];
     let PWD = document.querySelector('#password');
-    console.log(userMail.value +' / '+ PWD.value);  //上線之前一定要刪掉
+    
     if(userMail != "" && PWD != ""){
         let url = './php/Login.php';
         fetch(url, {
@@ -425,16 +420,12 @@ login_btn.addEventListener('click', function (e) {
                 //body也不可以console
                 const { successful, message, ID, NAME } = body;
                 if (successful) {
-                    // msg_box.innerHTML = `<p>${ID}</p><p>${NAME}</p><p>${message}</p>`;
-                    console.log(successful+' / '+message+' / '+ID+" / "+NAME);
                     sessionStorage.setItem("login",JSON.stringify({login:successful,NAME:NAME,ID:ID}));
-                        // alert(`${NAME}，歡迎回到Sìkha牧場`);
                         sAlert(`${NAME}，歡迎回到Sìkha牧場`, "success", "確認");
                         $("#login_box").addClass("-off");
                         $("#back_bg").addClass("-off");
    
                 } else {
-                    // alert(message);
                     sAlert(message, "error", "確認")
                 }
             })
