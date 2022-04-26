@@ -13,7 +13,7 @@
     @@include('./layout/header.html')
 
     @@include('./layout/login_register.html')
-    
+
     <div class="newsTop container-fluid">
         <h3 class="pageTitle">最新消息</h3>
     </div>
@@ -24,80 +24,26 @@
         </div>
 
         <div class="main_min container-lg">
-            <div class="a_out">
-                <div class="a_in">
-                    <a href="./news_in.html" class="min_news ">
-                        <img src="./img/news/Rectangle 196.png" alt="">
-                        <h5>2022/3/15</h5>
-                        <h5>【歡慶兒童節 帶小孩來牧場放電囉】</h5>
-                    </a>
-                </div>
-            </div>
-            <div class="a_out">
-                <div class="a_in">
-                    <a href="./news_in2.html" class="min_news">
-                        <img src="./img/news/Rectangle 1964.png" alt="">
-                        <h5>2021/3/15</h5>
-                        <h5>你我一起防疫大作戰</h5>
-                    </a>
-                </div>
-            </div>
-            <div class="a_out">
-                <div class="a_in">
-                    <a href="./news_in3.html" class="min_news">
-                        <img src="./img/news/Rectangle 1966.png" alt="">
-                        <h5>2021/2/15</h5>
-                        <h5>新冠狀病毒防疫一起來</h5>
-                    </a>
-                </div>
-
-            </div>
-            <div class="a_out">
-                <div class="a_in">
-                    <a href="./news_in4.html" class="min_news">
-                        <img src="./img/news/Rectangle 1968.png" alt="">
-                        <h5>2022/1/15</h5>
-                        <h5>【公告】2022春節營運時間及票價優惠</h5>
-                    </a>
-                </div>
-            </div>
-            <div class="a_out">
-                <div class="a_in">
-                    <a href="./news_in5.html" class="min_news">
-                        <img src="./img/news/Rectangle 1969.png" alt="">
-                        <h5>2022/2/28</h5>
-                        <h5>【粉萌春日祭】3月周末例假日門票優惠開始啦!
-                        </h5>
-                    </a>
-                </div>
-
-
-            </div>
-            <div class="a_out">
-                <div class="a_in">
-                    <a href="./news_in6.html" class="min_news">
-                        <img src="./img/news/Mask group.png" alt="">
-                        <h5>2022/12/15</h5>
-                        <h5>【聖誕節限時門票優惠】門票優惠只要200元</h5>
-                    </a>
+            <div id="app" class="a_out">
+                <div v-for="item in items" class="a_in">
+                    <div href="" @click="itemInfo" :data-id="item.ID" class="min_news">
+                        <img :src="item.IMG" alt="">
+                        <h5>{{item.DATE}}</h5>
+                        <h5>{{item.TITLE}}</h5>
+                    </div>
                 </div>
             </div>
         </div>
 
-
-
-        <ul class="down_a">
+        <!-- <ul class="down_a">
             <li><a href="./news.html">1</a></li>
             <li><a href="./news2.html">2</a></li>
             <li><a href="">......</a></li>
-        </ul>
-
-
-
-
+        </ul> -->
     </main>
     <!-- footer -->
     @@include('./layout/footer.html')
+    <script src="js/news.js"></script>
 </body>
 
 </html>
