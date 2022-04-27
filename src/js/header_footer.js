@@ -174,9 +174,15 @@ let spcart = document.getElementById("blackBg"); // 彈窗黑色遮罩
 let gosp = document.getElementById("gosp"); // 繼續購物按鈕
 let co = document.getElementsByClassName("Co")[0]; //結帳按鈕
 
+
 // 點擊購物車icon讓購物車彈出
 cart.addEventListener("click", function (e) {
+	let cartCount = document.getElementsByClassName("cartCount")[0].innerText; //購物車數字
 	e.preventDefault(); //停止a連結預設行為
+	console.log(cartCount);
+	if(cartCount == "0"){
+		return;
+	}
 	if(location.href!="checkout.html"){
 		spcart.classList.toggle("active");
 		black_bg.start_cart(); //在點擊後，在強制執行一次這個vue裡面的start_cart()函式
