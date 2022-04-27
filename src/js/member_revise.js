@@ -342,7 +342,7 @@ fetch("./php/mb_list.php", {
     let tr = $("tr");
     // console.log(tr.length);
     // console.log($('#li2').find(`tr:nth-child(1) td:nth-child(6)`).text());
-    // console.log($('#li2').find(`tr:nth-child(3) td:nth-child(6)`).text());
+    console.log($('#li2').find(`tr:nth-child(1) td:nth-child(6)`).text());
     for (let i = 1; i < tr.length; i += 2) {
       let cancel = $('#li2').find(`tr:nth-child(${i}) td:nth-child(6)`).text();
       if (cancel == '已取消' && $('.cel_list_btn').val() == i) {
