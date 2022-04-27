@@ -271,7 +271,7 @@ fetch("./php/mb_orderActive.php", {
     console.log(res)
     for (let i = 0; i < res.length; i++) {
       $('#act_list').append(`
-        <div class="act_list co">
+        <div class="act_list co" data-reid="${res[i].ID}">
           <h3 class="act_date">${res[i].DATE}</h3>
           <h4 class="act_title">${res[i].NAME}</h4>
           <p class="act_time">預約時間 : ${res[i].SESSION} 預約人數 : ${res[i].ATTENDANCE}</p>
@@ -280,19 +280,56 @@ fetch("./php/mb_orderActive.php", {
       `)
     }
   })
+
+
 //Tab2 預約欄位取消預約
 $(document).on('click', ".cancel_btn", function (e) {
-  let cBtnCount = $(".cancel_btn").length;
-  let cArr = [];
-  let flag = true;
+	let cBtnCount = $(".cancel_btn").length;
+	let cArr = [];
+	let flag = true;
 
-  if ($(e.target).hasClass('cancel_btn')) {
-    for (let i = 0; i < cBtnCount; i++) {
-      $(e.target).closest('.act_list').find('.cancel_btn').css({ 'background-color': 'gray', 'border': 'none'});
-      $(e.target).closest('.act_list').find('.cancel_btn').text("已取消");
-    }
-    console.log($(e.target).closest('.act_list').find('.cancel_btn').val())
-  }
+	let reserveId = $(e.target).closest('.act_list').data("reid");
+	console.log(reserveId);
+
+	Swal.fire({
+	title: `<h5>確定要取消預約這個活動嗎？</h5>`,
+	showCancelButton: true,
+	buttonsStyling: false,
+	confirmButtonText: '確定',
+	cancelButtonText: '取消',
+	customClass: {
+		confirmButton: 'btn-green marginright_20',
+		cancelButton: 'btn-red'
+	},      
+	})
+	.then((result) => {
+
+		if (result.value) {
+			fetch('./php/member_delete_reservation.php', {
+				method: 'POST',
+				headers: {
+					'Content-type': 'application/json'
+				},
+				body: JSON.stringify({
+					ID: reserveId,
+				}),
+			})
+			.then(res =>  res.json())   
+			.then(res => {
+				if (res.successful) {
+					$(e.target).closest('.act_list').find('.cancel_btn').css({ 'background-color': 'gray', 'border': 'none'});
+      				$(e.target).closest('.act_list').find('.cancel_btn').text("已取消");
+					sAlert(`<h5>已成功取消預約！</h5>`, 'success', 'OK');
+					
+				} else {
+					sAlert(`<h5>刪除失敗，請稍後再試</h5>`, 'error', 'OK');
+				}      
+			});
+
+		}
+
+
+	});
 
 })
 

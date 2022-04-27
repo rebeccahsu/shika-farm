@@ -9,7 +9,7 @@
     session_start();  
     $id = $_SESSION['ID'];
  
-    $sql = "SELECT a.NAME, r.DATE, r.SESSION, r.ATTENDANCE,r.MEMBER_ID
+    $sql = "SELECT a.NAME, r.DATE, r.SESSION, r.ATTENDANCE, r.MEMBER_ID, r.ID
     from ACTIVITY a join RESERVATION r
     on a.ID = r.ACTIVITY_ID
     WHERE r.MEMBER_ID = $id;";
