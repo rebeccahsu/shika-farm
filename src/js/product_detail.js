@@ -297,9 +297,7 @@ $("#pd_info_cart").on("click", (e) => {
 //  直接購買按鈕
 $("#pd_info_buy").on("click", (e) => {
 	let login = sessionStorage.getItem("login");
-	let inStock = document.querySelector("#pd_inStock").value;
-	e.preventDefault();
-	if(inStock <1){
+	
 	if(login){
 		e.preventDefault();
 		console.log("buy");
@@ -342,7 +340,6 @@ $("#pd_info_buy").on("click", (e) => {
     	$("#login_box").removeClass("-off");
 		$("#back_bg").removeClass("-off");
 	}
-}
 });
 
 
