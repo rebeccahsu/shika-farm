@@ -128,7 +128,7 @@ function open_detail(ID) {
     .then((res) => {
       $('#li' + ID).children().remove()
       $('#li' + ID).slideToggle()
-      console.log(res);
+      // console.log(res);
       $('#li' + ID).append("<ul class='detail' style='list-style-type: none;>");
       for (let i = 0; i < res.length; i++) {
         $('#li' + ID).append("<li>" + res[i].NAME + " " + res[i].QUANTITY + '件' + " " + 'NT$' + res[i].UNIT_PRICE + "</li>");
@@ -138,6 +138,10 @@ function open_detail(ID) {
 }
 
 function cancel_btn(ID) {
+  // if ($(e.target).hasClass('canceled')){
+  //   return;
+  // }
+  
   fetch('./php/mb_orderCancel.php', {
     method: 'POST',
     headers: {
@@ -149,12 +153,15 @@ function cancel_btn(ID) {
   })
     .then((res) => res)
     .then((res) => {
-      $(document).on('click', function (e) {
-        if ($(e.target).hasClass('cel_list_btn')) {
-          let btnVal = $(e.target).val();
-          $(`#sort${btnVal}`).find('td:nth-child(6)').text('已取消')
-        }
-      })
+      // $(document).on('click', function (e) {
+      //   if ($(e.target).hasClass('cel_list_btn')) {
+      //     let btnVal = $(e.target).val();
+      //     $(`#sort${btnVal}`).find('td:nth-child(6)').text('已取消')
+      //   }
+      // })
+      
+      $(`#sort${ID}`).find('td:nth-child(6)').text('已取消');
+      $(e.target).addClass("canceled");
     });
 }
 
@@ -209,7 +216,7 @@ $('#logout').on('click', function () {
       })
         setTimeout(() => {
           location.href = 'index.html';
-        }, 1500)
+        }, 1000)
         
       }
     }
@@ -218,7 +225,7 @@ $('#logout').on('click', function () {
 });
 
 //確認修改按鈕
-let userid = JSON.parse(sessionStorage.getItem("login")).ID;
+// let userid = JSON.parse(sessionStorage.getItem("login")).ID;
 
 $('#confirmBtn').on('click', function () {
   let userInfo = {
@@ -256,16 +263,16 @@ fetch("./php/mb_orderActive.php", {
   headers: {
     "Content-Type": "application/json",
   },
-  body: JSON.stringify({
-    memberID: JSON.parse(sessionStorage.getItem('login')).ID,
-  })
+  // body: JSON.stringify({
+  //   memberID: JSON.parse(sessionStorage.getItem('login')).ID,
+  // })
 })
   .then((res) => res.json())
   .then((res) => {
     console.log(res)
     for (let i = 0; i < res.length; i++) {
       $('#act_list').append(`
-        <div class="act_list co">
+        <div class="act_list co" data-reid="${res[i].ID}">
           <h3 class="act_date">${res[i].DATE}</h3>
           <h4 class="act_title">${res[i].NAME}</h4>
           <p class="act_time">預約時間 : ${res[i].SESSION} 預約人數 : ${res[i].ATTENDANCE}</p>
@@ -274,19 +281,56 @@ fetch("./php/mb_orderActive.php", {
       `)
     }
   })
+
+
 //Tab2 預約欄位取消預約
 $(document).on('click', ".cancel_btn", function (e) {
-  let cBtnCount = $(".cancel_btn").length;
-  let cArr = [];
-  let flag = true;
+	let cBtnCount = $(".cancel_btn").length;
+	let cArr = [];
+	let flag = true;
 
-  if ($(e.target).hasClass('cancel_btn')) {
-    for (let i = 0; i < cBtnCount; i++) {
-      $(e.target).closest('.act_list').find('.cancel_btn').css({ 'background-color': 'gray', 'border': 'none' })
-      $(e.target).closest('.act_list').find('.cancel_btn').text("已取消");
-    }
-    console.log($(e.target).closest('.act_list').find('.cancel_btn').val())
-  }
+	let reserveId = $(e.target).closest('.act_list').data("reid");
+	console.log(reserveId);
+
+	Swal.fire({
+	title: `<h5>確定要取消預約這個活動嗎？</h5>`,
+	showCancelButton: true,
+	buttonsStyling: false,
+	confirmButtonText: '確定',
+	cancelButtonText: '取消',
+	customClass: {
+		confirmButton: 'btn-green marginright_20',
+		cancelButton: 'btn-red'
+	},      
+	})
+	.then((result) => {
+
+		if (result.value) {
+			fetch('./php/member_delete_reservation.php', {
+				method: 'POST',
+				headers: {
+					'Content-type': 'application/json'
+				},
+				body: JSON.stringify({
+					ID: reserveId,
+				}),
+			})
+			.then(res =>  res.json())   
+			.then(res => {
+				if (res.successful) {
+					$(e.target).closest('.act_list').find('.cancel_btn').css({ 'background-color': 'gray', 'border': 'none'});
+      				$(e.target).closest('.act_list').find('.cancel_btn').text("已取消");
+					sAlert(`<h5>已成功取消預約！</h5>`, 'success', 'OK');
+					
+				} else {
+					sAlert(`<h5>刪除失敗，請稍後再試</h5>`, 'error', 'OK');
+				}      
+			});
+
+		}
+
+
+	});
 
 })
 
@@ -309,45 +353,54 @@ fetch("./php/mb_list.php", {
   headers: {
     "Content-Type": "application/json",
   },
-  body: JSON.stringify({
-    memberID: JSON.parse(sessionStorage.getItem('login')).ID,
-  })
+  // body: JSON.stringify({
+  //   memberID: JSON.parse(sessionStorage.getItem('login')).ID,
+  // })
 })
   .then((res) => res.json())
   .then((res) => {
+    // console.log(res);
     let tr_row = "";
     for (let i = 0; i < res.length; i++) {
       tr_row += "<tr class='li2' id='sort" + i + "'>";
       tr_row += "<td>" + res[i].ORDER_DATE + "</td>";
-      tr_row += "<td id='orderID'>" + res[i].ID + "</td>";
+      tr_row += "<td id='order" + res[i].ID + "'>" + res[i].ID + "</td>";
       tr_row += "<td>" + res[i].quantity + "</td>";
       tr_row += "<td>" + res[i].TOTAL + "</td>";
       tr_row += "<td>" + res[i].PAYMENT + "</td>";
       tr_row += "<td>" + res[i].LOGISTICS_STATE + "</td>";
-      tr_row += "<td><button class='cel_list_btn' onclick='cancel_btn(" + res[i].ID + ")' value='" + (2 * parseInt(i) + 1) + "'>取消訂單</button>";
-      tr_row += "<button id='op_btn' onclick='open_detail(" + res[i].ID + ")'>+</button></td>";
+      tr_row += "<td>";
+      if(res[i].LOGISTICS_STATE == '已取消'){
+        tr_row += "<button class='cel_list_btn canceled' onclick='cancel_btn(" + res[i].ID + ")'>取消訂單</button>";
+      }
+      else{
+        tr_row += "<button class='cel_list_btn'>取消訂單</button>";
+      }
+      // tr_row += "<button class='cel_list_btn' onclick='cancel_btn(" + res[i].ID + ")' value='" + (2 * parseInt(i) + 1) + "'>取消訂單</button>";
+      tr_row += "<button id='op_btn' onclick='open_detail(" + res[i].ID + ")'>+</button>";
+      tr_row += "</td>";
       tr_row += "</tr>";
       tr_row += "<tr class='li3' id='li" + res[i].ID + "' style='display:none;'>";
       tr_row += "</tr>";
     }
 
     $("#li2").append(tr_row);
-    if ($('#li2').find('td:nth-child(6)').text() == '已取消') {
-      alert('訂單已取消');
-      $('#li2').find('td:nth-child(6)').closest('tr').remove();
-    }
+    // if ($('#li2').find('td:nth-child(6)').text() == '已取消') {
+    //   // alert('訂單已取消');
+    //   // $('#li2').find('td:nth-child(6)').closest('tr').remove();
+    // }
   })
   .then((res) => {
-    let tr = $("tr");
-    console.log(tr.length);
+    // let tr = $("tr");
+    // console.log(tr.length);
     // console.log($('#li2').find(`tr:nth-child(1) td:nth-child(6)`).text());
     // console.log($('#li2').find(`tr:nth-child(3) td:nth-child(6)`).text());
-    for (let i = 1; i < tr.length; i += 2) {
-      let cancel = $('#li2').find(`tr:nth-child(${i}) td:nth-child(6)`).text();
-      if (cancel == '已取消' && $('.cel_list_btn').val() == i) {
-        $('#li2').find(`tr:nth-child(${i}) .cel_list_btn`).css('background-color', 'gray')
-      }
-    }
+    // for (let i = 1; i < tr.length; i += 2) {
+    //   let cancel = $('#li2').find(`tr:nth-child(${i}) td:nth-child(6)`).text();
+    //   if (cancel == '已取消' && $('.cel_list_btn').val() == i) {
+    //     $('#li2').find(`tr:nth-child(${i}) .cel_list_btn`).css('background-color', 'gray')
+    //   }
+    // }
   });
 
 

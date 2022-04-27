@@ -235,7 +235,7 @@ const activityList = new Vue({
                         title: `<h5>確定要刪除這 ${checked_arr.length} 個活動嗎？</h5>`,
                         showCancelButton: true,
                         buttonsStyling: false,
-                        confirmButtonText: '送出',
+                        confirmButtonText: '確定',
                         cancelButtonText: '取消',
                         customClass: {
                             confirmButton: 'btn-green marginright_20',

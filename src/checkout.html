@@ -94,7 +94,7 @@
 					<li v-for="(product, index) in products" class="carTitle carInfo">
 						<div class="imgInfo">
 							<img :src="product.img" class="infoImg" />
-							<p>{{product.name}}</p>
+							<p class="pdName">{{product.name}}</p>
 						</div>
 						<p>NT$ {{product.price}}</p>
 						<p>{{product.count}}</p>
@@ -154,7 +154,7 @@
 					<li v-if="payType == 'card'" class="card_info">
 						<div class="card_infoI">
 							<p class="cardAll">
-								<label for="payId">信用卡卡號</label>
+								<label for="payId" class="cardNumber">信用卡卡號</label>
 								<input
 									type="text"
 									id="payId"

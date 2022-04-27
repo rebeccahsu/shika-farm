@@ -44,14 +44,14 @@
 	// ---------- 購物車 ----------
 	.step1 {
 		margin: 100px auto 0;
-		width: 1000px;
+		width: 100%;
 		display: grid;
-		@include pad{
-			width: 650px;
-		}
-		@include mobile{
-			width: 360px;
-		}
+		// @include pad{
+		// 	width: 650px;
+		// }
+		// @include mobile{
+		// 	width: 360px;
+		// }
 
 		.carName {
 			background-color: $color_Y;
@@ -81,7 +81,7 @@
 			grid-template-columns: 22% 20% 15% 18% 20% 5%;
 			@include textCenter();
 			@include pad{
-				grid-template-columns: 35% 30% 35%;
+				grid-template-columns: 40% 35% 25%;
 			}
 
 			p {
@@ -89,7 +89,7 @@
 					margin-top: 50px;
 				}
 				@include mobile{
-					margin-top: 40px;
+					margin: 40px 2px;
 				}
 			}
 			.infoImg {
@@ -108,7 +108,7 @@
 					margin: 0px 20px 0 190px;
 				}
 				@include mobile{
-					margin: 0px 20px 0 95px;
+					margin: 35px auto 0;
 				}
 			}
 			.quantity {
@@ -143,7 +143,12 @@
 			padding: 30px 200px;
 			border: 1px solid #c4c4c4;
 			@include mobile{
-				padding: 20px 100px;
+				padding: 20px 70px;
+			}
+			.pdName{
+				@include mobile{
+					margin-top: 10px;
+				}
 			}
 		}
 	}
@@ -176,14 +181,14 @@
 
 	.step2 {
 		margin: 100px auto 0;
-		width: 1000px;
+		width: 100%;
 
-		@include pad{
-			width: 650px;
-		}
-		@include mobile{
-			width: 360px;
-		}
+		// @include pad{
+		// 	width: 650px;
+		// }
+		// @include mobile{
+		// 	width: 360px;
+		// }
 		// =================== 表格1 總計 ===================
 		// *********** 總計表格標題 ***********
 		.carName2 {
@@ -252,7 +257,7 @@
 			padding: 10px 0 10px 82%;
 
 			@include mobile{
-				padding: 10px 0 10px 75%;
+				padding: 10px 0 10px 60%;
 			}
 		}
 		// =================== 表格2 送貨資訊 ===================
@@ -283,7 +288,10 @@
 			border-bottom: none;
 			@include pad{
 				padding: 10px;
-			}			
+			}		
+			@include mobile{
+				grid-template-columns: 100%;
+			}	
 
 			.sendIn {
 				display: block;
@@ -345,7 +353,7 @@
 						margin: 10px 60px;
 					}
 					@include mobile{
-						width: 400px;
+						width: 260px;
 						margin: 5px 20px;
 					}
 				}
@@ -427,6 +435,15 @@
 					color: red;
 					font-size: 12px;
 				}
+				.cardNumber{
+					@include mobile{
+						display: block;
+						
+					}
+				}
+				@include mobile{
+					margin: 8px;
+				}
             }
 			.carddate{
 				margin: 15px;
@@ -438,10 +455,16 @@
 					color: red;
 					font-size: 12px;
 				}
+				@include mobile{
+					margin: 8px;
+				}
 			}
             //卡號
             .payId {
                 width: 50px;
+				@include mobile{
+					width: 44px;
+				}
             }
             //到期日
             .date {
@@ -450,8 +473,8 @@
             }
             //持卡人姓名
             .cardname {
-                text-align: left;
-                padding-left: 35px;
+                text-align: center;
+                padding-left: 95px;
 				position: relative;
 				>span{
 					position: absolute;
@@ -461,6 +484,7 @@
 				
 				@include pad{
 					padding: 0;
+					text-align: left;
 				}
             }
             // 安全碼
