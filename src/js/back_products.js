@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
 
             } else {
-                alert(message);
+                console.log(message);
             }
         })
 
@@ -127,21 +127,22 @@ $('#show_off').on('click', (e) => {
                 cancelButton: 'btn-red'
             },
         }).then(function(res) {
+            // 選擇確定
             if (res.value) {
 
                 // 使用者按確認之後要做的事寫在這裡
                 //可以搭配alert使用
                 for (let i = $('.select_item').length - 1; i > -1; i--) {
                     if ($(".select_item")[i].checked) { //checke box 有打勾時
-                        console.log($('.select_item')[i]);
+                        // console.log($('.select_item')[i]);
                         let aa = $(".select_item")[i].closest("li").getAttribute("data-prd_condition");
+                        let target_id = $(".select_item")[i].closest('li').getAttribute('data-prd_number');
+                        
                         if (aa == "on") {
-                            // alert("上架中的商品不能刪除");
-                            sAlert("上架中的商品不能刪除" , "warning", "確定");
+                            sAlert(`品號:${target_id}是上架中的商品不能刪除` , "warning", "確定");
                         } else if (aa == "off") {
                             // AJAX
                             // console.log($(".select_item")[i].checked);
-                            let target_id = $(".select_item")[i].closest('li').getAttribute('data-prd_number');
 
                             fetch('./php/back_products_delete.php', {
                                 method: 'POST',
@@ -169,9 +170,8 @@ $('#show_off').on('click', (e) => {
                                         })
 
                                     } else {
-                                        // alert(message);
-                                        let msg = `品號：${id} `
-                                        sAlert((msg + message), "error", "確定");
+                                        let msgg = `品號：${id} `
+                                        sAlert((msgg + message), "error", "確定");
                                         $(".select_item")[i].checked = false
                                         return;
                                     }
@@ -179,7 +179,7 @@ $('#show_off').on('click', (e) => {
                         }
                     }
                 }
-                sAlert("刪除成功", "success", "確定");
+                // sAlert("刪除成功", "success", "確定");
           
            }else{
                   // 使用者按取消之後要做的事寫在這裡
@@ -390,7 +390,7 @@ function search_product() {
             } else {
                 console.log(message);
                 $(".list_item").remove();
-                $('#pds_list').append(`<li><h4 style="padding:20px;">SORRY！ 找不到商品</h4></li>`);
+                $('#pds_list').append(`<li class="list_item" style=" border:none;"><h4 style="padding:20px;">SORRY！ 找不到商品</h4></li>`);
             }
         })
 }
