@@ -66,14 +66,13 @@ $('#send_psd').on('click', (e) => {
                     console.log(successful +'會員'+NAME +' 訊息'+message);
                     reset_pwd.remove();
                     $(".shikaBlock").attr("style","display:none;");
-                    
+                    reset_comple.classList.remove('form-off')
 
                     // location.href = `./password_reset_3.html`;
                 } else {
                     console.log(successful+' 訊息'+message +" / "+row);
                 }
             })
-            .then(reset_comple.classList.remove('form-off'))
     }
 })
 // 重設密碼end==========================================================================
