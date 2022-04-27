@@ -433,7 +433,7 @@ document.addEventListener("click", function (e) {
 // =================================================
 
 
-// 檢查必填欄位、取消按鍵
+// 送出資料 檢查必填欄位、取消按鍵
 $('#submit').on('click', (e) => {
     e.preventDefault;
     check_cost();
@@ -535,16 +535,11 @@ $('#submit').on('click', (e) => {
                             },
                         }).then(function(res) {
                            if (res.value) {
-        
                                // 使用者按確認之後要做的事寫在這裡
-                               //可以搭配alert使用
-                          
-                           }else{
-                                  // 使用者按取消之後要做的事寫在這裡
-                           };
+                               location.href = "./back_products.html";
+                           }
                         });
 
-                        location.href = "./back_products.html";
                     } else {
                         console.log(successful + ' / ' + message);
                     }
@@ -623,9 +618,12 @@ $('#submit').on('click', (e) => {
                                 confirmButton: 'btn-green marginright_20',
                                 cancelButton: 'btn-red'
                             },
-                        }).then(function() {
-                               location.href = "./back_products.html";
-                        });
+                        }).then(function(res) {
+                            if (res.value) {
+                                // 使用者按確認之後要做的事寫在這裡
+                                location.href = "./back_products.html";
+                            }
+                         });
                     } else {
                         console.log(successful + ' / ' + message);
                     }
