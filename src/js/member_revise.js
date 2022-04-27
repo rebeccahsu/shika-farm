@@ -138,10 +138,10 @@ function open_detail(ID) {
 }
 
 function cancel_btn(ID) {
-  if ($(e.target).hasClass('canceled')){
-    return;
-  }
-
+  // if ($(e.target).hasClass('canceled')){
+  //   return;
+  // }
+  
   fetch('./php/mb_orderCancel.php', {
     method: 'POST',
     headers: {
@@ -159,6 +159,7 @@ function cancel_btn(ID) {
       //     $(`#sort${btnVal}`).find('td:nth-child(6)').text('已取消')
       //   }
       // })
+      
       $(`#sort${ID}`).find('td:nth-child(6)').text('已取消');
       $(e.target).addClass("canceled");
     });

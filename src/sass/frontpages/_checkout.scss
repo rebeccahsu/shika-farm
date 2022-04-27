@@ -436,7 +436,10 @@
 					font-size: 12px;
 				}
 				.cardNumber{
-					display: block;
+					@include mobile{
+						display: block;
+						
+					}
 				}
 				@include mobile{
 					margin: 8px;
@@ -470,8 +473,8 @@
             }
             //持卡人姓名
             .cardname {
-                text-align: left;
-                padding-left: 35px;
+                text-align: center;
+                padding-left: 95px;
 				position: relative;
 				>span{
 					position: absolute;
@@ -481,6 +484,7 @@
 				
 				@include pad{
 					padding: 0;
+					text-align: left;
 				}
             }
             // 安全碼
