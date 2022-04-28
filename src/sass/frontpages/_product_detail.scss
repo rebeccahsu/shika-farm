@@ -226,7 +226,6 @@
   max-width: 386px;
   height: 90px;
   background-color: $color_G;
-  border: 1px solid $color_G;
   color: $color_W;
   font-size: $fs-s;
   line-height: 90px;
@@ -234,7 +233,6 @@
   transition: 1s;
   &:hover {
     background-color: $color_Y;
-    color: $color_G;
   }
 }
 
@@ -244,14 +242,12 @@
   max-width: 386px;
   height: 90px;
   background-color: $color_R;
-  border: 1px solid $color_R;
   color: $color_W;
   line-height: 90px;
   font-size: $fs-s;
   transition: 1s;
   &:hover {
     background-color: $color_Y;
-    color: $color_G;
   }
 }
 
