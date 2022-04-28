@@ -259,7 +259,8 @@ $('#send_mail').on('click', (e) => {
                         $('#hint').after(`<p style="color:red;" id="cdTime">系統已將信件寄出，若沒有收到信件，請等待<span id="sss"></span>秒後再試，謝謝。 </p>`)
                         $('#send_mail').disabled = true;
                         mail_cd();
-                        send_forgetEmail(userMail.value, NAME, TOKEN_str)
+                        send_forgetEmail(userMail.value, NAME, TOKEN_str);
+                        sAlert("重設密碼的信件已送出", "success", "確定");
                     }
                 } else {
                     $('label[for="userMail"]').html("<h5>電子郵件<span>*e-mail未註冊過</span></h5>");
