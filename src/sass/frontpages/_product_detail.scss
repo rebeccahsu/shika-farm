@@ -12,9 +12,12 @@
   //   麵包屑
   .pd_bread {
     font-size: $fs-xs;
-    color: $color_G;
+    color: #7d7d7d;
     margin-top: 130px;
     margin-bottom: 20px;
+    a{
+      color: #7d7d7d;
+    }
 
     @include mobile {
       margin-top: 90px;
@@ -143,6 +146,9 @@
   @media (max-width: 1200.98px) and (min-width: 768px) {
     flex-direction: column;
     align-items: start;
+    h5,.pd_stockCount{
+      padding: 5px 0;
+    }
   }
 }
 
@@ -201,14 +207,27 @@
   flex-direction: column;
 }
 
+// 庫存0的時候
+#pd_info_noStock{
+  height: 100px;
+  color: $color_R;  
+  border: 1px dotted #ccc;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  h5{
+    text-align: center;
+  }
+}
+
 #pd_info_cart {
   display: block;
   text-align: center;
   max-width: 386px;
   height: 90px;
-  background-color: $color_W;
-  border: 1px solid $color_Y;
-  color: $color_Y;
+  background-color: $color_G;
+  border: 1px solid $color_G;
+  color: $color_W;
   font-size: $fs-s;
   line-height: 90px;
   margin-bottom: 18px;
@@ -256,7 +275,7 @@
 
 // 商品描述==============================
 .pd_intro_h3 {
-  color: $color_G;
+  color: $color_B;
   font-weight: bold;
   text-align: center;
 }

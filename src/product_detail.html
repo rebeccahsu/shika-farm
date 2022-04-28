@@ -70,6 +70,9 @@
 						</div>
 						<h5>在庫數量：<span id="pd_inStock"></span></h5>
 					</div>
+                    <div id="pd_info_noStock">
+                        <h5>售完，捕貨中</h5>
+                    </div>
 					<div class="pd_info_btn">
 						<a href="#" id="pd_info_cart">放入購物車</a><br />
 						<a href="#" id="pd_info_buy">直接購買</a>
@@ -126,9 +129,7 @@
 
 		<!-- footer -->
 		@@include('./layout/footer.html')
-
-		<!-- <script src="./js/vendors/splide.min.js"></script> -->
-		<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/js/splide.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/js/splide.min.js"></script>
 		<script src="./js/product_detail.js"></script>
 	</body>
 </html>

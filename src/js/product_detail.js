@@ -25,10 +25,11 @@ document.addEventListener("DOMContentLoaded", function () {
 				// console.log(successful + "訊息" + message + "資料" + data);
 				let bread = document.querySelector(".pd_bread");
 				let kind = (data[0].PRODUCT_CATEGORY_ID = 1 ? "冷凍冷藏" : "日常用品");
-				bread.innerText = `首頁 | 周邊商品 | ${kind} | ${data[0].NAME}`;
+				bread.innerHTML = `<a href="./index.html">首頁</a> | <a href="./products.html">周邊商品</a> | ${kind} | ${data[0].NAME}`;
 				putin_top_pic(data[0].MAIN_PIC);
 				data_load(data);
 				check_inStock();
+				recommend_load();
 
 			} else {
 				// console.log(successful + ' 訊息' + message);
@@ -36,73 +37,76 @@ document.addEventListener("DOMContentLoaded", function () {
 				main.innerHTML = `<div style="height:200px;text-align: center;display: flex;align-items: center;flex-direction:column-reverse;"><h3>sorry！找不到此商品！</h3></div>`;
 			}
 		})
-
-
-
-	function data_load(data) {
-		let pd_name = document.querySelector("#pd_info_name");
-		pd_name.innerText = data[0].NAME;
-		let slogn = document.querySelectorAll(".pd_info_slog");
-		let slogan_text = JSON.parse(data[0].SLOGAN)
-		slogn[0].innerText = slogan_text[0];
-		slogn[1].innerText = slogan_text[1];
-		// 商品規格
-		let detail = document.querySelector("#pd_info_ingredient");
-		detail.innerText = data[0].DETAIL;
-		// 商品價錢
-		let price = document.querySelector("#pd_info_pricr");
-		price.innerText = data[0].UNIT_PRICE;
-		// 商品庫存
-		let stock = document.querySelector("#pd_inStock");
-		stock.innerText = data[0].STOCK;
-		// 商品介紹
-		let intro = document.querySelector(".intro_area");
-		let intro_text = JSON.parse(data[0].DESCRIPTION);
-		// console.log(intro_text);
-		for (let i = 0; i < intro_text.length; i++) {
-			// console.log(intro_text[i].src+' / '+intro_text[i].text);
-			let intro_html = `<div class="pd_intro">
-			<div class=" pd_intro_pic"><img src="${intro_text[i].src}" alt="">
-			</div><p>${intro_text[i].text}</p></div>`;
-			intro.insertAdjacentHTML("beforeend", intro_html);
-
-		}
-	}
-
-	// 讀取資料end========================================
-
+	
 })
 
+function data_load(data) {
+	let pd_name = document.querySelector("#pd_info_name");
+	pd_name.innerText = data[0].NAME;
+	let slogn = document.querySelectorAll(".pd_info_slog");
+	let slogan_text = JSON.parse(data[0].SLOGAN)
+	slogn[0].innerText = slogan_text[0];
+	slogn[1].innerText = slogan_text[1];
+	// 商品規格
+	let detail = document.querySelector("#pd_info_ingredient");
+	detail.innerText = data[0].DETAIL;
+	// 商品價錢
+	let price = document.querySelector("#pd_info_pricr");
+	price.innerText = data[0].UNIT_PRICE;
+	// 商品庫存
+	let stock = document.querySelector("#pd_inStock");
+	stock.innerText = data[0].STOCK;
+	// 商品介紹
+	let intro = document.querySelector(".intro_area");
+	let intro_text = JSON.parse(data[0].DESCRIPTION);
+	// console.log(intro_text);
+	for (let i = 0; i < intro_text.length; i++) {
+		// console.log(intro_text[i].src+' / '+intro_text[i].text);
+		let intro_html = `<div class="pd_intro">
+		<div class=" pd_intro_pic"><img src="${intro_text[i].src}" alt="">
+		</div><p>${intro_text[i].text}</p></div>`;
+		intro.insertAdjacentHTML("beforeend", intro_html);
 
-
-
-// for resize==============================
-function addSplide() {
-	$(".pd_recommend").children("div").attr("id", "splide02");
-	$(".pd_recommend_list").parent("div").addClass("splide__track");
-	$(".pd_recommend_list").addClass("splide__list");
-	$(".pd_recommend_list").find("li").addClass("splide__slide");
-}
-
-function removeSplide() {
-	$(".pd_recommend").children("div").removeAttr("id", "splide02");
-	$(".pd_recommend_list").parent("div").removeClass("splide__track");
-	$(".pd_recommend_list").removeClass("splide__list");
-	$(".pd_recommend_list").find("li").removeClass("splide__slide");
-}
-
-$(window).on("resize", function () {
-	// console.log(innerWidth);
-	if (window.innerWidth > 992.98) {
-		if ($(".pd_recommend").has("#splide02")) {
-			removeSplide();
-			// console.log("object");
-		}
-	} else {
-		addSplide();
 	}
-});
-// for resize end========================
+}
+
+// 置入推薦商品
+function recommend_load(){
+	fetch('./php/product_recommend.php', {
+		method: 'POST',
+		headers: {
+			'Content-type': 'application/json'
+		},
+	})
+		// 回應用json()轉回成JS物件   resp這行不可以{}換行,換行要記得return
+		.then(resp => resp.json())
+		.then(body => { 
+			const { successful, message, data } = body;
+			let recommend_area = document.querySelector(".pd_recommend");
+			let link = recommend_area.querySelectorAll("a");
+			let img =  recommend_area.querySelectorAll("img");
+			let name = recommend_area.querySelectorAll(".pd_recommend_name");
+			let price = recommend_area.querySelectorAll(".pd_recommend_price");
+			
+			for(let i=0; i<3; i++){
+				let main_pic = JSON.parse(data[i].MAIN_PIC);
+				let t_name=data[i].NAME;
+                    if((data[i].NAME.length) > 5){
+                         t_name = t_name.slice(0,5)+"…";
+                    }
+				link[i].href=`./product_detail.html?prd_number=${data[i].ID}`;
+				link[i].title=`${data[i].NAME}`;
+				name[i].innerText=`${t_name}`;
+				img[i].src=`${main_pic[0]}`;
+				price.innerText=`${data[i].UNIT_PRICE}`;
+
+
+			}
+		})
+}
+
+// 讀取資料end========================================
+
 // 讀入首圖top_img=======================
 function putin_top_pic(top_pic) {
 	top_pic = JSON.parse(top_pic);
@@ -202,6 +206,36 @@ function putin_top_pic(top_pic) {
 
 }
 // 套件與讀取資料end=========================================================
+
+
+
+// for resize==============================
+function addSplide() {
+	$(".pd_recommend").children("div").attr("id", "splide02");
+	$(".pd_recommend_list").parent("div").addClass("splide__track");
+	$(".pd_recommend_list").addClass("splide__list");
+	$(".pd_recommend_list").find("li").addClass("splide__slide");
+}
+
+function removeSplide() {
+	$(".pd_recommend").children("div").removeAttr("id", "splide02");
+	$(".pd_recommend_list").parent("div").removeClass("splide__track");
+	$(".pd_recommend_list").removeClass("splide__list");
+	$(".pd_recommend_list").find("li").removeClass("splide__slide");
+}
+
+$(window).on("resize", function () {
+	// console.log(innerWidth);
+	if (window.innerWidth > 992.98) {
+		if ($(".pd_recommend").has("#splide02")) {
+			removeSplide();
+			// console.log("object");
+		}
+	} else {
+		addSplide();
+	}
+});
+// for resize end========================
 
 // 數量調整按鍵
 var stockCount = document.querySelector("#pd_stockCount_input");
@@ -349,24 +383,8 @@ $("#pd_info_buy").on("click", (e) => {
 // 沒有庫存時
 function check_inStock() {
 	if ($("#pd_inStock").text() == 0) {
-		$("#pd_info_cart").attr(
-			"style",
-			"background-color: #fff;  color: #ccc;  border: 1px dotted #ccc;"
-		);
-		$("#pd_info_buy").attr(
-			"style",
-			"background-color: #fff;  color: #ccc;  border: 1px dotted #ccc;"
-		);
-		$(".pd_stockCount_btn").attr("disabled");
-
-		$(".pd_stockCount_btn").attr(
-			"style",
-			"background-color: #fff;  color: #ccc;  border: 1px dotted #ccc;"
-		);
-		$("#pd_stockCount_input").attr(
-			"style",
-			"background-color: #fff;  color: #ccc;  border: 1px dotted #ccc;"
-		);
+		$("#pd_info_noStock").attr("style","display:flex;");
+		$(".pd_info_btn").attr("style","display:none;");
 	}
 }
 //庫存0時，停用按鈕、加入購物車和購買 end===============
