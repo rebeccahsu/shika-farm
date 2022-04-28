@@ -12,9 +12,9 @@
     justify-content: center;
 }
 
-.main_in .noting {
+// .main_in .noting {
     // margin-left: 137px;
-}
+// }
 
 .noting_out {
     margin-top: 100px;
@@ -42,12 +42,13 @@
 }
 
 .main_top a:hover {
-    background-color: $color_G;
-    color: white;
+    background-color: $color_Y;
+
 }
 
 .main_top a.here{
-    background-color: $color_Y;
+    background-color: $color_G;
+    color:$color_W;
 }
 
 .main_in .list{
@@ -123,9 +124,9 @@
     border: 0px;
 }
 
-@media screen and (max-width:576px){
-    .maintop{
+// @media screen and (max-width:576px){
+//     .maintop{
         
-    }
-}
+//     }
+// }
 
