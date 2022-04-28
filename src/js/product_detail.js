@@ -285,6 +285,9 @@ if (cart_data) {
 
 $("#pd_info_cart").on("click", (e) => {
 	e.preventDefault();
+	if (inStock.innerHTML < 1) {
+		return;
+	}
 
 	// 取得session已經存在的資料，判斷如果不存在就給個陣列
 	let cart_data = JSON.parse(sessionStorage.getItem("products")) ?? [];
@@ -387,6 +390,7 @@ function check_inStock() {
 			"style",
 			"background-color: #fff;  color: #ccc;  border: 1px dotted #ccc;"
 		);
+		$("#pd_info_cart").attr("disabled", true);
 		$("#pd_info_buy").attr(
 			"style",
 			"background-color: #fff;  color: #ccc;  border: 1px dotted #ccc;"
