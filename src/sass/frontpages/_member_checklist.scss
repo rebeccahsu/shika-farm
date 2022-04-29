@@ -151,9 +151,33 @@ tr {
   list-style-type: none;
 }
 
-.mb_container {
-  @include mobile {
-    width: 100%;
-    overflow-y: auto;
-  }
+.li3{
+border: 1px solid $color_G ;
+
+    li{
+        display: block;
+        text-align: left;
+        margin: 20px;
+    }
+    .li3 td{
+        padding-top: 20px;
+    
+    }
+}
+
+.detail>li{
+
+    list-style-type: none;
+}
+
+.mb_container{
+    @include pad{
+        width: 100%;
+       overflow-y: auto;
+
+    }
+    @include mobile{
+        width: 100%;
+       overflow-y: auto;
+    }
 }
