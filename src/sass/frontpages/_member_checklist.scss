@@ -166,6 +166,11 @@ border: 1px solid $color_G ;
 }
 
 .mb_container{
+    @include pad{
+        width: 100%;
+       overflow-y: auto;
+
+    }
     @include mobile{
         width: 100%;
        overflow-y: auto;
