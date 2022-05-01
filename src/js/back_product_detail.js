@@ -76,15 +76,15 @@ function putin_topimg(d) {
                     el.innerHTML = `<img src="${d[0]}"/>`;
                     break;
                 case 1:
-                    el = document.querySelector('.select_topImage1');
+                    el = document.querySelector('.select_topImage2');
                     el.innerHTML = `<img src="${d[1]}"/>`;
                     break;
                 case 2:
-                    el = document.querySelector('.select_topImage1');
+                    el = document.querySelector('.select_topImage3');
                     el.innerHTML = `<img src="${d[2]}"/>`;
                     break;
                 case 3:
-                    el = document.querySelector('.select_topImage1');
+                    el = document.querySelector('.select_topImage4');
                     el.innerHTML = `<img src="${d[3]}"/>`;
                     break;
                 default:

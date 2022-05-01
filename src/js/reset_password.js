@@ -71,6 +71,19 @@ $('#send_psd').on('click', (e) => {
                     // location.href = `./password_reset_3.html`;
                 } else {
                     console.log(successful+' 訊息'+message +" / "+row);
+                    // sweetAlert 套件 ==========================================================
+                    Swal.fire({
+                        title: `<h5>${message}</h5>`,
+                        icon: 'question',
+                        showCancelButton: false,
+                        confirmButtonText: '確定',
+                        cancelButtonText: '取消',
+                        buttonsStyling: false,
+                        customClass: {
+                            confirmButton: 'btn-green marginright_20',
+                            cancelButton: 'btn-red'
+                        },
+                    })
                 }
             })
     }

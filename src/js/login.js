@@ -258,6 +258,7 @@ $('#send_mail').on('click', (e) => {
                     if ($('.password_reset').has($('#cdTime')).length == 0) {
                         $('#hint').after(`<p style="color:red;" id="cdTime">系統已將信件寄出，若沒有收到信件，請等待<span id="sss"></span>秒後再試，謝謝。 </p>`)
                         $('#send_mail').disabled = true;
+                        $('#send_mail').attr("style","background-color: #fff;  color: #ccc;  border: 1px dotted #ccc;");
                         mail_cd();
                         send_forgetEmail(userMail.value, NAME, TOKEN_str);
                         sAlert("重設密碼的信件已送出", "success", "確定");
@@ -280,6 +281,7 @@ function mail_cd() {
     } else {
         $('#cdTime').remove();
         $('#send_mail').disabled = false;
+        $('#send_mail').removeAttr("style");
         cd = 300;
     }
 }
