@@ -5,3 +5,7 @@
 <https://tibamef2e.com/tfd105/g6/landing_page.html> 
 
 ![image](https://github.com/rebeccahsu/Shika_farm/raw/master/src/img/logo_16B1AA.svg)
+
+
+使用技術
+HTML, CSS, SCSS, JavaScript, jQuery, VueJS, AJAX, php, gulp, MySQL
